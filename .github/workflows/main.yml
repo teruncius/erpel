@@ -173,8 +173,6 @@ jobs:
           merge-multiple: "true"
 
       - run: ls -lah builds/*
-#      - run: ls -lah builds/*/*
-#      - run: ls -lah builds/*/*/*
 
       - name: Tag release
         run: gh release create ${{ github.ref_name }} ./builds/*/*/*
@@ -182,6 +180,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Add .dmg to release
-        run: gh release upload ${{ github.ref_name }} ./builds/*
+        run: gh release upload ${{ github.ref_name }} ./builds/*.dmg
         env:
           GH_TOKEN: ${{ github.token }}
