@@ -16,7 +16,6 @@
         "email": "teruncius@proton.me"
     },
     "license": "MIT",
-    "packageManager": "^pnpm@10.13.1",
     "pnpm": {
         "onlyBuiltDependencies": [
             "electron",
