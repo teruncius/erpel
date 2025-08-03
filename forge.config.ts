@@ -13,28 +13,20 @@ const config: ForgeConfig = {
     },
     rebuildConfig: {},
     makers: [
-        new MakerSquirrel({}),
+        new MakerSquirrel({
+            iconUrl: 'https://raw.githubusercontent.com/teruncius/erpel/refs/heads/master/resources/erpel.ico',
+            setupIcon: 'resources/erpel.ico',
+        }),
         new MakerDMG({
+            icon: 'resources/erpel.icns',
             background: 'resources/erpel.png',
-            format: 'ULFO',
+            format: 'UDBZ',
         }),
         new MakerDeb({
             options: {
                 icon: 'resources/erpel.png',
             },
         }),
-    ],
-    publishers: [
-        {
-            name: '@electron-forge/publisher-github',
-            config: {
-                repository: {
-                    owner: 'teruncius',
-                    name: 'erpel',
-                },
-                prerelease: true,
-            },
-        },
     ],
     plugins: [
         new VitePlugin({

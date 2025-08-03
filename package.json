@@ -33,7 +33,6 @@
         "@electron-forge/plugin-auto-unpack-natives": "^7.8.1",
         "@electron-forge/plugin-fuses": "^7.8.1",
         "@electron-forge/plugin-vite": "^7.8.1",
-        "@electron-forge/publisher-github": "^7.8.2",
         "@electron/fuses": "^1.8.0",
         "@react-spring/types": "^10.0.1",
         "@types/electron-squirrel-startup": "^1.0.2",
