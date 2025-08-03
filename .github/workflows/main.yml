@@ -12,6 +12,11 @@ jobs:
 #      - name: Checkout
 #        uses: actions/checkout@v4
 #
+#      - name: Add version to package.json
+#        run: node -e 'require("./version.ts").run()'
+#        env:
+#          FORGE_APP_VERSION: ${{ github.ref_name }}
+#
 #      - name: Install pnpm
 #        uses: pnpm/action-setup@v4
 #        with:
@@ -40,8 +45,6 @@ jobs:
 #
 #      - name: Build application
 #        run: just build
-#        env:
-#          FORGE_APP_VERSION: ${{ github.ref_name }}
 #
 ##      - run: mkdir -p out/make/deb/x64
 ##      - run: echo "TEST" > out/make/deb/x64/erpel_${{ github.ref_name }}_amd64.deb
@@ -59,6 +62,11 @@ jobs:
 #      - name: Checkout
 #        uses: actions/checkout@v4
 #
+#      - name: Add version to package.json
+#        run: node -e 'require("./version.ts").run()'
+#        env:
+#          FORGE_APP_VERSION: ${{ github.ref_name }}
+#
 #      - name: Install pnpm
 #        uses: pnpm/action-setup@v4
 #        with:
@@ -85,20 +93,8 @@ jobs:
 #      - name: Run linter
 #        run: just lint
 #
-#      # fixes https://github.com/electron/forge/issues/3047
-#      - name: Append version to package.json
-#        run: |
-#          $json = Get-Content $Env:JSON_FILE | Out-String | ConvertFrom-Json
-#          $json | Add-Member -Type NoteProperty -Name 'version' -Value $Env:FORGE_APP_VERSION
-#          $json | ConvertTo-Json | Set-Content $Env:JSON_FILE
-#        env:
-#          FORGE_APP_VERSION: ${{ github.ref_name }}
-#          JSON_FILE: package.json
-#
 #      - name: Build application
 #        run: just build
-#        env:
-#          FORGE_APP_VERSION: ${{ github.ref_name }}
 #
 ##      - run: New-Item -ItemType Directory "./out/make/squirrel.windows/x64/"
 ##      - run: New-Item -ItemType File "./out/make/squirrel.windows/x64/erpel-${{ github.ref_name }}-full.nupkg" -Value "erpel-${{ github.ref_name }}-full.nupkg"
@@ -117,6 +113,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Add version to package.json
+        run: node -e 'require("./version.ts").run()'
+        env:
+          FORGE_APP_VERSION: ${{ github.ref_name }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -146,8 +147,6 @@ jobs:
 
       - name: Build application
         run: just build
-        env:
-          FORGE_APP_VERSION: ${{ github.ref_name }}
 
       - name: Upload build
         uses: actions/upload-artifact@v4
