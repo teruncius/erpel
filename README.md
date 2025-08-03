@@ -26,7 +26,7 @@ just build
 
 ## Attribution
 
-- [erpel.png](resources/erpel.png)/[erpel.ico](resources/erpel.ico) from [iconfinder.com](https://www.iconfinder.com/iconsets/farmhouse-2), made by Ake Thanantreesak, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), modified by [teruncius](https://github.com/teruncius) 
+- [erpel.png](resources/erpel.png) and variants from [iconfinder.com](https://www.iconfinder.com/iconsets/farmhouse-2), made by Ake Thanantreesak, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), modified by [teruncius](https://github.com/teruncius) 
 - [icons.svg](./resources/icons.svg) from [icomoon.io](https://icomoon.io/app/#/select)
 - [duck-quacking.mp3](resources/duck-quacking.mp3) from [pixabay.com](https://pixabay.com/sound-effects/duck-quacking-37392/)
 - 1752520316159-741a8d0bde1d from [unsplash.com](https://unsplash.com/photos/a-spacecraft-flies-near-an-alien-planet-muUX3rENBX0)
