@@ -6,16 +6,22 @@ import { VitePlugin } from '@electron-forge/plugin-vite';
 import { FusesPlugin } from '@electron-forge/plugin-fuses';
 import { FuseV1Options, FuseVersion } from '@electron/fuses';
 
+console.log(process.env.FORGE_APP_VERSION);
+console.log(process.env.FORGE_BUILD_VERSION);
+
 const config: ForgeConfig = {
     packagerConfig: {
         asar: true,
         icon: 'resources/erpel',
+        appVersion: process.env.FORGE_APP_VERSION,
+        buildVersion: process.env.FORGE_BUILD_VERSION,
     },
     rebuildConfig: {},
     makers: [
         new MakerSquirrel({
             iconUrl: 'https://raw.githubusercontent.com/teruncius/erpel/refs/heads/master/resources/erpel.ico',
             setupIcon: 'resources/erpel.ico',
+            version: process.env.FORGE_APP_VERSION,
         }),
         new MakerDMG({
             icon: 'resources/erpel.icns',
@@ -23,6 +29,7 @@ const config: ForgeConfig = {
         new MakerDeb({
             options: {
                 icon: 'resources/erpel.png',
+                version: process.env.FORGE_APP_VERSION,
             },
         }),
     ],

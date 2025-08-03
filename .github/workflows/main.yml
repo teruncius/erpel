@@ -39,7 +39,7 @@ jobs:
         run: just lint
 
       - name: Build application
-        run: just build
+        run: FORGE_APP_VERSION=${{ github.ref_name }} FORGE_BUILD_VERSION=${{ github.sha }} just build
 
 #      - run: mkdir -p out/make/deb/x64
 #      - run: echo "TEST" > out/make/deb/x64/erpel_${{ github.ref_name }}_amd64.deb
@@ -84,7 +84,7 @@ jobs:
         run: just lint
 
       - name: Build application
-        run: just build
+        run: FORGE_APP_VERSION=${{ github.ref_name }} FORGE_BUILD_VERSION=${{ github.sha }} just build
 
 #      - run: New-Item -ItemType Directory "./out/make/squirrel.windows/x64/"
 #      - run: New-Item -ItemType File "./out/make/squirrel.windows/x64/erpel-${{ github.ref_name }}-full.nupkg" -Value "erpel-${{ github.ref_name }}-full.nupkg"
@@ -131,7 +131,7 @@ jobs:
         run: just lint
 
       - name: Build application
-        run: just build
+        run: FORGE_APP_VERSION=${{ github.ref_name }} FORGE_BUILD_VERSION=${{ github.sha }} just build
 
       - name: Upload build
         uses: actions/upload-artifact@v4
