@@ -6,15 +6,11 @@ import { VitePlugin } from '@electron-forge/plugin-vite';
 import { FusesPlugin } from '@electron-forge/plugin-fuses';
 import { FuseV1Options, FuseVersion } from '@electron/fuses';
 
-console.log(process.env.FORGE_APP_VERSION);
-console.log(process.env.FORGE_BUILD_VERSION);
-
 const config: ForgeConfig = {
     packagerConfig: {
         asar: true,
         icon: 'resources/erpel',
         appVersion: process.env.FORGE_APP_VERSION,
-        buildVersion: process.env.FORGE_BUILD_VERSION,
     },
     rebuildConfig: {},
     makers: [

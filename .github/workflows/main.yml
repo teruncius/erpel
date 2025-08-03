@@ -7,7 +7,7 @@ permissions:
 
 jobs:
   build-linux:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,7 +42,6 @@ jobs:
         run: just build
         env:
           FORGE_APP_VERSION: ${{ github.ref_name }}
-          FORGE_BUILD_VERSION: ${{ github.sha }}
 
 #      - run: mkdir -p out/make/deb/x64
 #      - run: echo "TEST" > out/make/deb/x64/erpel_${{ github.ref_name }}_amd64.deb
@@ -90,7 +89,6 @@ jobs:
         run: just build
         env:
           FORGE_APP_VERSION: ${{ github.ref_name }}
-          FORGE_BUILD_VERSION: ${{ github.sha }}
 
 #      - run: New-Item -ItemType Directory "./out/make/squirrel.windows/x64/"
 #      - run: New-Item -ItemType File "./out/make/squirrel.windows/x64/erpel-${{ github.ref_name }}-full.nupkg" -Value "erpel-${{ github.ref_name }}-full.nupkg"
@@ -105,7 +103,7 @@ jobs:
           retention-days: 1
 
   build-macos:
-    runs-on: macos-13
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -140,7 +138,6 @@ jobs:
         run: just build
         env:
           FORGE_APP_VERSION: ${{ github.ref_name }}
-          FORGE_BUILD_VERSION: ${{ github.sha }}
 
       - name: Upload build
         uses: actions/upload-artifact@v4
