@@ -19,8 +19,6 @@ const config: ForgeConfig = {
         }),
         new MakerDMG({
             icon: 'resources/erpel.icns',
-            background: 'resources/erpel.png',
-            format: 'UDBZ',
         }),
         new MakerDeb({
             options: {
