@@ -1,7 +1,5 @@
 {
     "name": "erpel",
-    "productName": "erpel",
-    "version": "0.1.0",
     "description": "Free and libre alternative to Rambox and franz.",
     "main": ".vite/build/main.js",
     "scripts": {
