@@ -78,7 +78,7 @@ function CurrentService(props: CurrentServiceProps) {
                 <ServiceButtonDnD ref={setActivatorNodeRef} {...listeners}>
                     <Icon name={'menu'} size={16}/>
                 </ServiceButtonDnD>
-                <ServiceLogo url={logo} name={name} size={32}/>
+                <ServiceLogo logo={logo} name={name} size={32}/>
                 <ServiceName>
                     <>{name}</>
                     {props.service.name && props.service.service.name && (
@@ -166,7 +166,7 @@ function ServiceBody(props: ServiceBodyProps) {
 
             <Fieldset>
                 <Label htmlFor={`${props.service.id}::logo`}>Icon</Label>
-                <ServiceLogo  url={props.service.logo} name={props.service.name} size={64}/>
+                <ServiceLogo logo={props.service.logo} name={props.service.name} size={64}/>
                 <ThemedCheckbox/>
             </Fieldset>
         </ServiceBodyContainer>
