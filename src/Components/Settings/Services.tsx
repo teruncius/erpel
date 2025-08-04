@@ -1,7 +1,7 @@
 import { Service } from '../../State/Settings';
 import React, { useCallback, useState } from 'react';
 import { styled } from 'styled-components';
-import { ServiceLogo } from './ServiceLogo';
+import { ServiceIcon } from './ServiceIcon';
 import { useStore } from '../../State/Store';
 import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
@@ -9,9 +9,9 @@ import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-
 import { Icon } from '../Icon';
 import { ThemedButton, HardFrostedEffectStyle, ThemedInput, ThemedCheckbox } from '../Theme';
 
-export function CurrentServices() {
-    const { currentServices, swap } = useStore();
-    const ids = currentServices.map((service) => service.id);
+export function Services() {
+    const { services, swap } = useStore();
+    const ids = services.map((service) => service.id);
 
     function handleDragEnd(event: DragEndEvent) {
         const { active, over } = event;
@@ -21,19 +21,19 @@ export function CurrentServices() {
     }
 
     return (
-        <ServiceList>
+        <List>
             <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                 <SortableContext items={ids} strategy={verticalListSortingStrategy}>
-                    {currentServices.map((service) => (
-                        <CurrentService key={service.id} service={service}/>
+                    {services.map((service) => (
+                        <Service key={service.id} service={service}/>
                     ))}
                 </SortableContext>
             </DndContext>
-        </ServiceList>
+        </List>
     );
 }
 
-const ServiceList = styled.div`
+const List = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -43,7 +43,7 @@ type CurrentServiceProps = {
     service: Service
 }
 
-function CurrentService(props: CurrentServiceProps) {
+function Service(props: CurrentServiceProps) {
     const { remove } = useStore();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -69,8 +69,8 @@ function CurrentService(props: CurrentServiceProps) {
         setIsOpen((state) => !state);
     }, [props.service.id, remove]);
 
-    const logo = props.service.logo || props.service.service.logo;
-    const name = props.service.name || props.service.service.name;
+    const icon = props.service.icon || props.service.template.icon;
+    const name = props.service.name || props.service.template.name;
 
     return (
         <ServiceBox ref={setNodeRef} style={style} {...attributes}>
@@ -78,11 +78,11 @@ function CurrentService(props: CurrentServiceProps) {
                 <ServiceButtonDnD ref={setActivatorNodeRef} {...listeners}>
                     <Icon name={'menu'} size={16}/>
                 </ServiceButtonDnD>
-                <ServiceLogo logo={logo} name={name} size={32}/>
+                <ServiceIcon src={icon} name={name} size={32}/>
                 <ServiceName>
                     <>{name}</>
-                    {props.service.name && props.service.service.name && (
-                        <>({props.service.service.name})</>
+                    {props.service.name && props.service.template.name && (
+                        <>({props.service.template.name})</>
                     )}
                 </ServiceName>
                 <ServiceButtons>
@@ -165,8 +165,8 @@ function ServiceBody(props: ServiceBodyProps) {
             </Fieldset>
 
             <Fieldset>
-                <Label htmlFor={`${props.service.id}::logo`}>Icon</Label>
-                <ServiceLogo logo={props.service.logo} name={props.service.name} size={64}/>
+                <Label htmlFor={`${props.service.id}::icon`}>Icon</Label>
+                <ServiceIcon src={props.service.icon} name={props.service.name} size={64}/>
                 <ThemedCheckbox/>
             </Fieldset>
         </ServiceBodyContainer>

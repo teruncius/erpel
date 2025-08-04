@@ -1,10 +1,10 @@
-import path from 'node:path';
+import { join } from 'node:path';
 import { BrowserWindow, ipcMain, Menu, Rectangle, WebContentsView, clipboard, shell, IpcMainEvent } from 'electron';
 import icon from '../resources/erpel.png?asset';
 import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './Components/SideBar/SideBar';
 import { AppMessage } from './AppMessage';
 import { loadUserData, saveUserData } from './UserData';
-import { Service } from './State/Settings';
+import type { Service } from './State/Settings';
 
 const SESSION_PARTITION = `persist:${import.meta.env.DEV ? 'development' : 'production'}`;
 
@@ -16,7 +16,7 @@ export const createWindow = async () => {
         icon,
         backgroundColor: '#000000',
         webPreferences: {
-            preload: path.join(__dirname, 'preload.application.js'),
+            preload: join(__dirname, 'preload.application.js'),
             partition: SESSION_PARTITION,
         },
     });
@@ -25,7 +25,7 @@ export const createWindow = async () => {
     if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
         window.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
     } else {
-        window.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
+        window.loadFile(join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
     }
 
     window.webContents.setWindowOpenHandler((details) => {
@@ -98,7 +98,7 @@ export const createWindow = async () => {
         const bounds = window.getContentBounds();
         const view = new WebContentsView({
             webPreferences: {
-                preload: path.join(__dirname, '/preload.service.js'),
+                preload: join(__dirname, '/preload.service.js'),
                 partition: SESSION_PARTITION,
             },
         });
@@ -113,7 +113,7 @@ export const createWindow = async () => {
 
         views[service.id] = view;
         window.contentView.addChildView(view);
-        view.webContents.loadURL(service.url || service.service.url);
+        view.webContents.loadURL(service.url || service.template.url);
     }
 
     function resizeServices() {

@@ -18,7 +18,7 @@ const storage: PersistStorage<Partial<State>> = {
         return {
             version: data.version,
             state: {
-                currentServices: data.services,
+                services: data.services,
             },
         };
     },
@@ -27,7 +27,7 @@ const storage: PersistStorage<Partial<State>> = {
         // TODO: store all user settings
         window.electron.saveData({
             version: value.version,
-            services: value.state.currentServices,
+            services: value.state.services,
         });
     },
     removeItem: () => {

@@ -9,17 +9,17 @@ declare const window: ElectronWindow;
 
 export function Home() {
     const navigate = useNavigate();
-    const { currentServices } = useStore();
+    const { services } = useStore();
 
     useEffect(() => {
         window.electron.hideAllServices();
     }, []);
 
     useEffect(() => {
-        if (currentServices.length === 0) {
+        if (services.length === 0) {
             navigate('/setup');
         }
-    }, [currentServices]);
+    }, [services]);
 
     return (
         <PageCenter>

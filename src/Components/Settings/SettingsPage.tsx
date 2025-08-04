@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
-import { CurrentServices } from './CurrentServices';
-import { AvailableServices } from './AvailableServices';
+import { Services } from './Services';
+import { ServiceTemplates } from './ServiceTemplates';
 import { ThemedLink, ThemedSection } from '../Theme';
 import { SetupServices } from '../Setup/SetupServices';
 import { useStore } from '../../State/Store';
@@ -13,7 +13,7 @@ import { Icon } from '../Icon';
 declare const window: ElectronWindow;
 
 export function SettingsPage() {
-    const { currentServices } = useStore();
+    const { services } = useStore();
 
     useEffect(() => {
         window.electron.hideAllServices();
@@ -21,16 +21,16 @@ export function SettingsPage() {
 
     return (
         <>
-            {currentServices.length === 0 && (
+            {services.length === 0 && (
                 <SetupServices/>
             )}
-            {currentServices.length > 0 && (
+            {services.length > 0 && (
                 <ThemedSection>
-                    <CurrentServices/>
+                    <Services/>
                 </ThemedSection>
             )}
             <ThemedSection>
-                <AvailableServices/>
+                <ServiceTemplates/>
             </ThemedSection>
             <ThemedSection>
                 <Container>

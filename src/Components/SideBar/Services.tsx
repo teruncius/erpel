@@ -4,18 +4,18 @@ import { styled } from 'styled-components';
 import { SoftFrostedEffectStyle } from '../Theme';
 import { useStore } from '../../State/Store';
 import { Service } from '../../State/Settings';
-import { ServiceLogo } from '../Settings/ServiceLogo';
+import { ServiceIcon } from '../Settings/ServiceIcon';
 
 export function Services() {
-    const { currentServices } = useStore();
+    const { services } = useStore();
 
-    if (!currentServices.length) {
+    if (!services.length) {
         return null;
     }
 
     return (
         <ServiceList>
-            {currentServices.map((service) => {
+            {services.map((service) => {
                 return <ServiceItem key={service.id} service={service} />;
             })}
         </ServiceList>
@@ -38,12 +38,12 @@ type ServiceItemProps = {
 function ServiceItem(props: ServiceItemProps) {
     const { isOpen } = useStore();
 
-    const name = props.service.name || props.service.service.name;
-    const logo = props.service.logo || props.service.service.logo;
+    const name = props.service.name || props.service.template.name;
+    const icon = props.service.icon || props.service.template.icon;
 
     return (
         <ServiceLink key={props.service.id} to={`/service/${props.service.id}`} title={name} $isOpen={isOpen}>
-            <RoundedServiceLogo logo={logo} name={name} size={32} />
+            <RoundedServiceIcon src={icon} name={name} size={32} />
             <>{isOpen ? name : null}</>
         </ServiceLink>
     );
@@ -81,6 +81,6 @@ const ServiceLink = styled(NavLink)<{$isOpen: boolean}>`
     }
 `;
 
-const RoundedServiceLogo = styled(ServiceLogo)`
+const RoundedServiceIcon = styled(ServiceIcon)`
     border-radius: 50%;
 `;

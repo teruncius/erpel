@@ -1,7 +1,7 @@
 import { app } from 'electron';
-import path from 'node:path';
-import fs from 'node:fs/promises';
-import { Service } from './State/Settings';
+import { join } from 'node:path';
+import { readFile, writeFile } from 'node:fs/promises';
+import type { Service } from './State/Settings';
 
 const LATEST_VERSION = 0;
 
@@ -15,14 +15,12 @@ const INITIAL_DATA: UserData = {
     services: [],
 };
 
-const CONFIG_PATH = path.join(app.getPath('userData'), 'config.json');
+const CONFIG_PATH = join(app.getPath('userData'), 'config.json');
 
 export async function loadUserData(): Promise<UserData> {
     try {
-        const value = await fs.readFile(CONFIG_PATH, { encoding: 'utf8' });
-        const data = JSON.parse(value);
-        console.log('User data loaded');
-        return data;
+        const value = await readFile(CONFIG_PATH, { encoding: 'utf8' });
+        return JSON.parse(value);
     } catch (e) {
         console.log('User data not found');
         return INITIAL_DATA;
@@ -32,8 +30,7 @@ export async function loadUserData(): Promise<UserData> {
 export async function saveUserData(data: UserData) {
     try {
         const value = JSON.stringify(data, null, 4);
-        await fs.writeFile(CONFIG_PATH, value, { encoding: 'utf8' });
-        console.log('User data saved');
+        await writeFile(CONFIG_PATH, value, { encoding: 'utf8' });
     } catch (e) {
         console.error('User data not found');
     }

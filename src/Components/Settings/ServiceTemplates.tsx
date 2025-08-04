@@ -1,14 +1,14 @@
 import { styled } from 'styled-components';
 import React, { ChangeEvent, useCallback, useState } from 'react';
 import { ServiceTemplate } from '../../State/Settings';
-import { ServiceLogo } from './ServiceLogo';
+import { ServiceIcon } from './ServiceIcon';
 import { useStore } from '../../State/Store';
 import { ThemedHoverStyle, ThemedButton, HardFrostedEffectStyle, ThemedInput } from '../Theme';
 import { Icon } from '../Icon';
 
-export function AvailableServices() {
+export function ServiceTemplates() {
     const [search, setSearch] = useState('');
-    const { availableServices } = useStore();
+    const { templates } = useStore();
 
     function filter(event: ChangeEvent<HTMLInputElement>) {
         setSearch(event.target.value);
@@ -18,24 +18,26 @@ export function AvailableServices() {
         setSearch('');
     }
 
-    const filtered = !search.length ? availableServices : availableServices
-        .filter((service) => {
-            const name = service.name.toLowerCase().includes(search.toLowerCase());
-            const tags = service.tags.filter((tag) => tag.toLowerCase().includes(search.toLowerCase()));
+    const filtered = !search.length ? templates : templates
+        .filter((templates) => {
+            const name = templates.name.toLowerCase().includes(search.toLowerCase());
+            const tags = templates.tags.filter((tag) => tag.toLowerCase().includes(search.toLowerCase()));
             return name || tags.length > 0;
         });
 
     return (
         <Container>
-            <ServiceFilter>
-                <ServiceFilterInput type="text" placeholder="Type to filter" value={search} onChange={filter}/>
-                <ServiceFilterButton type="button" onClick={handleReset}><Icon name="cross" size={16} /></ServiceFilterButton>
-            </ServiceFilter>
-            <ServiceGrid>
-                {filtered.map((service) => {
-                    return <AvailableService key={service.id} service={service}/>;
+            <FilterBar>
+                <FilterInput type="text" placeholder="Type to filter" value={search} onChange={filter}/>
+                <FilterButton type="button" onClick={handleReset}>
+                    <Icon name="cross" size={16} />
+                </FilterButton>
+            </FilterBar>
+            <Grid>
+                {filtered.map((template) => {
+                    return <ServiceTemplate key={template.id} template={template}/>;
                 })}
-            </ServiceGrid>
+            </Grid>
         </Container>
     );
 }
@@ -46,21 +48,21 @@ const Container = styled.div`
     gap: 1rem;
 `;
 
-const ServiceFilter = styled.div`
+const FilterBar = styled.div`
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
 `;
 
-const ServiceFilterInput = styled(ThemedInput)`
+const FilterInput = styled(ThemedInput)`
     flex-grow: 1;
 `;
 
-const ServiceFilterButton = styled(ThemedButton)`
+const FilterButton = styled(ThemedButton)`
     padding: 0.5rem;
 `;
 
-const ServiceGrid = styled.div`
+const Grid = styled.div`
     display: grid;
     gap: 0.5rem;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -77,26 +79,26 @@ const ServiceGrid = styled.div`
     }
 `;
 
-type AvailableServiceProps = {
-    service: ServiceTemplate
+type ServiceTemplateProps = {
+    template: ServiceTemplate
 }
 
-function AvailableService(props: AvailableServiceProps) {
+function ServiceTemplate(props: ServiceTemplateProps) {
     const { addFromTemplate } = useStore();
 
     const handleAdd = useCallback(() => {
-        addFromTemplate(props.service);
-    }, [addFromTemplate, props.service]);
+        addFromTemplate(props.template);
+    }, [addFromTemplate, props.template]);
 
     return (
-        <ServiceBox onClick={handleAdd}>
-            <ServiceLogo logo={props.service.logo} name={props.service.name} size={32}/>
-            <>{props.service.name}</>
-        </ServiceBox>
+        <TemplateBox onClick={handleAdd}>
+            <ServiceIcon src={props.template.icon} name={props.template.name} size={32}/>
+            <>{props.template.name}</>
+        </TemplateBox>
     );
 }
 
-const ServiceBox = styled.div`
+const TemplateBox = styled.div`
     ${HardFrostedEffectStyle};
     ${ThemedHoverStyle};
     

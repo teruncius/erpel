@@ -22,7 +22,7 @@ export function Clock() {
             </ClockTime>
             <ClockDate>
                 {new Intl.DateTimeFormat(settings.i18n.dow, { weekday: 'long' }).format(now)}
-                <span>, </span>
+                <>, </>
                 {new Intl.DateTimeFormat(settings.i18n.date, {
                     day: '2-digit',
                     month: '2-digit',
