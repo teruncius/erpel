@@ -22,7 +22,7 @@ export async function loadUserData(): Promise<UserData> {
         const value = await readFile(CONFIG_PATH, { encoding: 'utf8' });
         return JSON.parse(value);
     } catch (e) {
-        console.log('User data not found');
+        console.log('User data not found', e.message);
         return INITIAL_DATA;
     }
 }
@@ -32,6 +32,6 @@ export async function saveUserData(data: UserData) {
         const value = JSON.stringify(data, null, 4);
         await writeFile(CONFIG_PATH, value, { encoding: 'utf8' });
     } catch (e) {
-        console.error('User data not found');
+        console.error('User data not found', e.message);
     }
 }

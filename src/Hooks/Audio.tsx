@@ -14,7 +14,11 @@ export const useAudio = (url: string): Hook => {
     const play = () => setPlaying(true);
 
     useEffect(() => {
-        playing ? audio.play() : audio.pause();
+        if (playing) {
+            audio.pause();
+        } else {
+            audio.play();
+        }
     }, [playing]);
 
     useEffect(() => {
