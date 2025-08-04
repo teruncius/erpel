@@ -11,7 +11,6 @@ const config: ForgeConfig = {
         asar: true,
         icon: 'resources/erpel',
     },
-    rebuildConfig: {},
     makers: [
         new MakerSquirrel({
             iconUrl: 'https://raw.githubusercontent.com/teruncius/erpel/refs/heads/master/resources/erpel.ico',
