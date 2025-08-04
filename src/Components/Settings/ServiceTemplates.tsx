@@ -79,7 +79,7 @@ const Grid = styled.div`
     }
 `;
 
-type ServiceTemplateProps = {
+interface ServiceTemplateProps {
     template: ServiceTemplate
 }
 

@@ -33,7 +33,7 @@ export const createWindow = async () => {
         return { action: 'deny' };
     });
 
-    const views: { [id: string]: WebContentsView } = {};
+    const views: Record<string, WebContentsView> = {};
     let userData = await loadUserData();
     let sideBarIsOpen = true;
 
@@ -130,7 +130,7 @@ export const createWindow = async () => {
     }
 };
 
-type BuildMenuOptions = {
+interface BuildMenuOptions {
     event: IpcMainEvent
     data: {
         x: number

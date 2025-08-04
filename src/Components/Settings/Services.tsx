@@ -39,7 +39,7 @@ const List = styled.div`
     gap: 0.5rem;
 `;
 
-type CurrentServiceProps = {
+interface CurrentServiceProps {
     service: Service
 }
 
@@ -142,7 +142,7 @@ const ServiceName = styled.div`
     flex-grow: 1;
 `;
 
-type ServiceBodyProps = {
+interface ServiceBodyProps {
     service: Service
 }
 

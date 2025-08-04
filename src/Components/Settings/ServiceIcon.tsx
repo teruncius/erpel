@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import React, { CSSProperties } from 'react';
 
-type ServiceIconProps = {
+interface ServiceIconProps {
     src: string
     name: string
     size: number

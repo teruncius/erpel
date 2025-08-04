@@ -1,7 +1,7 @@
 import { Icon } from '../Icon';
 import { styled } from 'styled-components';
 
-type HintProps = {
+interface HintProps {
     title: string
     text: string
 }

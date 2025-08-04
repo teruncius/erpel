@@ -1,10 +1,10 @@
 import { StateCreator } from 'zustand/vanilla';
 
-export type SideBarStoreState = {
+export interface SideBarStoreState {
     isOpen: boolean
 }
 
-export type SideBarStoreActions = {
+export interface SideBarStoreActions {
     toggle: () => void
 }
 

@@ -3,7 +3,7 @@ import { AppMessage } from '../AppMessage';
 import { UserData } from '../UserData';
 import { Service } from '../State/Settings';
 
-type ElectronAPI = {
+interface ElectronAPI {
     saveData: (data: UserData) => void;
     loadData: () => Promise<UserData>;
 

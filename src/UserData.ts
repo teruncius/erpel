@@ -5,10 +5,10 @@ import type { Service } from './State/Settings';
 
 const LATEST_VERSION = 0;
 
-export type UserData = {
+export interface UserData {
     version: number
     services: Service[]
-};
+}
 
 const INITIAL_DATA: UserData = {
     version: LATEST_VERSION,

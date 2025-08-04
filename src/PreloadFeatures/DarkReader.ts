@@ -1,7 +1,7 @@
 import { contextBridge } from 'electron';
 import { auto } from 'darkreader';
 
-type DarkReaderAPI = {
+interface DarkReaderAPI {
     auto: () => void
 }
 

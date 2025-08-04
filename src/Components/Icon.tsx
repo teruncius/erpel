@@ -2,7 +2,7 @@ import icons from '../../resources/icons.svg';
 import React, { CSSProperties } from 'react';
 import { styled } from 'styled-components';
 
-type IconProps = {
+interface IconProps {
     name: 'cog'
         | 'arrow-right2' | 'arrow-left2'
         | 'home'

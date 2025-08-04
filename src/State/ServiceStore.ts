@@ -2,12 +2,12 @@ import { ServiceTemplate, Service, SERVICES, ServiceFromTemplate } from './Setti
 import { StateCreator } from 'zustand/vanilla';
 import { ElectronWindow } from '../PreloadFeatures/AppBridge';
 
-export type ServiceStoreState = {
+export interface ServiceStoreState {
     services: Service[]
     templates: ServiceTemplate[]
 }
 
-export type ServiceStoreActions = {
+export interface ServiceStoreActions {
     add: (service: Service) => void
     addFromTemplate: (template: ServiceTemplate) => void
     remove: (id: string) => void

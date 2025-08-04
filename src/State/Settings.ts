@@ -14,7 +14,7 @@ export const settings = {
     },
 };
 
-export type Service = {
+export interface Service {
     id: string
     name: string | null
     url: string | null
@@ -22,7 +22,7 @@ export type Service = {
     template: ServiceTemplate
 }
 
-export type ServiceTemplate = {
+export interface ServiceTemplate {
     id: string
     name: string
     url: string

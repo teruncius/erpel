@@ -31,7 +31,7 @@ const ServiceList = styled.nav`
     gap: 4px;
 `;
 
-type ServiceItemProps = {
+interface ServiceItemProps {
     service: Service
 }
 
