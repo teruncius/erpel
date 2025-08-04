@@ -1,6 +1,7 @@
 {
     "name": "erpel",
     "description": "Free and libre alternative to Rambox and franz.",
+    "version": "0.1.0",
     "main": ".vite/build/main.js",
     "scripts": {
         "start": "electron-forge start",

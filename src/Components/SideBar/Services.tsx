@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import { SoftFrostedEffectStyle } from '../Theme';
 import { useStore } from '../../State/Store';
 import { Service } from '../../State/Settings';
+import { ServiceLogo } from '../Settings/ServiceLogo';
 
 export function Services() {
     const { currentServices } = useStore();
@@ -21,6 +22,15 @@ export function Services() {
     );
 }
 
+const ServiceList = styled.nav`
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+`;
+
 type ServiceItemProps = {
     service: Service
 }
@@ -33,19 +43,11 @@ function ServiceItem(props: ServiceItemProps) {
 
     return (
         <ServiceLink key={props.service.id} to={`/service/${props.service.id}`} title={name} $isOpen={isOpen}>
-            <ServiceIcon src={logo} alt={name} width={32} height={32}/> {isOpen ? name : null}
+            <RoundedServiceLogo logo={logo} name={name} size={32} />
+            <>{isOpen ? name : null}</>
         </ServiceLink>
     );
 }
-
-const ServiceList = styled.nav`
-    padding: 0;
-    margin: 0;
-
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-`;
 
 const ServiceLink = styled(NavLink)<{$isOpen: boolean}>`
     ${SoftFrostedEffectStyle};
@@ -79,8 +81,6 @@ const ServiceLink = styled(NavLink)<{$isOpen: boolean}>`
     }
 `;
 
-const ServiceIcon = styled.img`
-    width: 32px;
-    height: 32px;
+const RoundedServiceLogo = styled(ServiceLogo)`
     border-radius: 50%;
 `;

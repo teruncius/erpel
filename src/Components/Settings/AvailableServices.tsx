@@ -90,7 +90,7 @@ function AvailableService(props: AvailableServiceProps) {
 
     return (
         <ServiceBox onClick={handleAdd}>
-            <ServiceLogo url={props.service.logo} name={props.service.name} size={32}/>
+            <ServiceLogo logo={props.service.logo} name={props.service.name} size={32}/>
             <>{props.service.name}</>
         </ServiceBox>
     );
