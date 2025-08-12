@@ -11,7 +11,7 @@ export function Logo() {
     const { isOpen } = useStore();
 
     return (
-        <LogoLink to={'/'} title="erpel" onClick={play}>
+        <LogoLink to="/" title="erpel" onClick={play}>
             {isOpen ? (
                 <LogoImageBig src={icon} alt="erpel" width={64} height={64}/>
             ) : (

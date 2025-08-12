@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 type Hook = [
     boolean,
@@ -10,23 +10,29 @@ export const useAudio = (url: string): Hook => {
     const [audio] = useState(new Audio(url));
     const [playing, setPlaying] = useState(false);
 
-    const toggle = () => setPlaying(!playing);
-    const play = () => setPlaying(true);
+    const toggle = useCallback(() => {
+        setPlaying((state) => !state);
+    }, [setPlaying]);
+
+    const play = useCallback(() => {
+        setPlaying(true);
+    }, [setPlaying]);
 
     useEffect(() => {
         if (playing) {
-            audio.pause();
-        } else {
             audio.play();
+        } else {
+            audio.pause();
         }
-    }, [playing]);
+    }, [audio, playing]);
 
     useEffect(() => {
-        audio.addEventListener('ended', () => setPlaying(false));
+        const onEnded = () => setPlaying(false);
+        audio.addEventListener('ended', onEnded);
         return () => {
-            audio.removeEventListener('ended', () => setPlaying(false));
+            audio.removeEventListener('ended', onEnded);
         };
-    }, []);
+    }, [audio, setPlaying]);
 
     return [playing, toggle, play];
 };
