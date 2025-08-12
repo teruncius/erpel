@@ -1,6 +1,7 @@
 import { ServiceTemplate, Service, SERVICES, ServiceFromTemplate } from './Settings';
 import { StateCreator } from 'zustand/vanilla';
 import { ElectronWindow } from '../PreloadFeatures/AppBridge';
+import { Values } from '../Components/Settings/ServiceForm';
 
 export interface ServiceStoreState {
     services: Service[]
@@ -11,6 +12,7 @@ export interface ServiceStoreActions {
     add: (service: Service) => void
     addFromTemplate: (template: ServiceTemplate) => void
     remove: (id: string) => void
+    replace: (id: string, service: Service) => void
     clear: () => void
     swap: (id1: string, id2: string) => void
     usePreset: () => void
@@ -27,16 +29,31 @@ declare const window: ElectronWindow;
 export const createServiceSlice: StateCreator<ServiceStoreState & ServiceStoreActions> = (set, get) => ({
     ...initialValues,
     add: (service: Service) => {
-        set({ services: [...get().services, service] });
+        const services = [...get().services, service];
+        set({ services });
         window.electron.addService(service);
     },
     addFromTemplate: (template: ServiceTemplate) => {
         get().add(ServiceFromTemplate(template));
     },
     remove: (id: string) => {
-        const list = get().services.filter((service) => service.id !== id);
-        set({ services: list });
+        const services = get().services.filter((service) => service.id !== id);
+        set({ services });
         window.electron.removeService(id);
+    },
+    replace: (id: string, service: Service) => {
+        const services = [...get().services];
+        const idx = services.findIndex((service) => service.id === id);
+
+        if (idx === -1) {
+            console.warn(`Service ${id} not found`);
+            get().add(service);
+        } else {
+            services[idx] = service;
+            set({ services });
+            window.electron.removeService(id);
+            window.electron.addService(service);
+        }
     },
     clear: () => {
         get().services.map((service) => get().remove(service.id));
@@ -48,7 +65,7 @@ export const createServiceSlice: StateCreator<ServiceStoreState & ServiceStoreAc
 
         [services[OLD], services[NEW]] = [services[NEW], services[OLD]];
 
-        set({ services: services });
+        set({ services });
     },
     usePreset: () => {
         get().clear();

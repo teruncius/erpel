@@ -37,14 +37,14 @@ const ThemedButtonStyle = css`
     ${HardFrostedEffectStyle};
     ${ThemedHoverStyle};
 
-    padding: 0.8rem 1rem;
+    padding: 0.65rem 1rem;
     margin: 0;
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 
     color: #fff;
     border: 0;

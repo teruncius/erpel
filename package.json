@@ -57,6 +57,7 @@
         "electron-vite": "^4.0.0",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
+        "react-hook-form": "^7.62.0",
         "react-router": "^7.7.1",
         "styled-components": "^6.1.19",
         "zustand": "^5.0.7"

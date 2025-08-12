@@ -16,6 +16,10 @@ export const settings = {
 
 export type IconId = string;
 
+interface Option<T> {
+    default: T | null
+}
+
 export interface Service {
     id: string
     name: string | null
@@ -30,6 +34,7 @@ export interface ServiceTemplate {
     url: string
     icon: IconId
     tags: string[]
+    options: { name: Option<string> } & Record<string, Option<string>>
 }
 
 const ICONS: Record<IconId, string> = {
@@ -53,6 +58,9 @@ export const SERVICES: ServiceTemplate[] = [
         url: 'https://mail.google.com/',
         icon: '57f999b3-81f1-4cf1-86cf-05602d772d9a',
         tags: ['google', 'e-mail'],
+        options: {
+            name: { default: null },
+        },
     },
     {
         id: '2b027a28-172a-4180-bd5a-32070b046b77',
@@ -60,6 +68,9 @@ export const SERVICES: ServiceTemplate[] = [
         url: 'https://calendar.google.com/',
         icon: '6f4dc7af-3173-4dab-b7d3-9d88739f57dc',
         tags: ['google', 'calendar', 'kalender'],
+        options: {
+            name: { default: null },
+        },
     },
     {
         id: 'b78be8b5-2772-4cc3-bcfa-f05fcfa05f1a',
@@ -67,6 +78,10 @@ export const SERVICES: ServiceTemplate[] = [
         url: 'https://mattermost.com/',
         icon: '5bdc9b31-f8e7-4937-a156-33bb6e12cc4f',
         tags: ['chat', 'mm'],
+        options: {
+            name: { default: null },
+            url: { default: 'https://mattermost.com/' },
+        },
     },
     {
         id: '5ba82927-f8b7-4672-9da1-996b7c2430b3',
@@ -74,6 +89,9 @@ export const SERVICES: ServiceTemplate[] = [
         url: 'https://spotify.com/',
         icon: '0ff56910-61ef-41b0-b74d-dbf48a9c3472',
         tags: ['spotify', 'music'],
+        options: {
+            name: { default: null },
+        },
     },
     {
         id: '3cec01fa-fa1b-458f-b1e2-5aafc63286ce',
@@ -81,6 +99,10 @@ export const SERVICES: ServiceTemplate[] = [
         url: 'https://id.atlassian.com/login',
         icon: 'c7c7dfd2-2941-462b-b68b-9d4c800e25e8',
         tags: ['atlassian'],
+        options: {
+            name: { default: null },
+            url: { default: 'https://id.atlassian.com/login' },
+        },
     },
     {
         id: 'fb0c165e-d6fe-41d7-bec6-41a321347826',
@@ -88,22 +110,30 @@ export const SERVICES: ServiceTemplate[] = [
         url: 'https://trello.com/',
         icon: '06654c77-661b-4955-a163-7fbbd0f81de4',
         tags: ['atlassian'],
+        options: {
+            name: { default: null },
+            url: { default: 'https://trello.com/' },
+        },
     },
     {
         id: '5f8c2fe3-5be6-4f1c-a58d-e7e746db2b0a',
         name: 'Custom Service',
-        url: '',
+        url: 'https://example.com/',
         icon: '173773cb-72de-429f-94db-d382613f436d',
         tags: ['web', 'url', 'empty', 'browser', 'tab'],
+        options: {
+            name: { default: null },
+            url: { default: 'https://example.com/' },
+        },
     },
 ];
 
 export function ServiceFromTemplate(template: ServiceTemplate): Service {
     return {
         id: crypto.randomUUID(),
-        name: null,
-        url: null,
-        icon: null,
+        name: template.options.name?.default || null,
+        url: template.options.url?.default || null,
+        icon: template.options.icon?.default || null,
         template,
     };
 }

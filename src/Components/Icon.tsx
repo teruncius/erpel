@@ -13,9 +13,7 @@ interface IconProps {
         | 'cross'
         | 'info'
         | 'bug'
-        | 'sphere'
-        | 'lock'
-        | 'unlocked'
+        | 'floppy-disk'
     size: number
     style?: CSSProperties
 }

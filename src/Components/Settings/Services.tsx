@@ -8,6 +8,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { Icon } from '../Icon';
 import { ThemedButton, HardFrostedEffectStyle, ThemedInput, ThemedCheckbox } from '../Theme';
+import { ServiceForm } from './ServiceForm';
 
 export function Services() {
     const { services, swap } = useStore();
@@ -80,10 +81,10 @@ function Service(props: CurrentServiceProps) {
                 </ServiceButtonDnD>
                 <ServiceIcon icon={icon} name={name} size={32}/>
                 <ServiceName>
-                    <>{name}</>
                     {props.service.name && props.service.template.name && (
-                        <>({props.service.template.name})</>
+                        <>{props.service.template.name}: </>
                     )}
+                    <>{name}</>
                 </ServiceName>
                 <ServiceButtons>
                     <ServiceButton onClick={handleOpenClose}>
@@ -147,52 +148,15 @@ interface ServiceBodyProps {
 }
 
 function ServiceBody(props: ServiceBodyProps) {
-    const icon = props.service.icon || props.service.template.icon;
-    const name = props.service.name || props.service.template.name;
     return (
         <ServiceBodyContainer>
-            <Fieldset>
-                <Label htmlFor={`${props.service.id}::name`}>Name</Label>
-                <ThemedInput id={`${props.service.id}::name`} value={props.service.name || ''}/>
-                <ThemedCheckbox/>
-            </Fieldset>
-
-            <Fieldset>
-                <Label htmlFor={`${props.service.id}::url`}>URL</Label>
-                <ThemedInput id={`${props.service.id}::url`} value={props.service.url || ''}/>
-                <ThemedCheckbox/>
-                <ThemedButton><Icon name={'sphere'} size={20}/></ThemedButton>
-                <ThemedButton><Icon name={'lock'} size={20}/></ThemedButton>
-                <ThemedButton><Icon name={'unlocked'} size={20}/></ThemedButton>
-            </Fieldset>
-
-            <Fieldset>
-                <Label htmlFor={`${props.service.id}::icon`}>Icon</Label>
-                <ServiceIcon icon={icon} name={name} size={64}/>
-                <ThemedCheckbox/>
-            </Fieldset>
+            <ServiceForm service={props.service}/>
         </ServiceBodyContainer>
     );
 }
 
 const ServiceBodyContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 1rem;
-`;
-
-const Fieldset = styled.fieldset`
-    padding: 0;
-    margin: 0;
-    
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    
-    border: 0;
-`;
-
-const Label = styled.label`
-    cursor: pointer;
+    gap: 1rem;
 `;
