@@ -15,7 +15,7 @@ export function Services() {
 
     function handleDragEnd(event: DragEndEvent) {
         const { active, over } = event;
-        if (active.id !== over.id) {
+        if (over && active.id !== over.id) {
             swap(active.id.toString(), over.id.toString());
         }
     }
@@ -78,7 +78,7 @@ function Service(props: CurrentServiceProps) {
                 <ServiceButtonDnD ref={setActivatorNodeRef} {...listeners}>
                     <Icon name={'menu'} size={16}/>
                 </ServiceButtonDnD>
-                <ServiceIcon src={icon} name={name} size={32}/>
+                <ServiceIcon icon={icon} name={name} size={32}/>
                 <ServiceName>
                     <>{name}</>
                     {props.service.name && props.service.template.name && (
@@ -147,17 +147,19 @@ interface ServiceBodyProps {
 }
 
 function ServiceBody(props: ServiceBodyProps) {
+    const icon = props.service.icon || props.service.template.icon;
+    const name = props.service.name || props.service.template.name;
     return (
         <ServiceBodyContainer>
             <Fieldset>
                 <Label htmlFor={`${props.service.id}::name`}>Name</Label>
-                <ThemedInput id={`${props.service.id}::name`} value={props.service.name}/>
+                <ThemedInput id={`${props.service.id}::name`} value={props.service.name || ''}/>
                 <ThemedCheckbox/>
             </Fieldset>
 
             <Fieldset>
                 <Label htmlFor={`${props.service.id}::url`}>URL</Label>
-                <ThemedInput id={`${props.service.id}::url`} value={props.service.url}/>
+                <ThemedInput id={`${props.service.id}::url`} value={props.service.url || ''}/>
                 <ThemedCheckbox/>
                 <ThemedButton><Icon name={'sphere'} size={20}/></ThemedButton>
                 <ThemedButton><Icon name={'lock'} size={20}/></ThemedButton>
@@ -166,7 +168,7 @@ function ServiceBody(props: ServiceBodyProps) {
 
             <Fieldset>
                 <Label htmlFor={`${props.service.id}::icon`}>Icon</Label>
-                <ServiceIcon src={props.service.icon} name={props.service.name} size={64}/>
+                <ServiceIcon icon={icon} name={name} size={64}/>
                 <ThemedCheckbox/>
             </Fieldset>
         </ServiceBodyContainer>

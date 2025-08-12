@@ -92,7 +92,7 @@ function ServiceTemplate(props: ServiceTemplateProps) {
 
     return (
         <TemplateBox onClick={handleAdd}>
-            <ServiceIcon src={props.template.icon} name={props.template.name} size={32}/>
+            <ServiceIcon icon={props.template.icon} name={props.template.name} size={32}/>
             <>{props.template.name}</>
         </TemplateBox>
     );

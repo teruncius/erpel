@@ -1,8 +1,9 @@
 import { styled } from 'styled-components';
 import React, { CSSProperties } from 'react';
+import { IconId, IconIdToUrl } from '../../State/Settings';
 
 interface ServiceIconProps {
-    src: string
+    icon: IconId
     name: string
     size: number
     style?: CSSProperties
@@ -11,7 +12,7 @@ interface ServiceIconProps {
 export function ServiceIcon(props: ServiceIconProps) {
     return (
         <Image
-            src={props.src}
+            src={IconIdToUrl(props.icon)}
             alt={props.name}
             width={props.size}
             height={props.size}

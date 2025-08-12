@@ -43,7 +43,7 @@ function ServiceItem(props: ServiceItemProps) {
 
     return (
         <ServiceLink key={props.service.id} to={`/service/${props.service.id}`} title={name} $isOpen={isOpen}>
-            <RoundedServiceIcon src={icon} name={name} size={32} />
+            <RoundedServiceIcon icon={icon} name={name} size={32} />
             <>{isOpen ? name : null}</>
         </ServiceLink>
     );
