@@ -1,5 +1,5 @@
 import React, { StrictMode } from 'react';
-import { MemoryRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router';
 import { Home } from './Home/HomePage';
 import { SettingsPage } from './Settings/SettingsPage';
 import { Layout } from './Layout';
@@ -7,9 +7,10 @@ import { ServicePage } from './Service/ServicePage';
 import { SetupPage } from './Setup/SetupPage';
 
 export function App() {
+    const Router = import.meta.env.DEV ? BrowserRouter : MemoryRouter;
     return (
         <StrictMode>
-            <MemoryRouter>
+            <Router>
                 <Routes>
                     <Route element={<Layout/>}>
                         <Route path={'/service/:id'} element={<ServicePage/>}/>
@@ -18,7 +19,7 @@ export function App() {
                         <Route path={'*'} element={<Home/>}/>
                     </Route>
                 </Routes>
-            </MemoryRouter>
+            </Router>
         </StrictMode>
     );
 }
