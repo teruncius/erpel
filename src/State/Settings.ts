@@ -23,10 +23,10 @@ interface BaseOption<T, IsCustomizable = boolean, CopyOnCreate = boolean> {
 }
 
 type StaticOption<T> = BaseOption<T, false, false>
-type CustomizableButEmptyOption<T> = BaseOption<T, true, false>
-type CustomizableButFulledOption<T> = BaseOption<T, true, true>
+type CustomizableEmptyOption<T> = BaseOption<T, true, false>
+type CustomizableFilledOption<T> = BaseOption<T, true, true>
 
-type Option<T> = StaticOption<T> | CustomizableButEmptyOption<T> | CustomizableButFulledOption<T>;
+type Option<T> = StaticOption<T> | CustomizableEmptyOption<T> | CustomizableFilledOption<T>;
 
 export interface Service {
     id: string;
