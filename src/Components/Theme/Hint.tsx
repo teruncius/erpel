@@ -23,7 +23,7 @@ const Container = styled.div`
     grid-template-areas: 
         "a b"
         "a c";
-    gap: 1rem;
+    gap: 0.5rem 1rem;
 `;
 
 const Image = styled(Icon)`
@@ -32,7 +32,8 @@ const Image = styled(Icon)`
 
 const Title = styled.div`
     grid-area: b;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    text-decoration: underline;
 `;
 
 const Text = styled.div`
