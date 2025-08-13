@@ -40,7 +40,7 @@ export function Clock(props: Props) {
 
 const Container = styled.div`
     ${FrostedContainerStyle};
-    padding: 1rem 6rem 1rem 6rem;
+    padding: 1rem;
     margin: 0;
 
     display: flex;

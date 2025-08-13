@@ -46,9 +46,14 @@ export function LocaleSettings() {
 }
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
     gap: 1rem;
+
+    @media screen and (max-width: 800px) {
+        grid-template-columns: 1fr;
+    }
 `;
 
 const SettingsSection = styled(ThemedSection)`
