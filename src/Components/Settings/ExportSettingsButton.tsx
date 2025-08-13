@@ -5,7 +5,7 @@ import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 
 declare const window: ElectronWindow;
 
-export function ExportSettings() {
+export function ExportSettingsButton() {
     const handleExport = useCallback(() => {
         let alive = true;
         const load = async () => {
@@ -23,7 +23,7 @@ export function ExportSettings() {
             element.click();
         };
 
-        load();
+        load().catch(console.error);
 
         return () => {
             alive = false;

@@ -5,10 +5,11 @@ import { ServiceTemplates } from './ServiceTemplates';
 import { ThemedLink, ThemedSection } from '../Theme';
 import { SetupServices } from '../Setup/SetupServices';
 import { useStore } from '../../State/Store';
-import { ExportSettings } from './ExportSettings';
-import { DebugNotifications } from './DebugNotifications';
+import { ExportSettingsButton } from './ExportSettingsButton';
+import { DebugNotificationsButton } from './DebugNotificationsButton';
 import { styled } from 'styled-components';
 import { Icon } from '../Icon';
+import { LocaleSettings } from './LocaleSettings';
 
 declare const window: ElectronWindow;
 
@@ -32,10 +33,13 @@ export function SettingsPage() {
             <ThemedSection>
                 <ServiceTemplates/>
             </ThemedSection>
+
+            <LocaleSettings/>
+
             <ThemedSection>
                 <Container>
-                    <ExportSettings/>
-                    <DebugNotifications/>
+                    <ExportSettingsButton/>
+                    <DebugNotificationsButton/>
                     <ThemedLink to={'/setup'}>
                         <Icon name={'cog'} size={20}/> Go back to set up
                     </ThemedLink>

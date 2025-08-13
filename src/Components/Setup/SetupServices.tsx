@@ -58,7 +58,7 @@ export function SetupServices() {
             useFile(data.services || []);
         };
 
-        upload();
+        upload().catch(console.error);
 
         return () => {
             alive = false;

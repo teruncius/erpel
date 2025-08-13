@@ -6,7 +6,7 @@ import { Icon } from '../Icon';
 
 declare const window: ElectronWindow;
 
-export function DebugNotifications() {
+export function DebugNotificationsButton() {
     const navigate = useNavigate();
 
     const handleNotify = useCallback(() => {

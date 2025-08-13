@@ -1,4 +1,4 @@
-import { ServiceTemplate, Service, SERVICES, ServiceFromTemplate } from './Settings';
+import { ServiceTemplate, Service, SERVICES, ServiceFromTemplate, DEFAULT_SERVICES } from './Settings';
 import { StateCreator } from 'zustand/vanilla';
 import { ElectronWindow } from '../PreloadFeatures/AppBridge';
 
@@ -19,7 +19,7 @@ export interface ServiceStoreActions {
 }
 
 const initialValues: ServiceStoreState = {
-    services: [],
+    services: DEFAULT_SERVICES,
     templates: SERVICES,
 };
 

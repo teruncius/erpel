@@ -1,29 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { settings } from '../../State/Settings';
+import React, { useCallback, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { FrostedContainerStyle } from '../Theme';
+import { useStore } from '../../State/Store';
 
-export function Clock() {
+interface Props {
+    className?: string
+}
+
+export function Clock(props: Props) {
     const [now, setNow] = useState(new Date());
+    const { i18n } = useStore();
 
-    function update() {
+    const update = useCallback(() => {
         setNow(new Date());
-    }
+    }, [setNow]);
 
     useEffect(() => {
         const interval = setInterval(update, 1000);
         return () => clearInterval(interval);
-    }, []);
+    }, [update]);
 
     return (
-        <Container>
+        <Container className={props.className}>
             <ClockTime>
-                {new Intl.DateTimeFormat(settings.i18n.time, { hour: '2-digit', minute: '2-digit' }).format(now)}
+                {new Intl.DateTimeFormat(i18n.time, { hour: '2-digit', minute: '2-digit' }).format(now)}
             </ClockTime>
             <ClockDate>
-                {new Intl.DateTimeFormat(settings.i18n.dow, { weekday: 'long' }).format(now)}
+                {new Intl.DateTimeFormat(i18n.locale, { weekday: 'long' }).format(now)}
                 <>, </>
-                {new Intl.DateTimeFormat(settings.i18n.date, {
+                {new Intl.DateTimeFormat(i18n.date, {
                     day: '2-digit',
                     month: '2-digit',
                     year: 'numeric',

@@ -6,12 +6,18 @@ import jira from '../../resources/jira.png?no-inline';
 import trello from '../../resources/trello.png?no-inline';
 import web from '../../resources/web.png?no-inline';
 
-export const settings = {
-    i18n: {
-        date: 'de-DE',
-        time: 'de-DE',
-        dow: 'de-DE',
-    },
+export type Locale = string;
+
+export interface i18nSettings {
+    locale: Locale
+    date: Locale
+    time: Locale
+}
+
+export const DEFAULT_I18N = {
+    locale: 'en-US',
+    date: 'de-DE',
+    time: 'de-DE',
 };
 
 export type IconId = string;
@@ -59,6 +65,8 @@ const ICONS: Record<IconId, string> = {
 export function IconIdToUrl(id: IconId): string {
     return ICONS[id] || '';
 }
+
+export const DEFAULT_SERVICES = [];
 
 export const SERVICES: ServiceTemplate[] = [
     {
