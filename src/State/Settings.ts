@@ -20,6 +20,8 @@ export const DEFAULT_I18N = {
     time: 'de-DE',
 };
 
+export const DEFAULT_IS_MUTED = false;
+
 export type IconId = string;
 
 interface BaseOption<T, IsCustomizable = boolean, CopyOnCreate = boolean> {

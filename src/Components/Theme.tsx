@@ -84,7 +84,6 @@ type ThemedCheckbox = InputHTMLAttributes<HTMLInputElement> & {
 
 export function ThemedCheckbox(props: ThemedCheckbox) {
     const { onChange  } = props;
-    const ref = useRef<HTMLInputElement>(null);
     const [checked, setChecked] = useState<boolean>(props.checked);
 
     useEffect(() => {
@@ -95,23 +94,22 @@ export function ThemedCheckbox(props: ThemedCheckbox) {
 
     const handleClick = useCallback(() => {
         setChecked((state) => !state);
-    }, [ref.current]);
+    }, [setChecked]);
 
     const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setChecked(e.target.checked);
-    }, [ref.current]);
+    }, [setChecked]);
 
     return (
         <ThemedCheckboxContainer>
             <ThemedCheckboxButton onClick={handleClick} type={'button'}>
-                <Icon name={ref.current?.checked ? 'checkbox-checked' : 'checkbox-unchecked'} size={16}/>
+                <Icon name={checked ? 'checkbox-checked' : 'checkbox-unchecked'} size={16}/>
             </ThemedCheckboxButton>
             {props.placeholder && (
                 <>{props.placeholder}</>
             )}
             <input
                 id={props.id}
-                ref={ref}
                 type={'checkbox'}
                 style={{ display: 'none' }}
                 value="on"

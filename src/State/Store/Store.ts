@@ -29,6 +29,7 @@ const storage: PersistStorage<Partial<State>> = {
             version: value.version,
             services: value.state.services,
             i18n: value.state.i18n,
+            isMuted: value.state.isMuted,
         } as UserData);
     },
     removeItem: () => {

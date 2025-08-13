@@ -10,6 +10,7 @@ import { DebugNotificationsButton } from './DebugNotificationsButton';
 import { styled } from 'styled-components';
 import { Icon } from '../Icon';
 import { LocaleSettings } from './LocaleSettings';
+import { DistractionSettings } from './DistractionSettings';
 
 declare const window: ElectronWindow;
 
@@ -27,10 +28,11 @@ export function SettingsPage() {
             ): (
                 <Services/>
             )}
-
             <ServiceTemplates/>
 
             <LocaleSettings/>
+
+            <DistractionSettings/>
 
             <ThemedSection>
                 <Container>

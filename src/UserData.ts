@@ -1,7 +1,7 @@
 import { app } from 'electron';
 import { join } from 'node:path';
 import { readFile, writeFile } from 'node:fs/promises';
-import { DEFAULT_I18N, DEFAULT_SERVICES, i18nSettings, Service } from './State/Settings';
+import { DEFAULT_I18N, DEFAULT_IS_MUTED, DEFAULT_SERVICES, i18nSettings, Service } from './State/Settings';
 
 const LATEST_VERSION = 0;
 
@@ -9,12 +9,14 @@ export interface UserData {
     version: number
     services: Service[]
     i18n: i18nSettings
+    isMuted: boolean
 }
 
 const INITIAL_DATA: UserData = {
     version: LATEST_VERSION,
     services: DEFAULT_SERVICES,
     i18n: DEFAULT_I18N,
+    isMuted: DEFAULT_IS_MUTED,
 };
 
 const CONFIG_PATH = join(app.getPath('userData'), 'config.json');

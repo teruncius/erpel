@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { styled } from 'styled-components';
 import icon from '../../../resources/erpel.png?no-inline';
 import quack from '../../../resources/duck-quacking.mp3?no-inline';
@@ -8,10 +8,16 @@ import { useStore } from '../../State/Store/Store';
 
 export function Logo() {
     const [, , play] = useAudio(quack);
-    const { isOpen } = useStore();
+    const { isOpen, isMuted } = useStore();
+
+    const handleClick = useCallback(() => {
+        if (!isMuted) {
+            play();
+        }
+    }, [isMuted, play]);
 
     return (
-        <LogoLink to="/" title="erpel" onClick={play}>
+        <LogoLink to="/" title="erpel" onClick={handleClick}>
             {isOpen ? (
                 <LogoImageBig src={icon} alt="erpel" width={64} height={64}/>
             ) : (
