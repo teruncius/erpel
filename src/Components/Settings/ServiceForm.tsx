@@ -31,7 +31,7 @@ export function ServiceForm(props: ServiceFormProps) {
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
-            {props.service.template.options.name && (
+            {props.service.template.name.customizable && (
                 <Fieldset>
                     <Label htmlFor={`${props.service.id}::name`}>Name</Label>
                     <ThemedInput
@@ -41,7 +41,7 @@ export function ServiceForm(props: ServiceFormProps) {
                     />
                 </Fieldset>
             )}
-            {props.service.template.options.url && (
+            {props.service.template.url.customizable && (
                 <Fieldset>
                     <Label htmlFor={`${props.service.id}::url`}>URL</Label>
                     <ThemedInput
@@ -51,10 +51,10 @@ export function ServiceForm(props: ServiceFormProps) {
                     />
                 </Fieldset>
             )}
-            {props.service.template.options.darkMode && (
+            {props.service.template.darkMode.customizable && (
                 <Fieldset>
                     <Label htmlFor={`${props.service.id}::darkMode`}>Dark Mode</Label>
-                    <Controller name="darkMode" control={control} render={({ field: { ref, value, ...rest } }) => {
+                    <Controller name="darkMode" control={control} render={({ field: { value, ...rest } }) => {
                         return (
                             <ThemedCheckbox
                                 id={`${props.service.id}::darkMode`}

@@ -20,7 +20,7 @@ export function ServiceTemplates() {
 
     const filtered = !search.length ? templates : templates
         .filter((templates) => {
-            const name = templates.name.toLowerCase().includes(search.toLowerCase());
+            const name = templates.name.default.toLowerCase().includes(search.toLowerCase());
             const tags = templates.tags.filter((tag) => tag.toLowerCase().includes(search.toLowerCase()));
             return name || tags.length > 0;
         });
@@ -92,8 +92,8 @@ function ServiceTemplate(props: ServiceTemplateProps) {
 
     return (
         <TemplateBox onClick={handleAdd}>
-            <ServiceIcon icon={props.template.icon} name={props.template.name} size={32}/>
-            <>{props.template.name}</>
+            <ServiceIcon icon={props.template.icon.default} name={props.template.name.default} size={32}/>
+            <>{props.template.name.default}</>
         </TemplateBox>
     );
 }

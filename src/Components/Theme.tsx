@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { css, styled } from 'styled-components';
-import { ChangeEvent, InputHTMLAttributes, Ref, useCallback, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, InputHTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
 import { Icon } from './Icon';
 
 export const SoftFrostedEffectStyle = css`

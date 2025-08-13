@@ -51,9 +51,11 @@ export const createWindow = async () => {
     ipcMain.handle(AppMessage.ShouldUseDarkMode, (event) => {
         const id = Object.entries(views).find(([, view]) => view.webContents === event.sender)?.[0] || null;
         if (!id) {
+            console.error('Requested dark mode for a service that does not exist');
             return false;
         }
-        return userData.services.find((service) => service.id === id)?.darkMode || false;
+        const service = userData.services.find((service) => service.id === id) || null;
+        return service?.darkMode ?? service?.template.darkMode.default ?? false;
     });
 
     ipcMain.on(AppMessage.AddService, (event, service) => {
@@ -96,7 +98,11 @@ export const createWindow = async () => {
             data,
             isServiceWindow: event.sender === window.webContents,
         });
-        menu.popup({ window: BrowserWindow.fromWebContents(event.sender) });
+        const popup = BrowserWindow.fromWebContents(event.sender);
+        if (!popup) {
+            throw new Error('Failed to create popup window for context menu');
+        }
+        menu.popup({ window: popup });
     });
 
     window.on('resize', resizeServices);
@@ -111,7 +117,8 @@ export const createWindow = async () => {
             },
         });
 
-        view.setBackgroundColor(service.darkMode ? '#000000' : '#ffffff');
+        const darkMode = service.darkMode ?? service.template.darkMode.default;
+        view.setBackgroundColor(darkMode ? '#000000' : '#ffffff');
         view.setVisible(false);
         view.setBounds(CalculateBounds(bounds, sideBarIsOpen));
         view.webContents.setWindowOpenHandler((details) => {
@@ -121,7 +128,9 @@ export const createWindow = async () => {
 
         views[service.id] = view;
         window.contentView.addChildView(view);
-        view.webContents.loadURL(service.url || service.template.url);
+
+        const url = service.url || service.template.url.default;
+        view.webContents.loadURL(url);
     }
 
     function resizeServices() {

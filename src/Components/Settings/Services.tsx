@@ -7,7 +7,7 @@ import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { Icon } from '../Icon';
-import { ThemedButton, HardFrostedEffectStyle, ThemedInput, ThemedCheckbox } from '../Theme';
+import { ThemedButton, HardFrostedEffectStyle } from '../Theme';
 import { ServiceForm } from './ServiceForm';
 
 export function Services() {
@@ -70,8 +70,8 @@ function Service(props: CurrentServiceProps) {
         setIsOpen((state) => !state);
     }, [props.service.id, remove]);
 
-    const icon = props.service.icon || props.service.template.icon;
-    const name = props.service.name || props.service.template.name;
+    const icon = props.service.icon || props.service.template.icon.default;
+    const name = props.service.name || props.service.template.name.default;
 
     return (
         <ServiceBox ref={setNodeRef} style={style} {...attributes}>
@@ -82,7 +82,7 @@ function Service(props: CurrentServiceProps) {
                 <ServiceIcon icon={icon} name={name} size={32}/>
                 <ServiceName>
                     {props.service.name && props.service.template.name && (
-                        <>{props.service.template.name}: </>
+                        <>{props.service.template.name.default}: </>
                     )}
                     <>{name}</>
                 </ServiceName>

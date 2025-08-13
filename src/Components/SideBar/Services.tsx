@@ -38,8 +38,8 @@ interface ServiceItemProps {
 function ServiceItem(props: ServiceItemProps) {
     const { isOpen } = useStore();
 
-    const name = props.service.name || props.service.template.name;
-    const icon = props.service.icon || props.service.template.icon;
+    const name = props.service.name || props.service.template.name.default;
+    const icon = props.service.icon || props.service.template.icon.default;
 
     return (
         <ServiceLink key={props.service.id} to={`/service/${props.service.id}`} title={name} $isOpen={isOpen}>

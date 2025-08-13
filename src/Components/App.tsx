@@ -6,8 +6,10 @@ import { Layout } from './Layout';
 import { ServicePage } from './Service/ServicePage';
 import { SetupPage } from './Setup/SetupPage';
 
+const ENABLE_STRICT_MODE = false;
+
 export function App() {
-    const Strict = false ? StrictMode : React.Fragment;
+    const Strict = ENABLE_STRICT_MODE ? StrictMode : React.Fragment;
     const Router = import.meta.env.DEV ? BrowserRouter : MemoryRouter;
     return (
         <Strict>

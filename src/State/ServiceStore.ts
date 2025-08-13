@@ -1,7 +1,6 @@
 import { ServiceTemplate, Service, SERVICES, ServiceFromTemplate } from './Settings';
 import { StateCreator } from 'zustand/vanilla';
 import { ElectronWindow } from '../PreloadFeatures/AppBridge';
-import { Values } from '../Components/Settings/ServiceForm';
 
 export interface ServiceStoreState {
     services: Service[]
@@ -46,7 +45,7 @@ export const createServiceSlice: StateCreator<ServiceStoreState & ServiceStoreAc
         const idx = services.findIndex((service) => service.id === id);
 
         if (idx === -1) {
-            console.warn(`Service ${id} not found`);
+            console.warn(`Unable to replace service ${id}, because it was not found. Adding the new service instead.`);
             get().add(service);
         } else {
             services[idx] = service;

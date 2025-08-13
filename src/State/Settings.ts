@@ -16,32 +16,34 @@ export const settings = {
 
 export type IconId = string;
 
-interface Option<T> {
-    default: T | null
+interface BaseOption<T, IsCustomizable = boolean, CopyOnCreate = boolean> {
+    default: T
+    customizable: IsCustomizable
+    copyOnCreate: CopyOnCreate
 }
 
+type StaticOption<T> = BaseOption<T, false, false>
+type CustomizableButEmptyOption<T> = BaseOption<T, true, false>
+type CustomizableButFulledOption<T> = BaseOption<T, true, true>
+
+type Option<T> = StaticOption<T> | CustomizableButEmptyOption<T> | CustomizableButFulledOption<T>;
+
 export interface Service {
-    id: string
-    name: string | null
-    url: string | null
-    icon: IconId | null
-    darkMode: boolean
-    template: ServiceTemplate
+    id: string;
+    name: string | null;
+    url: string | null;
+    icon: IconId | null;
+    darkMode: boolean | null;
+    template: ServiceTemplate;
 }
 
 export interface ServiceTemplate {
-    id: string
-    name: string
-    url: string
-    icon: IconId
-    darkMode: boolean
-    options: {
-        name: Option<string>
-        url?: Option<string>
-        icon?: Option<IconId>
-        darkMode?: Option<boolean>
-    }
-    tags: string[]
+    id: string;
+    name: Option<string>;
+    url: Option<string>;
+    icon: StaticOption<IconId>;
+    darkMode: Option<boolean>;
+    tags: string[];
 }
 
 const ICONS: Record<IconId, string> = {
@@ -61,96 +63,188 @@ export function IconIdToUrl(id: IconId): string {
 export const SERVICES: ServiceTemplate[] = [
     {
         id: '5106fdb4-04a3-4659-8d76-54a79fbf45a2',
-        name: 'Google Mail',
-        url: 'https://mail.google.com/',
-        icon: '57f999b3-81f1-4cf1-86cf-05602d772d9a',
-        tags: ['google', 'e-mail'],
-        darkMode: false,
-        options: {
-            name: { default: null },
+        name: {
+            default: 'Google Mail',
+            customizable: true,
+            copyOnCreate: false,
         },
+        url: {
+            default: 'https://mail.google.com/',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        icon: {
+            default: '57f999b3-81f1-4cf1-86cf-05602d772d9a',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        darkMode: {
+            default: false,
+            customizable: false,
+            copyOnCreate: false,
+        },
+        tags: ['google', 'e-mail'],
     },
     {
         id: '2b027a28-172a-4180-bd5a-32070b046b77',
-        name: 'Google Calendar',
-        url: 'https://calendar.google.com/',
-        icon: '6f4dc7af-3173-4dab-b7d3-9d88739f57dc',
-        tags: ['google', 'calendar', 'kalender'],
-        darkMode: false,
-        options: {
-            name: { default: null },
+        name: {
+            default: 'Google Calendar',
+            customizable: true,
+            copyOnCreate: false,
         },
+        url: {
+            default: 'https://calendar.google.com/',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        icon: {
+            default: '6f4dc7af-3173-4dab-b7d3-9d88739f57dc',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        darkMode: {
+            default: false,
+            customizable: false,
+            copyOnCreate: false,
+        },
+        tags: ['google', 'calendar', 'kalender'],
     },
     {
         id: 'b78be8b5-2772-4cc3-bcfa-f05fcfa05f1a',
-        name: 'Mattermost',
-        url: 'https://mattermost.com/',
-        icon: '5bdc9b31-f8e7-4937-a156-33bb6e12cc4f',
-        tags: ['chat', 'mm'],
-        darkMode: false,
-        options: {
-            name: { default: null },
-            url: { default: 'https://mattermost.com/' },
-            darkMode: { default: false },
+        name: {
+            default: 'Mattermost',
+            customizable: true,
+            copyOnCreate: false,
         },
+        url: {
+            default: 'https://mattermost.com/',
+            customizable: true,
+            copyOnCreate: true,
+        },
+        icon: {
+            default: '5bdc9b31-f8e7-4937-a156-33bb6e12cc4f',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        darkMode: {
+            default: false,
+            customizable: true,
+            copyOnCreate: false,
+        },
+        tags: ['chat', 'mm'],
     },
     {
         id: '5ba82927-f8b7-4672-9da1-996b7c2430b3',
-        name: 'Spotify',
-        url: 'https://spotify.com/',
-        icon: '0ff56910-61ef-41b0-b74d-dbf48a9c3472',
-        tags: ['spotify', 'music'],
-        darkMode: false,
-        options: {
-            name: { default: null },
+        name: {
+            default: 'Spotify',
+            customizable: true,
+            copyOnCreate: false,
         },
+        url: {
+            default: 'https://spotify.com/',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        icon: {
+            default: '0ff56910-61ef-41b0-b74d-dbf48a9c3472',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        darkMode: {
+            default: false,
+            customizable: false,
+            copyOnCreate: false,
+        },
+        tags: ['spotify', 'music'],
     },
     {
         id: '3cec01fa-fa1b-458f-b1e2-5aafc63286ce',
-        name: 'Jira',
-        url: 'https://id.atlassian.com/login',
-        icon: 'c7c7dfd2-2941-462b-b68b-9d4c800e25e8',
-        tags: ['atlassian'],
-        darkMode: false,
-        options: {
-            name: { default: null },
-            url: { default: 'https://id.atlassian.com/login' },
+        name: {
+            default: 'Jira',
+            customizable: true,
+            copyOnCreate: false,
         },
+        url: {
+            default: 'https://jira.atlassian.com/',
+            customizable: true,
+            copyOnCreate: false,
+        },
+        icon: {
+            default: 'c7c7dfd2-2941-462b-b68b-9d4c800e25e8',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        darkMode: {
+            default: false,
+            customizable: false,
+            copyOnCreate: false,
+        },
+        tags: ['atlassian'],
     },
     {
         id: 'fb0c165e-d6fe-41d7-bec6-41a321347826',
-        name: 'Trello',
-        url: 'https://trello.com/',
-        icon: '06654c77-661b-4955-a163-7fbbd0f81de4',
-        tags: ['atlassian'],
-        darkMode: false,
-        options: {
-            name: { default: null },
-            url: { default: 'https://trello.com/' },
+        name: {
+            default: 'Trello',
+            customizable: true,
+            copyOnCreate: false,
         },
+        url: {
+            default: 'https://trello.com/',
+            customizable: true,
+            copyOnCreate: false,
+        },
+        icon: {
+            default: '06654c77-661b-4955-a163-7fbbd0f81de4',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        darkMode: {
+            default: false,
+            customizable: false,
+            copyOnCreate: false,
+        },
+        tags: ['atlassian'],
     },
     {
         id: '5f8c2fe3-5be6-4f1c-a58d-e7e746db2b0a',
-        name: 'Custom Service',
-        url: 'https://example.com/',
-        icon: '173773cb-72de-429f-94db-d382613f436d',
-        tags: ['web', 'url', 'empty', 'browser', 'tab'],
-        darkMode: false,
-        options: {
-            name: { default: null },
-            url: { default: 'https://example.com/' },
-            darkMode: { default: false },
+        name: {
+            default: 'Website',
+            customizable: true,
+            copyOnCreate: true,
         },
+        url: {
+            default: 'https://example.com/',
+            customizable: true,
+            copyOnCreate: true,
+        },
+        icon: {
+            default: '173773cb-72de-429f-94db-d382613f436d',
+            customizable: false,
+            copyOnCreate: false,
+        },
+        darkMode: {
+            default: false,
+            customizable: true,
+            copyOnCreate: false,
+        },
+        tags: ['web', 'url', 'empty', 'browser', 'tab'],
     },
 ];
 
 export function ServiceFromTemplate(template: ServiceTemplate): Service {
+    function getAttributeValue<T>(option :BaseOption<T>): T | null {
+        if (option.customizable && option.copyOnCreate) {
+            return option.default;
+        }
+        return null;
+    }
+
     return {
         id: crypto.randomUUID(),
-        name: template.options.name?.default || null,
-        url: template.options.url?.default || null,
-        icon: template.options.icon?.default || null,
-        darkMode: template.options.darkMode?.default || false,
+        name: getAttributeValue(template.name),
+        url: getAttributeValue(template.url),
+        icon: getAttributeValue(template.icon),
+        darkMode: getAttributeValue(template.darkMode),
         template,
     };
 }
