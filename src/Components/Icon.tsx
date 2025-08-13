@@ -14,6 +14,7 @@ interface IconProps {
         | 'info'
         | 'bug'
         | 'floppy-disk'
+        | 'checkbox-checked' | 'checkbox-unchecked'
     size: number
     style?: CSSProperties
 }

@@ -96,7 +96,9 @@ function Service(props: CurrentServiceProps) {
                 </ServiceButtons>
             </ServiceHead>
             {isOpen && (
-                <ServiceBody service={props.service}/>
+                <ServiceBodyContainer>
+                    <ServiceForm service={props.service}/>
+                </ServiceBodyContainer>
             )}
         </ServiceBox>
     );
@@ -142,18 +144,6 @@ const ServiceButtonDnD = styled(ServiceButton)`
 const ServiceName = styled.div`
     flex-grow: 1;
 `;
-
-interface ServiceBodyProps {
-    service: Service
-}
-
-function ServiceBody(props: ServiceBodyProps) {
-    return (
-        <ServiceBodyContainer>
-            <ServiceForm service={props.service}/>
-        </ServiceBodyContainer>
-    );
-}
 
 const ServiceBodyContainer = styled.div`
     display: flex;

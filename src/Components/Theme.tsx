@@ -1,5 +1,7 @@
 import { Link } from 'react-router';
 import { css, styled } from 'styled-components';
+import { ChangeEvent, InputHTMLAttributes, Ref, useCallback, useEffect, useRef, useState } from 'react';
+import { Icon } from './Icon';
 
 export const SoftFrostedEffectStyle = css`
     background: #ffffff08;
@@ -76,14 +78,57 @@ export const ThemedInput = styled.input`
     outline: none;
 `;
 
-const ThemedCheckboxElement = styled.input`
-    padding: 0;
-    margin: 0;
-`;
+type ThemedCheckbox = InputHTMLAttributes<HTMLInputElement> & {
+    checked: boolean
+}
 
-export function ThemedCheckbox() {
+export function ThemedCheckbox(props: ThemedCheckbox) {
+    const { onChange  } = props;
+    const ref = useRef<HTMLInputElement>(null);
+    const [checked, setChecked] = useState<boolean>(props.checked);
+
+    useEffect(() => {
+        if (onChange) {
+            onChange({ target: { value: checked } });
+        }
+    }, [checked, onChange]);
+
+    const handleClick = useCallback(() => {
+        setChecked((state) => !state);
+    }, [ref.current]);
+
+    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+        setChecked(e.target.checked);
+    }, [ref.current]);
+
     return (
-        <ThemedCheckboxElement type={'checkbox'}/>
+        <ThemedCheckboxContainer>
+            <ThemedCheckboxButton onClick={handleClick} type={'button'}>
+                <Icon name={ref.current?.checked ? 'checkbox-checked' : 'checkbox-unchecked'} size={16}/>
+            </ThemedCheckboxButton>
+            {props.placeholder && (
+                <>{props.placeholder}</>
+            )}
+            <input
+                id={props.id}
+                ref={ref}
+                type={'checkbox'}
+                style={{ display: 'none' }}
+                value="on"
+                checked={checked}
+                onChange={handleChange}
+            />
+        </ThemedCheckboxContainer>
     );
 }
 
+const ThemedCheckboxContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+`;
+
+const ThemedCheckboxButton = styled(ThemedButton)`
+    padding: 0.5rem;
+`;

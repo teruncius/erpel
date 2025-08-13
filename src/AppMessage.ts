@@ -8,4 +8,5 @@ export enum AppMessage {
     LoadUserData = 'load-user-data',
     RemoveService = 'remove-service',
     AddService = 'add-service',
+    ShouldUseDarkMode = 'should-use-dark-mode',
 }

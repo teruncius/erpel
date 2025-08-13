@@ -22,7 +22,7 @@ export async function loadUserData(): Promise<UserData> {
         const value = await readFile(CONFIG_PATH, { encoding: 'utf8' });
         return JSON.parse(value);
     } catch (e) {
-        console.log('User data not found', e.message);
+        console.warn('User data not found', e.message);
         return INITIAL_DATA;
     }
 }

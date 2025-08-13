@@ -1,26 +1,31 @@
-import { contextBridge } from 'electron';
-import { auto } from 'darkreader';
+import { contextBridge, ipcRenderer } from 'electron';
+import { enable } from 'darkreader';
+import { AppMessage } from '../AppMessage';
 
 interface DarkReaderAPI {
-    auto: () => void
+    run: () => void
 }
+
+const api: DarkReaderAPI = {
+    run: async () => {
+        const status = await ipcRenderer.invoke(AppMessage.ShouldUseDarkMode);
+        if (status) {
+            enable({});
+        }
+    },
+};
 
 interface DarkReaderWindow extends Window {
     DarkReader: DarkReaderAPI
 }
 
-const api: DarkReaderAPI = {
-    auto: () => auto({}),
-};
-
-contextBridge.exposeInMainWorld('DarkReader', api);
-
 declare const window: DarkReaderWindow;
 
+contextBridge.exposeInMainWorld('DarkReader', api);
 contextBridge.executeInMainWorld({
     func: () => {
         document.addEventListener('DOMContentLoaded', () => {
-            window.DarkReader.auto();
+            window.DarkReader.run();
         });
     },
 });

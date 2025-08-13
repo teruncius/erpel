@@ -48,6 +48,14 @@ export const createWindow = async () => {
         return loadUserData();
     });
 
+    ipcMain.handle(AppMessage.ShouldUseDarkMode, (event) => {
+        const id = Object.entries(views).find(([, view]) => view.webContents === event.sender)?.[0] || null;
+        if (!id) {
+            return false;
+        }
+        return userData.services.find((service) => service.id === id)?.darkMode || false;
+    });
+
     ipcMain.on(AppMessage.AddService, (event, service) => {
         createViewForService(service);
     });
@@ -103,7 +111,7 @@ export const createWindow = async () => {
             },
         });
 
-        view.setBackgroundColor('#000000');
+        view.setBackgroundColor(service.darkMode ? '#000000' : '#ffffff');
         view.setVisible(false);
         view.setBounds(CalculateBounds(bounds, sideBarIsOpen));
         view.webContents.setWindowOpenHandler((details) => {

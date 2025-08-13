@@ -7,9 +7,10 @@ import { ServicePage } from './Service/ServicePage';
 import { SetupPage } from './Setup/SetupPage';
 
 export function App() {
+    const Strict = false ? StrictMode : React.Fragment;
     const Router = import.meta.env.DEV ? BrowserRouter : MemoryRouter;
     return (
-        <StrictMode>
+        <Strict>
             <Router>
                 <Routes>
                     <Route element={<Layout/>}>
@@ -20,6 +21,6 @@ export function App() {
                     </Route>
                 </Routes>
             </Router>
-        </StrictMode>
+        </Strict>
     );
 }
