@@ -7,7 +7,7 @@ import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { Icon } from '../Icon';
-import { ThemedButton, HardFrostedEffectStyle } from '../Theme';
+import { ThemedButton, HardFrostedEffectStyle, ThemedSection } from '../Theme';
 import { ServiceForm } from './ServiceForm';
 
 export function Services() {
@@ -22,15 +22,17 @@ export function Services() {
     }
 
     return (
-        <List>
-            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                <SortableContext items={ids} strategy={verticalListSortingStrategy}>
-                    {services.map((service) => (
-                        <Service key={service.id} service={service}/>
-                    ))}
-                </SortableContext>
-            </DndContext>
-        </List>
+        <ThemedSection>
+            <List>
+                <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                    <SortableContext items={ids} strategy={verticalListSortingStrategy}>
+                        {services.map((service) => (
+                            <Service key={service.id} service={service}/>
+                        ))}
+                    </SortableContext>
+                </DndContext>
+            </List>
+        </ThemedSection>
     );
 }
 

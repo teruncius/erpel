@@ -22,17 +22,13 @@ export function SettingsPage() {
 
     return (
         <>
-            {services.length === 0 && (
+            {services.length === 0 ? (
                 <SetupServices/>
+            ): (
+                <Services/>
             )}
-            {services.length > 0 && (
-                <ThemedSection>
-                    <Services/>
-                </ThemedSection>
-            )}
-            <ThemedSection>
-                <ServiceTemplates/>
-            </ThemedSection>
+
+            <ServiceTemplates/>
 
             <LocaleSettings/>
 

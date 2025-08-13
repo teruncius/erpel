@@ -3,7 +3,7 @@ import React, { ChangeEvent, useCallback, useState } from 'react';
 import { ServiceTemplate } from '../../State/Settings';
 import { ServiceIcon } from './ServiceIcon';
 import { useStore } from '../../State/Store';
-import { ThemedHoverStyle, ThemedButton, HardFrostedEffectStyle, ThemedInput } from '../Theme';
+import { ThemedHoverStyle, ThemedButton, HardFrostedEffectStyle, ThemedInput, ThemedSection } from '../Theme';
 import { Icon } from '../Icon';
 
 export function ServiceTemplates() {
@@ -26,19 +26,21 @@ export function ServiceTemplates() {
         });
 
     return (
-        <Container>
-            <FilterBar>
-                <FilterInput type="text" placeholder="Type to filter" value={search} onChange={filter}/>
-                <FilterButton type="button" onClick={handleReset}>
-                    <Icon name="cross" size={16} />
-                </FilterButton>
-            </FilterBar>
-            <Grid>
-                {filtered.map((template) => {
-                    return <ServiceTemplate key={template.id} template={template}/>;
-                })}
-            </Grid>
-        </Container>
+        <ThemedSection>
+            <Container>
+                <FilterBar>
+                    <FilterInput type="text" placeholder="Type to filter" value={search} onChange={filter}/>
+                    <FilterButton type="button" onClick={handleReset}>
+                        <Icon name="cross" size={16} />
+                    </FilterButton>
+                </FilterBar>
+                <Grid>
+                    {filtered.map((template) => {
+                        return <ServiceTemplate key={template.id} template={template}/>;
+                    })}
+                </Grid>
+            </Container>
+        </ThemedSection>
     );
 }
 
