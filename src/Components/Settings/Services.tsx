@@ -2,7 +2,7 @@ import { Service } from '../../State/Settings';
 import React, { useCallback, useState } from 'react';
 import { styled } from 'styled-components';
 import { ServiceIcon } from './ServiceIcon';
-import { useStore } from '../../State/Store';
+import { useStore } from '../../State/Store/Store';
 import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';

@@ -1,6 +1,6 @@
-import { ServiceTemplate, Service, SERVICES, ServiceFromTemplate, DEFAULT_SERVICES } from './Settings';
+import { ServiceTemplate, Service, SERVICES, ServiceFromTemplate, DEFAULT_SERVICES } from '../Settings';
 import { StateCreator } from 'zustand/vanilla';
-import { ElectronWindow } from '../PreloadFeatures/AppBridge';
+import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 
 export interface ServiceStoreState {
     services: Service[]

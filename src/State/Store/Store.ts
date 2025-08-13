@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from './ServiceStore';
 import { persist, PersistStorage } from 'zustand/middleware';
-import { ElectronWindow } from '../PreloadFeatures/AppBridge';
+import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 import { createSideBarSlice, SideBarStoreActions, SideBarStoreState } from './SideBarStore';
 import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from './SettingsStore';
-import { UserData } from '../UserData';
+import { UserData } from '../../UserData';
 
 declare const window: ElectronWindow;
 

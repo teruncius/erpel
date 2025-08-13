@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { FrostedContainerStyle } from '../Theme';
-import { useStore } from '../../State/Store';
+import { useStore } from '../../State/Store/Store';
 
 interface Props {
     className?: string

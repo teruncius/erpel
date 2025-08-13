@@ -1,4 +1,4 @@
-import { useStore } from '../../State/Store';
+import { useStore } from '../../State/Store/Store';
 import { Clock } from '../Home/Clock';
 import { ChangeEvent, useCallback } from 'react';
 import { ThemedSection } from '../Theme';

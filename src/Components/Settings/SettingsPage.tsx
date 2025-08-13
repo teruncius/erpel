@@ -4,7 +4,7 @@ import { Services } from './Services';
 import { ServiceTemplates } from './ServiceTemplates';
 import { ThemedLink, ThemedSection } from '../Theme';
 import { SetupServices } from '../Setup/SetupServices';
-import { useStore } from '../../State/Store';
+import { useStore } from '../../State/Store/Store';
 import { ExportSettingsButton } from './ExportSettingsButton';
 import { DebugNotificationsButton } from './DebugNotificationsButton';
 import { styled } from 'styled-components';

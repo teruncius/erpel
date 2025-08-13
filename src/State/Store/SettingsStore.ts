@@ -1,5 +1,5 @@
 import { StateCreator } from 'zustand/vanilla';
-import { DEFAULT_I18N, i18nSettings, Locale } from './Settings';
+import { DEFAULT_I18N, i18nSettings, Locale } from '../Settings';
 
 export interface SettingsStoreState {
     i18n: i18nSettings

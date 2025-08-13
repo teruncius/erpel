@@ -4,7 +4,7 @@ import icon from '../../../resources/erpel.png?no-inline';
 import quack from '../../../resources/duck-quacking.mp3?no-inline';
 import { useAudio } from '../../Hooks/Audio';
 import { NavLink } from 'react-router';
-import { useStore } from '../../State/Store';
+import { useStore } from '../../State/Store/Store';
 
 export function Logo() {
     const [, , play] = useAudio(quack);

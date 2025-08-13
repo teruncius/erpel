@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import React, { useCallback } from 'react';
 
 import { Icon } from '../Icon';
-import { useStore } from '../../State/Store';
+import { useStore } from '../../State/Store/Store';
 
 export function Actions() {
     const navigate = useNavigate();

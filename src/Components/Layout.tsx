@@ -3,7 +3,7 @@ import { SideBar, SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './SideBar/Sid
 import React from 'react';
 import { Outlet } from 'react-router';
 import { Wallpaper } from './Wallpaper';
-import { useStore } from '../State/Store';
+import { useStore } from '../State/Store/Store';
 
 export function Layout() {
     const { isOpen } = useStore();

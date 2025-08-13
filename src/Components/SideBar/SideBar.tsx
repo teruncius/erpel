@@ -5,7 +5,7 @@ import { Services } from './Services';
 import { Actions } from './Actions';
 import { SoftFrostedEffectStyle } from '../Theme';
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
-import { useStore } from '../../State/Store';
+import { useStore } from '../../State/Store/Store';
 
 declare const window: ElectronWindow;
 
