@@ -68,12 +68,12 @@ export function ServiceForm(props: ServiceFormProps) {
                     }}/>
                 </Fieldset>
             )}
-            <div>
+            <Buttons>
                 <ThemedButton type="submit">
                     <Icon name={'floppy-disk'} size={20}/>
                     <>Save</>
                 </ThemedButton>
-            </div>
+            </Buttons>
         </Form>
     );
 }
@@ -100,4 +100,10 @@ const Fieldset = styled.fieldset`
 
 const Label = styled.label`
     cursor: pointer;
+`;
+
+const Buttons = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 `;
