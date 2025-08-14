@@ -23,7 +23,7 @@ export function Home() {
 
     return (
         <PageCenter>
-            <Clock/>
+            <Clock golden={true}/>
         </PageCenter>
     );
 }

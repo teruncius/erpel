@@ -1,10 +1,12 @@
 import { styled } from 'styled-components';
-import { ThemedButton, ThemedCheckbox, ThemedInput } from '../Theme';
 import React, { useCallback } from 'react';
 import { Service } from '../../State/Settings';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Icon } from '../Icon';
 import { useStore } from '../../State/Store/Store';
+import { ThemedCheckbox } from '../Theme/Checkbox';
+import { ThemedInput } from '../Theme/Input';
+import { ThemedButton } from '../Theme/Button';
 
 export interface Values {
     name: string | null

@@ -4,7 +4,7 @@ import { FrostedContainerStyle } from '../Theme';
 import { useStore } from '../../State/Store/Store';
 
 interface Props {
-    className?: string
+    golden?: boolean
 }
 
 export function Clock(props: Props) {
@@ -21,7 +21,7 @@ export function Clock(props: Props) {
     }, [update]);
 
     return (
-        <Container className={props.className}>
+        <Container $golden={props.golden || false}>
             <ClockTime>
                 {new Intl.DateTimeFormat(i18n.time, { hour: '2-digit', minute: '2-digit' }).format(now)}
             </ClockTime>
@@ -38,15 +38,18 @@ export function Clock(props: Props) {
     );
 }
 
-const Container = styled.div`
+const Container = styled.div<{ $golden: boolean }>`
     ${FrostedContainerStyle};
-    padding: 1rem;
+    
+    padding: 1rem 3rem;
     margin: 0;
+    aspect-ratio: ${(props) => props.$golden ? '1.618' : 'auto'};
 
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
     align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
 
     border-radius: 1rem;
     color: #ffffff;

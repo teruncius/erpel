@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Icon } from '../Icon';
-import { ThemedButton } from '../Theme';
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
+import { ThemedButton } from '../Theme/Button';
 
 declare const window: ElectronWindow;
 

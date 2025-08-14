@@ -7,8 +7,9 @@ import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { Icon } from '../Icon';
-import { ThemedButton, HardFrostedEffectStyle, ThemedSection } from '../Theme';
+import { HardFrostedEffectStyle, ThemedSection } from '../Theme';
 import { ServiceForm } from './ServiceForm';
+import { ThemedButton } from '../Theme/Button';
 
 export function Services() {
     const { services, swap } = useStore();

@@ -3,6 +3,22 @@ import { Clock } from '../Home/Clock';
 import { ChangeEvent, useCallback } from 'react';
 import { ThemedSection } from '../Theme';
 import { styled } from 'styled-components';
+import { ThemedSelect } from '../Theme/Select';
+
+const localeOptions = [
+    'en-US',
+    'de-DE',
+];
+
+const timeOptions = [
+    'en-US',
+    'de-DE',
+];
+
+const dateOptions = [
+    'en-US',
+    'de-DE',
+];
 
 export function LocaleSettings() {
     const { i18n, setLocale, setTimeFormat, setDateFormat } = useStore();
@@ -22,25 +38,11 @@ export function LocaleSettings() {
     return (
         <Container>
             <SettingsSection>
-                <div>Locale: {i18n.locale}</div>
-                <select value={i18n.locale} onChange={onChangeLocale}>
-                    <option value="en-US">en</option>
-                    <option value="de-DE">de</option>
-                </select>
-
-                <div>Time: {i18n.time}</div>
-                <select value={i18n.time} onChange={onChangeTime}>
-                    <option value="en-US">12 hours</option>
-                    <option value="de-DE">24 hours</option>
-                </select>
-
-                <div>Date: {i18n.date}</div>
-                <select value={i18n.date} onChange={onChangeDate}>
-                    <option value="en-US">mm/dd/yyyy</option>
-                    <option value="de-DE">dd.mm.yyyy</option>
-                </select>
+                <ThemedSelect id="locale" label={'Locale'} value={i18n.locale} onChange={onChangeLocale} options={localeOptions}/>
+                <ThemedSelect id="time" label={'Time format'} value={i18n.time} onChange={onChangeTime} options={timeOptions}/>
+                <ThemedSelect id="date" label={'Date format'} value={i18n.date} onChange={onChangeDate} options={dateOptions}/>
             </SettingsSection>
-            <CustomClock/>
+            <Clock/>
         </Container>
     );
 }
@@ -51,15 +53,14 @@ const Container = styled.div`
     grid-template-rows: auto;
     gap: 1rem;
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 900px) {
         grid-template-columns: 1fr;
     }
 `;
 
 const SettingsSection = styled(ThemedSection)`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     flex-grow: 1;
-`;
-
-const CustomClock = styled(Clock)`
-    justify-content: center;
 `;

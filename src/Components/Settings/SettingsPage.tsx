@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 import { Services } from './Services';
 import { ServiceTemplates } from './ServiceTemplates';
-import { ThemedLink, ThemedSection } from '../Theme';
+import { ThemedSection } from '../Theme';
 import { SetupServices } from '../Setup/SetupServices';
 import { useStore } from '../../State/Store/Store';
 import { ExportSettingsButton } from './ExportSettingsButton';
@@ -11,6 +11,8 @@ import { styled } from 'styled-components';
 import { Icon } from '../Icon';
 import { LocaleSettings } from './LocaleSettings';
 import { DistractionSettings } from './DistractionSettings';
+
+import { ThemedLink } from '../Theme/Button';
 
 declare const window: ElectronWindow;
 

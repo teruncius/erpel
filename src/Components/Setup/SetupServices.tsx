@@ -1,10 +1,11 @@
 import { styled } from 'styled-components';
-import { ThemedSection, ThemedButton, ThemedLink } from '../Theme';
+import { ThemedSection } from '../Theme';
 import { Icon } from '../Icon';
 import { useCallback } from 'react';
 import { useStore } from '../../State/Store/Store';
 import { UserData } from '../../UserData';
 import { Hint } from '../Theme/Hint';
+import { ThemedButton, ThemedLink } from '../Theme/Button';
 
 const FILE_OPTIONS = {
     types: [

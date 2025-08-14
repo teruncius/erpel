@@ -3,8 +3,10 @@ import React, { ChangeEvent, useCallback, useState } from 'react';
 import { ServiceTemplate } from '../../State/Settings';
 import { ServiceIcon } from './ServiceIcon';
 import { useStore } from '../../State/Store/Store';
-import { ThemedHoverStyle, ThemedButton, HardFrostedEffectStyle, ThemedInput, ThemedSection } from '../Theme';
+import { ThemedHoverStyle, HardFrostedEffectStyle, ThemedSection } from '../Theme';
 import { Icon } from '../Icon';
+import { ThemedInput } from '../Theme/Input';
+import { ThemedButton } from '../Theme/Button';
 
 export function ServiceTemplates() {
     const [search, setSearch] = useState('');
