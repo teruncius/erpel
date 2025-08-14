@@ -1,9 +1,11 @@
 import { StateCreator } from 'zustand/vanilla';
-import { DEFAULT_I18N, DEFAULT_IS_MUTED, i18nSettings, Locale } from '../Settings';
+import { BackgroundMode, DEFAULT_I18N, DEFAULT_IS_MUTED, i18nSettings, Locale } from '../Settings';
 
 export interface SettingsStoreState {
     i18n: i18nSettings
     isMuted: boolean
+    mode: BackgroundMode
+    wallpapers: string[]
 }
 
 export interface SettingsStoreActions {
@@ -11,11 +13,15 @@ export interface SettingsStoreActions {
     setTimeFormat: (locale: Locale) => void
     setDateFormat: (locale: Locale) => void
     setIsMuted: (isMuted: boolean) => void
+    setMode: (mode: BackgroundMode) => void
+    setWallpapers: (wallpapers: string[]) => void
 }
 
 const initialValues: SettingsStoreState = {
     i18n: DEFAULT_I18N,
     isMuted: DEFAULT_IS_MUTED,
+    mode: BackgroundMode.Color,
+    wallpapers: [],
 };
 
 export const createSettingsSlice: StateCreator<SettingsStoreState & SettingsStoreActions> = (set, get) => ({
@@ -31,5 +37,11 @@ export const createSettingsSlice: StateCreator<SettingsStoreState & SettingsStor
     },
     setIsMuted: (isMuted: boolean) => {
         set({ isMuted });
+    },
+    setMode: (mode: BackgroundMode) => {
+        set({ mode });
+    },
+    setWallpapers: (wallpapers: string[]) => {
+        set({ wallpapers });
     },
 });

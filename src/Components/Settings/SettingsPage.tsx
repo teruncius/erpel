@@ -11,8 +11,8 @@ import { styled } from 'styled-components';
 import { Icon } from '../Icon';
 import { LocaleSettings } from './LocaleSettings';
 import { DistractionSettings } from './DistractionSettings';
-
 import { ThemedLink } from '../Theme/Button';
+import { WallpaperSettings } from './WallpaperSettings';
 
 declare const window: ElectronWindow;
 
@@ -35,6 +35,8 @@ export function SettingsPage() {
             <LocaleSettings/>
 
             <DistractionSettings/>
+
+            <WallpaperSettings/>
 
             <ThemedSection>
                 <Container>

@@ -1,20 +1,12 @@
 import React, { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
 import { animated, useSpringRef, useTransition } from '@react-spring/web';
 import { styled } from 'styled-components';
-
-const wallpapers = [
-    'https://images.unsplash.com/photo-1752520316159-741a8d0bde1d',
-    'https://images.unsplash.com/photo-1444080748397-f442aa95c3e5',
-    'https://images.unsplash.com/photo-1537819191377-d3305ffddce4',
-    'https://images.unsplash.com/photo-1538370965046-79c0d6907d47',
-    'https://images.unsplash.com/photo-1472712739516-7ad2b786e1f7',
-    'https://images.unsplash.com/photo-1630839437035-dac17da580d0',
-    'https://images.unsplash.com/photo-1656842741176-538dbdcd2682',
-];
+import { useStore } from '../State/Store/Store';
 
 export function Wallpaper() {
     const timerRef = useRef<NodeJS.Timeout>(null);
     const [index, set] = useState(0);
+    const { wallpapers } = useStore();
 
     const transRef = useSpringRef();
     const transitions = useTransition(index, {

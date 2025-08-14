@@ -4,13 +4,16 @@ import React from 'react';
 import { Outlet } from 'react-router';
 import { Wallpaper } from './Wallpaper';
 import { useStore } from '../State/Store/Store';
+import { BackgroundMode } from '../State/Settings';
 
 export function Layout() {
-    const { isOpen } = useStore();
+    const { isOpen, mode } = useStore();
 
     return (
         <Page>
-            <Wallpaper/>
+            {mode === BackgroundMode.Wallpaper && (
+                <Wallpaper/>
+            )}
             <SideBar/>
             <Content $isOpen={isOpen}>
                 <PageWidescreenLimiter>

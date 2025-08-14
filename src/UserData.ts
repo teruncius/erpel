@@ -1,7 +1,14 @@
 import { app } from 'electron';
 import { join } from 'node:path';
 import { readFile, writeFile } from 'node:fs/promises';
-import { DEFAULT_I18N, DEFAULT_IS_MUTED, DEFAULT_SERVICES, i18nSettings, Service } from './State/Settings';
+import {
+    BackgroundMode,
+    DEFAULT_I18N,
+    DEFAULT_IS_MUTED, DEFAULT_MODE,
+    DEFAULT_SERVICES, DEFAULT_WALLPAPERS,
+    i18nSettings,
+    Service,
+} from './State/Settings';
 
 const LATEST_VERSION = 0;
 
@@ -10,6 +17,8 @@ export interface UserData {
     services: Service[]
     i18n: i18nSettings
     isMuted: boolean
+    mode: BackgroundMode
+    wallpapers: string[]
 }
 
 const INITIAL_DATA: UserData = {
@@ -17,6 +26,8 @@ const INITIAL_DATA: UserData = {
     services: DEFAULT_SERVICES,
     i18n: DEFAULT_I18N,
     isMuted: DEFAULT_IS_MUTED,
+    mode: DEFAULT_MODE,
+    wallpapers: DEFAULT_WALLPAPERS,
 };
 
 const CONFIG_PATH = join(app.getPath('userData'), 'config.json');
