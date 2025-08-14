@@ -66,7 +66,9 @@ function Service(props: CurrentServiceProps) {
     };
 
     const handleDelete = useCallback(() => {
-        remove(props.service.id);
+        if (confirm('Do you really want to delete this service?')) {
+            remove(props.service.id);
+        }
     }, [props.service.id, remove]);
 
     const handleOpenClose = useCallback(() => {
