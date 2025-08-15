@@ -14,7 +14,9 @@ export function ThemedCheckbox(props: ThemedCheckbox) {
 
     useEffect(() => {
         if (onChange) {
-            onChange({ target: { checked } });
+            // TODO: fix handling of checked & value
+            // TODO: fix creating of event
+            onChange({ target: { checked, value: checked } });
         }
     }, [checked, onChange]);
 

@@ -11,7 +11,7 @@ import { Service } from '../../State/Schema';
 export interface Values {
     name: string | null
     url: string | null
-    darkMode: boolean
+    darkMode: boolean | null
 }
 
 interface ServiceFormProps {
@@ -62,7 +62,7 @@ export function ServiceForm(props: ServiceFormProps) {
                             return (
                                 <ThemedCheckbox
                                     id={`${props.service.id}::darkMode`}
-                                    checked={value}
+                                    checked={value || false}
                                     {...rest}
                                     placeholder="Enable dark mode"
                                 />
