@@ -57,8 +57,10 @@ const Container = styled.div<{ $golden: boolean }>`
 
 const ClockTime = styled.div`
     font-size: 3rem;
+    white-space: nowrap;
 `;
 
 const ClockDate = styled.div`
     font-size: 1rem;
+    white-space: nowrap;
 `;
