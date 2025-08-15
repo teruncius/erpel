@@ -9,7 +9,7 @@ interface Props {
 
 export function Clock(props: Props) {
     const [now, setNow] = useState(new Date());
-    const { i18n } = useStore();
+    const { locale, dateFormat, timeFormat } = useStore();
 
     const update = useCallback(() => {
         setNow(new Date());
@@ -23,12 +23,12 @@ export function Clock(props: Props) {
     return (
         <Container $golden={props.golden || false}>
             <ClockTime>
-                {new Intl.DateTimeFormat(i18n.time, { hour: '2-digit', minute: '2-digit' }).format(now)}
+                {new Intl.DateTimeFormat(timeFormat, { hour: '2-digit', minute: '2-digit' }).format(now)}
             </ClockTime>
             <ClockDate>
-                {new Intl.DateTimeFormat(i18n.locale, { weekday: 'long' }).format(now)}
+                {new Intl.DateTimeFormat(locale, { weekday: 'long' }).format(now)}
                 <>, </>
-                {new Intl.DateTimeFormat(i18n.date, {
+                {new Intl.DateTimeFormat(dateFormat, {
                     day: '2-digit',
                     month: '2-digit',
                     year: 'numeric',

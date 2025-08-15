@@ -19,6 +19,12 @@ export default tseslint.config(
     },
     {
         rules: {
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    'varsIgnorePattern': '^_',
+                },
+            ],
             'indent': [
                 'error',
                 4,

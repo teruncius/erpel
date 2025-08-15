@@ -3,9 +3,9 @@ import { ThemedSection } from '../Theme';
 import { Icon } from '../Icon';
 import { useCallback } from 'react';
 import { useStore } from '../../State/Store/Store';
-import { UserData } from '../../UserData';
 import { Hint } from '../Theme/Hint';
 import { ThemedButton, ThemedLink } from '../Theme/Button';
+import { LatestConfig } from '../../State/Schema';
 
 const FILE_OPTIONS = {
     types: [
@@ -32,11 +32,11 @@ export interface CustomWindow extends Window {
 declare const window: CustomWindow;
 
 export function SetupServices() {
-    const { usePreset, useFile } = useStore();
+    const { loadServicesFromPreset, loadServicesFromFile, loadSettingsFromFile } = useStore();
 
     const handleUsePreset = useCallback(() => {
-        usePreset();
-    }, [usePreset]);
+        loadServicesFromPreset();
+    }, [loadServicesFromPreset]);
 
     const handleUseConfigFile = useCallback(() => {
         let alive = true;
@@ -53,10 +53,11 @@ export function SetupServices() {
             if (!alive) {
                 return;
             }
-            const data: UserData = JSON.parse(text);
+            const data: LatestConfig = JSON.parse(text);
             // TODO: validation & filter & migrate
             // TODO: set all fields
-            useFile(data.services || []);
+            loadServicesFromFile(data.services || []);
+            loadSettingsFromFile(data);
         };
 
         upload().catch(console.error);
@@ -64,7 +65,7 @@ export function SetupServices() {
         return () => {
             alive = false;
         };
-    }, [useFile]);
+    }, [loadServicesFromFile]);
 
     return (
         <>

@@ -4,42 +4,31 @@ import { persist, PersistStorage } from 'zustand/middleware';
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 import { createSideBarSlice, SideBarStoreActions, SideBarStoreState } from './SideBarStore';
 import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from './SettingsStore';
-import { UserData } from '../../UserData';
+import * as z from 'zod';
+import { Config, ConfigSchema } from '../Schema';
+import { DEFAULT_SERVICE_TEMPLATES } from '../Settings';
 
 declare const window: ElectronWindow;
 
-type State = ServiceStoreState & SideBarStoreState & SettingsStoreState;
-type Actions = ServiceStoreActions & SideBarStoreActions & SettingsStoreActions;
+export type StoreState = ServiceStoreState & SideBarStoreState & SettingsStoreState;
+type StoreActions = ServiceStoreActions & SideBarStoreActions & SettingsStoreActions;
 
-const storage: PersistStorage<Partial<State>> = {
+const storage: PersistStorage<StoreState> = {
     getItem: async () => {
-        console.log('persist::getItem');
-        const data = await window.electron.loadData();
-
-        const { version, ...rest } = data;
-        return {
-            version,
-            state: { ...rest },
-        };
+        const config = await window.electron.loadConfig();
+        const state = TransformConfigToStoreState(config);
+        return { version: 0, state };
     },
     setItem: (name, value) => {
-        console.log('persist::setItem');
-        // TODO: fix unsafe type assignment
-        window.electron.saveData({
-            version: value.version,
-            services: value.state.services,
-            i18n: value.state.i18n,
-            isMuted: value.state.isMuted,
-            mode: value.state.mode,
-            wallpapers: value.state.wallpapers,
-        } as UserData);
+        const config = TransformStoreStateToConfig(value.state);
+        window.electron.saveConfig(config);
     },
     removeItem: () => {
-        console.log('persist::removeItem');
+        console.warn('Unable to remove items with persist');
     },
 };
 
-export const useStore = create<State & Actions>()(
+export const useStore = create<StoreState & StoreActions>()(
     persist(
         (...args) => ({
             ...createServiceSlice(...args),
@@ -52,3 +41,21 @@ export const useStore = create<State & Actions>()(
         },
     ),
 );
+
+function TransformStoreStateToConfig(data: StoreState) {
+    const result = z.safeParse(ConfigSchema, { version: 0, ...data });
+    if (result.success) {
+        return result.data;
+    }
+    console.error(result.error);
+    throw Error('Failed to convert store state to config');
+}
+
+function TransformConfigToStoreState(config: Config): StoreState {
+    const { version: _, ...rest } = config;
+    return {
+        ...rest,
+        // templates are not stored in user data
+        templates: DEFAULT_SERVICE_TEMPLATES,
+    };
+}

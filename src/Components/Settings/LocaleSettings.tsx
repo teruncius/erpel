@@ -21,7 +21,7 @@ const dateOptions = [
 ];
 
 export function LocaleSettings() {
-    const { i18n, setLocale, setTimeFormat, setDateFormat } = useStore();
+    const { locale, dateFormat, timeFormat, setLocale, setTimeFormat, setDateFormat } = useStore();
 
     const onChangeLocale = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
         setLocale(e.target.value);
@@ -38,9 +38,9 @@ export function LocaleSettings() {
     return (
         <Container>
             <SettingsSection>
-                <ThemedSelect id="locale" label={'Locale'} value={i18n.locale} onChange={onChangeLocale} options={localeOptions}/>
-                <ThemedSelect id="time" label={'Time format'} value={i18n.time} onChange={onChangeTime} options={timeOptions}/>
-                <ThemedSelect id="date" label={'Date format'} value={i18n.date} onChange={onChangeDate} options={dateOptions}/>
+                <ThemedSelect id="locale" label={'Locale'} value={locale} onChange={onChangeLocale} options={localeOptions}/>
+                <ThemedSelect id="time" label={'Time format'} value={timeFormat} onChange={onChangeTime} options={timeOptions}/>
+                <ThemedSelect id="date" label={'Date format'} value={dateFormat} onChange={onChangeDate} options={dateOptions}/>
             </SettingsSection>
             <Clock/>
         </Container>

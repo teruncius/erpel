@@ -5,28 +5,16 @@ import spotify from '../../resources/spotify.png?no-inline';
 import jira from '../../resources/jira.png?no-inline';
 import trello from '../../resources/trello.png?no-inline';
 import web from '../../resources/web.png?no-inline';
-
-export type Locale = string;
-
-export interface i18nSettings {
-    locale: Locale
-    date: Locale
-    time: Locale
-}
-
-export const DEFAULT_I18N = {
-    locale: 'en-US',
-    date: 'de-DE',
-    time: 'de-DE',
-};
-
-export const DEFAULT_IS_MUTED = false;
+import type { Option, Service, ServiceTemplate } from './Schema';
 
 export enum BackgroundMode {
     Wallpaper = 'wallpaper',
     Color = 'color',
 }
 
+export const DEFAULT_SIDE_BAR_IS_OPEN = true;
+export const DEFAULT_LOCALE = 'en-US';
+export const DEFAULT_IS_MUTED = false;
 export const DEFAULT_MODE = BackgroundMode.Wallpaper;
 
 export const DEFAULT_WALLPAPERS = [
@@ -39,40 +27,8 @@ export const DEFAULT_WALLPAPERS = [
     'https://images.unsplash.com/photo-1656842741176-538dbdcd2682',
 ];
 
-
-export type IconId = string;
-
-interface BaseOption<T, IsCustomizable = boolean, CopyOnCreate = boolean> {
-    default: T
-    customizable: IsCustomizable
-    copyOnCreate: CopyOnCreate
-}
-
-type StaticOption<T> = BaseOption<T, false, false>
-type CustomizableEmptyOption<T> = BaseOption<T, true, false>
-type CustomizableFilledOption<T> = BaseOption<T, true, true>
-
-type Option<T> = StaticOption<T> | CustomizableEmptyOption<T> | CustomizableFilledOption<T>;
-
-export interface Service {
-    id: string;
-    name: string | null;
-    url: string | null;
-    icon: IconId | null;
-    darkMode: boolean | null;
-    template: ServiceTemplate;
-}
-
-export interface ServiceTemplate {
-    id: string;
-    name: Option<string>;
-    url: Option<string>;
-    icon: StaticOption<IconId>;
-    darkMode: Option<boolean>;
-    tags: string[];
-}
-
-const ICONS: Record<IconId, string> = {
+// TODO: force a value for each icon
+const ICONS: Record<string, string> = {
     '57f999b3-81f1-4cf1-86cf-05602d772d9a': gmail,
     '6f4dc7af-3173-4dab-b7d3-9d88739f57dc': calendar,
     '5bdc9b31-f8e7-4937-a156-33bb6e12cc4f': mm,
@@ -82,13 +38,32 @@ const ICONS: Record<IconId, string> = {
     '173773cb-72de-429f-94db-d382613f436d': web,
 };
 
-export function IconIdToUrl(id: IconId): string {
+export function IconIdToUrl(id: string): string {
     return ICONS[id] || '';
 }
 
-export const DEFAULT_SERVICES = [];
+export function ServiceFromTemplate(template: ServiceTemplate): Service {
+    return {
+        id: crypto.randomUUID(),
+        name: ValueFromOption(template.name),
+        url: ValueFromOption(template.url),
+        icon: ValueFromOption(template.icon),
+        darkMode: ValueFromOption(template.darkMode),
+        template,
+    };
+}
 
-export const SERVICES: ServiceTemplate[] = [
+function ValueFromOption(option: Option) {
+    if (option.customizable && option.copyOnCreate) {
+        return option.default;
+    }
+    return null;
+}
+
+
+export const DEFAULT_SERVICES: Service[] = [];
+
+export const DEFAULT_SERVICE_TEMPLATES: ServiceTemplate[] = [
     {
         id: '5106fdb4-04a3-4659-8d76-54a79fbf45a2',
         name: {
@@ -258,21 +233,3 @@ export const SERVICES: ServiceTemplate[] = [
         tags: ['web', 'url', 'empty', 'browser', 'tab'],
     },
 ];
-
-export function ServiceFromTemplate(template: ServiceTemplate): Service {
-    function getAttributeValue<T>(option :BaseOption<T>): T | null {
-        if (option.customizable && option.copyOnCreate) {
-            return option.default;
-        }
-        return null;
-    }
-
-    return {
-        id: crypto.randomUUID(),
-        name: getAttributeValue(template.name),
-        url: getAttributeValue(template.url),
-        icon: getAttributeValue(template.icon),
-        darkMode: getAttributeValue(template.darkMode),
-        template,
-    };
-}

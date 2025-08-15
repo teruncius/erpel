@@ -1,6 +1,7 @@
-import { ServiceTemplate, Service, SERVICES, ServiceFromTemplate, DEFAULT_SERVICES } from '../Settings';
+import { ServiceFromTemplate } from '../Settings';
 import { StateCreator } from 'zustand/vanilla';
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
+import { Service, ServiceTemplate } from '../Schema';
 
 export interface ServiceStoreState {
     services: Service[]
@@ -8,25 +9,35 @@ export interface ServiceStoreState {
 }
 
 export interface ServiceStoreActions {
+    loadServicesFromPreset: () => void
+    loadServicesFromFile: (services: Service[]) => void
     add: (service: Service) => void
     addFromTemplate: (template: ServiceTemplate) => void
     remove: (id: string) => void
     replace: (id: string, service: Service) => void
     clear: () => void
     swap: (id1: string, id2: string) => void
-    usePreset: () => void
-    useFile: (services: Service[]) => void
 }
 
 const initialValues: ServiceStoreState = {
-    services: DEFAULT_SERVICES,
-    templates: SERVICES,
+    services: [],
+    templates: [],
 };
 
 declare const window: ElectronWindow;
 
 export const createServiceSlice: StateCreator<ServiceStoreState & ServiceStoreActions> = (set, get) => ({
     ...initialValues,
+    loadServicesFromPreset: () => {
+        get().clear();
+        const ids = ['5106fdb4-04a3-4659-8d76-54a79fbf45a2', '2b027a28-172a-4180-bd5a-32070b046b77'];
+        const templates = get().templates.filter((service) => ids.includes(service.id));
+        templates.map((template) => get().addFromTemplate(template));
+    },
+    loadServicesFromFile: (services: Service[]) => {
+        get().clear();
+        services.map((service) => get().add(service));
+    },
     add: (service: Service) => {
         const services = [...get().services, service];
         set({ services });
@@ -65,15 +76,5 @@ export const createServiceSlice: StateCreator<ServiceStoreState & ServiceStoreAc
         [services[OLD], services[NEW]] = [services[NEW], services[OLD]];
 
         set({ services });
-    },
-    usePreset: () => {
-        get().clear();
-        const ids = ['5106fdb4-04a3-4659-8d76-54a79fbf45a2', '2b027a28-172a-4180-bd5a-32070b046b77'];
-        const templates = get().templates.filter((service) => ids.includes(service.id));
-        templates.map((template) => get().addFromTemplate(template));
-    },
-    useFile: (services: Service[]) => {
-        get().clear();
-        services.map((service) => get().add(service));
     },
 });

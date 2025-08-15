@@ -9,7 +9,7 @@ export function ExportSettingsButton() {
     const handleExport = useCallback(() => {
         let alive = true;
         const load = async () => {
-            const data = await window.electron.loadData();
+            const data = await window.electron.loadConfig();
             if (!alive) {
                 return;
             }

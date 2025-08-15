@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { SERVICES } from './Settings';
+import { DEFAULT_SERVICE_TEMPLATES } from './Settings';
 
 test('default services are available', () => {
-    expect(SERVICES.length).toBe(7);
+    expect(DEFAULT_SERVICE_TEMPLATES.length).toBe(7);
 });

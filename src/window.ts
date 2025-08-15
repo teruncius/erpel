@@ -3,8 +3,8 @@ import { BrowserWindow, ipcMain, Menu, Rectangle, WebContentsView, clipboard, sh
 import icon from '../resources/erpel.png?asset';
 import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './Components/SideBar/SideBar';
 import { AppMessage } from './AppMessage';
-import { loadUserData, saveUserData } from './UserData';
-import type { Service } from './State/Settings';
+import { loadConfig, saveConfig } from './State/Config';
+import type { Service } from './State/Schema';
 
 const SESSION_PARTITION = `persist:${import.meta.env.DEV ? 'development' : 'production'}`;
 
@@ -34,18 +34,18 @@ export const createWindow = async () => {
     });
 
     const views: Record<string, WebContentsView> = {};
-    let userData = await loadUserData();
+    let config = await loadConfig();
     let sideBarIsOpen = true;
 
-    userData.services.forEach(createViewForService);
+    config.services.forEach(createViewForService);
 
-    ipcMain.on(AppMessage.SaveUserData, (event, data) => {
-        userData = data;
-        saveUserData(data);
+    ipcMain.on(AppMessage.SaveConfig, (event, data) => {
+        config = data;
+        saveConfig(config);
     });
 
-    ipcMain.handle(AppMessage.LoadUserData, () => {
-        return loadUserData();
+    ipcMain.handle(AppMessage.LoadConfig, () => {
+        return config;
     });
 
     ipcMain.handle(AppMessage.ShouldUseDarkMode, (event) => {
@@ -54,7 +54,7 @@ export const createWindow = async () => {
             console.error('Requested dark mode for a service that does not exist');
             return false;
         }
-        const service = userData.services.find((service) => service.id === id) || null;
+        const service = config.services.find((service) => service.id === id) || null;
         return service?.darkMode ?? service?.template.darkMode.default ?? false;
     });
 

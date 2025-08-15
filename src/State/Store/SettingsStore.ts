@@ -1,39 +1,47 @@
 import { StateCreator } from 'zustand/vanilla';
-import { BackgroundMode, DEFAULT_I18N, DEFAULT_IS_MUTED, i18nSettings, Locale } from '../Settings';
+import { BackgroundMode, DEFAULT_LOCALE, DEFAULT_IS_MUTED } from '../Settings';
 
 export interface SettingsStoreState {
-    i18n: i18nSettings
+    locale: string
+    dateFormat: string
+    timeFormat: string
     isMuted: boolean
     mode: BackgroundMode
     wallpapers: string[]
 }
 
 export interface SettingsStoreActions {
-    setLocale: (locale: Locale) => void
-    setTimeFormat: (locale: Locale) => void
-    setDateFormat: (locale: Locale) => void
+    loadSettingsFromFile: (settings: SettingsStoreState) => void
+    setLocale: (locale: string) => void
+    setTimeFormat: (locale: string) => void
+    setDateFormat: (locale: string) => void
     setIsMuted: (isMuted: boolean) => void
     setMode: (mode: BackgroundMode) => void
     setWallpapers: (wallpapers: string[]) => void
 }
 
 const initialValues: SettingsStoreState = {
-    i18n: DEFAULT_I18N,
+    locale: DEFAULT_LOCALE,
+    dateFormat: DEFAULT_LOCALE,
+    timeFormat: DEFAULT_LOCALE,
     isMuted: DEFAULT_IS_MUTED,
-    mode: BackgroundMode.Color,
+    mode: BackgroundMode.Wallpaper,
     wallpapers: [],
 };
 
-export const createSettingsSlice: StateCreator<SettingsStoreState & SettingsStoreActions> = (set, get) => ({
+export const createSettingsSlice: StateCreator<SettingsStoreState & SettingsStoreActions> = (set) => ({
     ...initialValues,
-    setLocale: (locale: Locale) => {
-        set({ i18n: { ...get().i18n, locale } });
+    loadSettingsFromFile: (settings: SettingsStoreState) => {
+        set({ ...settings });
     },
-    setTimeFormat: (time: Locale) => {
-        set({ i18n: { ...get().i18n, time } });
+    setLocale: (locale: string) => {
+        set({ locale });
     },
-    setDateFormat: (date: Locale) => {
-        set({ i18n: { ...get().i18n, date } });
+    setTimeFormat: (timeFormat: string) => {
+        set({ timeFormat });
+    },
+    setDateFormat: (dateFormat: string) => {
+        set({ dateFormat });
     },
     setIsMuted: (isMuted: boolean) => {
         set({ isMuted });
@@ -42,6 +50,7 @@ export const createSettingsSlice: StateCreator<SettingsStoreState & SettingsStor
         set({ mode });
     },
     setWallpapers: (wallpapers: string[]) => {
+        // TODO: validate for empty or invalid wallpapers
         set({ wallpapers });
     },
 });

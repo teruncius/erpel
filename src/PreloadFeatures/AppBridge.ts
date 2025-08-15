@@ -1,11 +1,10 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import { AppMessage } from '../AppMessage';
-import { UserData } from '../UserData';
-import { Service } from '../State/Settings';
+import { Config, Service } from '../State/Schema';
 
 interface ElectronAPI {
-    saveData: (data: UserData) => void;
-    loadData: () => Promise<UserData>;
+    loadConfig: () => Promise<Config>;
+    saveConfig: (data: Config) => void;
 
     addService: (service: Service) => void;
     removeService: (id: string) => void;
@@ -23,8 +22,8 @@ export interface ElectronWindow extends Window {
 }
 
 const api: ElectronAPI = {
-    saveData: (data) => ipcRenderer.send(AppMessage.SaveUserData, data),
-    loadData: () => ipcRenderer.invoke(AppMessage.LoadUserData),
+    loadConfig: () => ipcRenderer.invoke(AppMessage.LoadConfig),
+    saveConfig: (data) => ipcRenderer.send(AppMessage.SaveConfig, data),
 
     addService: (service) => ipcRenderer.send(AppMessage.AddService, service),
     removeService: (id) => ipcRenderer.send(AppMessage.RemoveService, id),
