@@ -19,7 +19,7 @@ export function Home() {
         if (services.length === 0) {
             navigate('/setup');
         }
-    }, [services]);
+    }, [services, navigate]);
 
     return (
         <PageCenter>

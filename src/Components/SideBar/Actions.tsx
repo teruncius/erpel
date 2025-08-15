@@ -11,11 +11,11 @@ export function Actions() {
 
     const handleNavigateSettings = useCallback(() => {
         navigate('/settings');
-    }, [useNavigate]);
+    }, [navigate]);
 
     const handleNavigateHome = useCallback(() => {
         navigate('/');
-    }, [useNavigate]);
+    }, [navigate]);
 
     return (
         <ActionList $isOpen={isOpen}>

@@ -73,7 +73,7 @@ function Service(props: CurrentServiceProps) {
 
     const handleOpenClose = useCallback(() => {
         setIsOpen((state) => !state);
-    }, [props.service.id, remove]);
+    }, [setIsOpen]);
 
     const icon = props.service.icon || props.service.template.icon.default;
     const name = props.service.name || props.service.template.name.default;

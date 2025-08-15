@@ -23,11 +23,11 @@ export function WallpaperSettings() {
 
     const handleChange2 = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
         setWallpapers(e.target.value.split('\n'));
-    }, [setMode]);
+    }, [setWallpapers]);
 
     const handleReset = useCallback(() => {
         setWallpapers(DEFAULT_WALLPAPERS);
-    }, [setMode]);
+    }, [setWallpapers]);
 
     return (
         <ThemedSection>

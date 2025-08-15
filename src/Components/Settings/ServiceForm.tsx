@@ -23,7 +23,6 @@ export function ServiceForm(props: ServiceFormProps) {
     const { replace } = useStore();
 
     const onSubmit: SubmitHandler<Values> = useCallback((data) => {
-        console.warn(data);
         replace(props.service.id, { ...props.service, ...data });
     }, [props.service, replace]);
 
