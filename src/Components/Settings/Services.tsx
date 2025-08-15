@@ -1,4 +1,3 @@
-import { Service } from '../../State/Settings';
 import React, { useCallback, useState } from 'react';
 import { styled } from 'styled-components';
 import { ServiceIcon } from './ServiceIcon';
@@ -10,6 +9,7 @@ import { Icon } from '../Icon';
 import { HardFrostedEffectStyle, ThemedSection } from '../Theme';
 import { ServiceForm } from './ServiceForm';
 import { ThemedButton } from '../Theme/Button';
+import { Service } from '../../State/Schema';
 
 export function Services() {
     const { services, swap } = useStore();

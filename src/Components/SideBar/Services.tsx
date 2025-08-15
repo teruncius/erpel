@@ -3,8 +3,8 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { SoftFrostedEffectStyle } from '../Theme';
 import { useStore } from '../../State/Store/Store';
-import { Service } from '../../State/Settings';
 import { ServiceIcon } from '../Settings/ServiceIcon';
+import { Service } from '../../State/Schema';
 
 export function Services() {
     const { services } = useStore();

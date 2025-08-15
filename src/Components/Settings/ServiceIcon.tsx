@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 import React, { CSSProperties } from 'react';
-import { IconId, IconIdToUrl } from '../../State/Settings';
+import { IconIdToUrl } from '../../State/Settings';
 
 interface ServiceIconProps {
-    icon: IconId
+    icon: string
     name: string
     size: number
     style?: CSSProperties

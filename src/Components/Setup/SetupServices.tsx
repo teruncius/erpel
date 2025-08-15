@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 import { useStore } from '../../State/Store/Store';
 import { Hint } from '../Theme/Hint';
 import { ThemedButton, ThemedLink } from '../Theme/Button';
-import { LatestConfig } from '../../State/Schema';
+import { Config } from '../../State/Schema';
 
 const FILE_OPTIONS = {
     types: [
@@ -53,7 +53,7 @@ export function SetupServices() {
             if (!alive) {
                 return;
             }
-            const data: LatestConfig = JSON.parse(text);
+            const data: Config = JSON.parse(text);
             // TODO: validation & filter & migrate
             // TODO: set all fields
             loadServicesFromFile(data.services || []);
