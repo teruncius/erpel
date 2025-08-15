@@ -71,15 +71,24 @@ export function SetupServices() {
         <>
             <Container>
                 <Hint
-                    title={'Set up your services'}
-                    text={'You have not added any services yet. Please use one of the options below to continue.'}
+                    title="Set up your services"
+                    text="You have not added any services yet. Please use one of the options below to continue."
                 />
             </Container>
             <Container>
                 <SetupSelections>
-                    <ThemedButton onClick={handleUsePreset}><Icon name={'dropbox'} size={20}/>Use a preset</ThemedButton>
-                    <ThemedButton onClick={handleUseConfigFile}><Icon name={'folder-upload'} size={20}/>Upload a config file</ThemedButton>
-                    <ThemedLink to={'/settings'}><Icon name={'cog'} size={20}/>Start from scratch</ThemedLink>
+                    <ThemedButton onClick={handleUsePreset}>
+                        <Icon name="dropbox" size={20} />
+                        Use a preset
+                    </ThemedButton>
+                    <ThemedButton onClick={handleUseConfigFile}>
+                        <Icon name="folder-upload" size={20} />
+                        Upload a config file
+                    </ThemedButton>
+                    <ThemedLink to="/settings">
+                        <Icon name="cog" size={20} />
+                        Start from scratch
+                    </ThemedLink>
                 </SetupSelections>
             </Container>
         </>

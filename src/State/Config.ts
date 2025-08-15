@@ -35,7 +35,8 @@ export async function loadConfig(): Promise<Config> {
             return DefaultConfig;
         }
         return parsed.data;
-    } catch (e) {
+    }
+    catch (e) {
         console.warn('User data not found', e);
         return DefaultConfig;
     }
@@ -45,7 +46,8 @@ export async function saveConfig(data: Config) {
     try {
         const value = JSON.stringify(data, null, 4);
         await writeFile(CONFIG_PATH, value, { encoding: 'utf8' });
-    } catch (e) {
+    }
+    catch (e) {
         console.error('Unable to save user data', e);
     }
 }
@@ -56,7 +58,7 @@ type Result<T> = {
 } | {
     success: false
     error: string
-}
+};
 
 function parseConfig(data: string): Result<Config> {
     const parsed = JSON.parse(data);
@@ -73,4 +75,3 @@ function parseConfig(data: string): Result<Config> {
 
     return { success: true, data: result.data };
 }
-

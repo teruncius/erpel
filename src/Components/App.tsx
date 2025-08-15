@@ -15,11 +15,11 @@ export function App() {
         <Strict>
             <Router>
                 <Routes>
-                    <Route element={<Layout/>}>
-                        <Route path={'/service/:id'} element={<ServicePage/>}/>
-                        <Route path="/settings" element={<SettingsPage/>}/>
-                        <Route path="/setup" element={<SetupPage/>}/>
-                        <Route path={'*'} element={<Home/>}/>
+                    <Route element={<Layout />}>
+                        <Route path="/service/:id" element={<ServicePage />} />
+                        <Route path="/settings" element={<SettingsPage />} />
+                        <Route path="/setup" element={<SetupPage />} />
+                        <Route path="*" element={<Home />} />
                     </Route>
                 </Routes>
             </Router>

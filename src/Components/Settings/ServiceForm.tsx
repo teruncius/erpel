@@ -55,21 +55,25 @@ export function ServiceForm(props: ServiceFormProps) {
             {props.service.template.darkMode.customizable && (
                 <Fieldset>
                     <Label htmlFor={`${props.service.id}::darkMode`}>Dark Mode</Label>
-                    <Controller name="darkMode" control={control} render={({ field: { value, ...rest } }) => {
-                        return (
-                            <ThemedCheckbox
-                                id={`${props.service.id}::darkMode`}
-                                checked={value}
-                                {...rest}
-                                placeholder="Enable dark mode"
-                            />
-                        );
-                    }}/>
+                    <Controller
+                        name="darkMode"
+                        control={control}
+                        render={({ field: { value, ...rest } }) => {
+                            return (
+                                <ThemedCheckbox
+                                    id={`${props.service.id}::darkMode`}
+                                    checked={value}
+                                    {...rest}
+                                    placeholder="Enable dark mode"
+                                />
+                            );
+                        }}
+                    />
                 </Fieldset>
             )}
             <Buttons>
                 <ThemedButton type="submit">
-                    <Icon name={'floppy-disk'} size={20}/>
+                    <Icon name="floppy-disk" size={20} />
                     <>Save</>
                 </ThemedButton>
             </Buttons>

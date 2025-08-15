@@ -6,7 +6,7 @@ import { ThemedButton } from './Button';
 
 type ThemedCheckbox = InputHTMLAttributes<HTMLInputElement> & {
     checked: boolean
-}
+};
 
 export function ThemedCheckbox(props: ThemedCheckbox) {
     const { onChange } = props;
@@ -28,15 +28,15 @@ export function ThemedCheckbox(props: ThemedCheckbox) {
 
     return (
         <ThemedCheckboxContainer>
-            <ThemedCheckboxButton onClick={handleClick} type={'button'}>
-                <Icon name={checked ? 'checkbox-checked' : 'checkbox-unchecked'} size={16}/>
+            <ThemedCheckboxButton onClick={handleClick} type="button">
+                <Icon name={checked ? 'checkbox-checked' : 'checkbox-unchecked'} size={16} />
             </ThemedCheckboxButton>
             {props.placeholder && (
                 <>{props.placeholder}</>
             )}
             <input
                 id={props.id}
-                type={'checkbox'}
+                type="checkbox"
                 style={{ display: 'none' }}
                 value="on"
                 checked={checked}

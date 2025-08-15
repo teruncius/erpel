@@ -22,21 +22,21 @@ export function Actions() {
             <Action>
                 <ActionButton onClick={toggle}>
                     <ActionIcon>
-                        <Icon name={isOpen ? 'arrow-left2' : 'arrow-right2'} size={16}/>
+                        <Icon name={isOpen ? 'arrow-left2' : 'arrow-right2'} size={16} />
                     </ActionIcon>
                 </ActionButton>
             </Action>
             <Action>
                 <ActionButton onClick={handleNavigateSettings}>
                     <ActionIcon>
-                        <Icon name="cog" size={16}/>
+                        <Icon name="cog" size={16} />
                     </ActionIcon>
                 </ActionButton>
             </Action>
             <Action>
                 <ActionButton onClick={handleNavigateHome}>
                     <ActionIcon>
-                        <Icon name="home" size={16}/>
+                        <Icon name="home" size={16} />
                     </ActionIcon>
                 </ActionButton>
             </Action>

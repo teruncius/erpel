@@ -9,7 +9,7 @@ interface HintProps {
 export function Hint(props: HintProps) {
     return (
         <Container>
-            <Image name={'info'} size={24}/>
+            <Image name="info" size={24} />
             <Title>{props.title}</Title>
             <Text>{props.text}</Text>
         </Container>

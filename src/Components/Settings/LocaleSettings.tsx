@@ -38,11 +38,11 @@ export function LocaleSettings() {
     return (
         <Container>
             <SettingsSection>
-                <ThemedSelect id="locale" label={'Locale'} value={locale} onChange={onChangeLocale} options={localeOptions}/>
-                <ThemedSelect id="time" label={'Time format'} value={timeFormat} onChange={onChangeTime} options={timeOptions}/>
-                <ThemedSelect id="date" label={'Date format'} value={dateFormat} onChange={onChangeDate} options={dateOptions}/>
+                <ThemedSelect id="locale" label="Locale" value={locale} onChange={onChangeLocale} options={localeOptions} />
+                <ThemedSelect id="time" label="Time format" value={timeFormat} onChange={onChangeTime} options={timeOptions} />
+                <ThemedSelect id="date" label="Date format" value={dateFormat} onChange={onChangeDate} options={dateOptions} />
             </SettingsSection>
-            <Clock/>
+            <Clock />
         </Container>
     );
 }

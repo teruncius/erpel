@@ -58,7 +58,8 @@ export const createServiceSlice: StateCreator<ServiceStoreState & ServiceStoreAc
         if (idx === -1) {
             console.warn(`Unable to replace service ${id}, because it was not found. Adding the new service instead.`);
             get().add(service);
-        } else {
+        }
+        else {
             services[idx] = service;
             set({ services });
             window.electron.removeService(id);

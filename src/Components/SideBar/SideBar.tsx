@@ -22,11 +22,11 @@ export function SideBar() {
     return (
         <Container $isOpen={isOpen}>
             <Header>
-                <Logo/>
-                <Services/>
+                <Logo />
+                <Services />
             </Header>
             <Footer>
-                <Actions/>
+                <Actions />
             </Footer>
         </Container>
     );

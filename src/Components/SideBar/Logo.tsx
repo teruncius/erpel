@@ -19,9 +19,9 @@ export function Logo() {
     return (
         <LogoLink to="/" title="erpel" onClick={handleClick}>
             {isOpen ? (
-                <LogoImageBig src={icon} alt="erpel" width={64} height={64}/>
+                <LogoImageBig src={icon} alt="erpel" width={64} height={64} />
             ) : (
-                <LogoImageSmall src={icon} alt="erpel" width={30} height={30}/>
+                <LogoImageSmall src={icon} alt="erpel" width={30} height={30} />
             )}
         </LogoLink>
     );

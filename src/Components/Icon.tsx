@@ -4,17 +4,17 @@ import { styled } from 'styled-components';
 
 interface IconProps {
     name: 'cog'
-        | 'arrow-right2' | 'arrow-left2'
-        | 'home'
-        | 'menu'
-        | 'bin'
-        | 'dropbox'
-        | 'folder-upload' | 'folder-download'
-        | 'cross'
-        | 'info'
-        | 'bug'
-        | 'floppy-disk'
-        | 'checkbox-checked' | 'checkbox-unchecked'
+      | 'arrow-right2' | 'arrow-left2'
+      | 'home'
+      | 'menu'
+      | 'bin'
+      | 'dropbox'
+      | 'folder-upload' | 'folder-download'
+      | 'cross'
+      | 'info'
+      | 'bug'
+      | 'floppy-disk'
+      | 'checkbox-checked' | 'checkbox-unchecked'
     size: number
     style?: CSSProperties
 }

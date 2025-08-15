@@ -71,19 +71,22 @@ importers:
         version: 7.8.3
       '@electron-forge/plugin-fuses':
         specifier: ^7.8.3
-        version: 7.8.3(@electron/fuses@2.0.0)
+        version: 7.8.3(@electron/fuses@1.8.0)
       '@electron-forge/plugin-vite':
         specifier: ^7.8.3
         version: 7.8.3
       '@electron/fuses':
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^1.8.0
+        version: 1.8.0
       '@eslint/js':
         specifier: ^9.33.0
         version: 9.33.0
       '@react-spring/types':
         specifier: ^10.0.1
         version: 10.0.1
+      '@stylistic/eslint-plugin':
+        specifier: ^5.2.3
+        version: 5.2.3(eslint@9.33.0(jiti@2.5.1))
       '@types/electron-squirrel-startup':
         specifier: ^1.0.2
         version: 1.0.2
@@ -316,9 +319,8 @@ packages:
     engines: {node: '>=10.12.0'}
     hasBin: true
 
-  '@electron/fuses@2.0.0':
-    resolution: {integrity: sha512-lyb1zK3YHeWUjaz7yiK0GnxSPduwASKMyiDbCtbn3spP6EEt+UWtktggWehG0icFrXAk3GwvcJ4nCrJO0N9IhQ==}
-    engines: {node: '>=22.12.0'}
+  '@electron/fuses@1.8.0':
+    resolution: {integrity: sha512-zx0EIq78WlY/lBb1uXlziZmDZI4ubcCXIMJ4uGjXzZW0nS19TjSPeXPAjzzTmKQlJUZm0SbmZhPKP7tuQ1SsEw==}
     hasBin: true
 
   '@electron/get@2.0.3':
@@ -774,6 +776,12 @@ packages:
   '@sindresorhus/is@4.6.0':
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
     engines: {node: '>=10'}
+
+  '@stylistic/eslint-plugin@5.2.3':
+    resolution: {integrity: sha512-oY7GVkJGVMI5benlBDCaRrSC1qPasafyv5dOBLLv5MTilMGnErKhO6ziEfodDDIZbo5QxPUNW360VudJOFODMw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: '>=9.0.0'
 
   '@szmarczak/http-timer@4.0.6':
     resolution: {integrity: sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==}
@@ -3171,11 +3179,11 @@ snapshots:
       - bluebird
       - supports-color
 
-  '@electron-forge/plugin-fuses@7.8.3(@electron/fuses@2.0.0)':
+  '@electron-forge/plugin-fuses@7.8.3(@electron/fuses@1.8.0)':
     dependencies:
       '@electron-forge/plugin-base': 7.8.3
       '@electron-forge/shared-types': 7.8.3
-      '@electron/fuses': 2.0.0
+      '@electron/fuses': 1.8.0
     transitivePeerDependencies:
       - bluebird
       - supports-color
@@ -3267,7 +3275,11 @@ snapshots:
       glob: 7.2.3
       minimatch: 3.1.2
 
-  '@electron/fuses@2.0.0': {}
+  '@electron/fuses@1.8.0':
+    dependencies:
+      chalk: 4.1.2
+      fs-extra: 9.1.0
+      minimist: 1.2.8
 
   '@electron/get@2.0.3':
     dependencies:
@@ -3694,6 +3706,16 @@ snapshots:
     optional: true
 
   '@sindresorhus/is@4.6.0': {}
+
+  '@stylistic/eslint-plugin@5.2.3(eslint@9.33.0(jiti@2.5.1))':
+    dependencies:
+      '@eslint-community/eslint-utils': 4.7.0(eslint@9.33.0(jiti@2.5.1))
+      '@typescript-eslint/types': 8.39.1
+      eslint: 9.33.0(jiti@2.5.1)
+      eslint-visitor-keys: 4.2.1
+      espree: 10.4.0
+      estraverse: 5.3.0
+      picomatch: 4.0.3
 
   '@szmarczak/http-timer@4.0.6':
     dependencies:

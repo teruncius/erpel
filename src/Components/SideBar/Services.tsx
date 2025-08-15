@@ -49,7 +49,7 @@ function ServiceItem(props: ServiceItemProps) {
     );
 }
 
-const ServiceLink = styled(NavLink)<{$isOpen: boolean}>`
+const ServiceLink = styled(NavLink)<{ $isOpen: boolean }>`
     ${SoftFrostedEffectStyle};
     margin: 0;
     padding: 4px;

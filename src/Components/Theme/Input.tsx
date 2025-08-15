@@ -18,4 +18,3 @@ export const ThemedInput = styled.input`
         font-style: italic;
     }
 `;
-

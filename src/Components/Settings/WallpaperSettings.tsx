@@ -32,17 +32,17 @@ export function WallpaperSettings() {
     return (
         <ThemedSection>
             <Container>
-                <ThemedSelect label={'Background mode'} value={mode} onChange={handleChange} options={modes}/>
+                <ThemedSelect label="Background mode" value={mode} onChange={handleChange} options={modes} />
 
                 {mode === BackgroundMode.Wallpaper && (
                     <>
                         <div>
                             <ThemedButton onClick={handleReset}>
-                                <Icon name={'bug'} size={20}/>
+                                <Icon name="bug" size={20} />
                                 <>Reset</>
                             </ThemedButton>
                         </div>
-                        <ThemedTextarea value={wallpapers.join('\n')} onChange={handleChange2}/>
+                        <ThemedTextarea value={wallpapers.join('\n')} onChange={handleChange2} />
                     </>
                 )}
             </Container>

@@ -32,7 +32,7 @@ export function ExportSettingsButton() {
 
     return (
         <ThemedButton onClick={handleExport}>
-            <Icon name={'folder-download'} size={20}/>
+            <Icon name="folder-download" size={20} />
             <>Export settings</>
         </ThemedButton>
     );

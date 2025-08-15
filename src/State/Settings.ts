@@ -60,7 +60,6 @@ function ValueFromOption(option: Option) {
     return null;
 }
 
-
 export const DEFAULT_SERVICES: Service[] = [];
 
 export const DEFAULT_SERVICE_TEMPLATES: ServiceTemplate[] = [

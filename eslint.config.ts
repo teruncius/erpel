@@ -1,11 +1,13 @@
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
+import stylistic from '@stylistic/eslint-plugin';
 
 export default tseslint.config(
     eslint.configs.recommended,
     tseslint.configs.recommended,
     tseslint.configs.eslintRecommended,
     tseslint.configs.stylistic,
+    stylistic.configs.recommended,
     {
         languageOptions: {
             parserOptions: {
@@ -19,84 +21,43 @@ export default tseslint.config(
     },
     {
         rules: {
-            '@typescript-eslint/no-unused-vars': [
-                'error',
-                {
-                    'varsIgnorePattern': '^_',
-                },
-            ],
-            'indent': [
-                'error',
-                4,
-                {
-                    SwitchCase: 1,
-                },
-            ],
-            'semi': [
-                'error',
-                'always',
-            ],
-            'quotes': [
-                'error',
-                'single',
-            ],
-            'linebreak-style': [
-                'error',
-                'unix',
-            ],
-            'comma-dangle': [
-                'error',
-                'always-multiline',
-            ],
-            'padded-blocks': [
-                'error',
-                {
-                    blocks: 'never',
-                    classes: 'always',
-                    switches: 'never',
-                },
-            ],
-            'rest-spread-spacing': [
-                'error',
-                'never',
-            ],
-            'template-curly-spacing': [
-                'error',
-                'never',
-            ],
-            'switch-colon-spacing': [
-                'error',
-                {
-                    after: true,
-                    before: false,
-                },
-            ],
-            'space-unary-ops': [
-                2,
-                {
-                    words: true,
-                    nonwords: false,
-                },
-            ],
-            'space-in-parens': [
-                'error',
-                'never',
-            ],
-            'object-curly-spacing': [
-                'error',
-                'always',
-            ],
-            'array-bracket-spacing': [
-                'error',
-                'never',
-                {
-                    singleValue: false,
-                    objectsInArrays: false,
-                    arraysInArrays: false,
-                },
-            ],
-            'no-whitespace-before-property': 'error',
-            'eol-last': 'error',
+            '@typescript-eslint/no-unused-vars': ['error', {
+                varsIgnorePattern: '^_',
+            }],
+            '@stylistic/indent': ['error', 4, {
+                SwitchCase: 1,
+            }],
+            '@stylistic/jsx-indent-props': ['error', 4],
+            '@stylistic/semi': ['error', 'always'],
+            '@stylistic/quotes': ['error', 'single'],
+            '@stylistic/linebreak-style': ['error', 'unix'],
+            '@stylistic/comma-dangle': ['error', 'always-multiline'],
+            '@stylistic/padded-blocks': ['error', {
+                blocks: 'never',
+                classes: 'always',
+                switches: 'never',
+            }],
+            '@stylistic/rest-spread-spacing': ['error', 'never'],
+            '@stylistic/template-curly-spacing': ['error', 'never'],
+            '@stylistic/switch-colon-spacing': ['error', {
+                after: true,
+                before: false,
+            }],
+            '@stylistic/space-unary-ops': [2, {
+                words: true,
+                nonwords: false,
+            }],
+            '@stylistic/space-in-parens': ['error', 'never'],
+            '@stylistic/arrow-parens': ['error', 'always'],
+            '@stylistic/object-curly-spacing': ['error', 'always'],
+            '@stylistic/array-bracket-spacing': ['error', 'never', {
+                singleValue: false,
+                objectsInArrays: false,
+                arraysInArrays: false,
+            }],
+            '@stylistic/no-whitespace-before-property': 'error',
+            '@stylistic/eol-last': 'error',
+            '@stylistic/multiline-ternary': ['error', 'never'],
         },
     },
 );

@@ -3,22 +3,22 @@ import { AppMessage } from '../AppMessage';
 import { Config, Service } from '../State/Schema';
 
 interface ElectronAPI {
-    loadConfig: () => Promise<Config>;
-    saveConfig: (data: Config) => void;
+    loadConfig: () => Promise<Config>
+    saveConfig: (data: Config) => void
 
-    addService: (service: Service) => void;
-    removeService: (id: string) => void;
-    activateService: (id: string) => void;
-    hideAllServices: () => void;
+    addService: (service: Service) => void
+    removeService: (id: string) => void
+    activateService: (id: string) => void
+    hideAllServices: () => void
 
-    focusWindow: () => void;
-    setSidebarState: (isOpen: boolean) => void;
+    focusWindow: () => void
+    setSidebarState: (isOpen: boolean) => void
 }
 
 // use as:
 // declare const window: ElectronWindow;
 export interface ElectronWindow extends Window {
-    electron: ElectronAPI;
+    electron: ElectronAPI
 }
 
 const api: ElectronAPI = {

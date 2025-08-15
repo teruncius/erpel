@@ -21,7 +21,7 @@ export function DebugNotificationsButton() {
 
     return (
         <ThemedButton onClick={handleNotify}>
-            <Icon name={'bug'} size={20}/>
+            <Icon name="bug" size={20} />
             <>Test Notification</>
         </ThemedButton>
     );

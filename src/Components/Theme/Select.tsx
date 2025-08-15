@@ -3,8 +3,8 @@ import { SelectHTMLAttributes } from 'react';
 import { FrostedContainerStyle, HardFrostedEffectStyle, ThemedHoverStyle } from '../Theme';
 
 interface ThemedSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-    label: string;
-    options: string[];
+    label: string
+    options: string[]
 }
 
 export function ThemedSelect(props: ThemedSelectProps) {

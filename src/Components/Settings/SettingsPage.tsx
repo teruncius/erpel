@@ -26,24 +26,22 @@ export function SettingsPage() {
     return (
         <>
             {services.length === 0 ? (
-                <SetupServices/>
-            ): (
-                <Services/>
+                <SetupServices />
+            ) : (
+                <Services />
             )}
-            <ServiceTemplates/>
-
-            <LocaleSettings/>
-
-            <DistractionSettings/>
-
-            <WallpaperSettings/>
-
+            <ServiceTemplates />
+            <LocaleSettings />
+            <DistractionSettings />
+            <WallpaperSettings />
             <ThemedSection>
                 <Container>
-                    <ExportSettingsButton/>
-                    <DebugNotificationsButton/>
-                    <ThemedLink to={'/setup'}>
-                        <Icon name={'cog'} size={20}/> Go back to set up
+                    <ExportSettingsButton />
+                    <DebugNotificationsButton />
+                    <ThemedLink to="/setup">
+                        <Icon name="cog" size={20} />
+                        {' '}
+                        Go back to set up
                     </ThemedLink>
                 </Container>
             </ThemedSection>

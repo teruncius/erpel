@@ -32,7 +32,7 @@ export function Wallpaper() {
     }, [wallpapers, index]);
 
     return transitions((style: CSSProperties, i: number) => {
-        return <Image key={i} style={{ ...style, backgroundImage: `url(${wallpapers[i]})` }} onClick={handleNext}/>;
+        return <Image key={i} style={{ ...style, backgroundImage: `url(${wallpapers[i]})` }} onClick={handleNext} />;
     });
 }
 

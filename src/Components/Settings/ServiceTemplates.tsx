@@ -31,14 +31,14 @@ export function ServiceTemplates() {
         <ThemedSection>
             <Container>
                 <FilterBar>
-                    <FilterInput type="text" placeholder="Type to filter" value={search} onChange={filter}/>
+                    <FilterInput type="text" placeholder="Type to filter" value={search} onChange={filter} />
                     <FilterButton type="button" onClick={handleReset}>
                         <Icon name="cross" size={16} />
                     </FilterButton>
                 </FilterBar>
                 <Grid>
                     {filtered.map((template) => {
-                        return <ServiceTemplate key={template.id} template={template}/>;
+                        return <ServiceTemplate key={template.id} template={template} />;
                     })}
                 </Grid>
             </Container>
@@ -96,7 +96,7 @@ function ServiceTemplate(props: ServiceTemplateProps) {
 
     return (
         <TemplateBox onClick={handleAdd}>
-            <ServiceIcon icon={props.template.icon.default} name={props.template.name.default} size={32}/>
+            <ServiceIcon icon={props.template.icon.default} name={props.template.name.default} size={32} />
             <>{props.template.name.default}</>
         </TemplateBox>
     );

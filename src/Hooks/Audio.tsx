@@ -4,7 +4,7 @@ type Hook = [
     boolean,
     () => void,
     () => void,
-]
+];
 
 export const useAudio = (url: string): Hook => {
     const [audio] = useState(new Audio(url));
@@ -21,7 +21,8 @@ export const useAudio = (url: string): Hook => {
     useEffect(() => {
         if (playing) {
             audio.play();
-        } else {
+        }
+        else {
             audio.pause();
         }
     }, [audio, playing]);

@@ -12,12 +12,12 @@ export function Layout() {
     return (
         <Page>
             {mode === BackgroundMode.Wallpaper && (
-                <Wallpaper/>
+                <Wallpaper />
             )}
-            <SideBar/>
+            <SideBar />
             <Content $isOpen={isOpen}>
                 <PageWidescreenLimiter>
-                    <Outlet/>
+                    <Outlet />
                 </PageWidescreenLimiter>
             </Content>
         </Page>

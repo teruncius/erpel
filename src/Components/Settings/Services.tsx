@@ -28,7 +28,7 @@ export function Services() {
                 <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                     <SortableContext items={ids} strategy={verticalListSortingStrategy}>
                         {services.map((service) => (
-                            <Service key={service.id} service={service}/>
+                            <Service key={service.id} service={service} />
                         ))}
                     </SortableContext>
                 </DndContext>
@@ -82,27 +82,31 @@ function Service(props: CurrentServiceProps) {
         <ServiceBox ref={setNodeRef} style={style} {...attributes}>
             <ServiceHead>
                 <ServiceButtonDnD ref={setActivatorNodeRef} {...listeners}>
-                    <Icon name={'menu'} size={16}/>
+                    <Icon name="menu" size={16} />
                 </ServiceButtonDnD>
-                <ServiceIcon icon={icon} name={name} size={32}/>
+                <ServiceIcon icon={icon} name={name} size={32} />
                 <ServiceName>
                     {props.service.name && props.service.template.name && (
-                        <>{props.service.template.name.default}: </>
+                        <>
+                            {props.service.template.name.default}
+                            :
+                            {' '}
+                        </>
                     )}
                     <>{name}</>
                 </ServiceName>
                 <ServiceButtons>
                     <ServiceButton onClick={handleOpenClose}>
-                        <Icon name={'cog'} size={16}/>
+                        <Icon name="cog" size={16} />
                     </ServiceButton>
                     <ServiceButton onClick={handleDelete}>
-                        <Icon name={'bin'} size={16}/>
+                        <Icon name="bin" size={16} />
                     </ServiceButton>
                 </ServiceButtons>
             </ServiceHead>
             {isOpen && (
                 <ServiceBodyContainer>
-                    <ServiceForm service={props.service}/>
+                    <ServiceForm service={props.service} />
                 </ServiceBodyContainer>
             )}
         </ServiceBox>

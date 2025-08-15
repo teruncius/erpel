@@ -24,7 +24,8 @@ export const createWindow = async () => {
     // and load the index.html of the app.
     if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
         window.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
-    } else {
+    }
+    else {
         window.loadFile(join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
     }
 
