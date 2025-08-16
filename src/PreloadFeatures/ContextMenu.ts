@@ -1,4 +1,5 @@
 import { ipcRenderer } from 'electron';
+
 import { AppMessage } from '../AppMessage';
 
 window.addEventListener('contextmenu', (event) => {

@@ -1,9 +1,10 @@
-import { Icon } from '../Icon';
 import { styled } from 'styled-components';
 
+import { Icon } from '../Icon';
+
 interface HintProps {
-    title: string
     text: string
+    title: string
 }
 
 export function Hint(props: HintProps) {

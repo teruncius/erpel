@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest';
+
 import {
     BackgroundMode,
     DEFAULT_IS_MUTED,
@@ -44,12 +45,12 @@ describe('Settings', () => {
         const service = ServiceFromTemplate(template);
 
         expect(service).toEqual({
+            darkMode: null,
+            icon: null,
             id: service.id,
             name: null,
-            icon: null,
-            url: null,
-            darkMode: null,
             template,
+            url: null,
         });
     });
 

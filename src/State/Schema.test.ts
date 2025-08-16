@@ -1,7 +1,8 @@
 import { describe, expect, test } from 'vitest';
-import { ConfigSchema } from './Schema';
-import { DefaultConfig } from './Config';
 import { z } from 'zod';
+
+import { DefaultConfig } from './Config';
+import { ConfigSchema } from './Schema';
 
 describe('Schema', () => {
     test('parses default config without errors', () => {

@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
+
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 import { Icon } from '../Icon';
 import { ThemedButton } from '../Theme/Button';

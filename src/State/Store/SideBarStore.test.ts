@@ -1,8 +1,9 @@
-import { describe, beforeEach, expect, test } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 import { create } from 'zustand/index';
+
 import { createSideBarSlice, SideBarStoreActions, SideBarStoreState } from './SideBarStore';
 
-export const useStore = create<SideBarStoreState & SideBarStoreActions>()(
+export const useStore = create<SideBarStoreActions & SideBarStoreState>()(
     (...args) => ({
         ...createSideBarSlice(...args),
     }),

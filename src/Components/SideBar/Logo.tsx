@@ -1,14 +1,15 @@
-import React, { useCallback } from 'react';
-import { styled } from 'styled-components';
-import icon from '../../../resources/erpel.png?no-inline';
-import quack from '../../../resources/duck-quacking.mp3?no-inline';
-import { useAudio } from '../../Hooks/Audio';
+import { useCallback } from 'react';
 import { NavLink } from 'react-router';
+import { styled } from 'styled-components';
+
+import quack from '../../../resources/duck-quacking.mp3?no-inline';
+import icon from '../../../resources/erpel.png?no-inline';
+import { useAudio } from '../../Hooks/Audio';
 import { useStore } from '../../State/Store/Store';
 
 export function Logo() {
     const [, , play] = useAudio(quack);
-    const { isOpen, isMuted } = useStore();
+    const { isMuted, isOpen } = useStore();
 
     const handleClick = useCallback(() => {
         if (!isMuted) {
@@ -17,11 +18,11 @@ export function Logo() {
     }, [isMuted, play]);
 
     return (
-        <LogoLink to="/" title="erpel" onClick={handleClick}>
+        <LogoLink onClick={handleClick} title="erpel" to="/">
             {isOpen ? (
-                <LogoImageBig src={icon} alt="erpel" width={64} height={64} />
+                <LogoImageBig alt="erpel" height={64} src={icon} width={64} />
             ) : (
-                <LogoImageSmall src={icon} alt="erpel" width={30} height={30} />
+                <LogoImageSmall alt="erpel" height={30} src={icon} width={30} />
             )}
         </LogoLink>
     );

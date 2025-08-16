@@ -1,9 +1,9 @@
-import { styled } from 'styled-components';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
-import React, { useCallback } from 'react';
+import { styled } from 'styled-components';
 
-import { Icon } from '../Icon';
 import { useStore } from '../../State/Store/Store';
+import { Icon } from '../Icon';
 
 export function Actions() {
     const navigate = useNavigate();

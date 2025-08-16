@@ -1,5 +1,6 @@
 import { app, BrowserWindow, Menu } from 'electron';
 import started from 'electron-squirrel-startup';
+
 import { createWindow } from './window';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.

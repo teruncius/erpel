@@ -1,5 +1,6 @@
-import { contextBridge, ipcRenderer } from 'electron';
 import { enable } from 'darkreader';
+import { contextBridge, ipcRenderer } from 'electron';
+
 import { AppMessage } from '../AppMessage';
 
 interface DarkReaderAPI {

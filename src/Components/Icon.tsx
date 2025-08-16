@@ -1,20 +1,24 @@
-import icons from '../../resources/icons.svg';
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 import { styled } from 'styled-components';
 
+import icons from '../../resources/icons.svg';
+
 interface IconProps {
-    name: 'cog'
-      | 'arrow-right2' | 'arrow-left2'
-      | 'home'
-      | 'menu'
+    name: 'arrow-left2'
+      | 'arrow-right2'
       | 'bin'
-      | 'dropbox'
-      | 'folder-upload' | 'folder-download'
-      | 'cross'
-      | 'info'
       | 'bug'
+      | 'checkbox-checked'
+      | 'checkbox-unchecked'
+      | 'cog'
+      | 'cross'
+      | 'dropbox'
       | 'floppy-disk'
-      | 'checkbox-checked' | 'checkbox-unchecked'
+      | 'folder-download'
+      | 'folder-upload'
+      | 'home'
+      | 'info'
+      | 'menu'
     size: number
     style?: CSSProperties
 }
@@ -24,7 +28,7 @@ export function Icon(props: IconProps) {
         ...props.style,
     };
     return (
-        <SVG width={props.size} height={props.size} style={style}>
+        <SVG height={props.size} style={style} width={props.size}>
             <use xlinkHref={`${icons}#icon-${props.name}`}></use>
         </SVG>
     );

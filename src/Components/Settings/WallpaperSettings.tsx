@@ -1,12 +1,13 @@
-import { ThemedSection } from '../Theme';
-import { ThemedSelect } from '../Theme/Select';
+import { ChangeEvent, useCallback } from 'react';
+import { styled } from 'styled-components';
+
 import { BackgroundMode, DEFAULT_WALLPAPERS } from '../../State/Settings';
 import { useStore } from '../../State/Store/Store';
-import { ChangeEvent, useCallback } from 'react';
-import { ThemedTextarea } from '../Theme/Textarea';
-import { styled } from 'styled-components';
-import { ThemedButton } from '../Theme/Button';
 import { Icon } from '../Icon';
+import { ThemedSection } from '../Theme';
+import { ThemedButton } from '../Theme/Button';
+import { ThemedSelect } from '../Theme/Select';
+import { ThemedTextarea } from '../Theme/Textarea';
 
 const modes = [
     BackgroundMode.Color,
@@ -14,7 +15,7 @@ const modes = [
 ];
 
 export function WallpaperSettings() {
-    const { mode, setMode, wallpapers, setWallpapers } = useStore();
+    const { mode, setMode, setWallpapers, wallpapers } = useStore();
 
     const handleChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
         // TODO: parse value into enum
@@ -32,7 +33,7 @@ export function WallpaperSettings() {
     return (
         <ThemedSection>
             <Container>
-                <ThemedSelect label="Background mode" value={mode} onChange={handleChange} options={modes} />
+                <ThemedSelect label="Background mode" onChange={handleChange} options={modes} value={mode} />
 
                 {mode === BackgroundMode.Wallpaper && (
                     <>
@@ -42,7 +43,7 @@ export function WallpaperSettings() {
                                 <>Reset</>
                             </ThemedButton>
                         </div>
-                        <ThemedTextarea value={wallpapers.join('\n')} onChange={handleChange2} />
+                        <ThemedTextarea onChange={handleChange2} value={wallpapers.join('\n')} />
                     </>
                 )}
             </Container>

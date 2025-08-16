@@ -1,17 +1,18 @@
-import { styled } from 'styled-components';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Icon } from '../Icon';
+import { styled } from 'styled-components';
+
+import { Service } from '../../State/Schema';
 import { useStore } from '../../State/Store/Store';
+import { Icon } from '../Icon';
+import { ThemedButton } from '../Theme/Button';
 import { ThemedCheckbox } from '../Theme/Checkbox';
 import { ThemedInput } from '../Theme/Input';
-import { ThemedButton } from '../Theme/Button';
-import { Service } from '../../State/Schema';
 
 export interface Values {
-    name: string | null
-    url: string | null
     darkMode: boolean | null
+    name: null | string
+    url: null | string
 }
 
 interface ServiceFormProps {
@@ -19,7 +20,7 @@ interface ServiceFormProps {
 }
 
 export function ServiceForm(props: ServiceFormProps) {
-    const { register, handleSubmit, control } = useForm<Values>({ defaultValues: props.service });
+    const { control, handleSubmit, register } = useForm<Values>({ defaultValues: props.service });
     const { replace } = useStore();
 
     const onSubmit: SubmitHandler<Values> = useCallback((data) => {
@@ -56,13 +57,13 @@ export function ServiceForm(props: ServiceFormProps) {
                 <Fieldset>
                     <Label htmlFor={`${props.service.id}::darkMode`}>Dark Mode</Label>
                     <Controller
-                        name="darkMode"
                         control={control}
+                        name="darkMode"
                         render={({ field: { value, ...rest } }) => {
                             return (
                                 <ThemedCheckbox
-                                    id={`${props.service.id}::darkMode`}
                                     checked={value || false}
+                                    id={`${props.service.id}::darkMode`}
                                     {...rest}
                                     placeholder="Enable dark mode"
                                 />

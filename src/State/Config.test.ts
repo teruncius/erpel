@@ -1,12 +1,13 @@
-import { expect, afterEach, beforeEach, test, vi, describe } from 'vitest';
 import { fs, vol } from 'memfs';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+
 import { DefaultConfig, loadConfig, saveConfig } from './Config';
 import { DEFAULT_SIDE_BAR_IS_OPEN } from './Settings';
 
 describe('Config', () => {
     beforeEach(() => {
         vi.mock('node:fs/promises');
-        vi.stubGlobal('console', { log: vi.fn(), warn: vi.fn(), error: vi.fn() });
+        vi.stubGlobal('console', { error: vi.fn(), log: vi.fn(), warn: vi.fn() });
         vol.reset();
     });
 

@@ -1,12 +1,12 @@
-import { styled } from 'styled-components';
 import { ChangeEvent, InputHTMLAttributes, useCallback, useEffect, useState } from 'react';
-import { Icon } from '../Icon';
+import { styled } from 'styled-components';
 
+import { Icon } from '../Icon';
 import { ThemedButton } from './Button';
 
-type ThemedCheckbox = InputHTMLAttributes<HTMLInputElement> & {
+type ThemedCheckbox = {
     checked: boolean
-};
+} & InputHTMLAttributes<HTMLInputElement>;
 
 export function ThemedCheckbox(props: ThemedCheckbox) {
     const { onChange } = props;
@@ -37,12 +37,12 @@ export function ThemedCheckbox(props: ThemedCheckbox) {
                 <>{props.placeholder}</>
             )}
             <input
-                id={props.id}
-                type="checkbox"
-                style={{ display: 'none' }}
-                value="on"
                 checked={checked}
+                id={props.id}
                 onChange={handleChange}
+                style={{ display: 'none' }}
+                type="checkbox"
+                value="on"
             />
         </ThemedCheckboxContainer>
     );

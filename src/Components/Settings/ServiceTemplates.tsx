@@ -1,12 +1,13 @@
+import { ChangeEvent, useCallback, useState } from 'react';
 import { styled } from 'styled-components';
-import React, { ChangeEvent, useCallback, useState } from 'react';
-import { ServiceIcon } from './ServiceIcon';
-import { useStore } from '../../State/Store/Store';
-import { ThemedHoverStyle, HardFrostedEffectStyle, ThemedSection } from '../Theme';
-import { Icon } from '../Icon';
-import { ThemedInput } from '../Theme/Input';
-import { ThemedButton } from '../Theme/Button';
+
 import { ServiceTemplate } from '../../State/Schema';
+import { useStore } from '../../State/Store/Store';
+import { Icon } from '../Icon';
+import { HardFrostedEffectStyle, ThemedHoverStyle, ThemedSection } from '../Theme';
+import { ThemedButton } from '../Theme/Button';
+import { ThemedInput } from '../Theme/Input';
+import { ServiceIcon } from './ServiceIcon';
 
 export function ServiceTemplates() {
     const [search, setSearch] = useState('');
@@ -31,8 +32,8 @@ export function ServiceTemplates() {
         <ThemedSection>
             <Container>
                 <FilterBar>
-                    <FilterInput type="text" placeholder="Type to filter" value={search} onChange={filter} />
-                    <FilterButton type="button" onClick={handleReset}>
+                    <FilterInput onChange={filter} placeholder="Type to filter" type="text" value={search} />
+                    <FilterButton onClick={handleReset} type="button">
                         <Icon name="cross" size={16} />
                     </FilterButton>
                 </FilterBar>

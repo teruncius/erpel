@@ -1,20 +1,22 @@
-import { join } from 'node:path';
 import {
+    app,
     BrowserWindow,
+    clipboard,
     ipcMain,
+    IpcMainEvent,
     Menu,
     Rectangle,
-    WebContentsView,
-    clipboard,
     shell,
-    IpcMainEvent,
-    app,
+    WebContentsView,
 } from 'electron';
-import icon from '../resources/erpel.png?asset';
-import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './Components/SideBar/SideBar';
-import { AppMessage } from './AppMessage';
-import { loadConfig, saveConfig } from './State/Config';
+import { join } from 'node:path';
+
 import type { Service } from './State/Schema';
+
+import icon from '../resources/erpel.png?asset';
+import { AppMessage } from './AppMessage';
+import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './Components/SideBar/SideBar';
+import { loadConfig, saveConfig } from './State/Config';
 
 const CONFIG_PATH = join(app.getPath('userData'), 'config.json');
 const SESSION_PARTITION = `persist:${import.meta.env.DEV ? 'development' : 'production'}`;
@@ -22,14 +24,14 @@ const SESSION_PARTITION = `persist:${import.meta.env.DEV ? 'development' : 'prod
 export const createWindow = async () => {
     // Create the browser window.
     const window = new BrowserWindow({
-        width: 1200,
+        backgroundColor: '#000000',
         height: 800,
         icon,
-        backgroundColor: '#000000',
         webPreferences: {
-            preload: join(__dirname, 'preload.application.js'),
             partition: SESSION_PARTITION,
+            preload: join(__dirname, 'preload.application.js'),
         },
+        width: 1200,
     });
 
     // and load the index.html of the app.
@@ -106,8 +108,8 @@ export const createWindow = async () => {
 
     ipcMain.on(AppMessage.ShowContextMenu, (event, data) => {
         const menu = buildMenuForSender({
-            event,
             data,
+            event,
             isServiceWindow: event.sender === window.webContents,
         });
         const popup = BrowserWindow.fromWebContents(event.sender);
@@ -124,8 +126,8 @@ export const createWindow = async () => {
         const bounds = window.getContentBounds();
         const view = new WebContentsView({
             webPreferences: {
-                preload: join(__dirname, '/preload.service.js'),
                 partition: SESSION_PARTITION,
+                preload: join(__dirname, '/preload.service.js'),
             },
         });
 
@@ -160,15 +162,15 @@ export const createWindow = async () => {
 };
 
 interface BuildMenuOptions {
-    event: IpcMainEvent
     data: {
         x: number
         y: number
     }
+    event: IpcMainEvent
     isServiceWindow: boolean
 }
 
-function buildMenuForSender({ event, data, isServiceWindow }: BuildMenuOptions) {
+function buildMenuForSender({ data, event, isServiceWindow }: BuildMenuOptions) {
     return Menu.buildFromTemplate([
         {
             role: 'cut',
@@ -183,47 +185,47 @@ function buildMenuForSender({ event, data, isServiceWindow }: BuildMenuOptions) 
             type: 'separator',
         },
         ...(!isServiceWindow ? [] : [{
-            label: 'Copy URL',
             click: () => {
                 clipboard.writeText(event.sender.getURL());
             },
+            label: 'Copy URL',
         },
         {
-            label: 'Open in Browser',
             click: () => {
                 shell.openExternal(event.sender.getURL());
             },
+            label: 'Open in Browser',
         }]),
         {
             type: 'separator',
         },
         {
-            label: 'Reload',
             click: () => {
                 event.sender.reloadIgnoringCache();
             },
+            label: 'Reload',
         },
         {
-            label: 'Developer Tools',
             click: () => {
                 event.sender.openDevTools({ mode: 'bottom' });
             },
+            label: 'Developer Tools',
         },
         {
-            label: 'Inspect Element',
             click: () => {
                 event.sender.openDevTools({ mode: 'bottom' });
                 event.sender.inspectElement(data.x, data.y);
             },
+            label: 'Inspect Element',
         },
     ]);
 }
 
 function CalculateBounds(bounds: Rectangle, isOpen: boolean) {
     return {
+        height: bounds.height,
+        width: bounds.width - (isOpen ? SIDEBAR_WIDTH_OPEN : SIDEBAR_WIDTH_CLOSED),
         x: isOpen ? SIDEBAR_WIDTH_OPEN : SIDEBAR_WIDTH_CLOSED,
         y: 0,
-        width: bounds.width - (isOpen ? SIDEBAR_WIDTH_OPEN : SIDEBAR_WIDTH_CLOSED),
-        height: bounds.height,
     };
 }

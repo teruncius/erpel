@@ -1,44 +1,39 @@
 import { StateCreator } from 'zustand/vanilla';
-import { BackgroundMode, DEFAULT_LOCALE, DEFAULT_IS_MUTED } from '../Settings';
 
-export interface SettingsStoreState {
-    locale: string
-    dateFormat: string
-    timeFormat: string
-    isMuted: boolean
-    mode: BackgroundMode
-    wallpapers: string[]
-}
+import { BackgroundMode, DEFAULT_IS_MUTED, DEFAULT_LOCALE } from '../Settings';
 
 export interface SettingsStoreActions {
     loadSettingsFromFile: (settings: SettingsStoreState) => void
-    setLocale: (locale: string) => void
-    setTimeFormat: (locale: string) => void
     setDateFormat: (locale: string) => void
     setIsMuted: (isMuted: boolean) => void
+    setLocale: (locale: string) => void
     setMode: (mode: BackgroundMode) => void
+    setTimeFormat: (locale: string) => void
     setWallpapers: (wallpapers: string[]) => void
 }
 
+export interface SettingsStoreState {
+    dateFormat: string
+    isMuted: boolean
+    locale: string
+    mode: BackgroundMode
+    timeFormat: string
+    wallpapers: string[]
+}
+
 const initialValues: SettingsStoreState = {
-    locale: DEFAULT_LOCALE,
     dateFormat: DEFAULT_LOCALE,
-    timeFormat: DEFAULT_LOCALE,
     isMuted: DEFAULT_IS_MUTED,
+    locale: DEFAULT_LOCALE,
     mode: BackgroundMode.Wallpaper,
+    timeFormat: DEFAULT_LOCALE,
     wallpapers: [],
 };
 
-export const createSettingsSlice: StateCreator<SettingsStoreState & SettingsStoreActions> = (set) => ({
+export const createSettingsSlice: StateCreator<SettingsStoreActions & SettingsStoreState> = (set) => ({
     ...initialValues,
     loadSettingsFromFile: (settings: SettingsStoreState) => {
         set({ ...settings });
-    },
-    setLocale: (locale: string) => {
-        set({ locale });
-    },
-    setTimeFormat: (timeFormat: string) => {
-        set({ timeFormat });
     },
     setDateFormat: (dateFormat: string) => {
         set({ dateFormat });
@@ -46,8 +41,14 @@ export const createSettingsSlice: StateCreator<SettingsStoreState & SettingsStor
     setIsMuted: (isMuted: boolean) => {
         set({ isMuted });
     },
+    setLocale: (locale: string) => {
+        set({ locale });
+    },
     setMode: (mode: BackgroundMode) => {
         set({ mode });
+    },
+    setTimeFormat: (timeFormat: string) => {
+        set({ timeFormat });
     },
     setWallpapers: (wallpapers: string[]) => {
         // TODO: validate for empty or invalid wallpapers

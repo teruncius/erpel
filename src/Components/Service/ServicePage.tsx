@@ -1,6 +1,7 @@
-import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
-import { useParams } from 'react-router';
 import { useEffect } from 'react';
+import { useParams } from 'react-router';
+
+import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 
 declare const window: ElectronWindow;
 

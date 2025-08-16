@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
-import { Icon } from '../Icon';
+import { useCallback } from 'react';
+
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
+import { Icon } from '../Icon';
 import { ThemedButton } from '../Theme/Button';
 
 declare const window: ElectronWindow;

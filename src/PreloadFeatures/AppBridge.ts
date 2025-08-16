@@ -1,19 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron';
+
 import { AppMessage } from '../AppMessage';
 import { Config, Service } from '../State/Schema';
-
-interface ElectronAPI {
-    loadConfig: () => Promise<Config>
-    saveConfig: (data: Config) => void
-
-    addService: (service: Service) => void
-    removeService: (id: string) => void
-    activateService: (id: string) => void
-    hideAllServices: () => void
-
-    focusWindow: () => void
-    setSidebarState: (isOpen: boolean) => void
-}
 
 // use as:
 // declare const window: ElectronWindow;
@@ -21,16 +9,29 @@ export interface ElectronWindow extends Window {
     electron: ElectronAPI
 }
 
-const api: ElectronAPI = {
-    loadConfig: () => ipcRenderer.invoke(AppMessage.LoadConfig),
-    saveConfig: (data) => ipcRenderer.send(AppMessage.SaveConfig, data),
+interface ElectronAPI {
+    activateService: (id: string) => void
+    addService: (service: Service) => void
 
-    addService: (service) => ipcRenderer.send(AppMessage.AddService, service),
-    removeService: (id) => ipcRenderer.send(AppMessage.RemoveService, id),
+    focusWindow: () => void
+    hideAllServices: () => void
+    loadConfig: () => Promise<Config>
+    removeService: (id: string) => void
+
+    saveConfig: (data: Config) => void
+    setSidebarState: (isOpen: boolean) => void
+}
+
+const api: ElectronAPI = {
     activateService: (id) => ipcRenderer.send(AppMessage.ActivateService, id),
-    hideAllServices: () => ipcRenderer.send(AppMessage.HideAllServices),
+    addService: (service) => ipcRenderer.send(AppMessage.AddService, service),
 
     focusWindow: () => ipcRenderer.send(AppMessage.FocusWindow),
+    hideAllServices: () => ipcRenderer.send(AppMessage.HideAllServices),
+    loadConfig: () => ipcRenderer.invoke(AppMessage.LoadConfig),
+    removeService: (id) => ipcRenderer.send(AppMessage.RemoveService, id),
+
+    saveConfig: (data) => ipcRenderer.send(AppMessage.SaveConfig, data),
     setSidebarState: (isOpen) => ipcRenderer.send(AppMessage.SetSideBarState, isOpen),
 };
 

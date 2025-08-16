@@ -1,8 +1,9 @@
+import { ChangeEvent, useCallback } from 'react';
+import { styled } from 'styled-components';
+
 import { useStore } from '../../State/Store/Store';
 import { Clock } from '../Home/Clock';
-import { ChangeEvent, useCallback } from 'react';
 import { ThemedSection } from '../Theme';
-import { styled } from 'styled-components';
 import { ThemedSelect } from '../Theme/Select';
 
 const localeOptions = [
@@ -21,7 +22,7 @@ const dateOptions = [
 ];
 
 export function LocaleSettings() {
-    const { locale, dateFormat, timeFormat, setLocale, setTimeFormat, setDateFormat } = useStore();
+    const { dateFormat, locale, setDateFormat, setLocale, setTimeFormat, timeFormat } = useStore();
 
     const onChangeLocale = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
         setLocale(e.target.value);
@@ -38,9 +39,9 @@ export function LocaleSettings() {
     return (
         <Container>
             <SettingsSection>
-                <ThemedSelect id="locale" label="Locale" value={locale} onChange={onChangeLocale} options={localeOptions} />
-                <ThemedSelect id="time" label="Time format" value={timeFormat} onChange={onChangeTime} options={timeOptions} />
-                <ThemedSelect id="date" label="Date format" value={dateFormat} onChange={onChangeDate} options={dateOptions} />
+                <ThemedSelect id="locale" label="Locale" onChange={onChangeLocale} options={localeOptions} value={locale} />
+                <ThemedSelect id="time" label="Time format" onChange={onChangeTime} options={timeOptions} value={timeFormat} />
+                <ThemedSelect id="date" label="Date format" onChange={onChangeDate} options={dateOptions} value={dateFormat} />
             </SettingsSection>
             <Clock />
         </Container>

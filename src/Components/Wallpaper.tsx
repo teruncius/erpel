@@ -1,6 +1,7 @@
-import React, { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
 import { animated, useSpringRef, useTransition } from '@react-spring/web';
+import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
+
 import { useStore } from '../State/Store/Store';
 
 export function Wallpaper() {
@@ -10,11 +11,11 @@ export function Wallpaper() {
 
     const transRef = useSpringRef();
     const transitions = useTransition(index, {
-        ref: transRef,
-        from: { opacity: 0 },
-        enter: { opacity: 1 },
-        leave: { opacity: 1 },
         config: { duration: 1000 },
+        enter: { opacity: 1 },
+        from: { opacity: 0 },
+        leave: { opacity: 1 },
+        ref: transRef,
     });
 
     const handleNext = useCallback(() => {
@@ -32,7 +33,7 @@ export function Wallpaper() {
     }, [wallpapers, index]);
 
     return transitions((style: CSSProperties, i: number) => {
-        return <Image key={i} style={{ ...style, backgroundImage: `url(${wallpapers[i]})` }} onClick={handleNext} />;
+        return <Image key={i} onClick={handleNext} style={{ ...style, backgroundImage: `url(${wallpapers[i]})` }} />;
     });
 }
 

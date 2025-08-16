@@ -1,38 +1,39 @@
-import { styled } from 'styled-components';
-import { ThemedSection } from '../Theme';
-import { Icon } from '../Icon';
 import { useCallback } from 'react';
-import { useStore } from '../../State/Store/Store';
-import { Hint } from '../Theme/Hint';
-import { ThemedButton, ThemedLink } from '../Theme/Button';
+import { styled } from 'styled-components';
+
 import { Config } from '../../State/Schema';
+import { useStore } from '../../State/Store/Store';
+import { Icon } from '../Icon';
+import { ThemedSection } from '../Theme';
+import { ThemedButton, ThemedLink } from '../Theme/Button';
+import { Hint } from '../Theme/Hint';
 
 const FILE_OPTIONS = {
+    excludeAcceptAllOption: true,
+    multiple: false,
     types: [
         {
-            description: 'JSON Config Files',
             accept: {
                 'application/json': ['.json'],
             },
+            description: 'JSON Config Files',
         },
     ],
-    excludeAcceptAllOption: true,
-    multiple: false,
 };
-
-interface FileSystemFileHandle {
-    getFile: () => Promise<File>
-}
 
 // TODO: update typescript defs, check if method exists in new version
 export interface CustomWindow extends Window {
     showOpenFilePicker: (options: typeof FILE_OPTIONS) => Promise<FileSystemFileHandle[]>
 }
 
+interface FileSystemFileHandle {
+    getFile: () => Promise<File>
+}
+
 declare const window: CustomWindow;
 
 export function SetupServices() {
-    const { loadServicesFromPreset, loadServicesFromFile, loadSettingsFromFile } = useStore();
+    const { loadServicesFromFile, loadServicesFromPreset, loadSettingsFromFile } = useStore();
 
     const handleUsePreset = useCallback(() => {
         loadServicesFromPreset();
@@ -71,8 +72,8 @@ export function SetupServices() {
         <>
             <Container>
                 <Hint
-                    title="Set up your services"
                     text="You have not added any services yet. Please use one of the options below to continue."
+                    title="Set up your services"
                 />
             </Container>
             <Container>

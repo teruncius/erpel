@@ -1,15 +1,16 @@
-import gmail from '../../resources/google-mail.png?no-inline';
-import calendar from '../../resources/google-calendar.png?no-inline';
-import mm from '../../resources/mattermost.png?no-inline';
-import spotify from '../../resources/spotify.png?no-inline';
-import jira from '../../resources/jira.png?no-inline';
-import trello from '../../resources/trello.png?no-inline';
-import web from '../../resources/web.png?no-inline';
 import type { Option, Service, ServiceTemplate } from './Schema';
 
+import calendar from '../../resources/google-calendar.png?no-inline';
+import gmail from '../../resources/google-mail.png?no-inline';
+import jira from '../../resources/jira.png?no-inline';
+import mm from '../../resources/mattermost.png?no-inline';
+import spotify from '../../resources/spotify.png?no-inline';
+import trello from '../../resources/trello.png?no-inline';
+import web from '../../resources/web.png?no-inline';
+
 export enum BackgroundMode {
-    Wallpaper = 'wallpaper',
     Color = 'color',
+    Wallpaper = 'wallpaper',
 }
 
 export const DEFAULT_SIDE_BAR_IS_OPEN = true;
@@ -29,13 +30,13 @@ export const DEFAULT_WALLPAPERS = [
 
 // TODO: force a value for each icon
 const ICONS: Record<string, string> = {
-    '57f999b3-81f1-4cf1-86cf-05602d772d9a': gmail,
-    '6f4dc7af-3173-4dab-b7d3-9d88739f57dc': calendar,
-    '5bdc9b31-f8e7-4937-a156-33bb6e12cc4f': mm,
-    '0ff56910-61ef-41b0-b74d-dbf48a9c3472': spotify,
-    'c7c7dfd2-2941-462b-b68b-9d4c800e25e8': jira,
     '06654c77-661b-4955-a163-7fbbd0f81de4': trello,
+    '0ff56910-61ef-41b0-b74d-dbf48a9c3472': spotify,
     '173773cb-72de-429f-94db-d382613f436d': web,
+    '57f999b3-81f1-4cf1-86cf-05602d772d9a': gmail,
+    '5bdc9b31-f8e7-4937-a156-33bb6e12cc4f': mm,
+    '6f4dc7af-3173-4dab-b7d3-9d88739f57dc': calendar,
+    'c7c7dfd2-2941-462b-b68b-9d4c800e25e8': jira,
 };
 
 export function IconIdToUrl(id: string): string {
@@ -44,12 +45,12 @@ export function IconIdToUrl(id: string): string {
 
 export function ServiceFromTemplate(template: ServiceTemplate): Service {
     return {
+        darkMode: ValueFromOption(template.darkMode),
+        icon: ValueFromOption(template.icon),
         id: crypto.randomUUID(),
         name: ValueFromOption(template.name),
-        url: ValueFromOption(template.url),
-        icon: ValueFromOption(template.icon),
-        darkMode: ValueFromOption(template.darkMode),
         template,
+        url: ValueFromOption(template.url),
     };
 }
 
@@ -64,171 +65,171 @@ export const DEFAULT_SERVICES: Service[] = [];
 
 export const DEFAULT_SERVICE_TEMPLATES: ServiceTemplate[] = [
     {
+        darkMode: {
+            copyOnCreate: false,
+            customizable: false,
+            default: false,
+        },
+        icon: {
+            copyOnCreate: false,
+            customizable: false,
+            default: '57f999b3-81f1-4cf1-86cf-05602d772d9a',
+        },
         id: '5106fdb4-04a3-4659-8d76-54a79fbf45a2',
         name: {
-            default: 'Google Mail',
+            copyOnCreate: false,
             customizable: true,
-            copyOnCreate: false,
-        },
-        url: {
-            default: 'https://mail.google.com/',
-            customizable: false,
-            copyOnCreate: false,
-        },
-        icon: {
-            default: '57f999b3-81f1-4cf1-86cf-05602d772d9a',
-            customizable: false,
-            copyOnCreate: false,
-        },
-        darkMode: {
-            default: false,
-            customizable: false,
-            copyOnCreate: false,
+            default: 'Google Mail',
         },
         tags: ['google', 'e-mail'],
+        url: {
+            copyOnCreate: false,
+            customizable: false,
+            default: 'https://mail.google.com/',
+        },
     },
     {
+        darkMode: {
+            copyOnCreate: false,
+            customizable: false,
+            default: false,
+        },
+        icon: {
+            copyOnCreate: false,
+            customizable: false,
+            default: '6f4dc7af-3173-4dab-b7d3-9d88739f57dc',
+        },
         id: '2b027a28-172a-4180-bd5a-32070b046b77',
         name: {
-            default: 'Google Calendar',
+            copyOnCreate: false,
             customizable: true,
-            copyOnCreate: false,
-        },
-        url: {
-            default: 'https://calendar.google.com/',
-            customizable: false,
-            copyOnCreate: false,
-        },
-        icon: {
-            default: '6f4dc7af-3173-4dab-b7d3-9d88739f57dc',
-            customizable: false,
-            copyOnCreate: false,
-        },
-        darkMode: {
-            default: false,
-            customizable: false,
-            copyOnCreate: false,
+            default: 'Google Calendar',
         },
         tags: ['google', 'calendar', 'kalender'],
+        url: {
+            copyOnCreate: false,
+            customizable: false,
+            default: 'https://calendar.google.com/',
+        },
     },
     {
+        darkMode: {
+            copyOnCreate: false,
+            customizable: true,
+            default: false,
+        },
+        icon: {
+            copyOnCreate: false,
+            customizable: false,
+            default: '5bdc9b31-f8e7-4937-a156-33bb6e12cc4f',
+        },
         id: 'b78be8b5-2772-4cc3-bcfa-f05fcfa05f1a',
         name: {
+            copyOnCreate: false,
+            customizable: true,
             default: 'Mattermost',
-            customizable: true,
-            copyOnCreate: false,
-        },
-        url: {
-            default: 'https://mattermost.com/',
-            customizable: true,
-            copyOnCreate: true,
-        },
-        icon: {
-            default: '5bdc9b31-f8e7-4937-a156-33bb6e12cc4f',
-            customizable: false,
-            copyOnCreate: false,
-        },
-        darkMode: {
-            default: false,
-            customizable: true,
-            copyOnCreate: false,
         },
         tags: ['chat', 'mm'],
+        url: {
+            copyOnCreate: true,
+            customizable: true,
+            default: 'https://mattermost.com/',
+        },
     },
     {
+        darkMode: {
+            copyOnCreate: false,
+            customizable: false,
+            default: false,
+        },
+        icon: {
+            copyOnCreate: false,
+            customizable: false,
+            default: '0ff56910-61ef-41b0-b74d-dbf48a9c3472',
+        },
         id: '5ba82927-f8b7-4672-9da1-996b7c2430b3',
         name: {
-            default: 'Spotify',
+            copyOnCreate: false,
             customizable: true,
-            copyOnCreate: false,
-        },
-        url: {
-            default: 'https://spotify.com/',
-            customizable: false,
-            copyOnCreate: false,
-        },
-        icon: {
-            default: '0ff56910-61ef-41b0-b74d-dbf48a9c3472',
-            customizable: false,
-            copyOnCreate: false,
-        },
-        darkMode: {
-            default: false,
-            customizable: false,
-            copyOnCreate: false,
+            default: 'Spotify',
         },
         tags: ['spotify', 'music'],
+        url: {
+            copyOnCreate: false,
+            customizable: false,
+            default: 'https://spotify.com/',
+        },
     },
     {
+        darkMode: {
+            copyOnCreate: false,
+            customizable: false,
+            default: false,
+        },
+        icon: {
+            copyOnCreate: false,
+            customizable: false,
+            default: 'c7c7dfd2-2941-462b-b68b-9d4c800e25e8',
+        },
         id: '3cec01fa-fa1b-458f-b1e2-5aafc63286ce',
         name: {
+            copyOnCreate: false,
+            customizable: true,
             default: 'Jira',
-            customizable: true,
-            copyOnCreate: false,
-        },
-        url: {
-            default: 'https://jira.atlassian.com/',
-            customizable: true,
-            copyOnCreate: false,
-        },
-        icon: {
-            default: 'c7c7dfd2-2941-462b-b68b-9d4c800e25e8',
-            customizable: false,
-            copyOnCreate: false,
-        },
-        darkMode: {
-            default: false,
-            customizable: false,
-            copyOnCreate: false,
         },
         tags: ['atlassian'],
+        url: {
+            copyOnCreate: false,
+            customizable: true,
+            default: 'https://jira.atlassian.com/',
+        },
     },
     {
+        darkMode: {
+            copyOnCreate: false,
+            customizable: false,
+            default: false,
+        },
+        icon: {
+            copyOnCreate: false,
+            customizable: false,
+            default: '06654c77-661b-4955-a163-7fbbd0f81de4',
+        },
         id: 'fb0c165e-d6fe-41d7-bec6-41a321347826',
         name: {
+            copyOnCreate: false,
+            customizable: true,
             default: 'Trello',
-            customizable: true,
-            copyOnCreate: false,
-        },
-        url: {
-            default: 'https://trello.com/',
-            customizable: true,
-            copyOnCreate: false,
-        },
-        icon: {
-            default: '06654c77-661b-4955-a163-7fbbd0f81de4',
-            customizable: false,
-            copyOnCreate: false,
-        },
-        darkMode: {
-            default: false,
-            customizable: false,
-            copyOnCreate: false,
         },
         tags: ['atlassian'],
+        url: {
+            copyOnCreate: false,
+            customizable: true,
+            default: 'https://trello.com/',
+        },
     },
     {
-        id: '5f8c2fe3-5be6-4f1c-a58d-e7e746db2b0a',
-        name: {
-            default: 'Website',
+        darkMode: {
+            copyOnCreate: false,
             customizable: true,
-            copyOnCreate: true,
-        },
-        url: {
-            default: 'https://example.com/',
-            customizable: true,
-            copyOnCreate: true,
+            default: false,
         },
         icon: {
-            default: '173773cb-72de-429f-94db-d382613f436d',
+            copyOnCreate: false,
             customizable: false,
-            copyOnCreate: false,
+            default: '173773cb-72de-429f-94db-d382613f436d',
         },
-        darkMode: {
-            default: false,
+        id: '5f8c2fe3-5be6-4f1c-a58d-e7e746db2b0a',
+        name: {
+            copyOnCreate: true,
             customizable: true,
-            copyOnCreate: false,
+            default: 'Website',
         },
         tags: ['web', 'url', 'empty', 'browser', 'tab'],
+        url: {
+            copyOnCreate: true,
+            customizable: true,
+            default: 'https://example.com/',
+        },
     },
 ];

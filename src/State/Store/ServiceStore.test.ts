@@ -1,8 +1,9 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 import { create } from 'zustand/index';
-import { createServiceSlice, ServiceStoreState, ServiceStoreActions } from './ServiceStore';
 
-export const useStore = create<ServiceStoreState & ServiceStoreActions>()(
+import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from './ServiceStore';
+
+export const useStore = create<ServiceStoreActions & ServiceStoreState>()(
     (...args) => ({
         ...createServiceSlice(...args),
     }),

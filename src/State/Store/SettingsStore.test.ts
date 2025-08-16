@@ -1,8 +1,9 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 import { create } from 'zustand';
+
 import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from './SettingsStore';
 
-export const useStore = create<SettingsStoreState & SettingsStoreActions>()(
+export const useStore = create<SettingsStoreActions & SettingsStoreState>()(
     (...args) => ({
         ...createSettingsSlice(...args),
     }),

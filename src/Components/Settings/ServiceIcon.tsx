@@ -1,5 +1,6 @@
+import { CSSProperties } from 'react';
 import { styled } from 'styled-components';
-import React, { CSSProperties } from 'react';
+
 import { IconIdToUrl } from '../../State/Settings';
 
 interface ServiceIconProps {
@@ -12,11 +13,11 @@ interface ServiceIconProps {
 export function ServiceIcon(props: ServiceIconProps) {
     return (
         <Image
-            src={IconIdToUrl(props.icon)}
             alt={props.name}
-            width={props.size}
             height={props.size}
+            src={IconIdToUrl(props.icon)}
             style={props.style}
+            width={props.size}
         />
     );
 }

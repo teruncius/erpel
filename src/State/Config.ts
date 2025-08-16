@@ -1,6 +1,6 @@
-import { z } from 'zod';
-import { app } from 'electron';
 import { readFile, writeFile } from 'node:fs/promises';
+import { z } from 'zod';
+
 import { Config, ConfigSchema } from './Schema';
 import {
     DEFAULT_IS_MUTED,
@@ -12,15 +12,23 @@ import {
 } from './Settings';
 
 export const DefaultConfig: Config = {
-    version: 0,
-    services: DEFAULT_SERVICES,
+    dateFormat: DEFAULT_LOCALE,
+    isMuted: DEFAULT_IS_MUTED,
     isOpen: DEFAULT_SIDE_BAR_IS_OPEN,
     locale: DEFAULT_LOCALE,
-    dateFormat: DEFAULT_LOCALE,
-    timeFormat: DEFAULT_LOCALE,
-    isMuted: DEFAULT_IS_MUTED,
     mode: DEFAULT_MODE,
+    services: DEFAULT_SERVICES,
+    timeFormat: DEFAULT_LOCALE,
+    version: 0,
     wallpapers: DEFAULT_WALLPAPERS,
+};
+
+type Result<T> = {
+    data: T
+    success: true
+} | {
+    error: string
+    success: false
 };
 
 export async function loadConfig(path: string): Promise<Config> {
@@ -49,26 +57,18 @@ export async function saveConfig(path: string, data: Config) {
     }
 }
 
-type Result<T> = {
-    success: true
-    data: T
-} | {
-    success: false
-    error: string
-};
-
 function parseConfig(data: string): Result<Config> {
     const parsed = JSON.parse(data);
     if (isNaN(parsed.version)) {
-        return { success: false, error: 'Unable to read config version' };
+        return { error: 'Unable to read config version', success: false };
     }
 
     const result = z.safeParse(ConfigSchema, parsed);
 
     if (!result.success) {
         console.error('Zod parse error', result.error);
-        return { success: false, error: 'Zod parse error' };
+        return { error: 'Zod parse error', success: false };
     }
 
-    return { success: true, data: result.data };
+    return { data: result.data, success: true };
 }

@@ -1,10 +1,11 @@
-import { NavLink } from 'react-router';
 import React from 'react';
+import { NavLink } from 'react-router';
 import { styled } from 'styled-components';
-import { SoftFrostedEffectStyle } from '../Theme';
+
+import { Service } from '../../State/Schema';
 import { useStore } from '../../State/Store/Store';
 import { ServiceIcon } from '../Settings/ServiceIcon';
-import { Service } from '../../State/Schema';
+import { SoftFrostedEffectStyle } from '../Theme';
 
 export function Services() {
     const { services } = useStore();
@@ -42,7 +43,7 @@ function ServiceItem(props: ServiceItemProps) {
     const icon = props.service.icon || props.service.template.icon.default;
 
     return (
-        <ServiceLink key={props.service.id} to={`/service/${props.service.id}`} title={name} $isOpen={isOpen}>
+        <ServiceLink $isOpen={isOpen} key={props.service.id} title={name} to={`/service/${props.service.id}`}>
             <RoundedServiceIcon icon={icon} name={name} size={32} />
             <>{isOpen ? name : null}</>
         </ServiceLink>

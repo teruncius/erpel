@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { Clock } from './Clock';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 import { useStore } from '../../State/Store/Store';
-import { useNavigate } from 'react-router';
 import { PageCenter } from '../Layout';
+import { Clock } from './Clock';
 
 declare const window: ElectronWindow;
 

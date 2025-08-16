@@ -1,5 +1,6 @@
-import { styled } from 'styled-components';
 import { SelectHTMLAttributes } from 'react';
+import { styled } from 'styled-components';
+
 import { FrostedContainerStyle, HardFrostedEffectStyle, ThemedHoverStyle } from '../Theme';
 
 interface ThemedSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -11,7 +12,7 @@ export function ThemedSelect(props: ThemedSelectProps) {
     return (
         <Container>
             <label htmlFor={props.id}>{props.label}</label>
-            <Select id={props.id} value={props.value} onChange={props.onChange}>
+            <Select id={props.id} onChange={props.onChange} value={props.value}>
                 {props.options.map((option) => (
                     <option key={option} value={option}>{option}</option>
                 ))}

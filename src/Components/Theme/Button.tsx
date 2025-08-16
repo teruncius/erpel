@@ -1,6 +1,7 @@
-import { css, styled } from 'styled-components';
-import { HardFrostedEffectStyle, ThemedHoverStyle } from '../Theme';
 import { Link } from 'react-router';
+import { css, styled } from 'styled-components';
+
+import { HardFrostedEffectStyle, ThemedHoverStyle } from '../Theme';
 
 const ThemedButtonStyle = css`
     ${HardFrostedEffectStyle};

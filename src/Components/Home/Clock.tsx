@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import { FrostedContainerStyle } from '../Theme';
+
 import { useStore } from '../../State/Store/Store';
+import { FrostedContainerStyle } from '../Theme';
 
 interface Props {
     golden?: boolean
@@ -9,7 +10,7 @@ interface Props {
 
 export function Clock(props: Props) {
     const [now, setNow] = useState(new Date());
-    const { locale, dateFormat, timeFormat } = useStore();
+    const { dateFormat, locale, timeFormat } = useStore();
 
     const update = useCallback(() => {
         setNow(new Date());

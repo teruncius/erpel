@@ -1,15 +1,16 @@
-import React, { useCallback, useState } from 'react';
-import { styled } from 'styled-components';
-import { ServiceIcon } from './ServiceIcon';
-import { useStore } from '../../State/Store/Store';
 import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { useCallback, useState } from 'react';
+import { styled } from 'styled-components';
+
+import { Service } from '../../State/Schema';
+import { useStore } from '../../State/Store/Store';
 import { Icon } from '../Icon';
 import { HardFrostedEffectStyle, ThemedSection } from '../Theme';
-import { ServiceForm } from './ServiceForm';
 import { ThemedButton } from '../Theme/Button';
-import { Service } from '../../State/Schema';
+import { ServiceForm } from './ServiceForm';
+import { ServiceIcon } from './ServiceIcon';
 
 export function Services() {
     const { services, swap } = useStore();
@@ -54,8 +55,8 @@ function Service(props: CurrentServiceProps) {
     const {
         attributes,
         listeners,
-        setNodeRef,
         setActivatorNodeRef,
+        setNodeRef,
         transform,
         transition,
     } = useSortable({ id: props.service.id });

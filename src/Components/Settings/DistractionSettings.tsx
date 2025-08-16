@@ -1,6 +1,7 @@
-import { ThemedSection } from '../Theme';
-import { useStore } from '../../State/Store/Store';
 import { ChangeEvent, useCallback } from 'react';
+
+import { useStore } from '../../State/Store/Store';
+import { ThemedSection } from '../Theme';
 import { ThemedCheckbox } from '../Theme/Checkbox';
 
 export function DistractionSettings() {
@@ -13,8 +14,8 @@ export function DistractionSettings() {
     return (
         <ThemedSection>
             <ThemedCheckbox
-                onChange={handleChange}
                 checked={isMuted}
+                onChange={handleChange}
                 placeholder="Mute the duck"
             />
         </ThemedSection>

@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
-import { Logo } from './Logo';
-import { Services } from './Services';
-import { Actions } from './Actions';
-import { SoftFrostedEffectStyle } from '../Theme';
+
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 import { useStore } from '../../State/Store/Store';
+import { SoftFrostedEffectStyle } from '../Theme';
+import { Actions } from './Actions';
+import { Logo } from './Logo';
+import { Services } from './Services';
 
 declare const window: ElectronWindow;
 
