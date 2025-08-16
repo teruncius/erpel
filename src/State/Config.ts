@@ -1,6 +1,5 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { app } from 'electron';
-import { join } from 'node:path';
 import { readFile, writeFile } from 'node:fs/promises';
 import { Config, ConfigSchema } from './Schema';
 import {
@@ -11,8 +10,6 @@ import {
     DEFAULT_SIDE_BAR_IS_OPEN,
     DEFAULT_WALLPAPERS,
 } from './Settings';
-
-const CONFIG_PATH = join(app.getPath('userData'), 'config.json');
 
 export const DefaultConfig: Config = {
     version: 0,
@@ -26,9 +23,9 @@ export const DefaultConfig: Config = {
     wallpapers: DEFAULT_WALLPAPERS,
 };
 
-export async function loadConfig(): Promise<Config> {
+export async function loadConfig(path: string): Promise<Config> {
     try {
-        const value = await readFile(CONFIG_PATH, { encoding: 'utf8' });
+        const value = await readFile(path, { encoding: 'utf8' });
         const parsed = parseConfig(value);
         if (!parsed.success) {
             console.error('Unable to parse config:', parsed.error);
@@ -42,10 +39,10 @@ export async function loadConfig(): Promise<Config> {
     }
 }
 
-export async function saveConfig(data: Config) {
+export async function saveConfig(path: string, data: Config) {
     try {
         const value = JSON.stringify(data, null, 4);
-        await writeFile(CONFIG_PATH, value, { encoding: 'utf8' });
+        await writeFile(path, value, { encoding: 'utf8' });
     }
     catch (e) {
         console.error('Unable to save user data', e);

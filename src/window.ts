@@ -1,11 +1,22 @@
 import { join } from 'node:path';
-import { BrowserWindow, ipcMain, Menu, Rectangle, WebContentsView, clipboard, shell, IpcMainEvent } from 'electron';
+import {
+    BrowserWindow,
+    ipcMain,
+    Menu,
+    Rectangle,
+    WebContentsView,
+    clipboard,
+    shell,
+    IpcMainEvent,
+    app,
+} from 'electron';
 import icon from '../resources/erpel.png?asset';
 import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './Components/SideBar/SideBar';
 import { AppMessage } from './AppMessage';
 import { loadConfig, saveConfig } from './State/Config';
 import type { Service } from './State/Schema';
 
+const CONFIG_PATH = join(app.getPath('userData'), 'config.json');
 const SESSION_PARTITION = `persist:${import.meta.env.DEV ? 'development' : 'production'}`;
 
 export const createWindow = async () => {
@@ -35,14 +46,14 @@ export const createWindow = async () => {
     });
 
     const views: Record<string, WebContentsView> = {};
-    let config = await loadConfig();
+    let config = await loadConfig(CONFIG_PATH);
     let sideBarIsOpen = true;
 
     config.services.forEach(createViewForService);
 
     ipcMain.on(AppMessage.SaveConfig, (event, data) => {
         config = data;
-        saveConfig(config);
+        saveConfig(CONFIG_PATH, config);
     });
 
     ipcMain.handle(AppMessage.LoadConfig, () => {

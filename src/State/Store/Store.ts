@@ -4,7 +4,7 @@ import { persist, PersistStorage } from 'zustand/middleware';
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
 import { createSideBarSlice, SideBarStoreActions, SideBarStoreState } from './SideBarStore';
 import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from './SettingsStore';
-import * as z from 'zod';
+import { z } from 'zod';
 import { Config, ConfigSchema } from '../Schema';
 import { DEFAULT_SERVICE_TEMPLATES } from '../Settings';
 

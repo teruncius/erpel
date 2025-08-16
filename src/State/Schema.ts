@@ -1,27 +1,29 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { BackgroundMode } from './Settings';
 
-const OptionSchema = z.union([
-    z.object({
-        default: z.string(),
-        customizable: z.boolean(),
-        copyOnCreate: z.boolean(),
-    }),
-    z.object({
-        default: z.boolean(),
-        customizable: z.boolean(),
-        copyOnCreate: z.boolean(),
-    }),
-]);
+const StringOption = z.object({
+    default: z.string(),
+    customizable: z.boolean(),
+    copyOnCreate: z.boolean(),
+});
+
+const BooleanOption = z.object({
+    default: z.boolean(),
+    customizable: z.boolean(),
+    copyOnCreate: z.boolean(),
+});
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const OptionSchema = z.union([StringOption, BooleanOption]);
 
 export type Option = z.infer<typeof OptionSchema>;
 
 export const ServiceTemplateSchema = z.object({
     id: z.string(),
-    name: OptionSchema,
-    url: OptionSchema,
-    icon: OptionSchema,
-    darkMode: OptionSchema,
+    name: StringOption,
+    url: StringOption,
+    icon: StringOption,
+    darkMode: BooleanOption,
     tags: z.array(z.string()),
 });
 

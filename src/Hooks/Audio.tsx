@@ -20,7 +20,7 @@ export const useAudio = (url: string): Hook => {
 
     useEffect(() => {
         if (playing) {
-            audio.play();
+            audio.play().catch(console.error);
         }
         else {
             audio.pause();

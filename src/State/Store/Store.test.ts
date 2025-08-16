@@ -1,0 +1,32 @@
+import { afterEach, beforeEach, describe, test, vi, expect } from 'vitest';
+import { useStore } from './Store';
+
+describe('Store', () => {
+    const loadConfig = vi.fn();
+    const saveConfig = vi.fn();
+
+    beforeEach(() => {
+        vi.stubGlobal('window', {
+            electron: {
+                loadConfig,
+                saveConfig,
+            },
+        });
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
+    });
+
+    test('loads state from electron api', () => {
+        // rehydrates triggers load
+        useStore.persist.rehydrate();
+        expect(loadConfig).toBeCalledTimes(1);
+    });
+
+    test('saves state to electron api', () => {
+        // setState triggers save
+        useStore.setState(useStore.getInitialState());
+        expect(saveConfig).toBeCalledTimes(1);
+    });
+});
