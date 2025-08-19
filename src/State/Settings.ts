@@ -5,6 +5,7 @@ import gmail from '../../resources/google-mail.png?no-inline';
 import jira from '../../resources/jira.png?no-inline';
 import mm from '../../resources/mattermost.png?no-inline';
 import spotify from '../../resources/spotify.png?no-inline';
+import telegram from '../../resources/telegram.png?no-inline';
 import trello from '../../resources/trello.png?no-inline';
 import web from '../../resources/web.png?no-inline';
 
@@ -36,6 +37,7 @@ const ICONS: Record<string, string> = {
     '57f999b3-81f1-4cf1-86cf-05602d772d9a': gmail,
     '5bdc9b31-f8e7-4937-a156-33bb6e12cc4f': mm,
     '6f4dc7af-3173-4dab-b7d3-9d88739f57dc': calendar,
+    '7c705337-5799-4e45-955a-d57b354d1f71': telegram,
     'c7c7dfd2-2941-462b-b68b-9d4c800e25e8': jira,
 };
 
@@ -206,6 +208,30 @@ export const DEFAULT_SERVICE_TEMPLATES: ServiceTemplate[] = [
             copyOnCreate: false,
             customizable: true,
             default: 'https://trello.com/',
+        },
+    },
+    {
+        darkMode: {
+            copyOnCreate: false,
+            customizable: false,
+            default: false,
+        },
+        icon: {
+            copyOnCreate: false,
+            customizable: false,
+            default: '7c705337-5799-4e45-955a-d57b354d1f71',
+        },
+        id: '539b01ef-2748-406a-a6f5-a9d2001c07bd',
+        name: {
+            copyOnCreate: false,
+            customizable: true,
+            default: 'Telegram',
+        },
+        tags: ['telegram', 'messenger', 'chat'],
+        url: {
+            copyOnCreate: false,
+            customizable: true,
+            default: 'https://web.telegram.org/',
         },
     },
     {

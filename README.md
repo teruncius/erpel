@@ -43,6 +43,7 @@ just build
 - [trello.png](resources/trello.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/logos-and-brands), made by [Flatart](https://www.iconfinder.com/Flatart)
 - [web.png](./resources/web.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/material-core), made by Google
 - [mattermost.png](./resources/mattermost.png) from [flaticon.com](https://www.flaticon.com/free-icon/mattermost_906391)
+- [telegram.png](./resources/telegram.png) from [Just UI](https://www.iconfinder.com/justui)
 
 ## License
 
