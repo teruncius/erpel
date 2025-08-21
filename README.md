@@ -38,6 +38,7 @@ just build
 - 1656842741176-538dbdcd2682 from [unsplash.com](https://unsplash.com/photos/a-large-group-of-people-watching-a-television-6SZ_zpTt7gE)
 - [google-mail.png](resources/google-mail.png) from Google
 - [google-calendar.png](resources/google-calendar.png) from Google
+- [google-chat.png](resources/google-chat.png) from Google
 - [jira.png](resources/jira.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/logos-and-brands), made by [Flatart](https://www.iconfinder.com/Flatart)
 - [spotify.png](resources/spotify.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/logos-and-brands), made by [Flatart](https://www.iconfinder.com/Flatart)
 - [trello.png](resources/trello.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/logos-and-brands), made by [Flatart](https://www.iconfinder.com/Flatart)

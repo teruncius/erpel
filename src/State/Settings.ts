@@ -1,6 +1,7 @@
 import type { Option, Service, ServiceTemplate } from './Schema';
 
 import calendar from '../../resources/google-calendar.png?no-inline';
+import chat from '../../resources/google-chat.png?no-inline';
 import gmail from '../../resources/google-mail.png?no-inline';
 import jira from '../../resources/jira.png?no-inline';
 import mm from '../../resources/mattermost.png?no-inline';
@@ -39,6 +40,7 @@ const ICONS: Record<string, string> = {
     '6f4dc7af-3173-4dab-b7d3-9d88739f57dc': calendar,
     '7c705337-5799-4e45-955a-d57b354d1f71': telegram,
     'c7c7dfd2-2941-462b-b68b-9d4c800e25e8': jira,
+    'f1eb0e54-6eee-4c12-8e75-037f88913ba3': chat,
 };
 
 export function IconIdToUrl(id: string): string {
@@ -112,6 +114,30 @@ export const DEFAULT_SERVICE_TEMPLATES: ServiceTemplate[] = [
             copyOnCreate: false,
             customizable: false,
             default: 'https://calendar.google.com/',
+        },
+    },
+    {
+        darkMode: {
+            copyOnCreate: false,
+            customizable: false,
+            default: false,
+        },
+        icon: {
+            copyOnCreate: false,
+            customizable: false,
+            default: 'f1eb0e54-6eee-4c12-8e75-037f88913ba3',
+        },
+        id: '72a704c7-11ad-40f3-af88-c2a73e28c2ca',
+        name: {
+            copyOnCreate: false,
+            customizable: true,
+            default: 'Google Chat',
+        },
+        tags: ['google', 'chat'],
+        url: {
+            copyOnCreate: false,
+            customizable: false,
+            default: 'https://mail.google.com/chat/u/0/#chat/home',
         },
     },
     {
