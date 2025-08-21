@@ -36,8 +36,8 @@ just build
 - 1472712739516-7ad2b786e1f7 from [unsplash.com](https://unsplash.com/photos/galaxy-wallpaper-KvgB81s4dF0)
 - 1630839437035-dac17da580d0 from [unsplash.com](https://unsplash.com/photos/a-close-up-of-a-planet-with-a-black-background-awYEQyYdHVE)
 - 1656842741176-538dbdcd2682 from [unsplash.com](https://unsplash.com/photos/a-large-group-of-people-watching-a-television-6SZ_zpTt7gE)
-- [google-mail.png](resources/google-mail.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/google-s-logo), made by [Tinti Nodarse](https://www.iconfinder.com/Tinti_Nodarse), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
-- [google-calendar.png](resources/google-calendar.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/google-s-logo), made by [Tinti Nodarse](https://www.iconfinder.com/Tinti_Nodarse), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+- [google-mail.png](resources/google-mail.png) from Google
+- [google-calendar.png](resources/google-calendar.png) from Google
 - [jira.png](resources/jira.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/logos-and-brands), made by [Flatart](https://www.iconfinder.com/Flatart)
 - [spotify.png](resources/spotify.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/logos-and-brands), made by [Flatart](https://www.iconfinder.com/Flatart)
 - [trello.png](resources/trello.png) from [iconfinder.com](https://www.iconfinder.com/iconsets/logos-and-brands), made by [Flatart](https://www.iconfinder.com/Flatart)
