@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import started from 'electron-squirrel-startup';
 
 import { createWindow } from './window';
@@ -9,7 +9,7 @@ if (started) {
 }
 
 // Hide the application menu for a frameless window
-Menu.setApplicationMenu(null);
+// Menu.setApplicationMenu(null);
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
