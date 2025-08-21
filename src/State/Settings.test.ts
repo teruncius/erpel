@@ -37,7 +37,7 @@ describe('Settings', () => {
     });
 
     test('default service templates are available', () => {
-        expect(DEFAULT_SERVICE_TEMPLATES.length).toBe(8);
+        expect(DEFAULT_SERVICE_TEMPLATES.length).toBe(9);
     });
 
     test('get url from services from template', () => {
