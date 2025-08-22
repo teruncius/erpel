@@ -2,6 +2,10 @@
 
 Free and libre alternative to [Rambox](https://rambox.app/) and [franz](https://meetfranz.com/).
 
+![Home](./docs/screenshots/home.png)
+![Set Up](./docs/screenshots/set-up.png)
+![Settings](./docs/screenshots/settings.png)
+
 ## Installation
 
 ### Linux (Debian/Ubuntu)
