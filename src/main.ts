@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import started from 'electron-squirrel-startup';
 
 import { createWindow } from './window';
@@ -8,8 +8,11 @@ if (started) {
     app.quit();
 }
 
-// Hide the application menu for a frameless window
-// Menu.setApplicationMenu(null);
+// Hide the application menu for a frameless window only on linux and windows,
+// because macOS needs this menu to enable keybinds like Cmd + C or Cmd + V.
+if (process.platform !== 'darwin') {
+    Menu.setApplicationMenu(null);
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
