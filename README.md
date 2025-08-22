@@ -2,26 +2,43 @@
 
 Free and libre alternative to [Rambox](https://rambox.app/) and [franz](https://meetfranz.com/).
 
+## Installation
+
+### Linux (Debian/Ubuntu)
+
+- Find the [latest release](https://github.com/teruncius/erpel/releases).
+- Download the `.deb` file, e.g. `erpel_X.X.X_amd64.deb`.
+- Install the package with `apt`: `sudo apt get install ~/Downloads/erpel_X.X.X_amd64.deb`.
+
+### macOS
+
+- Find the [latest release](https://github.com/teruncius/erpel/releases).
+- Download the `.dmg` file, e.g. `erpel-X.X.X-arm64.dmg`.
+- Remove guard flag with `xattr`: `xattr -c ./path/to/erpel-X.X.X-arm64.dmg`.
+- Double-click the `.dmg` file to mount it.
+- Drag the erpel application icon from the mounted disk image window to your `Applications` folder.
+- The files will copy to your `Applications` folder, which may take a few moments.
+- Eject the disk image once the copy is finished.
+
+### Windows (10/11)
+
+- Find the [latest release](https://github.com/teruncius/erpel/releases).
+- Download the `.Setup.exe` file, e.g. `erpel-X.X.X.Setup.exe`.
+
 ## Development
 
 Use [just](https://github.com/casey/just) to execute commands. Run `just` to list all available commands.
 
-### Installation
-
 ```shell
-just install
-```
-
-### Run
-
-```shell
-just run
-```
-
-### Build
-
-```shell
-just build
+$ just
+Available recipes:
+    build         # build app
+    clean         # clean temp folders
+    default
+    install       # install dependencies
+    lint PARAM="" # run eslint
+    run           # run dev server
+    test          # run tests
 ```
 
 ## Attribution
