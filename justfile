@@ -7,15 +7,19 @@ install:
 
 # run dev server
 run:
-    pnpm start
+    pnpm run start
 
 # run tests
 test:
-    pnpm test
+    pnpm run test
+
+# run tsc
+tsc:
+    pnpm run tsc
 
 # run eslint
 lint PARAM="":
-    pnpm lint {{PARAM}}
+    pnpm run lint {{PARAM}}
 
 # build app
 build:
