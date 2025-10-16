@@ -15,7 +15,7 @@ import type { Service } from './state/schema';
 
 import icon from '../resources/erpel.png?asset';
 import { AppMessage } from './app-message';
-import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './components/side-bar/side-bar';
+import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './ui/components/side-bar/side-bar';
 import { loadConfig, saveConfig } from './state/config';
 
 const CONFIG_PATH = join(app.getPath('userData'), 'config.json');
