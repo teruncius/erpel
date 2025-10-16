@@ -4,7 +4,7 @@ import { HardFrostedEffectStyle } from '../theme';
 
 export const ThemedTextarea = styled.textarea`
     ${HardFrostedEffectStyle};
-    
+
     width: 100%;
     box-sizing: border-box;
 

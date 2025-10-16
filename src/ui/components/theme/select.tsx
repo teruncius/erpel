@@ -4,8 +4,8 @@ import { styled } from 'styled-components';
 import { FrostedContainerStyle, HardFrostedEffectStyle, ThemedHoverStyle } from '../theme';
 
 interface ThemedSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-    label: string
-    options: string[]
+    label: string;
+    options: string[];
 }
 
 export function ThemedSelect(props: ThemedSelectProps) {
@@ -14,7 +14,9 @@ export function ThemedSelect(props: ThemedSelectProps) {
             <label htmlFor={props.id}>{props.label}</label>
             <Select id={props.id} onChange={props.onChange} value={props.value}>
                 {props.options.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                    <option key={option} value={option}>
+                        {option}
+                    </option>
                 ))}
             </Select>
         </Container>

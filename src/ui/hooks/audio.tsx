@@ -1,10 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-type Hook = [
-    boolean,
-    () => void,
-    () => void,
-];
+type Hook = [boolean, () => void, () => void];
 
 export const useAudio = (url: string): Hook => {
     const [audio] = useState(new Audio(url));
@@ -21,8 +17,7 @@ export const useAudio = (url: string): Hook => {
     useEffect(() => {
         if (playing) {
             audio.play().catch(console.error);
-        }
-        else {
+        } else {
             audio.pause();
         }
     }, [audio, playing]);

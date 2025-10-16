@@ -6,20 +6,20 @@ import { Config, Service } from '../state/schema';
 // use as:
 // declare const window: ElectronWindow;
 export interface ElectronWindow extends Window {
-    electron: ElectronAPI
+    electron: ElectronAPI;
 }
 
 interface ElectronAPI {
-    activateService: (id: string) => void
-    addService: (service: Service) => void
+    activateService: (id: string) => void;
+    addService: (service: Service) => void;
 
-    focusWindow: () => void
-    hideAllServices: () => void
-    loadConfig: () => Promise<Config>
-    removeService: (id: string) => void
+    focusWindow: () => void;
+    hideAllServices: () => void;
+    loadConfig: () => Promise<Config>;
+    removeService: (id: string) => void;
 
-    saveConfig: (data: Config) => void
-    setSidebarState: (isOpen: boolean) => void
+    saveConfig: (data: Config) => void;
+    setSidebarState: (isOpen: boolean) => void;
 }
 
 const api: ElectronAPI = {

@@ -38,7 +38,7 @@ const LogoImageBig = styled.img`
     height: 64px;
     margin: 1rem auto;
     padding: 0;
-    
+
     cursor: pointer;
     border-radius: 50%;
     background: #202020;
@@ -49,7 +49,7 @@ const LogoImageSmall = styled.img`
     height: 30px;
     margin: 32px 0 32px 0;
     padding: 0;
-    
+
     cursor: pointer;
     border-radius: 50%;
     background: #202020;

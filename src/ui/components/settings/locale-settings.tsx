@@ -6,42 +6,60 @@ import { Clock } from '../home/clock';
 import { ThemedSection } from '../theme';
 import { ThemedSelect } from '../theme/select';
 
-const localeOptions = [
-    'en-US',
-    'de-DE',
-];
+const localeOptions = ['en-US', 'de-DE'];
 
-const timeOptions = [
-    'en-US',
-    'de-DE',
-];
+const timeOptions = ['en-US', 'de-DE'];
 
-const dateOptions = [
-    'en-US',
-    'de-DE',
-];
+const dateOptions = ['en-US', 'de-DE'];
 
 export function LocaleSettings() {
     const { dateFormat, locale, setDateFormat, setLocale, setTimeFormat, timeFormat } = useStore();
 
-    const onChangeLocale = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-        setLocale(e.target.value);
-    }, [setLocale]);
+    const onChangeLocale = useCallback(
+        (e: ChangeEvent<HTMLSelectElement>) => {
+            setLocale(e.target.value);
+        },
+        [setLocale]
+    );
 
-    const onChangeTime = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-        setTimeFormat(e.target.value);
-    }, [setTimeFormat]);
+    const onChangeTime = useCallback(
+        (e: ChangeEvent<HTMLSelectElement>) => {
+            setTimeFormat(e.target.value);
+        },
+        [setTimeFormat]
+    );
 
-    const onChangeDate = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-        setDateFormat(e.target.value);
-    }, [setDateFormat]);
+    const onChangeDate = useCallback(
+        (e: ChangeEvent<HTMLSelectElement>) => {
+            setDateFormat(e.target.value);
+        },
+        [setDateFormat]
+    );
 
     return (
         <Container>
             <SettingsSection>
-                <ThemedSelect id="locale" label="Locale" onChange={onChangeLocale} options={localeOptions} value={locale} />
-                <ThemedSelect id="time" label="Time format" onChange={onChangeTime} options={timeOptions} value={timeFormat} />
-                <ThemedSelect id="date" label="Date format" onChange={onChangeDate} options={dateOptions} value={dateFormat} />
+                <ThemedSelect
+                    id="locale"
+                    label="Locale"
+                    onChange={onChangeLocale}
+                    options={localeOptions}
+                    value={locale}
+                />
+                <ThemedSelect
+                    id="time"
+                    label="Time format"
+                    onChange={onChangeTime}
+                    options={timeOptions}
+                    value={timeFormat}
+                />
+                <ThemedSelect
+                    id="date"
+                    label="Date format"
+                    onChange={onChangeDate}
+                    options={dateOptions}
+                    value={dateFormat}
+                />
             </SettingsSection>
             <Clock />
         </Container>

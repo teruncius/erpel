@@ -23,11 +23,11 @@ const FILE_OPTIONS = {
 
 // TODO: update typescript defs, check if method exists in new version
 export interface CustomWindow extends Window {
-    showOpenFilePicker: (options: typeof FILE_OPTIONS) => Promise<FileSystemFileHandle[]>
+    showOpenFilePicker: (options: typeof FILE_OPTIONS) => Promise<FileSystemFileHandle[]>;
 }
 
 interface FileSystemFileHandle {
-    getFile: () => Promise<File>
+    getFile: () => Promise<File>;
 }
 
 declare const window: CustomWindow;
@@ -106,7 +106,7 @@ const Container = styled(ThemedSection)`
 
 const SetupSelections = styled.div`
     width: 100%;
-    
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;

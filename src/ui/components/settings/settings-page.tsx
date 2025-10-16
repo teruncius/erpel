@@ -11,8 +11,8 @@ import { DebugNotificationsButton } from './debug-notifications-button';
 import { DistractionSettings } from './distraction-settings';
 import { ExportSettingsButton } from './export-settings-button';
 import { LocaleSettings } from './locale-settings';
-import { Services } from './services';
 import { ServiceTemplates } from './service-templates';
+import { Services } from './services';
 import { WallpaperSettings } from './wallpaper-settings';
 
 declare const window: ElectronWindow;
@@ -26,11 +26,7 @@ export function SettingsPage() {
 
     return (
         <>
-            {services.length === 0 ? (
-                <SetupServices />
-            ) : (
-                <Services />
-            )}
+            {services.length === 0 ? <SetupServices /> : <Services />}
             <ServiceTemplates />
             <LocaleSettings />
             <DistractionSettings />
@@ -40,9 +36,7 @@ export function SettingsPage() {
                     <ExportSettingsButton />
                     <DebugNotificationsButton />
                     <ThemedLink to="/setup">
-                        <Icon name="cog" size={20} />
-                        {' '}
-                        Go back to set up
+                        <Icon name="cog" size={20} /> Go back to set up
                     </ThemedLink>
                 </Container>
             </ThemedSection>

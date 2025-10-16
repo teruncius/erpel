@@ -3,11 +3,9 @@ import { create } from 'zustand';
 
 import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from './settings-store';
 
-export const useStore = create<SettingsStoreActions & SettingsStoreState>()(
-    (...args) => ({
-        ...createSettingsSlice(...args),
-    }),
-);
+export const useStore = create<SettingsStoreActions & SettingsStoreState>()((...args) => ({
+    ...createSettingsSlice(...args),
+}));
 
 describe('SettingsStore', () => {
     beforeEach(() => {

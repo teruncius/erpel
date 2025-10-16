@@ -13,6 +13,10 @@ run:
 test:
     pnpm run test
 
+# run prettier
+format:
+    pnpm run prettier
+
 # run tsc
 tsc:
     pnpm run tsc

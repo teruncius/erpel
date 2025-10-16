@@ -39,8 +39,8 @@ export const useStore = create<StoreActions & StoreState>()(
         {
             name: 'storage',
             storage: storage,
-        },
-    ),
+        }
+    )
 );
 
 function TransformConfigToStoreState(config: Config): StoreState {

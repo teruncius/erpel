@@ -22,7 +22,7 @@ const ThemedButtonStyle = css`
     cursor: pointer;
     font-size: 1rem;
 
-    filter: brightness(1.0);
+    filter: brightness(1);
 
     &:hover {
         filter: brightness(1.2);

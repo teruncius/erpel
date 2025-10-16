@@ -12,7 +12,7 @@ export const HardFrostedEffectStyle = css`
 
 export const FrostedContainerStyle = css`
     ${SoftFrostedEffectStyle};
-    box-shadow: 0 4px 16px #0000007f;   
+    box-shadow: 0 4px 16px #0000007f;
 `;
 
 export const ThemedHoverStyle = css`
@@ -25,9 +25,9 @@ export const ThemedHoverStyle = css`
 
 export const ThemedSection = styled.div`
     ${FrostedContainerStyle};
-    
+
     margin: 0;
     padding: 1rem;
-    
+
     border-radius: 1rem;
 `;

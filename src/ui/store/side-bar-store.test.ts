@@ -3,11 +3,9 @@ import { create } from 'zustand/index';
 
 import { createSideBarSlice, SideBarStoreActions, SideBarStoreState } from './side-bar-store';
 
-export const useStore = create<SideBarStoreActions & SideBarStoreState>()(
-    (...args) => ({
-        ...createSideBarSlice(...args),
-    }),
-);
+export const useStore = create<SideBarStoreActions & SideBarStoreState>()((...args) => ({
+    ...createSideBarSlice(...args),
+}));
 
 describe('SideBarStore', () => {
     beforeEach(() => {

@@ -3,8 +3,8 @@ import { styled } from 'styled-components';
 import { Icon } from '../icon';
 
 interface HintProps {
-    text: string
-    title: string
+    text: string;
+    title: string;
 }
 
 export function Hint(props: HintProps) {
@@ -21,9 +21,9 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: min-content 1fr;
     grid-template-rows: auto;
-    grid-template-areas: 
-        "a b"
-        "a c";
+    grid-template-areas:
+        'a b'
+        'a c';
     gap: 0.5rem 1rem;
 `;
 

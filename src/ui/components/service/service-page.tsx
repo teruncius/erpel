@@ -14,7 +14,5 @@ export function ServicePage() {
         }
     }, [id]);
 
-    return (
-        <></>
-    );
+    return <></>;
 }

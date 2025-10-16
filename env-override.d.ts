@@ -9,5 +9,5 @@ declare module '*?asset' {
 }
 
 interface Crypto {
-    randomUUID: () => string
+    randomUUID: () => string;
 }

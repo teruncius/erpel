@@ -15,8 +15,8 @@ import type { Service } from './state/schema';
 
 import icon from '../resources/erpel.png?asset';
 import { AppMessage } from './app-message';
-import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './ui/components/side-bar/side-bar';
 import { loadConfig, saveConfig } from './state/config';
+import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './ui/components/side-bar/side-bar';
 
 const CONFIG_PATH = join(app.getPath('userData'), 'config.json');
 const SESSION_PARTITION = `persist:${import.meta.env.DEV ? 'development' : 'production'}`;
@@ -37,8 +37,7 @@ export const createWindow = async () => {
     // and load the index.html of the app.
     if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
         window.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
-    }
-    else {
+    } else {
         window.loadFile(join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
     }
 
@@ -163,11 +162,11 @@ export const createWindow = async () => {
 
 interface BuildMenuOptions {
     data: {
-        x: number
-        y: number
-    }
-    event: IpcMainEvent
-    isServiceWindow: boolean
+        x: number;
+        y: number;
+    };
+    event: IpcMainEvent;
+    isServiceWindow: boolean;
 }
 
 function buildMenuForSender({ data, event, isServiceWindow }: BuildMenuOptions) {
@@ -184,18 +183,22 @@ function buildMenuForSender({ data, event, isServiceWindow }: BuildMenuOptions) 
         {
             type: 'separator',
         },
-        ...(!isServiceWindow ? [] : [{
-            click: () => {
-                clipboard.writeText(event.sender.getURL());
-            },
-            label: 'Copy URL',
-        },
-        {
-            click: () => {
-                shell.openExternal(event.sender.getURL());
-            },
-            label: 'Open in Browser',
-        }]),
+        ...(!isServiceWindow
+            ? []
+            : [
+                  {
+                      click: () => {
+                          clipboard.writeText(event.sender.getURL());
+                      },
+                      label: 'Copy URL',
+                  },
+                  {
+                      click: () => {
+                          shell.openExternal(event.sender.getURL());
+                      },
+                      label: 'Open in Browser',
+                  },
+              ]),
         {
             type: 'separator',
         },

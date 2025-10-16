@@ -11,9 +11,7 @@ export function Layout() {
 
     return (
         <Page>
-            {mode === BackgroundMode.Wallpaper && (
-                <Wallpaper />
-            )}
+            {mode === BackgroundMode.Wallpaper && <Wallpaper />}
             <SideBar />
             <Content $isOpen={isOpen}>
                 <PageWidescreenLimiter>
@@ -26,14 +24,14 @@ export function Layout() {
 
 const Page = styled.div`
     display: flex;
-    
+
     min-height: 100vh;
     overflow: hidden;
 `;
 
 const Content = styled.div<{ $isOpen: boolean }>`
     padding: 3rem;
-    margin: 0 0 0 ${(props) => props.$isOpen ? SIDEBAR_WIDTH_OPEN : SIDEBAR_WIDTH_CLOSED}px;
+    margin: 0 0 0 ${(props) => (props.$isOpen ? SIDEBAR_WIDTH_OPEN : SIDEBAR_WIDTH_CLOSED)}px;
 
     display: flex;
     flex-grow: 1;
@@ -56,7 +54,7 @@ export const PageCenter = styled.div`
     flex-direction: column;
     flex-grow: 1;
     gap: 1rem;
-    
+
     justify-content: center;
     align-items: center;
 `;

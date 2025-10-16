@@ -36,7 +36,7 @@ export function SideBar() {
 const Container = styled.div<{ $isOpen: boolean }>`
     ${SoftFrostedEffectStyle};
     position: fixed;
-    width: ${(props) => props.$isOpen ? `${SIDEBAR_WIDTH_OPEN}px` : `${SIDEBAR_WIDTH_CLOSED}px`};
+    width: ${(props) => (props.$isOpen ? `${SIDEBAR_WIDTH_OPEN}px` : `${SIDEBAR_WIDTH_CLOSED}px`)};
     height: 100vh;
 
     display: flex;

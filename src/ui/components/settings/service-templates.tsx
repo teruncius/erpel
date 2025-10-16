@@ -21,12 +21,13 @@ export function ServiceTemplates() {
         setSearch('');
     }
 
-    const filtered = !search.length ? templates : templates
-        .filter((templates) => {
-            const name = templates.name.default.toLowerCase().includes(search.toLowerCase());
-            const tags = templates.tags.filter((tag) => tag.toLowerCase().includes(search.toLowerCase()));
-            return name || tags.length > 0;
-        });
+    const filtered = !search.length
+        ? templates
+        : templates.filter((templates) => {
+              const name = templates.name.default.toLowerCase().includes(search.toLowerCase());
+              const tags = templates.tags.filter((tag) => tag.toLowerCase().includes(search.toLowerCase()));
+              return name || tags.length > 0;
+          });
 
     return (
         <ThemedSection>
@@ -85,7 +86,7 @@ const Grid = styled.div`
 `;
 
 interface ServiceTemplateProps {
-    template: ServiceTemplate
+    template: ServiceTemplate;
 }
 
 function ServiceTemplate(props: ServiceTemplateProps) {
@@ -106,7 +107,7 @@ function ServiceTemplate(props: ServiceTemplateProps) {
 const TemplateBox = styled.div`
     ${HardFrostedEffectStyle};
     ${ThemedHoverStyle};
-    
+
     padding: 0.5rem;
     margin: 0;
 

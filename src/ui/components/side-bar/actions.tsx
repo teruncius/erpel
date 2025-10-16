@@ -49,7 +49,7 @@ const ActionList = styled.ul<{ $isOpen: boolean }>`
     margin: 0;
 
     display: flex;
-    flex-direction: ${(props) => props.$isOpen ? 'row' : 'column-reverse'};
+    flex-direction: ${(props) => (props.$isOpen ? 'row' : 'column-reverse')};
     justify-content: center;
 
     list-style: none;
@@ -63,11 +63,11 @@ const Action = styled.li`
 const ActionButton = styled.button`
     padding: 4px;
     margin: 0;
-    
+
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+
     border: 0;
     color: #ffffff;
     background: transparent;

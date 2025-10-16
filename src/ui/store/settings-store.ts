@@ -3,22 +3,22 @@ import { StateCreator } from 'zustand/vanilla';
 import { BackgroundMode, DEFAULT_IS_MUTED, DEFAULT_LOCALE } from '../../state/settings';
 
 export interface SettingsStoreActions {
-    loadSettingsFromFile: (settings: SettingsStoreState) => void
-    setDateFormat: (locale: string) => void
-    setIsMuted: (isMuted: boolean) => void
-    setLocale: (locale: string) => void
-    setMode: (mode: BackgroundMode) => void
-    setTimeFormat: (locale: string) => void
-    setWallpapers: (wallpapers: string[]) => void
+    loadSettingsFromFile: (settings: SettingsStoreState) => void;
+    setDateFormat: (locale: string) => void;
+    setIsMuted: (isMuted: boolean) => void;
+    setLocale: (locale: string) => void;
+    setMode: (mode: BackgroundMode) => void;
+    setTimeFormat: (locale: string) => void;
+    setWallpapers: (wallpapers: string[]) => void;
 }
 
 export interface SettingsStoreState {
-    dateFormat: string
-    isMuted: boolean
-    locale: string
-    mode: BackgroundMode
-    timeFormat: string
-    wallpapers: string[]
+    dateFormat: string;
+    isMuted: boolean;
+    locale: string;
+    mode: BackgroundMode;
+    timeFormat: string;
+    wallpapers: string[];
 }
 
 const initialValues: SettingsStoreState = {

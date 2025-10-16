@@ -23,13 +23,15 @@ export const DefaultConfig: Config = {
     wallpapers: DEFAULT_WALLPAPERS,
 };
 
-type Result<T> = {
-    data: T
-    success: true
-} | {
-    error: string
-    success: false
-};
+type Result<T> =
+    | {
+          data: T;
+          success: true;
+      }
+    | {
+          error: string;
+          success: false;
+      };
 
 export async function loadConfig(path: string): Promise<Config> {
     try {
@@ -40,8 +42,7 @@ export async function loadConfig(path: string): Promise<Config> {
             return DefaultConfig;
         }
         return parsed.data;
-    }
-    catch (e) {
+    } catch (e) {
         console.warn('User data not found', e);
         return DefaultConfig;
     }
@@ -51,8 +52,7 @@ export async function saveConfig(path: string, data: Config) {
     try {
         const value = JSON.stringify(data, null, 4);
         await writeFile(path, value, { encoding: 'utf8' });
-    }
-    catch (e) {
+    } catch (e) {
         console.error('Unable to save user data', e);
     }
 }

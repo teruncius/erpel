@@ -10,22 +10,25 @@ import { ThemedCheckbox } from '../theme/checkbox';
 import { ThemedInput } from '../theme/input';
 
 export interface Values {
-    darkMode: boolean | null
-    name: null | string
-    url: null | string
+    darkMode: boolean | null;
+    name: null | string;
+    url: null | string;
 }
 
 interface ServiceFormProps {
-    service: Service
+    service: Service;
 }
 
 export function ServiceForm(props: ServiceFormProps) {
     const { control, handleSubmit, register } = useForm<Values>({ defaultValues: props.service });
     const { replace } = useStore();
 
-    const onSubmit: SubmitHandler<Values> = useCallback((data) => {
-        replace(props.service.id, { ...props.service, ...data });
-    }, [props.service, replace]);
+    const onSubmit: SubmitHandler<Values> = useCallback(
+        (data) => {
+            replace(props.service.id, { ...props.service, ...data });
+        },
+        [props.service, replace]
+    );
 
     const filterEmptyToString = useCallback((value: string) => {
         return value !== null && value.trim().length > 0 ? value : null;
@@ -85,7 +88,7 @@ export function ServiceForm(props: ServiceFormProps) {
 const Form = styled.form`
     padding: 0;
     margin: 0;
-    
+
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -94,11 +97,11 @@ const Form = styled.form`
 const Fieldset = styled.fieldset`
     padding: 0;
     margin: 0;
-    
+
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    
+
     border: 0;
 `;
 

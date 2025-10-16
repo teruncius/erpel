@@ -4,7 +4,7 @@ import { contextBridge, ipcRenderer } from 'electron';
 import { AppMessage } from '../app-message';
 
 interface DarkReaderAPI {
-    run: () => void
+    run: () => void;
 }
 
 const api: DarkReaderAPI = {
@@ -17,7 +17,7 @@ const api: DarkReaderAPI = {
 };
 
 interface DarkReaderWindow extends Window {
-    DarkReader: DarkReaderAPI
+    DarkReader: DarkReaderAPI;
 }
 
 declare const window: DarkReaderWindow;

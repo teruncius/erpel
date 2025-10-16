@@ -5,7 +5,7 @@ import { useStore } from '../../store/store';
 import { FrostedContainerStyle } from '../theme';
 
 interface Props {
-    golden?: boolean
+    golden?: boolean;
 }
 
 export function Clock(props: Props) {
@@ -41,10 +41,10 @@ export function Clock(props: Props) {
 
 const Container = styled.div<{ $golden: boolean }>`
     ${FrostedContainerStyle};
-    
+
     padding: 1rem 3rem;
     margin: 0;
-    aspect-ratio: ${(props) => props.$golden ? '1.618' : 'auto'};
+    aspect-ratio: ${(props) => (props.$golden ? '1.618' : 'auto')};
 
     display: flex;
     flex-direction: column;

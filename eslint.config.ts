@@ -1,66 +1,49 @@
-import eslint from '@eslint/js';
-import stylistic from '@stylistic/eslint-plugin';
-import perfectionist from 'eslint-plugin-perfectionist';
+import js from '@eslint/js';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import pluginReact from 'eslint-plugin-react';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginReactRefresh from 'eslint-plugin-react-refresh';
+import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
-    eslint.configs.recommended,
-    tseslint.configs.recommended,
-    tseslint.configs.eslintRecommended,
-    tseslint.configs.stylistic,
-    stylistic.configs.recommended,
-    perfectionist.configs['recommended-alphabetical'],
+export default [
+    js.configs.recommended,
+    eslintConfigPrettier,
+    ...tseslint.configs.recommended,
+    pluginReact.configs.flat.recommended,
+    {
+        ignores: ['.vite/**', 'node_modules/**'],
+    },
+    {
+        rules: {
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    argsIgnorePattern: '^_',
+                    caughtErrorsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                },
+            ],
+        },
+    },
     {
         languageOptions: {
-            parserOptions: {
-                projectService: true,
-                tsconfigRootDir: import.meta.dirname,
+            ...pluginReact.configs.flat.recommended.languageOptions,
+            globals: {
+                ...globals.browser,
             },
         },
     },
     {
-        ignores: ['.vite'],
-    },
-    {
+        plugins: {
+            'react-hooks': pluginReactHooks,
+            'react-refresh': pluginReactRefresh,
+        },
+        settings: { react: { version: 'detect' } },
         rules: {
-            '@stylistic/array-bracket-spacing': ['error', 'never', {
-                arraysInArrays: false,
-                objectsInArrays: false,
-                singleValue: false,
-            }],
-            '@stylistic/arrow-parens': ['error', 'always'],
-            '@stylistic/comma-dangle': ['error', 'always-multiline'],
-            '@stylistic/eol-last': 'error',
-            '@stylistic/indent': ['error', 4, {
-                SwitchCase: 1,
-            }],
-            '@stylistic/jsx-indent-props': ['error', 4],
-            '@stylistic/linebreak-style': ['error', 'unix'],
-            '@stylistic/multiline-ternary': ['error', 'never'],
-            '@stylistic/no-whitespace-before-property': 'error',
-            '@stylistic/object-curly-spacing': ['error', 'always'],
-            '@stylistic/padded-blocks': ['error', {
-                blocks: 'never',
-                classes: 'always',
-                switches: 'never',
-            }],
-            '@stylistic/quotes': ['error', 'single'],
-            '@stylistic/rest-spread-spacing': ['error', 'never'],
-            '@stylistic/semi': ['error', 'always'],
-            '@stylistic/space-in-parens': ['error', 'never'],
-            '@stylistic/space-unary-ops': [2, {
-                nonwords: false,
-                words: true,
-            }],
-            '@stylistic/switch-colon-spacing': ['error', {
-                after: true,
-                before: false,
-            }],
-            '@stylistic/template-curly-spacing': ['error', 'never'],
-            '@typescript-eslint/no-unused-vars': ['error', {
-                varsIgnorePattern: '^_',
-            }],
-            'perfectionist/sort-imports': 'error',
+            ...pluginReactHooks.configs.recommended.rules,
+            // React scope no longer necessary with new JSX transform.
+            'react/react-in-jsx-scope': 'off',
         },
     },
-);
+];

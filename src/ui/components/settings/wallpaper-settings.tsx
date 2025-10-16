@@ -9,22 +9,25 @@ import { ThemedButton } from '../theme/button';
 import { ThemedSelect } from '../theme/select';
 import { ThemedTextarea } from '../theme/textarea';
 
-const modes = [
-    BackgroundMode.Color,
-    BackgroundMode.Wallpaper,
-];
+const modes = [BackgroundMode.Color, BackgroundMode.Wallpaper];
 
 export function WallpaperSettings() {
     const { mode, setMode, setWallpapers, wallpapers } = useStore();
 
-    const handleChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-        // TODO: parse value into enum
-        setMode(e.target.value as BackgroundMode);
-    }, [setMode]);
+    const handleChange = useCallback(
+        (e: ChangeEvent<HTMLSelectElement>) => {
+            // TODO: parse value into enum
+            setMode(e.target.value as BackgroundMode);
+        },
+        [setMode]
+    );
 
-    const handleChange2 = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-        setWallpapers(e.target.value.split('\n'));
-    }, [setWallpapers]);
+    const handleChange2 = useCallback(
+        (e: ChangeEvent<HTMLTextAreaElement>) => {
+            setWallpapers(e.target.value.split('\n'));
+        },
+        [setWallpapers]
+    );
 
     const handleReset = useCallback(() => {
         setWallpapers(DEFAULT_WALLPAPERS);

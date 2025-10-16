@@ -3,10 +3,12 @@ import { describe, expect, test } from 'vitest';
 import {
     BackgroundMode,
     DEFAULT_IS_MUTED,
-    DEFAULT_LOCALE, DEFAULT_MODE,
+    DEFAULT_LOCALE,
+    DEFAULT_MODE,
     DEFAULT_SERVICE_TEMPLATES,
     DEFAULT_SERVICES,
-    DEFAULT_SIDE_BAR_IS_OPEN, DEFAULT_WALLPAPERS,
+    DEFAULT_SIDE_BAR_IS_OPEN,
+    DEFAULT_WALLPAPERS,
     IconIdToUrl,
     ServiceFromTemplate,
 } from './settings';

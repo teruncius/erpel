@@ -3,11 +3,9 @@ import { create } from 'zustand/index';
 
 import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from './service-store';
 
-export const useStore = create<ServiceStoreActions & ServiceStoreState>()(
-    (...args) => ({
-        ...createServiceSlice(...args),
-    }),
-);
+export const useStore = create<ServiceStoreActions & ServiceStoreState>()((...args) => ({
+    ...createServiceSlice(...args),
+}));
 
 describe('ServiceStore', () => {
     beforeEach(() => {

@@ -47,21 +47,16 @@ const List = styled.div`
 `;
 
 interface CurrentServiceProps {
-    service: Service
+    service: Service;
 }
 
 function Service(props: CurrentServiceProps) {
     const { remove } = useStore();
     const [isOpen, setIsOpen] = useState(false);
 
-    const {
-        attributes,
-        listeners,
-        setActivatorNodeRef,
-        setNodeRef,
-        transform,
-        transition,
-    } = useSortable({ id: props.service.id });
+    const { attributes, listeners, setActivatorNodeRef, setNodeRef, transform, transition } = useSortable({
+        id: props.service.id,
+    });
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -89,13 +84,7 @@ function Service(props: CurrentServiceProps) {
                 </ServiceButtonDnD>
                 <ServiceIcon icon={icon} name={name} size={32} />
                 <ServiceName>
-                    {props.service.name && props.service.template.name && (
-                        <>
-                            {props.service.template.name.default}
-                            :
-                            {' '}
-                        </>
-                    )}
+                    {props.service.name && props.service.template.name && <>{props.service.template.name.default}: </>}
                     <>{name}</>
                 </ServiceName>
                 <ServiceButtons>
@@ -118,7 +107,7 @@ function Service(props: CurrentServiceProps) {
 
 const ServiceBox = styled.div`
     ${HardFrostedEffectStyle};
-    
+
     padding: 0.5rem;
     margin: 0;
 

@@ -6,19 +6,19 @@ import { Service, ServiceTemplate } from '../../state/schema';
 import { ServiceFromTemplate } from '../../state/settings';
 
 export interface ServiceStoreActions {
-    add: (service: Service) => void
-    addFromTemplate: (template: ServiceTemplate) => void
-    clear: () => void
-    loadServicesFromFile: (services: Service[]) => void
-    loadServicesFromPreset: () => void
-    remove: (id: string) => void
-    reorder: (fromIndex: number, toIndex: number) => void
-    replace: (id: string, service: Service) => void
+    add: (service: Service) => void;
+    addFromTemplate: (template: ServiceTemplate) => void;
+    clear: () => void;
+    loadServicesFromFile: (services: Service[]) => void;
+    loadServicesFromPreset: () => void;
+    remove: (id: string) => void;
+    reorder: (fromIndex: number, toIndex: number) => void;
+    replace: (id: string, service: Service) => void;
 }
 
 export interface ServiceStoreState {
-    services: Service[]
-    templates: ServiceTemplate[]
+    services: Service[];
+    templates: ServiceTemplate[];
 }
 
 const initialValues: ServiceStoreState = {
@@ -67,8 +67,7 @@ export const createServiceSlice: StateCreator<ServiceStoreActions & ServiceStore
         if (idx === -1) {
             console.warn(`Unable to replace service ${id}, because it was not found. Adding the new service instead.`);
             get().add(service);
-        }
-        else {
+        } else {
             services[idx] = service;
             set({ services });
             window.electron.removeService(id);

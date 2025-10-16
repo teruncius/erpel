@@ -1,168 +1,168 @@
 on:
-  push:
-    tags: [ "*.*.*" ]
+    push:
+        tags: ['*.*.*']
 
 permissions:
-  contents: write
+    contents: write
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    build-linux:
+        runs-on: ubuntu-24.04
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  run_install: false
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
+            - name: Install Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: 'pnpm'
 
-      - name: Install just
-        uses: extractions/setup-just@v3
-        with:
-          just-version: 1.40.0
+            - name: Install just
+              uses: extractions/setup-just@v3
+              with:
+                  just-version: 1.40.0
 
-      - name: Install dependencies
-        run: just install
+            - name: Install dependencies
+              run: just install
 
-      - name: Run tests
-        run: just test
+            - name: Run tests
+              run: just test
 
-      - name: Run linter
-        run: just lint
+            - name: Run linter
+              run: just lint
 
-      - name: Build application
-        run: just build
+            - name: Build application
+              run: just build
 
-#      - run: mkdir -p out/make/deb/x64
-#      - run: echo "TEST" > out/make/deb/x64/erpel_${{ github.ref_name }}_amd64.deb
+            #      - run: mkdir -p out/make/deb/x64
+            #      - run: echo "TEST" > out/make/deb/x64/erpel_${{ github.ref_name }}_amd64.deb
 
-      - name: Upload build
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-${{ runner.os }}
-          path: out/make/**/*
-          retention-days: 1
+            - name: Upload build
+              uses: actions/upload-artifact@v4
+              with:
+                  name: build-${{ runner.os }}
+                  path: out/make/**/*
+                  retention-days: 1
 
-  build-windows:
-    runs-on: windows-2022
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    build-windows:
+        runs-on: windows-2022
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  run_install: false
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
+            - name: Install Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: 'pnpm'
 
-      - name: Install just
-        uses: extractions/setup-just@v3
-        with:
-          just-version: 1.40.0
+            - name: Install just
+              uses: extractions/setup-just@v3
+              with:
+                  just-version: 1.40.0
 
-      - name: Install dependencies
-        run: just install
+            - name: Install dependencies
+              run: just install
 
-      - name: Run tests
-        run: just test
+            - name: Run tests
+              run: just test
 
-      - name: Run linter
-        run: just lint
+            - name: Run linter
+              run: just lint
 
-      - name: Build application
-        run: just build
+            - name: Build application
+              run: just build
 
-#      - run: New-Item -ItemType Directory "./out/make/squirrel.windows/x64/"
-#      - run: New-Item -ItemType File "./out/make/squirrel.windows/x64/erpel-${{ github.ref_name }}-full.nupkg" -Value "erpel-${{ github.ref_name }}-full.nupkg"
-#      - run: New-Item -ItemType File "./out/make/squirrel.windows/x64/erpel-${{ github.ref_name }} Setup.exe" -Value "erpel-${{ github.ref_name }} Setup.exe"
-#      - run: New-Item -ItemType File "./out/make/squirrel.windows/x64/RELEASES" -Value "RELEASES"
+            #      - run: New-Item -ItemType Directory "./out/make/squirrel.windows/x64/"
+            #      - run: New-Item -ItemType File "./out/make/squirrel.windows/x64/erpel-${{ github.ref_name }}-full.nupkg" -Value "erpel-${{ github.ref_name }}-full.nupkg"
+            #      - run: New-Item -ItemType File "./out/make/squirrel.windows/x64/erpel-${{ github.ref_name }} Setup.exe" -Value "erpel-${{ github.ref_name }} Setup.exe"
+            #      - run: New-Item -ItemType File "./out/make/squirrel.windows/x64/RELEASES" -Value "RELEASES"
 
-      - name: Upload build
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-${{ runner.os }}
-          path: out/make/**/*
-          retention-days: 1
+            - name: Upload build
+              uses: actions/upload-artifact@v4
+              with:
+                  name: build-${{ runner.os }}
+                  path: out/make/**/*
+                  retention-days: 1
 
-  build-macos:
-    runs-on: macos-15
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    build-macos:
+        runs-on: macos-15
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  run_install: false
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
+            - name: Install Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: 'pnpm'
 
-      - name: Install just
-        uses: extractions/setup-just@v3
-        with:
-          just-version: 1.40.0
+            - name: Install just
+              uses: extractions/setup-just@v3
+              with:
+                  just-version: 1.40.0
 
-      - name: Install dependencies
-        run: just install
+            - name: Install dependencies
+              run: just install
 
-      - name: Run tests
-        run: just test
+            - name: Run tests
+              run: just test
 
-      - name: Run linter
-        run: just lint
+            - name: Run linter
+              run: just lint
 
-      - name: Build application
-        run: just build
+            - name: Build application
+              run: just build
 
-      - name: Upload build
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-${{ runner.os }}
-          path: out/make/**/*
-          retention-days: 1
+            - name: Upload build
+              uses: actions/upload-artifact@v4
+              with:
+                  name: build-${{ runner.os }}
+                  path: out/make/**/*
+                  retention-days: 1
 
-  release:
-    runs-on: ubuntu-24.04
-    needs:
-      - build-linux
-      - build-windows
-      - build-macos
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    release:
+        runs-on: ubuntu-24.04
+        needs:
+            - build-linux
+            - build-windows
+            - build-macos
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Download builds
-        uses: actions/download-artifact@v4
-        with:
-          pattern: build-*
-          path: ./out/make/
-          merge-multiple: "true"
+            - name: Download builds
+              uses: actions/download-artifact@v4
+              with:
+                  pattern: build-*
+                  path: ./out/make/
+                  merge-multiple: 'true'
 
-      - run: ls -lah ./out/make/*
+            - run: ls -lah ./out/make/*
 
-      - name: Tag release
-        run: gh release create ${{ github.ref_name }} ./out/make/*/*/*
-        env:
-          GH_TOKEN: ${{ github.token }}
+            - name: Tag release
+              run: gh release create ${{ github.ref_name }} ./out/make/*/*/*
+              env:
+                  GH_TOKEN: ${{ github.token }}
 
-      # TODO: fix this
-      - name: Add .dmg to release
-        run: gh release upload ${{ github.ref_name }} ./out/make/*.dmg
-        env:
-          GH_TOKEN: ${{ github.token }}
+            # TODO: fix this
+            - name: Add .dmg to release
+              run: gh release upload ${{ github.ref_name }} ./out/make/*.dmg
+              env:
+                  GH_TOKEN: ${{ github.token }}
