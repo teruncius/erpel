@@ -22,7 +22,7 @@ export function Wallpaper() {
         if (transRef.current.length === 1) {
             set((last) => (last + 1) % wallpapers.length);
         }
-    }, [wallpapers, set]);
+    }, [wallpapers, set, transRef]);
 
     useEffect(() => {
         if (timerRef.current) {
@@ -30,7 +30,7 @@ export function Wallpaper() {
         }
         timerRef.current = setTimeout(handleNext, 60000);
         transRef.start();
-    }, [wallpapers, index]);
+    }, [wallpapers, index, handleNext, transRef]);
 
     return transitions((style: CSSProperties, i: number) => {
         return <Image key={i} onClick={handleNext} style={{ ...style, backgroundImage: `url(${wallpapers[i]})` }} />;

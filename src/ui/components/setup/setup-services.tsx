@@ -66,7 +66,7 @@ export function SetupServices() {
         return () => {
             alive = false;
         };
-    }, [loadServicesFromFile]);
+    }, [loadServicesFromFile, loadSettingsFromFile]);
 
     return (
         <>
