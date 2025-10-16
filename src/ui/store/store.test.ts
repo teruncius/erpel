@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { useStore } from "./store";
 import { Config } from "../../state/schema";
 import { BackgroundMode, DEFAULT_SERVICE_TEMPLATES } from "../../state/settings";
+import { useStore } from "./store";
 
 describe("Store", () => {
     const loadConfig = vi.fn();
@@ -104,7 +104,10 @@ describe("Store", () => {
             expect(state.locale).toBe("de-DE");
             expect(state.mode).toBe(BackgroundMode.Color);
             expect(state.timeFormat).toBe("de-DE");
-            expect(state.wallpapers).toEqual(["https://example.com/wallpaper1.jpg", "https://example.com/wallpaper2.jpg"]);
+            expect(state.wallpapers).toEqual([
+                "https://example.com/wallpaper1.jpg",
+                "https://example.com/wallpaper2.jpg",
+            ]);
             expect(state.templates).toEqual(DEFAULT_SERVICE_TEMPLATES);
         });
 
@@ -182,12 +185,12 @@ describe("Store", () => {
 
         it("handles invalid store state transformation", async () => {
             const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-            
+
             // Test that the transformation function handles invalid data
             // We'll test this by importing the necessary modules and testing the logic
             const { z } = await import("zod");
             const { ConfigSchema } = await import("../../state/schema");
-            
+
             const invalidState = {
                 dateFormat: "invalid",
                 isMuted: "not a boolean" as any,
@@ -251,7 +254,7 @@ describe("Store", () => {
 
         it("maintains state consistency across operations", () => {
             const initialState = useStore.getState();
-            
+
             // Perform operations from different slices
             useStore.getState().setLocale("de-DE");
             useStore.getState().setIsMuted(true);

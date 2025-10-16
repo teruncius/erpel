@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Home } from "./home-page";
 
@@ -30,11 +30,7 @@ vi.mock("./clock", () => ({
 }));
 
 vi.mock("../layout", () => ({
-    PageCenter: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="page-center">
-            {children}
-        </div>
-    ),
+    PageCenter: ({ children }: { children: React.ReactNode }) => <div data-testid="page-center">{children}</div>,
 }));
 
 // Mock window.electron
@@ -49,7 +45,7 @@ describe("Home", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         cleanup();
-        
+
         // Mock window.electron
         Object.defineProperty(window, "electron", {
             value: mockElectronWindow.electron,
@@ -59,9 +55,7 @@ describe("Home", () => {
 
         // Default store mock
         mockUseStore.mockReturnValue({
-            services: [
-                { id: "service-1", name: "Test Service", url: "https://example.com" },
-            ],
+            services: [{ id: "service-1", name: "Test Service", url: "https://example.com" }],
         });
     });
 
@@ -102,7 +96,7 @@ describe("Home", () => {
 
             const pageCenter = screen.getByTestId("page-center");
             const clock = screen.getByTestId("clock");
-            
+
             expect(pageCenter).toContainElement(clock);
         });
     });
@@ -172,9 +166,7 @@ describe("Home", () => {
 
         it("does not navigate when services are available", () => {
             mockUseStore.mockReturnValue({
-                services: [
-                    { id: "service-1", name: "Test Service", url: "https://example.com" },
-                ],
+                services: [{ id: "service-1", name: "Test Service", url: "https://example.com" }],
             });
 
             render(
@@ -230,9 +222,7 @@ describe("Home", () => {
 
             // Change to have services
             mockUseStore.mockReturnValue({
-                services: [
-                    { id: "service-1", name: "Test Service", url: "https://example.com" },
-                ],
+                services: [{ id: "service-1", name: "Test Service", url: "https://example.com" }],
             });
 
             rerender(

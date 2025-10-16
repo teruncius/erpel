@@ -1,9 +1,8 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ThemedTextarea } from "./textarea";
-
 
 // Mock theme styles
 vi.mock("../theme", () => ({
@@ -340,7 +339,7 @@ describe("ThemedTextarea", () => {
             render(<ThemedTextarea onChange={mockOnChange} />);
 
             const textarea = screen.getByRole("textbox");
-            
+
             // Rapid typing
             for (let i = 0; i < 10; i++) {
                 await user.type(textarea, "a");

@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { create } from "zustand";
 
-import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from "./settings-store";
 import { BackgroundMode, DEFAULT_IS_MUTED, DEFAULT_LOCALE } from "../../state/settings";
+import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from "./settings-store";
 
 // Create a test store
 const useTestStore = create<SettingsStoreActions & SettingsStoreState>()((...args) => ({
@@ -63,10 +63,7 @@ describe("SettingsStore", () => {
         });
 
         it("sets wallpapers", () => {
-            const wallpapers = [
-                "https://example.com/wallpaper1.jpg",
-                "https://example.com/wallpaper2.jpg",
-            ];
+            const wallpapers = ["https://example.com/wallpaper1.jpg", "https://example.com/wallpaper2.jpg"];
 
             useTestStore.getState().setWallpapers(wallpapers);
 
@@ -328,9 +325,7 @@ describe("SettingsStore", () => {
         });
 
         it("handles very long wallpaper arrays", () => {
-            const manyWallpapers = Array.from({ length: 100 }, (_, i) => 
-                `https://example.com/wallpaper${i}.jpg`
-            );
+            const manyWallpapers = Array.from({ length: 100 }, (_, i) => `https://example.com/wallpaper${i}.jpg`);
 
             useTestStore.getState().setWallpapers(manyWallpapers);
 

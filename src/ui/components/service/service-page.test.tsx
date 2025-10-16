@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ServicePage } from "./service-page";
 
@@ -26,7 +26,7 @@ describe("ServicePage", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         cleanup();
-        
+
         // Mock window.electron
         Object.defineProperty(window, "electron", {
             value: mockElectronWindow.electron,
@@ -103,10 +103,10 @@ describe("ServicePage", () => {
 
         it("handles different service IDs", () => {
             const serviceIds = ["service-1", "service-2", "another-service"];
-            
+
             serviceIds.forEach((id) => {
                 mockUseParams.mockReturnValue({ id });
-                
+
                 const { unmount } = render(
                     <MemoryRouter>
                         <ServicePage />
@@ -256,10 +256,10 @@ describe("ServicePage", () => {
 
         it("handles multiple service activations", () => {
             const serviceIds = ["service-1", "service-2", "service-3"];
-            
+
             serviceIds.forEach((id, index) => {
                 mockUseParams.mockReturnValue({ id });
-                
+
                 const { unmount } = render(
                     <MemoryRouter>
                         <ServicePage />

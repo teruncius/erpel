@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Services } from "./services";
 
@@ -73,7 +73,7 @@ describe("Services", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         cleanup();
-        
+
         // Default store mock
         mockUseStore.mockReturnValue({
             services: mockServices,
@@ -263,7 +263,7 @@ describe("Services", () => {
 
             const serviceIcons = screen.getAllByTestId("service-icon");
 
-            serviceIcons.forEach(icon => {
+            serviceIcons.forEach((icon) => {
                 expect(icon).toHaveAttribute("data-size", "32");
             });
         });

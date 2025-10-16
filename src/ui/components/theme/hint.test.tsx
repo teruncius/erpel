@@ -1,5 +1,5 @@
+import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
 
 // Mock Icon component
 vi.mock("../icon", () => ({
@@ -91,7 +91,8 @@ describe("Hint", () => {
         });
 
         it("handles long text content", () => {
-            const longText = "This is a very long hint text that contains a lot of information and might wrap to multiple lines in the UI";
+            const longText =
+                "This is a very long hint text that contains a lot of information and might wrap to multiple lines in the UI";
             render(<Hint title="Short title" text={longText} />);
 
             expect(screen.getByText(longText)).toBeInTheDocument();
@@ -212,7 +213,7 @@ describe("Hint", () => {
             // Title should be distinct from text
             const title = screen.getByText("Test Title");
             const text = screen.getByText("This is a test hint message");
-            
+
             expect(title).toBeInTheDocument();
             expect(text).toBeInTheDocument();
             expect(title).not.toBe(text);
@@ -223,7 +224,7 @@ describe("Hint", () => {
         it("handles very long content", () => {
             const veryLongTitle = "A".repeat(1000);
             const veryLongText = "B".repeat(1000);
-            
+
             render(<Hint title={veryLongTitle} text={veryLongText} />);
 
             expect(screen.getByText(veryLongTitle)).toBeInTheDocument();
@@ -233,7 +234,7 @@ describe("Hint", () => {
         it("handles HTML-like content", () => {
             const htmlTitle = "<script>alert('xss')</script>";
             const htmlText = "<div>HTML content</div>";
-            
+
             render(<Hint title={htmlTitle} text={htmlText} />);
 
             // Should render as text, not execute HTML

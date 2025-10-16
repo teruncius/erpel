@@ -1,6 +1,5 @@
+import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, cleanup, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 // Set global timeout for all tests
 vi.setConfig({ testTimeout: 5000 });
@@ -162,7 +161,7 @@ describe("ThemedButton", () => {
             button.focus();
 
             // Simulate Enter key press - use keyup event which is more reliable
-            const enterEvent = new KeyboardEvent('keyup', { key: 'Enter' });
+            const enterEvent = new KeyboardEvent("keyup", { key: "Enter" });
             button.dispatchEvent(enterEvent);
 
             // For this test, just verify the button is focusable and can receive events
@@ -180,9 +179,7 @@ describe("ThemedButton", () => {
 
         it("handles custom styles", () => {
             render(
-                <ThemedButton style={{ backgroundColor: "red", color: "white" }}>
-                    Custom Styled Button
-                </ThemedButton>
+                <ThemedButton style={{ backgroundColor: "red", color: "white" }}>Custom Styled Button</ThemedButton>
             );
 
             const button = screen.getByRole("button");
@@ -257,25 +254,41 @@ describe("ThemedLink", () => {
 
     describe("Props Handling", () => {
         it("accepts className prop", () => {
-            render(<ThemedLink to="/" className="custom-link">Link</ThemedLink>);
+            render(
+                <ThemedLink to="/" className="custom-link">
+                    Link
+                </ThemedLink>
+            );
 
             expect(screen.getByRole("link")).toHaveClass("custom-link");
         });
 
         it("accepts id prop", () => {
-            render(<ThemedLink to="/" id="test-link">Link</ThemedLink>);
+            render(
+                <ThemedLink to="/" id="test-link">
+                    Link
+                </ThemedLink>
+            );
 
             expect(screen.getByRole("link")).toHaveAttribute("id", "test-link");
         });
 
         it("accepts target prop", () => {
-            render(<ThemedLink to="/" target="_blank">New Tab</ThemedLink>);
+            render(
+                <ThemedLink to="/" target="_blank">
+                    New Tab
+                </ThemedLink>
+            );
 
             expect(screen.getByRole("link")).toHaveAttribute("target", "_blank");
         });
 
         it("accepts rel prop", () => {
-            render(<ThemedLink to="/" rel="noopener noreferrer">Secure Link</ThemedLink>);
+            render(
+                <ThemedLink to="/" rel="noopener noreferrer">
+                    Secure Link
+                </ThemedLink>
+            );
 
             expect(screen.getByRole("link")).toHaveAttribute("rel", "noopener noreferrer");
         });
@@ -305,7 +318,7 @@ describe("ThemedLink", () => {
             link.focus();
 
             // Simulate Enter key press
-            const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+            const enterEvent = new KeyboardEvent("keydown", { key: "Enter" });
             link.dispatchEvent(enterEvent);
 
             // Link should be accessible via keyboard
@@ -363,13 +376,13 @@ describe("ThemedLink", () => {
         });
 
         it("handles undefined children", () => {
-            render(<ThemedLink to="/">{(undefined as any)}</ThemedLink>);
+            render(<ThemedLink to="/">{undefined as any}</ThemedLink>);
 
             expect(screen.getByRole("link")).toBeInTheDocument();
         });
 
         it("handles null children", () => {
-            render(<ThemedLink to="/">{(null as any)}</ThemedLink>);
+            render(<ThemedLink to="/">{null as any}</ThemedLink>);
 
             expect(screen.getByRole("link")).toBeInTheDocument();
         });

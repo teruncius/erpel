@@ -1,8 +1,8 @@
+import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
 
-import { Layout } from "./layout";
 import { BackgroundMode } from "../../state/settings";
+import { Layout } from "./layout";
 
 // Mock the store
 const mockUseStore = vi.fn();
@@ -36,7 +36,7 @@ describe("Layout", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         cleanup();
-        
+
         // Default store mock
         mockUseStore.mockReturnValue({
             isOpen: true,

@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { create } from "zustand";
 
-import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from "./service-store";
 import { Service, ServiceTemplate } from "../../state/schema";
+import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from "./service-store";
 
 // Mock the window.electron object
 const mockAddService = vi.fn();

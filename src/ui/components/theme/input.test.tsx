@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup, fireEvent } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 // Import the component after mocking
 import { ThemedInput } from "./input";
@@ -369,7 +369,7 @@ describe("ThemedInput", () => {
             render(<ThemedInput />);
 
             const input = screen.getByRole("textbox");
-            
+
             // Use fireEvent.change for better performance with long text
             fireEvent.change(input, { target: { value: longText } });
 

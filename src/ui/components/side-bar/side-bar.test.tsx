@@ -1,7 +1,7 @@
+import { cleanup, render } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, cleanup } from "@testing-library/react";
 
-import { SideBar, SIDEBAR_WIDTH_OPEN, SIDEBAR_WIDTH_CLOSED } from "./side-bar";
+import { SideBar, SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "./side-bar";
 
 // Mock the store
 const mockUseStore = vi.fn();
@@ -34,7 +34,7 @@ describe("SideBar", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         cleanup();
-        
+
         // Mock window.electron
         Object.defineProperty(window, "electron", {
             value: mockElectronWindow.electron,

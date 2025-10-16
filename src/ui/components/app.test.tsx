@@ -1,6 +1,5 @@
+import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
 
 import { App } from "./app";
 
@@ -40,11 +39,17 @@ vi.mock("react-router", async () => {
         MemoryRouter: ({ children }: { children: React.ReactNode }) => (
             <div data-testid="memory-router">{children}</div>
         ),
-        Routes: ({ children }: { children: React.ReactNode }) => (
-            <div data-testid="routes">{children}</div>
-        ),
-        Route: ({ children, element, path }: { children?: React.ReactNode; element?: React.ReactNode; path?: string }) => (
-            <div data-testid={`route-${path || 'default'}`} data-path={path}>
+        Routes: ({ children }: { children: React.ReactNode }) => <div data-testid="routes">{children}</div>,
+        Route: ({
+            children,
+            element,
+            path,
+        }: {
+            children?: React.ReactNode;
+            element?: React.ReactNode;
+            path?: string;
+        }) => (
+            <div data-testid={`route-${path || "default"}`} data-path={path}>
                 {element || children}
             </div>
         ),

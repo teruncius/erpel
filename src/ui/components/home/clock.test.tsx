@@ -1,5 +1,5 @@
+import { act, cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, act, cleanup } from "@testing-library/react";
 
 import { Clock } from "./clock";
 
@@ -9,17 +9,16 @@ vi.mock("../../store/store", () => ({
     useStore: () => mockUseStore(),
 }));
 
-
 describe("Clock", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         cleanup();
         vi.useFakeTimers();
-        
+
         // Mock timer functions
-        vi.spyOn(window, 'setInterval');
-        vi.spyOn(window, 'clearInterval');
-        
+        vi.spyOn(window, "setInterval");
+        vi.spyOn(window, "clearInterval");
+
         // Mock the store with default values
         mockUseStore.mockReturnValue({
             dateFormat: "en-US",
@@ -46,7 +45,7 @@ describe("Clock", () => {
 
             // Should render time in HH:MM format
             expect(screen.getByText(/\d{1,2}:\d{2}/)).toBeInTheDocument();
-            
+
             // Should render date with weekday and date
             expect(screen.getByText(/,/)).toBeInTheDocument();
         });
@@ -386,12 +385,12 @@ describe("Clock", () => {
     describe("Component Lifecycle", () => {
         it("cleans up interval on unmount", () => {
             const { unmount } = render(<Clock />);
-            
+
             // Verify interval is set
             expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 1000);
-            
+
             unmount();
-            
+
             // Verify interval is cleared
             expect(clearInterval).toHaveBeenCalled();
         });
@@ -399,10 +398,10 @@ describe("Clock", () => {
         it("handles component remounting", () => {
             const { unmount } = render(<Clock />);
             unmount();
-            
+
             // Remount the component
             render(<Clock />);
-            
+
             // Should set up new interval
             expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 1000);
         });

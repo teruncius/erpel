@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 // Mock the store
 const mockUseStore = vi.fn();
@@ -34,7 +34,7 @@ describe("Actions", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         cleanup();
-        
+
         // Default store mock
         mockUseStore.mockReturnValue({
             isOpen: true,
@@ -237,9 +237,9 @@ describe("Actions", () => {
 
             const buttons = screen.getAllByRole("button");
             expect(buttons).toHaveLength(3);
-            
+
             // Each button should be focusable
-            buttons.forEach(button => {
+            buttons.forEach((button) => {
                 expect(button).not.toHaveAttribute("tabindex", "-1");
             });
         });
@@ -253,7 +253,7 @@ describe("Actions", () => {
 
             const list = screen.getByRole("list");
             const listItems = screen.getAllByRole("listitem");
-            
+
             expect(list).toBeInTheDocument();
             expect(listItems).toHaveLength(3);
         });

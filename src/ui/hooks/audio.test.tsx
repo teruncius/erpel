@@ -1,5 +1,5 @@
+import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { renderHook, act } from "@testing-library/react";
 
 import { useAudio } from "./audio";
 
@@ -106,10 +106,10 @@ describe("useAudio", () => {
             });
 
             expect(mockPlay).toHaveBeenCalled();
-            
+
             // Wait for the promise rejection to be handled
-            await new Promise(resolve => setTimeout(resolve, 0));
-            
+            await new Promise((resolve) => setTimeout(resolve, 0));
+
             expect(consoleSpy).toHaveBeenCalledWith(expect.any(Error));
 
             consoleSpy.mockRestore();
@@ -194,9 +194,7 @@ describe("useAudio", () => {
             expect(result.current[0]).toBe(true);
 
             // Get the ended event handler
-            const endedHandler = mockAddEventListener.mock.calls.find(
-                (call) => call[0] === "ended"
-            )?.[1];
+            const endedHandler = mockAddEventListener.mock.calls.find((call) => call[0] === "ended")?.[1];
 
             // Simulate audio ended event
             act(() => {
@@ -210,9 +208,7 @@ describe("useAudio", () => {
             const { unmount } = renderHook(() => useAudio(testUrl));
 
             // Get the ended event handler
-            const endedHandler = mockAddEventListener.mock.calls.find(
-                (call) => call[0] === "ended"
-            )?.[1];
+            const endedHandler = mockAddEventListener.mock.calls.find((call) => call[0] === "ended")?.[1];
 
             unmount();
 
@@ -257,10 +253,7 @@ describe("useAudio", () => {
 
     describe("URL changes", () => {
         it("should create new Audio instance when URL changes", () => {
-            const { rerender } = renderHook(
-                ({ url }) => useAudio(url),
-                { initialProps: { url: "url1" } }
-            );
+            const { rerender } = renderHook(({ url }) => useAudio(url), { initialProps: { url: "url1" } });
 
             expect(MockAudio).toHaveBeenCalledWith("url1");
 

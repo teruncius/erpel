@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup, waitFor } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { SetupServices } from "./setup-services";
 
@@ -20,11 +20,7 @@ vi.mock("../icon", () => ({
 }));
 
 vi.mock("../theme", () => ({
-    ThemedSection: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="themed-section">
-            {children}
-        </div>
-    ),
+    ThemedSection: ({ children }: { children: React.ReactNode }) => <div data-testid="themed-section">{children}</div>,
 }));
 
 vi.mock("../theme/button", () => ({
@@ -48,7 +44,6 @@ vi.mock("../theme/hint", () => ({
     ),
 }));
 
-
 // Mock window.showOpenFilePicker
 const mockShowOpenFilePicker = vi.fn();
 const mockFileHandle = {
@@ -61,13 +56,13 @@ const mockFile = {
 };
 
 // Mock console.error
-const mockConsoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+const mockConsoleError = vi.spyOn(console, "error").mockImplementation(() => {});
 
 describe("SetupServices", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         cleanup();
-        
+
         // Default store mock
         mockUseStore.mockReturnValue({
             loadServicesFromFile: vi.fn(),
@@ -76,7 +71,7 @@ describe("SetupServices", () => {
         });
 
         // Mock window.showOpenFilePicker
-        Object.defineProperty(window, 'showOpenFilePicker', {
+        Object.defineProperty(window, "showOpenFilePicker", {
             value: mockShowOpenFilePicker,
             writable: true,
             configurable: true,
@@ -115,7 +110,9 @@ describe("SetupServices", () => {
 
             const hint = screen.getByTestId("hint");
             expect(hint).toHaveAttribute("data-title", "Set up your services");
-            expect(hint).toHaveTextContent("You have not added any services yet. Please use one of the options below to continue.");
+            expect(hint).toHaveTextContent(
+                "You have not added any services yet. Please use one of the options below to continue."
+            );
         });
 
         it("renders all setup options", () => {
@@ -261,10 +258,10 @@ describe("SetupServices", () => {
             const uploadButton = screen.getByText("Upload a config file").closest("button");
             if (uploadButton) {
                 uploadButton.click();
-                
+
                 // Wait for async operation
-                await new Promise(resolve => setTimeout(resolve, 0));
-                
+                await new Promise((resolve) => setTimeout(resolve, 0));
+
                 expect(mockShowOpenFilePicker).toHaveBeenCalledWith({
                     excludeAcceptAllOption: true,
                     multiple: false,
@@ -293,7 +290,7 @@ describe("SetupServices", () => {
 
             const mockConfig = {
                 services: [{ id: "test-service", name: "Test Service" }],
-                settings: { theme: "dark" }
+                settings: { theme: "dark" },
             };
             mockFile.text.mockResolvedValue(JSON.stringify(mockConfig));
 
@@ -306,10 +303,10 @@ describe("SetupServices", () => {
             const uploadButton = screen.getByText("Upload a config file").closest("button");
             if (uploadButton) {
                 uploadButton.click();
-                
+
                 // Wait for async operation
-                await new Promise(resolve => setTimeout(resolve, 0));
-                
+                await new Promise((resolve) => setTimeout(resolve, 0));
+
                 expect(mockFileHandle.getFile).toHaveBeenCalled();
                 expect(mockFile.text).toHaveBeenCalled();
                 expect(mockLoadServicesFromFile).toHaveBeenCalledWith(mockConfig.services);
@@ -321,8 +318,8 @@ describe("SetupServices", () => {
 
         it("handles file picker cancellation", async () => {
             // Suppress console.error for this test since we expect the error
-            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            
+            const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
             mockShowOpenFilePicker.mockRejectedValue(new Error("User cancelled"));
 
             render(
@@ -334,23 +331,23 @@ describe("SetupServices", () => {
             const uploadButton = screen.getByText("Upload a config file").closest("button");
             if (uploadButton) {
                 uploadButton.click();
-                
+
                 // Wait for async operation to complete
-                await new Promise(resolve => setTimeout(resolve, 100));
-                
+                await new Promise((resolve) => setTimeout(resolve, 100));
+
                 // The error is handled gracefully
                 expect(true).toBe(true);
             } else {
                 expect(true).toBe(true);
             }
-            
+
             consoleSpy.mockRestore();
         });
 
         it("handles invalid JSON", async () => {
             // Suppress console.error for this test since we expect the error
-            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            
+            const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
             mockFile.text.mockResolvedValue("invalid json");
 
             render(
@@ -362,23 +359,23 @@ describe("SetupServices", () => {
             const uploadButton = screen.getByText("Upload a config file").closest("button");
             if (uploadButton) {
                 uploadButton.click();
-                
+
                 // Wait for async operation to complete
-                await new Promise(resolve => setTimeout(resolve, 100));
-                
+                await new Promise((resolve) => setTimeout(resolve, 100));
+
                 // The error is handled gracefully
                 expect(true).toBe(true);
             } else {
                 expect(true).toBe(true);
             }
-            
+
             consoleSpy.mockRestore();
         });
 
         it("handles file read errors", async () => {
             // Suppress console.error for this test since we expect the error
-            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            
+            const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
             mockFile.text.mockRejectedValue(new Error("File read error"));
 
             render(
@@ -390,16 +387,16 @@ describe("SetupServices", () => {
             const uploadButton = screen.getByText("Upload a config file").closest("button");
             if (uploadButton) {
                 uploadButton.click();
-                
+
                 // Wait for async operation to complete
-                await new Promise(resolve => setTimeout(resolve, 100));
-                
+                await new Promise((resolve) => setTimeout(resolve, 100));
+
                 // The error is handled gracefully
                 expect(true).toBe(true);
             } else {
                 expect(true).toBe(true);
             }
-            
+
             consoleSpy.mockRestore();
         });
     });
@@ -462,9 +459,9 @@ describe("SetupServices", () => {
     describe("Edge Cases", () => {
         it("handles missing window.showOpenFilePicker", async () => {
             // Suppress console.error for this test since we expect the error
-            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-            
-            Object.defineProperty(window, 'showOpenFilePicker', {
+            const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+            Object.defineProperty(window, "showOpenFilePicker", {
                 value: undefined,
                 writable: true,
                 configurable: true,
@@ -479,16 +476,16 @@ describe("SetupServices", () => {
             const uploadButton = screen.getByText("Upload a config file").closest("button");
             if (uploadButton) {
                 uploadButton.click();
-                
+
                 // Wait for async operation to complete
-                await new Promise(resolve => setTimeout(resolve, 100));
-                
+                await new Promise((resolve) => setTimeout(resolve, 100));
+
                 // The error is handled gracefully
                 expect(true).toBe(true);
             } else {
                 expect(true).toBe(true);
             }
-            
+
             consoleSpy.mockRestore();
         });
 
@@ -516,7 +513,7 @@ describe("SetupServices", () => {
             const uploadButton = screen.getByText("Upload a config file").closest("button");
             if (uploadButton) {
                 uploadButton.click();
-                
+
                 // Unmount component before file operation completes
                 // This should not cause errors
                 expect(true).toBe(true);

@@ -1,9 +1,7 @@
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup, fireEvent } from "@testing-library/react";
-import { DndContext } from "@dnd-kit/core";
 
 import { Services } from "./services";
-import { useStore } from "../../store/store";
 
 // Mock the store
 const mockUseStore = vi.fn();
@@ -70,7 +68,7 @@ vi.mock("@dnd-kit/sortable", () => ({
 vi.mock("@dnd-kit/utilities", () => ({
     CSS: {
         Transform: {
-            toString: (transform: any) => transform ? "transformed" : "none",
+            toString: (transform: any) => (transform ? "transformed" : "none"),
         },
     },
 }));
@@ -116,7 +114,7 @@ describe("Services", () => {
         vi.clearAllMocks();
         cleanup();
         mockUseStore.mockReturnValue(mockStore);
-        
+
         // Mock window.confirm
         window.confirm = vi.fn(() => true);
     });
@@ -213,7 +211,10 @@ describe("Services", () => {
             render(<Services />);
 
             const sortableContext = screen.getByTestId("sortable-context");
-            expect(sortableContext).toHaveAttribute("data-items", JSON.stringify(["service-1", "service-2", "service-3"]));
+            expect(sortableContext).toHaveAttribute(
+                "data-items",
+                JSON.stringify(["service-1", "service-2", "service-3"])
+            );
             expect(sortableContext).toHaveAttribute("data-strategy", "vertical-list-sorting-strategy");
         });
 
@@ -237,30 +238,30 @@ describe("Services", () => {
         it("handles service delete with confirmation", () => {
             render(<Services />);
 
-            const deleteButtons = screen.getAllByRole("button").filter(button => 
-                button.querySelector('[data-name="bin"]')
-            );
-            
+            const deleteButtons = screen
+                .getAllByRole("button")
+                .filter((button) => button.querySelector('[data-name="bin"]'));
+
             expect(deleteButtons).toHaveLength(3);
-            
+
             // Click first delete button
             fireEvent.click(deleteButtons[0]);
-            
+
             expect(window.confirm).toHaveBeenCalledWith("Do you really want to delete this service?");
             expect(mockStore.remove).toHaveBeenCalledWith("service-1");
         });
 
         it("does not delete service when confirmation is cancelled", () => {
             window.confirm = vi.fn(() => false);
-            
+
             render(<Services />);
 
-            const deleteButtons = screen.getAllByRole("button").filter(button => 
-                button.querySelector('[data-name="bin"]')
-            );
-            
+            const deleteButtons = screen
+                .getAllByRole("button")
+                .filter((button) => button.querySelector('[data-name="bin"]'));
+
             fireEvent.click(deleteButtons[0]);
-            
+
             expect(window.confirm).toHaveBeenCalledWith("Do you really want to delete this service?");
             expect(mockStore.remove).not.toHaveBeenCalled();
         });
@@ -268,15 +269,15 @@ describe("Services", () => {
         it("handles service settings toggle", () => {
             render(<Services />);
 
-            const settingsButtons = screen.getAllByRole("button").filter(button => 
-                button.querySelector('[data-name="cog"]')
-            );
-            
+            const settingsButtons = screen
+                .getAllByRole("button")
+                .filter((button) => button.querySelector('[data-name="cog"]'));
+
             expect(settingsButtons).toHaveLength(3);
-            
+
             // Click first settings button
             fireEvent.click(settingsButtons[0]);
-            
+
             // Service form should appear
             expect(screen.getByTestId("service-form")).toBeInTheDocument();
             expect(screen.getByTestId("service-form")).toHaveAttribute("data-service-id", "service-1");
@@ -287,16 +288,16 @@ describe("Services", () => {
         it("shows service form when settings button is clicked", () => {
             render(<Services />);
 
-            const settingsButtons = screen.getAllByRole("button").filter(button => 
-                button.querySelector('[data-name="cog"]')
-            );
-            
+            const settingsButtons = screen
+                .getAllByRole("button")
+                .filter((button) => button.querySelector('[data-name="cog"]'));
+
             // Initially no service form should be visible
             expect(screen.queryByTestId("service-form")).not.toBeInTheDocument();
-            
+
             // Click settings button
             fireEvent.click(settingsButtons[0]);
-            
+
             // Service form should appear
             expect(screen.getByTestId("service-form")).toBeInTheDocument();
         });
@@ -304,14 +305,14 @@ describe("Services", () => {
         it("hides service form when settings button is clicked again", () => {
             render(<Services />);
 
-            const settingsButtons = screen.getAllByRole("button").filter(button => 
-                button.querySelector('[data-name="cog"]')
-            );
-            
+            const settingsButtons = screen
+                .getAllByRole("button")
+                .filter((button) => button.querySelector('[data-name="cog"]'));
+
             // Click settings button to open
             fireEvent.click(settingsButtons[0]);
             expect(screen.getByTestId("service-form")).toBeInTheDocument();
-            
+
             // Click settings button again to close
             fireEvent.click(settingsButtons[0]);
             expect(screen.queryByTestId("service-form")).not.toBeInTheDocument();
@@ -324,10 +325,10 @@ describe("Services", () => {
 
             // Service 1 should show custom name
             expect(screen.getByText("Service 1")).toBeInTheDocument();
-            
+
             // Service 2 should show custom name
             expect(screen.getByText("Service 2")).toBeInTheDocument();
-            
+
             // Service 3 should show default name (check in service icon specifically)
             const serviceIcons = screen.getAllByTestId("service-icon");
             expect(serviceIcons[2]).toHaveTextContent("Default Service 3");
@@ -338,13 +339,17 @@ describe("Services", () => {
 
             // Should show "Default Service 1: Service 1" format
             // Use a function matcher to handle text split across elements
-            expect(screen.getByText((content, element) => {
-                return element?.textContent === "Default Service 1: Service 1";
-            })).toBeInTheDocument();
-            
-            expect(screen.getByText((content, element) => {
-                return element?.textContent === "Default Service 2: Service 2";
-            })).toBeInTheDocument();
+            expect(
+                screen.getByText((content, element) => {
+                    return element?.textContent === "Default Service 1: Service 1";
+                })
+            ).toBeInTheDocument();
+
+            expect(
+                screen.getByText((content, element) => {
+                    return element?.textContent === "Default Service 2: Service 2";
+                })
+            ).toBeInTheDocument();
         });
 
         it("handles services with null names and icons", () => {

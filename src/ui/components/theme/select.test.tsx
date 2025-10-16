@@ -1,9 +1,8 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ThemedSelect } from "./select";
-
 
 // Mock theme styles
 vi.mock("../theme", () => ({
@@ -80,10 +79,10 @@ describe("ThemedSelect", () => {
             const options = ["Option A", "Option B", "Option C", "Option D"];
             render(<ThemedSelect {...defaultProps} options={options} />);
 
-            options.forEach(option => {
+            options.forEach((option) => {
                 expect(screen.getByText(option)).toBeInTheDocument();
             });
-            
+
             // Check that all options are rendered in the select
             const select = screen.getByRole("combobox");
             expect(select.children).toHaveLength(4);
@@ -98,10 +97,10 @@ describe("ThemedSelect", () => {
         });
 
         it("renders options with special characters", () => {
-            const options = ["Option & Co.", "Option < 5", "Option > 10", "Option \"quoted\""];
+            const options = ["Option & Co.", "Option < 5", "Option > 10", 'Option "quoted"'];
             render(<ThemedSelect {...defaultProps} options={options} />);
 
-            options.forEach(option => {
+            options.forEach((option) => {
                 expect(screen.getByText(option)).toBeInTheDocument();
             });
         });
@@ -231,16 +230,7 @@ describe("ThemedSelect", () => {
         });
 
         it("handles all HTML select attributes", () => {
-            render(
-                <ThemedSelect
-                    {...defaultProps}
-                    disabled
-                    required
-                    multiple
-                    size={3}
-                    name="test-name"
-                />
-            );
+            render(<ThemedSelect {...defaultProps} disabled required multiple size={3} name="test-name" />);
 
             const select = screen.getByRole("combobox");
             // ThemedSelect component only passes through specific props
@@ -281,7 +271,7 @@ describe("ThemedSelect", () => {
             render(<ThemedSelect {...defaultProps} onChange={mockOnChange} />);
 
             const select = screen.getByRole("combobox");
-            
+
             // Rapid changes
             await user.selectOptions(select, "Option 1");
             await user.selectOptions(select, "Option 2");
@@ -294,7 +284,7 @@ describe("ThemedSelect", () => {
     describe("Performance", () => {
         it("renders efficiently with many options", () => {
             const manyOptions = Array.from({ length: 100 }, (_, i) => `Option ${i + 1}`);
-            
+
             const startTime = performance.now();
             render(<ThemedSelect {...defaultProps} options={manyOptions} />);
             const endTime = performance.now();

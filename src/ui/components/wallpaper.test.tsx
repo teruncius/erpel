@@ -1,9 +1,9 @@
+import { act, render } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, act } from "@testing-library/react";
 
-import { Wallpaper } from "./wallpaper";
-import { useStore } from "../store/store";
 import { useSpringRef, useTransition } from "@react-spring/web";
+import { useStore } from "../store/store";
+import { Wallpaper } from "./wallpaper";
 
 // Mock the store
 vi.mock("../store/store", () => ({
@@ -29,10 +29,10 @@ describe("Wallpaper", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         vi.useFakeTimers();
-        
+
         // Mock timer functions as spies
-        vi.spyOn(window, 'setTimeout');
-        vi.spyOn(window, 'clearTimeout');
+        vi.spyOn(window, "setTimeout");
+        vi.spyOn(window, "clearTimeout");
 
         // Mock store with default wallpapers
         mockUseStore.mockReturnValue({
@@ -51,11 +51,9 @@ describe("Wallpaper", () => {
         mockUseSpringRef.mockReturnValue(mockRef);
 
         // Mock useTransition to return a function that renders the wallpaper
-        mockUseTransition.mockReturnValue(
-            (renderFn: (style: any, i: number) => any) => {
-                return renderFn({ opacity: 1 }, 0);
-            }
-        );
+        mockUseTransition.mockReturnValue((renderFn: (style: any, i: number) => any) => {
+            return renderFn({ opacity: 1 }, 0);
+        });
     });
 
     afterEach(() => {
@@ -136,10 +134,7 @@ describe("Wallpaper", () => {
         });
 
         it("wraps around to first wallpaper after last", () => {
-            const wallpapers = [
-                "https://example.com/wallpaper1.jpg",
-                "https://example.com/wallpaper2.jpg",
-            ];
+            const wallpapers = ["https://example.com/wallpaper1.jpg", "https://example.com/wallpaper2.jpg"];
 
             mockUseStore.mockReturnValue({ wallpapers });
 
@@ -280,10 +275,7 @@ describe("Wallpaper", () => {
 
     describe("Store Integration", () => {
         it("uses wallpapers from store", () => {
-            const wallpapers = [
-                "https://example.com/custom1.jpg",
-                "https://example.com/custom2.jpg",
-            ];
+            const wallpapers = ["https://example.com/custom1.jpg", "https://example.com/custom2.jpg"];
 
             mockUseStore.mockReturnValue({ wallpapers });
 
@@ -315,9 +307,7 @@ describe("Wallpaper", () => {
 
     describe("Edge Cases", () => {
         it("handles very long wallpaper arrays", () => {
-            const manyWallpapers = Array.from({ length: 100 }, (_, i) => 
-                `https://example.com/wallpaper${i}.jpg`
-            );
+            const manyWallpapers = Array.from({ length: 100 }, (_, i) => `https://example.com/wallpaper${i}.jpg`);
 
             mockUseStore.mockReturnValue({ wallpapers: manyWallpapers });
 
@@ -325,12 +315,7 @@ describe("Wallpaper", () => {
         });
 
         it("handles invalid wallpaper URLs", () => {
-            const invalidWallpapers = [
-                "invalid-url",
-                "",
-                "not-a-url",
-                "https://example.com/valid.jpg",
-            ];
+            const invalidWallpapers = ["invalid-url", "", "not-a-url", "https://example.com/valid.jpg"];
 
             mockUseStore.mockReturnValue({ wallpapers: invalidWallpapers });
 

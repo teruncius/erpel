@@ -1,5 +1,5 @@
+import { cleanup, render } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, cleanup } from "@testing-library/react";
 
 // Mock the icons resource
 vi.mock("../../../resources/icons.svg", () => ({

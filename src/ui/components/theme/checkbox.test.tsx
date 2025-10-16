@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 // Mock Icon component
 vi.mock("../icon", () => ({
@@ -77,7 +77,7 @@ describe("ThemedCheckbox", () => {
             render(<ThemedCheckbox checked={false} />);
 
             const button = screen.getByRole("button");
-            
+
             // First click - should check
             await user.click(button);
             expect(screen.getByTestId("icon-checkbox-checked")).toBeInTheDocument();
@@ -229,7 +229,7 @@ describe("ThemedCheckbox", () => {
             render(<ThemedCheckbox checked={false} />);
 
             const button = screen.getByRole("button");
-            
+
             // Initially unchecked
             expect(screen.getByTestId("icon-checkbox-unchecked")).toBeInTheDocument();
             expect(screen.queryByTestId("icon-checkbox-checked")).not.toBeInTheDocument();
@@ -298,7 +298,7 @@ describe("ThemedCheckbox", () => {
             render(<ThemedCheckbox checked={false} onChange={mockOnChange} />);
 
             const button = screen.getByRole("button");
-            
+
             // Rapid clicks
             for (let i = 0; i < 5; i++) {
                 await user.click(button);
@@ -313,7 +313,7 @@ describe("ThemedCheckbox", () => {
             render(<ThemedCheckbox checked={false} />);
 
             const button = screen.getByRole("button");
-            
+
             // Rapid clicks
             for (let i = 0; i < 10; i++) {
                 await user.click(button);
