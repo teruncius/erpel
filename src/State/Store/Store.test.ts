@@ -7,12 +7,11 @@ describe('Store', () => {
     const saveConfig = vi.fn();
 
     beforeEach(() => {
-        vi.stubGlobal('window', {
-            electron: {
-                loadConfig,
-                saveConfig,
-            },
-        });
+        // Mock the window.electron object by directly setting the property
+        (globalThis.window as any).electron = {
+            loadConfig,
+            saveConfig,
+        };
     });
 
     afterEach(() => {
