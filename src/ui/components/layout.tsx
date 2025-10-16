@@ -1,10 +1,10 @@
-import { Outlet } from 'react-router';
-import { styled } from 'styled-components';
+import { Outlet } from "react-router";
+import { styled } from "styled-components";
 
-import { BackgroundMode } from '../../state/settings';
-import { useStore } from '../store/store';
-import { SideBar, SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './side-bar/side-bar';
-import { Wallpaper } from './wallpaper';
+import { BackgroundMode } from "../../state/settings";
+import { useStore } from "../store/store";
+import { SideBar, SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "./side-bar/side-bar";
+import { Wallpaper } from "./wallpaper";
 
 export function Layout() {
     const { isOpen, mode } = useStore();

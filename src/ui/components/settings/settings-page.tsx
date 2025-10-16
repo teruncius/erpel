@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
-import { styled } from 'styled-components';
+import { useEffect } from "react";
+import { styled } from "styled-components";
 
-import { ElectronWindow } from '../../../preload-features/app-bridge';
-import { useStore } from '../../store/store';
-import { Icon } from '../icon';
-import { SetupServices } from '../setup/setup-services';
-import { ThemedSection } from '../theme';
-import { ThemedLink } from '../theme/button';
-import { DebugNotificationsButton } from './debug-notifications-button';
-import { DistractionSettings } from './distraction-settings';
-import { ExportSettingsButton } from './export-settings-button';
-import { LocaleSettings } from './locale-settings';
-import { ServiceTemplates } from './service-templates';
-import { Services } from './services';
-import { WallpaperSettings } from './wallpaper-settings';
+import { ElectronWindow } from "../../../preload-features/app-bridge";
+import { useStore } from "../../store/store";
+import { Icon } from "../icon";
+import { SetupServices } from "../setup/setup-services";
+import { ThemedSection } from "../theme";
+import { ThemedLink } from "../theme/button";
+import { DebugNotificationsButton } from "./debug-notifications-button";
+import { DistractionSettings } from "./distraction-settings";
+import { ExportSettingsButton } from "./export-settings-button";
+import { LocaleSettings } from "./locale-settings";
+import { ServiceTemplates } from "./service-templates";
+import { Services } from "./services";
+import { WallpaperSettings } from "./wallpaper-settings";
 
 declare const window: ElectronWindow;
 

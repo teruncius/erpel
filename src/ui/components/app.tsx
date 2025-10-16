@@ -1,11 +1,11 @@
-import { Fragment, StrictMode } from 'react';
-import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router';
+import { Fragment, StrictMode } from "react";
+import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router";
 
-import { Home } from './home/home-page';
-import { Layout } from './layout';
-import { ServicePage } from './service/service-page';
-import { SettingsPage } from './settings/settings-page';
-import { SetupPage } from './setup/setup-page';
+import { Home } from "./home/home-page";
+import { Layout } from "./layout";
+import { ServicePage } from "./service/service-page";
+import { SettingsPage } from "./settings/settings-page";
+import { SetupPage } from "./setup/setup-page";
 
 const ENABLE_STRICT_MODE = false;
 

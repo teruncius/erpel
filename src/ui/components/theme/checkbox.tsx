@@ -1,8 +1,8 @@
-import { ChangeEvent, InputHTMLAttributes, useCallback, useEffect, useState } from 'react';
-import { styled } from 'styled-components';
+import { ChangeEvent, InputHTMLAttributes, useCallback, useEffect, useState } from "react";
+import { styled } from "styled-components";
 
-import { Icon } from '../icon';
-import { ThemedButton } from './button';
+import { Icon } from "../icon";
+import { ThemedButton } from "./button";
 
 type ThemedCheckbox = {
     checked: boolean;
@@ -18,11 +18,11 @@ export function ThemedCheckbox(props: ThemedCheckbox) {
             const syntheticEvent = {
                 target: {
                     checked,
-                    value: checked ? 'on' : 'off',
+                    value: checked ? "on" : "off",
                 },
                 currentTarget: {
                     checked,
-                    value: checked ? 'on' : 'off',
+                    value: checked ? "on" : "off",
                 },
             } as ChangeEvent<HTMLInputElement>;
             onChange(syntheticEvent);
@@ -43,14 +43,14 @@ export function ThemedCheckbox(props: ThemedCheckbox) {
     return (
         <ThemedCheckboxContainer>
             <ThemedCheckboxButton onClick={handleClick} type="button">
-                <Icon name={checked ? 'checkbox-checked' : 'checkbox-unchecked'} size={16} />
+                <Icon name={checked ? "checkbox-checked" : "checkbox-unchecked"} size={16} />
             </ThemedCheckboxButton>
             {props.placeholder && <>{props.placeholder}</>}
             <input
                 checked={checked}
                 id={props.id}
                 onChange={handleChange}
-                style={{ display: 'none' }}
+                style={{ display: "none" }}
                 type="checkbox"
                 value="on"
             />

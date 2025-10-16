@@ -1,6 +1,6 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
-import { HardFrostedEffectStyle } from '../theme';
+import { HardFrostedEffectStyle } from "../theme";
 
 export const ThemedTextarea = styled.textarea`
     ${HardFrostedEffectStyle};

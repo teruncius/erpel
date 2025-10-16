@@ -1,11 +1,11 @@
-import { useCallback } from 'react';
-import { NavLink } from 'react-router';
-import { styled } from 'styled-components';
+import { useCallback } from "react";
+import { NavLink } from "react-router";
+import { styled } from "styled-components";
 
-import quack from '../../../../resources/duck-quacking.mp3?no-inline';
-import icon from '../../../../resources/erpel.png?no-inline';
-import { useAudio } from '../../hooks/audio';
-import { useStore } from '../../store/store';
+import quack from "../../../../resources/duck-quacking.mp3?no-inline";
+import icon from "../../../../resources/erpel.png?no-inline";
+import { useAudio } from "../../hooks/audio";
+import { useStore } from "../../store/store";
 
 export function Logo() {
     const [, , play] = useAudio(quack);

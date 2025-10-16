@@ -1,6 +1,6 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
-import { Icon } from '../icon';
+import { Icon } from "../icon";
 
 interface HintProps {
     text: string;
@@ -22,8 +22,8 @@ const Container = styled.div`
     grid-template-columns: min-content 1fr;
     grid-template-rows: auto;
     grid-template-areas:
-        'a b'
-        'a c';
+        "a b"
+        "a c";
     gap: 0.5rem 1rem;
 `;
 

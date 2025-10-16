@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test } from "vitest";
 
 import {
     BackgroundMode,
@@ -11,38 +11,38 @@ import {
     DEFAULT_WALLPAPERS,
     IconIdToUrl,
     ServiceFromTemplate,
-} from './settings';
+} from "./settings";
 
-describe('Settings', () => {
-    test('default side bar is open', () => {
+describe("Settings", () => {
+    test("default side bar is open", () => {
         expect(DEFAULT_SIDE_BAR_IS_OPEN).toBe(true);
     });
 
-    test('default locale is en-US', () => {
-        expect(DEFAULT_LOCALE).toBe('en-US');
+    test("default locale is en-US", () => {
+        expect(DEFAULT_LOCALE).toBe("en-US");
     });
 
-    test('default is not muted', () => {
+    test("default is not muted", () => {
         expect(DEFAULT_IS_MUTED).toBe(false);
     });
 
-    test('default mode is wallpaper', () => {
+    test("default mode is wallpaper", () => {
         expect(DEFAULT_MODE).toBe(BackgroundMode.Wallpaper);
     });
 
-    test('default wallpapers are available', () => {
+    test("default wallpapers are available", () => {
         expect(DEFAULT_WALLPAPERS.length).toBe(7);
     });
 
-    test('default services are empty', () => {
+    test("default services are empty", () => {
         expect(DEFAULT_SERVICES.length).toBe(0);
     });
 
-    test('default service templates are available', () => {
+    test("default service templates are available", () => {
         expect(DEFAULT_SERVICE_TEMPLATES.length).toBe(9);
     });
 
-    test('get url from services from template', () => {
+    test("get url from services from template", () => {
         const [template] = DEFAULT_SERVICE_TEMPLATES;
         const service = ServiceFromTemplate(template);
 
@@ -56,7 +56,7 @@ describe('Settings', () => {
         });
     });
 
-    test('default icons are available for all service templates', () => {
+    test("default icons are available for all service templates", () => {
         const ids = DEFAULT_SERVICE_TEMPLATES.map((template) => template.icon.default);
         expect(ids.length).toBeGreaterThan(0);
 
@@ -64,10 +64,10 @@ describe('Settings', () => {
         expect(urls.length).toEqual(ids.length);
     });
 
-    test('get url for icon id', () => {
+    test("get url for icon id", () => {
         const [template] = DEFAULT_SERVICE_TEMPLATES;
         const url = IconIdToUrl(template.icon.default);
 
-        expect(url).toBe('/resources/google-mail.png?no-inline');
+        expect(url).toBe("/resources/google-mail.png?no-inline");
     });
 });

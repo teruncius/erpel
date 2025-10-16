@@ -1,7 +1,7 @@
-import { SelectHTMLAttributes } from 'react';
-import { styled } from 'styled-components';
+import { SelectHTMLAttributes } from "react";
+import { styled } from "styled-components";
 
-import { FrostedContainerStyle, HardFrostedEffectStyle, ThemedHoverStyle } from '../theme';
+import { FrostedContainerStyle, HardFrostedEffectStyle, ThemedHoverStyle } from "../theme";
 
 interface ThemedSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     label: string;

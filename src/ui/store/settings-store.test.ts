@@ -1,18 +1,18 @@
-import { beforeEach, describe, expect, test } from 'vitest';
-import { create } from 'zustand';
+import { beforeEach, describe, expect, test } from "vitest";
+import { create } from "zustand";
 
-import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from './settings-store';
+import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from "./settings-store";
 
 export const useStore = create<SettingsStoreActions & SettingsStoreState>()((...args) => ({
     ...createSettingsSlice(...args),
 }));
 
-describe('SettingsStore', () => {
+describe("SettingsStore", () => {
     beforeEach(() => {
         useStore.setState(useStore.getInitialState());
     });
 
-    test('locale is set to default', () => {
-        expect(useStore.getState().locale).toEqual('en-US');
+    test("locale is set to default", () => {
+        expect(useStore.getState().locale).toEqual("en-US");
     });
 });

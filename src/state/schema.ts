@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-import { BackgroundMode } from './settings';
+import { BackgroundMode } from "./settings";
 
 const StringOption = z.object({
     copyOnCreate: z.boolean(),

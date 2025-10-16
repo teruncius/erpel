@@ -1,16 +1,16 @@
-import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
-import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-import { useCallback, useState } from 'react';
-import { styled } from 'styled-components';
+import { closestCenter, DndContext, DragEndEvent } from "@dnd-kit/core";
+import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { useCallback, useState } from "react";
+import { styled } from "styled-components";
 
-import { Service } from '../../../state/schema';
-import { useStore } from '../../store/store';
-import { Icon } from '../icon';
-import { HardFrostedEffectStyle, ThemedSection } from '../theme';
-import { ThemedButton } from '../theme/button';
-import { ServiceForm } from './service-form';
-import { ServiceIcon } from './service-icon';
+import { Service } from "../../../state/schema";
+import { useStore } from "../../store/store";
+import { Icon } from "../icon";
+import { HardFrostedEffectStyle, ThemedSection } from "../theme";
+import { ThemedButton } from "../theme/button";
+import { ServiceForm } from "./service-form";
+import { ServiceIcon } from "./service-icon";
 
 export function Services() {
     const { reorder, services } = useStore();
@@ -64,7 +64,7 @@ function Service(props: CurrentServiceProps) {
     };
 
     const handleDelete = useCallback(() => {
-        if (confirm('Do you really want to delete this service?')) {
+        if (confirm("Do you really want to delete this service?")) {
             remove(props.service.id);
         }
     }, [props.service.id, remove]);

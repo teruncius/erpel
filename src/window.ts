@@ -8,28 +8,28 @@ import {
     Rectangle,
     shell,
     WebContentsView,
-} from 'electron';
-import { join } from 'node:path';
+} from "electron";
+import { join } from "node:path";
 
-import type { Service } from './state/schema';
+import type { Service } from "./state/schema";
 
-import icon from '../resources/erpel.png?asset';
-import { AppMessage } from './app-message';
-import { loadConfig, saveConfig } from './state/config';
-import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from './ui/components/side-bar/side-bar';
+import icon from "../resources/erpel.png?asset";
+import { AppMessage } from "./app-message";
+import { loadConfig, saveConfig } from "./state/config";
+import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "./ui/components/side-bar/side-bar";
 
-const CONFIG_PATH = join(app.getPath('userData'), 'config.json');
-const SESSION_PARTITION = `persist:${import.meta.env.DEV ? 'development' : 'production'}`;
+const CONFIG_PATH = join(app.getPath("userData"), "config.json");
+const SESSION_PARTITION = `persist:${import.meta.env.DEV ? "development" : "production"}`;
 
 export const createWindow = async () => {
     // Create the browser window.
     const window = new BrowserWindow({
-        backgroundColor: '#000000',
+        backgroundColor: "#000000",
         height: 800,
         icon,
         webPreferences: {
             partition: SESSION_PARTITION,
-            preload: join(__dirname, 'preload.application.js'),
+            preload: join(__dirname, "preload.application.js"),
         },
         width: 1200,
     });
@@ -43,7 +43,7 @@ export const createWindow = async () => {
 
     window.webContents.setWindowOpenHandler((details) => {
         shell.openExternal(details.url);
-        return { action: 'deny' };
+        return { action: "deny" };
     });
 
     const views: Record<string, WebContentsView> = {};
@@ -64,7 +64,7 @@ export const createWindow = async () => {
     ipcMain.handle(AppMessage.ShouldUseDarkMode, (event) => {
         const id = Object.entries(views).find(([, view]) => view.webContents === event.sender)?.[0] || null;
         if (!id) {
-            console.error('Requested dark mode for a service that does not exist');
+            console.error("Requested dark mode for a service that does not exist");
             return false;
         }
         const service = config.services.find((service) => service.id === id) || null;
@@ -113,30 +113,30 @@ export const createWindow = async () => {
         });
         const popup = BrowserWindow.fromWebContents(event.sender);
         if (!popup) {
-            throw new Error('Failed to create popup window for context menu');
+            throw new Error("Failed to create popup window for context menu");
         }
         menu.popup({ window: popup });
     });
 
-    window.on('resize', resizeServices);
-    window.on('show', window.focus);
+    window.on("resize", resizeServices);
+    window.on("show", window.focus);
 
     function createViewForService(service: Service) {
         const bounds = window.getContentBounds();
         const view = new WebContentsView({
             webPreferences: {
                 partition: SESSION_PARTITION,
-                preload: join(__dirname, '/preload.service.js'),
+                preload: join(__dirname, "/preload.service.js"),
             },
         });
 
         const darkMode = service.darkMode ?? service.template.darkMode.default;
-        view.setBackgroundColor(darkMode ? '#000000' : '#ffffff');
+        view.setBackgroundColor(darkMode ? "#000000" : "#ffffff");
         view.setVisible(false);
         view.setBounds(CalculateBounds(bounds, sideBarIsOpen));
         view.webContents.setWindowOpenHandler((details) => {
             shell.openExternal(details.url);
-            return { action: 'deny' };
+            return { action: "deny" };
         });
 
         views[service.id] = view;
@@ -172,16 +172,16 @@ interface BuildMenuOptions {
 function buildMenuForSender({ data, event, isServiceWindow }: BuildMenuOptions) {
     return Menu.buildFromTemplate([
         {
-            role: 'cut',
+            role: "cut",
         },
         {
-            role: 'copy',
+            role: "copy",
         },
         {
-            role: 'paste',
+            role: "paste",
         },
         {
-            type: 'separator',
+            type: "separator",
         },
         ...(!isServiceWindow
             ? []
@@ -190,36 +190,36 @@ function buildMenuForSender({ data, event, isServiceWindow }: BuildMenuOptions) 
                       click: () => {
                           clipboard.writeText(event.sender.getURL());
                       },
-                      label: 'Copy URL',
+                      label: "Copy URL",
                   },
                   {
                       click: () => {
                           shell.openExternal(event.sender.getURL());
                       },
-                      label: 'Open in Browser',
+                      label: "Open in Browser",
                   },
               ]),
         {
-            type: 'separator',
+            type: "separator",
         },
         {
             click: () => {
                 event.sender.reloadIgnoringCache();
             },
-            label: 'Reload',
+            label: "Reload",
         },
         {
             click: () => {
-                event.sender.openDevTools({ mode: 'bottom' });
+                event.sender.openDevTools({ mode: "bottom" });
             },
-            label: 'Developer Tools',
+            label: "Developer Tools",
         },
         {
             click: () => {
-                event.sender.openDevTools({ mode: 'bottom' });
+                event.sender.openDevTools({ mode: "bottom" });
                 event.sender.inspectElement(data.x, data.y);
             },
-            label: 'Inspect Element',
+            label: "Inspect Element",
         },
     ]);
 }

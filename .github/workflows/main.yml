@@ -1,6 +1,6 @@
 on:
     push:
-        tags: ['*.*.*']
+        tags: ["*.*.*"]
 
 permissions:
     contents: write
@@ -21,7 +21,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: 22
-                  cache: 'pnpm'
+                  cache: "pnpm"
 
             - name: Install just
               uses: extractions/setup-just@v3
@@ -65,7 +65,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: 22
-                  cache: 'pnpm'
+                  cache: "pnpm"
 
             - name: Install just
               uses: extractions/setup-just@v3
@@ -111,7 +111,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: 22
-                  cache: 'pnpm'
+                  cache: "pnpm"
 
             - name: Install just
               uses: extractions/setup-just@v3
@@ -152,7 +152,7 @@ jobs:
               with:
                   pattern: build-*
                   path: ./out/make/
-                  merge-multiple: 'true'
+                  merge-multiple: "true"
 
             - run: ls -lah ./out/make/*
 

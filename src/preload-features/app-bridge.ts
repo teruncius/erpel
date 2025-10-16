@@ -1,7 +1,7 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { contextBridge, ipcRenderer } from "electron";
 
-import { AppMessage } from '../app-message';
-import { Config, Service } from '../state/schema';
+import { AppMessage } from "../app-message";
+import { Config, Service } from "../state/schema";
 
 // use as:
 // declare const window: ElectronWindow;
@@ -35,4 +35,4 @@ const api: ElectronAPI = {
     setSidebarState: (isOpen) => ipcRenderer.send(AppMessage.SetSideBarState, isOpen),
 };
 
-contextBridge.exposeInMainWorld('electron', api);
+contextBridge.exposeInMainWorld("electron", api);

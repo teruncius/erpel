@@ -1,12 +1,12 @@
-import { useCallback } from 'react';
-import { styled } from 'styled-components';
+import { useCallback } from "react";
+import { styled } from "styled-components";
 
-import { Config } from '../../../state/schema';
-import { useStore } from '../../store/store';
-import { Icon } from '../icon';
-import { ThemedSection } from '../theme';
-import { ThemedButton, ThemedLink } from '../theme/button';
-import { Hint } from '../theme/hint';
+import { Config } from "../../../state/schema";
+import { useStore } from "../../store/store";
+import { Icon } from "../icon";
+import { ThemedSection } from "../theme";
+import { ThemedButton, ThemedLink } from "../theme/button";
+import { Hint } from "../theme/hint";
 
 const FILE_OPTIONS = {
     excludeAcceptAllOption: true,
@@ -14,9 +14,9 @@ const FILE_OPTIONS = {
     types: [
         {
             accept: {
-                'application/json': ['.json'],
+                "application/json": [".json"],
             },
-            description: 'JSON Config Files',
+            description: "JSON Config Files",
         },
     ],
 };

@@ -1,7 +1,7 @@
-import { enable } from 'darkreader';
-import { contextBridge, ipcRenderer } from 'electron';
+import { enable } from "darkreader";
+import { contextBridge, ipcRenderer } from "electron";
 
-import { AppMessage } from '../app-message';
+import { AppMessage } from "../app-message";
 
 interface DarkReaderAPI {
     run: () => void;
@@ -22,10 +22,10 @@ interface DarkReaderWindow extends Window {
 
 declare const window: DarkReaderWindow;
 
-contextBridge.exposeInMainWorld('DarkReader', api);
+contextBridge.exposeInMainWorld("DarkReader", api);
 contextBridge.executeInMainWorld({
     func: () => {
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener("DOMContentLoaded", () => {
             window.DarkReader.run();
         });
     },

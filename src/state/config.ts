@@ -1,7 +1,7 @@
-import { readFile, writeFile } from 'node:fs/promises';
-import { z } from 'zod';
+import { readFile, writeFile } from "node:fs/promises";
+import { z } from "zod";
 
-import { Config, ConfigSchema } from './schema';
+import { Config, ConfigSchema } from "./schema";
 import {
     DEFAULT_IS_MUTED,
     DEFAULT_LOCALE,
@@ -9,7 +9,7 @@ import {
     DEFAULT_SERVICES,
     DEFAULT_SIDE_BAR_IS_OPEN,
     DEFAULT_WALLPAPERS,
-} from './settings';
+} from "./settings";
 
 export const DefaultConfig: Config = {
     dateFormat: DEFAULT_LOCALE,
@@ -35,15 +35,15 @@ type Result<T> =
 
 export async function loadConfig(path: string): Promise<Config> {
     try {
-        const value = await readFile(path, { encoding: 'utf8' });
+        const value = await readFile(path, { encoding: "utf8" });
         const parsed = parseConfig(value);
         if (!parsed.success) {
-            console.error('Unable to parse config:', parsed.error);
+            console.error("Unable to parse config:", parsed.error);
             return DefaultConfig;
         }
         return parsed.data;
     } catch (e) {
-        console.warn('User data not found', e);
+        console.warn("User data not found", e);
         return DefaultConfig;
     }
 }
@@ -51,23 +51,23 @@ export async function loadConfig(path: string): Promise<Config> {
 export async function saveConfig(path: string, data: Config) {
     try {
         const value = JSON.stringify(data, null, 4);
-        await writeFile(path, value, { encoding: 'utf8' });
+        await writeFile(path, value, { encoding: "utf8" });
     } catch (e) {
-        console.error('Unable to save user data', e);
+        console.error("Unable to save user data", e);
     }
 }
 
 function parseConfig(data: string): Result<Config> {
     const parsed = JSON.parse(data);
     if (isNaN(parsed.version)) {
-        return { error: 'Unable to read config version', success: false };
+        return { error: "Unable to read config version", success: false };
     }
 
     const result = z.safeParse(ConfigSchema, parsed);
 
     if (!result.success) {
-        console.error('Zod parse error', result.error);
-        return { error: 'Zod parse error', success: false };
+        console.error("Zod parse error", result.error);
+        return { error: "Zod parse error", success: false };
     }
 
     return { data: result.data, success: true };

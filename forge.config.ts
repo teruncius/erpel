@@ -1,30 +1,30 @@
-import type { ForgeConfig } from '@electron-forge/shared-types';
+import type { ForgeConfig } from "@electron-forge/shared-types";
 
-import { MakerDeb } from '@electron-forge/maker-deb';
-import { MakerDMG } from '@electron-forge/maker-dmg';
-import { MakerSquirrel } from '@electron-forge/maker-squirrel';
-import { FusesPlugin } from '@electron-forge/plugin-fuses';
-import { VitePlugin } from '@electron-forge/plugin-vite';
-import { FuseV1Options, FuseVersion } from '@electron/fuses';
+import { MakerDeb } from "@electron-forge/maker-deb";
+import { MakerDMG } from "@electron-forge/maker-dmg";
+import { MakerSquirrel } from "@electron-forge/maker-squirrel";
+import { FusesPlugin } from "@electron-forge/plugin-fuses";
+import { VitePlugin } from "@electron-forge/plugin-vite";
+import { FuseV1Options, FuseVersion } from "@electron/fuses";
 
 const config: ForgeConfig = {
     makers: [
         new MakerSquirrel({
-            iconUrl: 'https://raw.githubusercontent.com/teruncius/erpel/refs/heads/master/resources/erpel.ico',
-            setupIcon: 'resources/erpel.ico',
+            iconUrl: "https://raw.githubusercontent.com/teruncius/erpel/refs/heads/master/resources/erpel.ico",
+            setupIcon: "resources/erpel.ico",
         }),
         new MakerDMG({
-            icon: 'resources/erpel.icns',
+            icon: "resources/erpel.icns",
         }),
         new MakerDeb({
             options: {
-                icon: 'resources/erpel.png',
+                icon: "resources/erpel.png",
             },
         }),
     ],
     packagerConfig: {
         asar: true,
-        icon: 'resources/erpel',
+        icon: "resources/erpel",
     },
     plugins: [
         new VitePlugin({
@@ -32,26 +32,26 @@ const config: ForgeConfig = {
             // If you are familiar with Vite configuration, it will look really familiar.
             build: [
                 {
-                    config: 'vite.main.config.ts',
+                    config: "vite.main.config.ts",
                     // `entry` is just an alias for `build.lib.entry` in the corresponding file of `config`.
-                    entry: 'src/main.ts',
-                    target: 'main',
+                    entry: "src/main.ts",
+                    target: "main",
                 },
                 {
-                    config: 'vite.preload.config.ts',
-                    entry: 'src/preload.application.ts',
-                    target: 'preload',
+                    config: "vite.preload.config.ts",
+                    entry: "src/preload.application.ts",
+                    target: "preload",
                 },
                 {
-                    config: 'vite.preload.config.ts',
-                    entry: 'src/preload.service.ts',
-                    target: 'preload',
+                    config: "vite.preload.config.ts",
+                    entry: "src/preload.service.ts",
+                    target: "preload",
                 },
             ],
             renderer: [
                 {
-                    config: 'vite.renderer.config.ts',
-                    name: 'main_window',
+                    config: "vite.renderer.config.ts",
+                    name: "main_window",
                 },
             ],
         }),

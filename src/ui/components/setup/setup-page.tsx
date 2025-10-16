@@ -1,4 +1,4 @@
-import { SetupServices } from './setup-services';
+import { SetupServices } from "./setup-services";
 
 export function SetupPage() {
     return (

@@ -1,16 +1,16 @@
-import { ChangeEvent, useCallback, useState } from 'react';
-import { styled } from 'styled-components';
+import { ChangeEvent, useCallback, useState } from "react";
+import { styled } from "styled-components";
 
-import { ServiceTemplate } from '../../../state/schema';
-import { useStore } from '../../store/store';
-import { Icon } from '../icon';
-import { HardFrostedEffectStyle, ThemedHoverStyle, ThemedSection } from '../theme';
-import { ThemedButton } from '../theme/button';
-import { ThemedInput } from '../theme/input';
-import { ServiceIcon } from './service-icon';
+import { ServiceTemplate } from "../../../state/schema";
+import { useStore } from "../../store/store";
+import { Icon } from "../icon";
+import { HardFrostedEffectStyle, ThemedHoverStyle, ThemedSection } from "../theme";
+import { ThemedButton } from "../theme/button";
+import { ThemedInput } from "../theme/input";
+import { ServiceIcon } from "./service-icon";
 
 export function ServiceTemplates() {
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState("");
     const { templates } = useStore();
 
     function filter(event: ChangeEvent<HTMLInputElement>) {
@@ -18,7 +18,7 @@ export function ServiceTemplates() {
     }
 
     function handleReset() {
-        setSearch('');
+        setSearch("");
     }
 
     const filtered = !search.length

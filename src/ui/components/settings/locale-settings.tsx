@@ -1,16 +1,16 @@
-import { ChangeEvent, useCallback } from 'react';
-import { styled } from 'styled-components';
+import { ChangeEvent, useCallback } from "react";
+import { styled } from "styled-components";
 
-import { useStore } from '../../store/store';
-import { Clock } from '../home/clock';
-import { ThemedSection } from '../theme';
-import { ThemedSelect } from '../theme/select';
+import { useStore } from "../../store/store";
+import { Clock } from "../home/clock";
+import { ThemedSection } from "../theme";
+import { ThemedSelect } from "../theme/select";
 
-const localeOptions = ['en-US', 'de-DE'];
+const localeOptions = ["en-US", "de-DE"];
 
-const timeOptions = ['en-US', 'de-DE'];
+const timeOptions = ["en-US", "de-DE"];
 
-const dateOptions = ['en-US', 'de-DE'];
+const dateOptions = ["en-US", "de-DE"];
 
 export function LocaleSettings() {
     const { dateFormat, locale, setDateFormat, setLocale, setTimeFormat, timeFormat } = useStore();

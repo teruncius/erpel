@@ -1,2 +1,2 @@
-import './preload-features/context-menu';
-import './preload-features/dark-reader';
+import "./preload-features/context-menu";
+import "./preload-features/dark-reader";

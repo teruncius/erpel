@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 
 type Hook = [boolean, () => void, () => void];
 
@@ -24,9 +24,9 @@ export const useAudio = (url: string): Hook => {
 
     useEffect(() => {
         const onEnded = () => setPlaying(false);
-        audio.addEventListener('ended', onEnded);
+        audio.addEventListener("ended", onEnded);
         return () => {
-            audio.removeEventListener('ended', onEnded);
+            audio.removeEventListener("ended", onEnded);
         };
     }, [audio, setPlaying]);
 

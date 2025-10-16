@@ -1,13 +1,13 @@
-import { ChangeEvent, useCallback } from 'react';
-import { styled } from 'styled-components';
+import { ChangeEvent, useCallback } from "react";
+import { styled } from "styled-components";
 
-import { BackgroundMode, DEFAULT_WALLPAPERS } from '../../../state/settings';
-import { useStore } from '../../store/store';
-import { Icon } from '../icon';
-import { ThemedSection } from '../theme';
-import { ThemedButton } from '../theme/button';
-import { ThemedSelect } from '../theme/select';
-import { ThemedTextarea } from '../theme/textarea';
+import { BackgroundMode, DEFAULT_WALLPAPERS } from "../../../state/settings";
+import { useStore } from "../../store/store";
+import { Icon } from "../icon";
+import { ThemedSection } from "../theme";
+import { ThemedButton } from "../theme/button";
+import { ThemedSelect } from "../theme/select";
+import { ThemedTextarea } from "../theme/textarea";
 
 const modes = [BackgroundMode.Color, BackgroundMode.Wallpaper];
 
@@ -24,7 +24,7 @@ export function WallpaperSettings() {
 
     const handleChange2 = useCallback(
         (e: ChangeEvent<HTMLTextAreaElement>) => {
-            setWallpapers(e.target.value.split('\n'));
+            setWallpapers(e.target.value.split("\n"));
         },
         [setWallpapers]
     );
@@ -46,7 +46,7 @@ export function WallpaperSettings() {
                                 <>Reset</>
                             </ThemedButton>
                         </div>
-                        <ThemedTextarea onChange={handleChange2} value={wallpapers.join('\n')} />
+                        <ThemedTextarea onChange={handleChange2} value={wallpapers.join("\n")} />
                     </>
                 )}
             </Container>

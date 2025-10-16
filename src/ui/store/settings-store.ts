@@ -1,6 +1,6 @@
-import { StateCreator } from 'zustand/vanilla';
+import { StateCreator } from "zustand/vanilla";
 
-import { BackgroundMode, DEFAULT_IS_MUTED, DEFAULT_LOCALE } from '../../state/settings';
+import { BackgroundMode, DEFAULT_IS_MUTED, DEFAULT_LOCALE } from "../../state/settings";
 
 export interface SettingsStoreActions {
     loadSettingsFromFile: (settings: SettingsStoreState) => void;

@@ -1,13 +1,13 @@
-import { z } from 'zod';
-import { create } from 'zustand';
-import { persist, PersistStorage } from 'zustand/middleware';
+import { z } from "zod";
+import { create } from "zustand";
+import { persist, PersistStorage } from "zustand/middleware";
 
-import { ElectronWindow } from '../../preload-features/app-bridge';
-import { Config, ConfigSchema } from '../../state/schema';
-import { DEFAULT_SERVICE_TEMPLATES } from '../../state/settings';
-import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from './service-store';
-import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from './settings-store';
-import { createSideBarSlice, SideBarStoreActions, SideBarStoreState } from './side-bar-store';
+import { ElectronWindow } from "../../preload-features/app-bridge";
+import { Config, ConfigSchema } from "../../state/schema";
+import { DEFAULT_SERVICE_TEMPLATES } from "../../state/settings";
+import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from "./service-store";
+import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from "./settings-store";
+import { createSideBarSlice, SideBarStoreActions, SideBarStoreState } from "./side-bar-store";
 
 declare const window: ElectronWindow;
 
@@ -21,7 +21,7 @@ const storage: PersistStorage<StoreState> = {
         return { state, version: 0 };
     },
     removeItem: () => {
-        console.warn('Unable to remove items with persist');
+        console.warn("Unable to remove items with persist");
     },
     setItem: (name, value) => {
         const config = TransformStoreStateToConfig(value.state);
@@ -37,7 +37,7 @@ export const useStore = create<StoreActions & StoreState>()(
             ...createSettingsSlice(...args),
         }),
         {
-            name: 'storage',
+            name: "storage",
             storage: storage,
         }
     )
@@ -58,5 +58,5 @@ function TransformStoreStateToConfig(data: StoreState) {
         return result.data;
     }
     console.error(result.error);
-    throw Error('Failed to convert store state to config');
+    throw Error("Failed to convert store state to config");
 }

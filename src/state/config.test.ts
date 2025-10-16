@@ -1,13 +1,13 @@
-import { fs, vol } from 'memfs';
-import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+import { fs, vol } from "memfs";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
-import { DefaultConfig, loadConfig, saveConfig } from './config';
-import { DEFAULT_SIDE_BAR_IS_OPEN } from './settings';
+import { DefaultConfig, loadConfig, saveConfig } from "./config";
+import { DEFAULT_SIDE_BAR_IS_OPEN } from "./settings";
 
-describe('Config', () => {
+describe("Config", () => {
     beforeEach(() => {
-        vi.mock('node:fs/promises');
-        vi.stubGlobal('console', { error: vi.fn(), log: vi.fn(), warn: vi.fn() });
+        vi.mock("node:fs/promises");
+        vi.stubGlobal("console", { error: vi.fn(), log: vi.fn(), warn: vi.fn() });
         vol.reset();
     });
 
@@ -15,9 +15,9 @@ describe('Config', () => {
         vi.restoreAllMocks();
     });
 
-    const path = '/config.json';
+    const path = "/config.json";
 
-    test('saves and loads the config to/from file', async () => {
+    test("saves and loads the config to/from file", async () => {
         const config = { ...DefaultConfig, isOpen: !DEFAULT_SIDE_BAR_IS_OPEN };
         await saveConfig(path, config);
 
@@ -25,13 +25,13 @@ describe('Config', () => {
         expect(result).toEqual(DefaultConfig);
     });
 
-    test('returns default config when file was not found', async () => {
+    test("returns default config when file was not found", async () => {
         const result = await loadConfig(path);
         expect(result).toEqual(DefaultConfig);
     });
 
-    test('returns default config when file could not be parsed', async () => {
-        fs.writeFileSync(path, '{ invalid json');
+    test("returns default config when file could not be parsed", async () => {
+        fs.writeFileSync(path, "{ invalid json");
 
         const result = await loadConfig(path);
         expect(result).toEqual(DefaultConfig);

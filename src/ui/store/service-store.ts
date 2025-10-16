@@ -1,9 +1,9 @@
-import { arrayMove } from '@dnd-kit/sortable';
-import { StateCreator } from 'zustand/vanilla';
+import { arrayMove } from "@dnd-kit/sortable";
+import { StateCreator } from "zustand/vanilla";
 
-import { ElectronWindow } from '../../preload-features/app-bridge';
-import { Service, ServiceTemplate } from '../../state/schema';
-import { ServiceFromTemplate } from '../../state/settings';
+import { ElectronWindow } from "../../preload-features/app-bridge";
+import { Service, ServiceTemplate } from "../../state/schema";
+import { ServiceFromTemplate } from "../../state/settings";
 
 export interface ServiceStoreActions {
     add: (service: Service) => void;
@@ -47,7 +47,7 @@ export const createServiceSlice: StateCreator<ServiceStoreActions & ServiceStore
     },
     loadServicesFromPreset: () => {
         get().clear();
-        const ids = ['5106fdb4-04a3-4659-8d76-54a79fbf45a2', '2b027a28-172a-4180-bd5a-32070b046b77'];
+        const ids = ["5106fdb4-04a3-4659-8d76-54a79fbf45a2", "2b027a28-172a-4180-bd5a-32070b046b77"];
         const templates = get().templates.filter((service) => ids.includes(service.id));
         templates.map((template) => get().addFromTemplate(template));
     },

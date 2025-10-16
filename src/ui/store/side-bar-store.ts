@@ -1,6 +1,6 @@
-import { StateCreator } from 'zustand/vanilla';
+import { StateCreator } from "zustand/vanilla";
 
-import { DEFAULT_SIDE_BAR_IS_OPEN } from '../../state/settings';
+import { DEFAULT_SIDE_BAR_IS_OPEN } from "../../state/settings";
 
 export interface SideBarStoreActions {
     toggle: () => void;

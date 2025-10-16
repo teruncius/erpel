@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { styled } from 'styled-components';
+import { useEffect } from "react";
+import { styled } from "styled-components";
 
-import { ElectronWindow } from '../../../preload-features/app-bridge';
-import { useStore } from '../../store/store';
-import { SoftFrostedEffectStyle } from '../theme';
-import { Actions } from './actions';
-import { Logo } from './logo';
-import { Services } from './services';
+import { ElectronWindow } from "../../../preload-features/app-bridge";
+import { useStore } from "../../store/store";
+import { SoftFrostedEffectStyle } from "../theme";
+import { Actions } from "./actions";
+import { Logo } from "./logo";
+import { Services } from "./services";
 
 declare const window: ElectronWindow;
 

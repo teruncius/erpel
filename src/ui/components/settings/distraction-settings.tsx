@@ -1,8 +1,8 @@
-import { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent, useCallback } from "react";
 
-import { useStore } from '../../store/store';
-import { ThemedSection } from '../theme';
-import { ThemedCheckbox } from '../theme/checkbox';
+import { useStore } from "../../store/store";
+import { ThemedSection } from "../theme";
+import { ThemedCheckbox } from "../theme/checkbox";
 
 export function DistractionSettings() {
     const { isMuted, setIsMuted } = useStore();

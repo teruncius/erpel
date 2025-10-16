@@ -1,4 +1,4 @@
-import { css, styled } from 'styled-components';
+import { css, styled } from "styled-components";
 
 export const SoftFrostedEffectStyle = css`
     background: #ffffff08;
