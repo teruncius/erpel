@@ -1,7 +1,7 @@
 import { enable } from "darkreader";
 import { contextBridge, ipcRenderer } from "electron";
 
-import { AppMessage } from "../app-message";
+import { AppMessage } from "@erpel/app-message";
 
 interface DarkReaderAPI {
     run: () => void;

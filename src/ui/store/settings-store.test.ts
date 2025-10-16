@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { create } from "zustand";
 
-import { BackgroundMode, DEFAULT_IS_MUTED, DEFAULT_LOCALE } from "../../state/settings";
+import { BackgroundMode, DEFAULT_IS_MUTED, DEFAULT_LOCALE } from "@erpel/state/settings";
 import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from "./settings-store";
 
 // Create a test store

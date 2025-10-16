@@ -6,7 +6,7 @@ vi.mock("darkreader", () => ({
     enable: mockEnable,
 }));
 
-import { AppMessage } from "../app-message";
+import { AppMessage } from "@erpel/app-message";
 
 describe("Dark Reader", () => {
     beforeEach(() => {

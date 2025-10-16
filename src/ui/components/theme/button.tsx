@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { css, styled } from "styled-components";
 
-import { HardFrostedEffectStyle, ThemedHoverStyle } from "../theme";
+import { HardFrostedEffectStyle, ThemedHoverStyle } from "@erpel/ui/components/theme";
 
 const ThemedButtonStyle = css`
     ${HardFrostedEffectStyle};

@@ -11,12 +11,12 @@ import {
 } from "electron";
 import { join } from "node:path";
 
-import type { Service } from "./state/schema";
+import type { Service } from "@erpel/state/schema";
 
 import icon from "../resources/erpel.png?asset";
-import { AppMessage } from "./app-message";
-import { loadConfig, saveConfig } from "./state/config";
-import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "./ui/components/side-bar/side-bar";
+import { AppMessage } from "@erpel/app-message";
+import { loadConfig, saveConfig } from "@erpel/state/config";
+import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "@erpel/ui/components/side-bar/side-bar";
 
 const CONFIG_PATH = join(app.getPath("userData"), "config.json");
 const SESSION_PARTITION = `persist:${import.meta.env.DEV ? "development" : "production"}`;

@@ -1,7 +1,7 @@
 import { ChangeEvent, InputHTMLAttributes, useCallback, useEffect, useState } from "react";
 import { styled } from "styled-components";
 
-import { Icon } from "../icon";
+import { Icon } from "@erpel/ui/components/icon";
 import { ThemedButton } from "./button";
 
 type ThemedCheckbox = {

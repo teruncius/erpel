@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { styled } from "styled-components";
+import { useEffect } from 'react';
+import { styled } from 'styled-components';
 
-import { ElectronWindow } from "../../../preload-features/app-bridge";
-import { useStore } from "../../store/store";
-import { SoftFrostedEffectStyle } from "../theme";
-import { Actions } from "./actions";
-import { Logo } from "./logo";
-import { Services } from "./services";
+import { ElectronWindow } from '@erpel/preload-features/app-bridge';
+import { useStore } from '@erpel/ui/store/store';
+import { SoftFrostedEffectStyle } from '@erpel/ui/components/theme';
+import { Actions } from './actions';
+import { Logo } from './logo';
+import { Services } from './services';
 
 declare const window: ElectronWindow;
 
@@ -36,7 +36,7 @@ export function SideBar() {
 const Container = styled.div<{ $isOpen: boolean }>`
     ${SoftFrostedEffectStyle};
     position: fixed;
-    width: ${(props) => (props.$isOpen ? `${SIDEBAR_WIDTH_OPEN}px` : `${SIDEBAR_WIDTH_CLOSED}px`)};
+    width: ${(props) => props.$isOpen ? `${SIDEBAR_WIDTH_OPEN}px` : `${SIDEBAR_WIDTH_CLOSED}px`};
     height: 100vh;
 
     display: flex;

@@ -1,33 +1,30 @@
-import { ChangeEvent, useCallback } from "react";
-import { styled } from "styled-components";
+import { ChangeEvent, useCallback } from 'react';
+import { styled } from 'styled-components';
 
-import { BackgroundMode, DEFAULT_WALLPAPERS } from "../../../state/settings";
-import { useStore } from "../../store/store";
-import { Icon } from "../icon";
-import { ThemedSection } from "../theme";
-import { ThemedButton } from "../theme/button";
-import { ThemedSelect } from "../theme/select";
-import { ThemedTextarea } from "../theme/textarea";
+import { BackgroundMode, DEFAULT_WALLPAPERS } from '@erpel/state/settings';
+import { useStore } from '@erpel/ui/store/store';
+import { Icon } from '@erpel/ui/components/icon';
+import { ThemedSection } from '@erpel/ui/components/theme';
+import { ThemedButton } from '@erpel/ui/components/theme/button';
+import { ThemedSelect } from '@erpel/ui/components/theme/select';
+import { ThemedTextarea } from '@erpel/ui/components/theme/textarea';
 
-const modes = [BackgroundMode.Color, BackgroundMode.Wallpaper];
+const modes = [
+    BackgroundMode.Color,
+    BackgroundMode.Wallpaper,
+];
 
 export function WallpaperSettings() {
     const { mode, setMode, setWallpapers, wallpapers } = useStore();
 
-    const handleChange = useCallback(
-        (e: ChangeEvent<HTMLSelectElement>) => {
-            // TODO: parse value into enum
-            setMode(e.target.value as BackgroundMode);
-        },
-        [setMode]
-    );
+    const handleChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+        // TODO: parse value into enum
+        setMode(e.target.value as BackgroundMode);
+    }, [setMode]);
 
-    const handleChange2 = useCallback(
-        (e: ChangeEvent<HTMLTextAreaElement>) => {
-            setWallpapers(e.target.value.split("\n"));
-        },
-        [setWallpapers]
-    );
+    const handleChange2 = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
+        setWallpapers(e.target.value.split('\n'));
+    }, [setWallpapers]);
 
     const handleReset = useCallback(() => {
         setWallpapers(DEFAULT_WALLPAPERS);
@@ -46,7 +43,7 @@ export function WallpaperSettings() {
                                 <>Reset</>
                             </ThemedButton>
                         </div>
-                        <ThemedTextarea onChange={handleChange2} value={wallpapers.join("\n")} />
+                        <ThemedTextarea onChange={handleChange2} value={wallpapers.join('\n')} />
                     </>
                 )}
             </Container>

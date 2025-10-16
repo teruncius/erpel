@@ -1,34 +1,31 @@
-import { useCallback } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { styled } from "styled-components";
+import { useCallback } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { styled } from 'styled-components';
 
-import { Service } from "../../../state/schema";
-import { useStore } from "../../store/store";
-import { Icon } from "../icon";
-import { ThemedButton } from "../theme/button";
-import { ThemedCheckbox } from "../theme/checkbox";
-import { ThemedInput } from "../theme/input";
+import { Service } from '@erpel/state/schema';
+import { useStore } from '@erpel/ui/store/store';
+import { Icon } from '@erpel/ui/components/icon';
+import { ThemedButton } from '@erpel/ui/components/theme/button';
+import { ThemedCheckbox } from '@erpel/ui/components/theme/checkbox';
+import { ThemedInput } from '@erpel/ui/components/theme/input';
 
 export interface Values {
-    darkMode: boolean | null;
-    name: null | string;
-    url: null | string;
+    darkMode: boolean | null
+    name: null | string
+    url: null | string
 }
 
 interface ServiceFormProps {
-    service: Service;
+    service: Service
 }
 
 export function ServiceForm(props: ServiceFormProps) {
     const { control, handleSubmit, register } = useForm<Values>({ defaultValues: props.service });
     const { replace } = useStore();
 
-    const onSubmit: SubmitHandler<Values> = useCallback(
-        (data) => {
-            replace(props.service.id, { ...props.service, ...data });
-        },
-        [props.service, replace]
-    );
+    const onSubmit: SubmitHandler<Values> = useCallback((data) => {
+        replace(props.service.id, { ...props.service, ...data });
+    }, [props.service, replace]);
 
     const filterEmptyToString = useCallback((value: string) => {
         return value !== null && value.trim().length > 0 ? value : null;
@@ -41,7 +38,7 @@ export function ServiceForm(props: ServiceFormProps) {
                     <Label htmlFor={`${props.service.id}::name`}>Name</Label>
                     <ThemedInput
                         id={`${props.service.id}::name`}
-                        {...register("name", { setValueAs: filterEmptyToString })}
+                        {...register('name', { setValueAs: filterEmptyToString })}
                         placeholder="Enter a custom name for this service"
                     />
                 </Fieldset>
@@ -51,7 +48,7 @@ export function ServiceForm(props: ServiceFormProps) {
                     <Label htmlFor={`${props.service.id}::url`}>URL</Label>
                     <ThemedInput
                         id={`${props.service.id}::url`}
-                        {...register("url", { setValueAs: filterEmptyToString })}
+                        {...register('url', { setValueAs: filterEmptyToString })}
                         placeholder="Enter a custom URL for this service"
                     />
                 </Fieldset>
@@ -88,7 +85,7 @@ export function ServiceForm(props: ServiceFormProps) {
 const Form = styled.form`
     padding: 0;
     margin: 0;
-
+    
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -97,11 +94,11 @@ const Form = styled.form`
 const Fieldset = styled.fieldset`
     padding: 0;
     margin: 0;
-
+    
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-
+    
     border: 0;
 `;
 

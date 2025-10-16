@@ -1,8 +1,8 @@
 import { Outlet } from "react-router";
 import { styled } from "styled-components";
 
-import { BackgroundMode } from "../../state/settings";
-import { useStore } from "../store/store";
+import { BackgroundMode } from "@erpel/state/settings";
+import { useStore } from "@erpel/ui/store/store";
 import { SideBar, SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "./side-bar/side-bar";
 import { Wallpaper } from "./wallpaper";
 

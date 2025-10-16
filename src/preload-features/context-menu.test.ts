@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { AppMessage } from "../app-message";
+import { AppMessage } from "@erpel/app-message";
 
 describe("Context Menu", () => {
     beforeEach(() => {

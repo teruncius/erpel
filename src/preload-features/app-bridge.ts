@@ -1,7 +1,7 @@
 import { contextBridge, ipcRenderer } from "electron";
 
-import { AppMessage } from "../app-message";
-import { Config, Service } from "../state/schema";
+import { AppMessage } from "@erpel/app-message";
+import { Config, Service } from "@erpel/state/schema";
 
 // use as:
 // declare const window: ElectronWindow;

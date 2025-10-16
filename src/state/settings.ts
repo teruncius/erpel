@@ -1,4 +1,4 @@
-import type { Option, Service, ServiceTemplate } from "./schema";
+import type { Option, Service, ServiceTemplate } from "@erpel/state/schema";
 
 import calendar from "../../resources/google-calendar.png?no-inline";
 import chat from "../../resources/google-chat.png?no-inline";

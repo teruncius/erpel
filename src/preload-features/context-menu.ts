@@ -1,6 +1,6 @@
 import { ipcRenderer } from "electron";
 
-import { AppMessage } from "../app-message";
+import { AppMessage } from "@erpel/app-message";
 
 window.addEventListener("contextmenu", (event) => {
     event.preventDefault();

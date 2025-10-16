@@ -1,13 +1,13 @@
-import { CSSProperties } from "react";
-import { styled } from "styled-components";
+import { CSSProperties } from 'react';
+import { styled } from 'styled-components';
 
-import { IconIdToUrl } from "../../../state/settings";
+import { IconIdToUrl } from '@erpel/state/settings';
 
 interface ServiceIconProps {
-    icon: string;
-    name: string;
-    size: number;
-    style?: CSSProperties;
+    icon: string
+    name: string
+    size: number
+    style?: CSSProperties
 }
 
 export function ServiceIcon(props: ServiceIconProps) {

@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { AppMessage } from "../app-message";
-import { Config, Service } from "../state/schema";
-import { BackgroundMode } from "../state/settings";
+import { AppMessage } from "@erpel/app-message";
+import { Config, Service } from "@erpel/state/schema";
+import { BackgroundMode } from "@erpel/state/settings";
 
 describe("App Bridge", () => {
     beforeEach(() => {

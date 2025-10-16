@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { Config } from "../../state/schema";
-import { BackgroundMode, DEFAULT_SERVICE_TEMPLATES } from "../../state/settings";
+import { Config } from "@erpel/state/schema";
+import { BackgroundMode, DEFAULT_SERVICE_TEMPLATES } from "@erpel/state/settings";
 import { useStore } from "./store";
 
 describe("Store", () => {

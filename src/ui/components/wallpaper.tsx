@@ -2,7 +2,7 @@ import { animated, useSpringRef, useTransition } from "@react-spring/web";
 import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 
-import { useStore } from "../store/store";
+import { useStore } from "@erpel/ui/store/store";
 
 export function Wallpaper() {
     const timerRef = useRef<NodeJS.Timeout>(null);

@@ -1,7 +1,7 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { BackgroundMode } from "../../state/settings";
+import { BackgroundMode } from "@erpel/state/settings";
 import { Layout } from "./layout";
 
 // Mock the store

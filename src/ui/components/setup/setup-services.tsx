@@ -1,12 +1,12 @@
 import { useCallback } from "react";
 import { styled } from "styled-components";
 
-import { Config } from "../../../state/schema";
-import { useStore } from "../../store/store";
-import { Icon } from "../icon";
-import { ThemedSection } from "../theme";
-import { ThemedButton, ThemedLink } from "../theme/button";
-import { Hint } from "../theme/hint";
+import { Config } from "@erpel/state/schema";
+import { useStore } from "@erpel/ui/store/store";
+import { Icon } from "@erpel/ui/components/icon";
+import { ThemedSection } from "@erpel/ui/components/theme";
+import { ThemedButton, ThemedLink } from "@erpel/ui/components/theme/button";
+import { Hint } from "@erpel/ui/components/theme/hint";
 
 const FILE_OPTIONS = {
     excludeAcceptAllOption: true,

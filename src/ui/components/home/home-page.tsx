@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
-import { ElectronWindow } from "../../../preload-features/app-bridge";
-import { useStore } from "../../store/store";
-import { PageCenter } from "../layout";
-import { Clock } from "./clock";
+import { ElectronWindow } from '@erpel/preload-features/app-bridge';
+import { useStore } from '@erpel/ui/store/store';
+import { PageCenter } from '@erpel/ui/components/layout';
+import { Clock } from './clock';
 
 declare const window: ElectronWindow;
 
@@ -18,7 +18,7 @@ export function Home() {
 
     useEffect(() => {
         if (services.length === 0) {
-            navigate("/setup");
+            navigate('/setup');
         }
     }, [services, navigate]);
 

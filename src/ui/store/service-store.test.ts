@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { create } from "zustand";
 
-import { Service, ServiceTemplate } from "../../state/schema";
+import { Service, ServiceTemplate } from "@erpel/state/schema";
 import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from "./service-store";
 
 // Mock the window.electron object

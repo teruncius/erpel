@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { create } from "zustand";
 
-import { DEFAULT_SIDE_BAR_IS_OPEN } from "../../state/settings";
+import { DEFAULT_SIDE_BAR_IS_OPEN } from "@erpel/state/settings";
 import { createSideBarSlice, SideBarStoreActions, SideBarStoreState } from "./side-bar-store";
 
 // Create a test store

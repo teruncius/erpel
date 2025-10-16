@@ -2,7 +2,7 @@ import { act, render } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { useSpringRef, useTransition } from "@react-spring/web";
-import { useStore } from "../store/store";
+import { useStore } from "@erpel/ui/store/store";
 import { Wallpaper } from "./wallpaper";
 
 // Mock the store

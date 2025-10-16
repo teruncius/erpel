@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-import { HardFrostedEffectStyle } from "../theme";
+import { HardFrostedEffectStyle } from "@erpel/ui/components/theme";
 
 export const ThemedTextarea = styled.textarea`
     ${HardFrostedEffectStyle};

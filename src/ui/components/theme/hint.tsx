@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-import { Icon } from "../icon";
+import { Icon } from "@erpel/ui/components/icon";
 
 interface HintProps {
     text: string;

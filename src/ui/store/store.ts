@@ -2,9 +2,9 @@ import { z } from "zod";
 import { create } from "zustand";
 import { persist, PersistStorage } from "zustand/middleware";
 
-import { ElectronWindow } from "../../preload-features/app-bridge";
-import { Config, ConfigSchema } from "../../state/schema";
-import { DEFAULT_SERVICE_TEMPLATES } from "../../state/settings";
+import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { Config, ConfigSchema } from "@erpel/state/schema";
+import { DEFAULT_SERVICE_TEMPLATES } from "@erpel/state/settings";
 import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from "./service-store";
 import { createSettingsSlice, SettingsStoreActions, SettingsStoreState } from "./settings-store";
 import { createSideBarSlice, SideBarStoreActions, SideBarStoreState } from "./side-bar-store";
