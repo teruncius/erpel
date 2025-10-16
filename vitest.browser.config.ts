@@ -1,9 +1,9 @@
 import { mergeConfig } from "vitest/config";
-import baseConfig from "./vite.main.config";
+import baseConfig from "./vite.renderer.config";
 
 export default mergeConfig(baseConfig, {
     test: {
-        global: true,
+        include: ["src/ui/**/*.test.{ts,tsx}"],
         browser: {
             enabled: true,
             provider: "playwright",

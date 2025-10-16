@@ -5,7 +5,9 @@
     "main": ".vite/build/main.js",
     "scripts": {
         "start": "electron-forge start",
-        "test": "vitest",
+        "test": "vitest run --config vitest.node.config.ts && vitest run --config vitest.browser.config.ts",
+        "test:browser": "vitest --config vitest.browser.config.ts",
+        "test:node": "vitest --config vitest.node.config.ts",
         "make": "electron-forge make",
         "lint": "eslint",
         "tsc": "tsc --noEmit",
@@ -44,6 +46,7 @@
         "@types/electron-squirrel-startup": "^1.0.2",
         "@types/react": "^19.1.10",
         "@types/react-dom": "^19.1.7",
+        "@vitest/browser": "^3.2.4",
         "electron": "37.3.0",
         "eslint": "^9.33.0",
         "eslint-config-prettier": "^10.1.8",
