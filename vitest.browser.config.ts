@@ -11,4 +11,7 @@ export default mergeConfig(baseConfig, {
             instances: [{ browser: "chromium" }],
         },
     },
+    optimizeDeps: {
+        include: ["react-dom/client", "darkreader"],
+    },
 });
