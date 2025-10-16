@@ -1,2 +1,2 @@
-import './PreloadFeatures/AppBridge';
-import './PreloadFeatures/ContextMenu';
+import './preload-features/app-bridge';
+import './preload-features/context-menu';
