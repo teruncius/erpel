@@ -8,7 +8,7 @@
         "test": "vitest",
         "make": "electron-forge make",
         "lint": "eslint",
-        "tsc": "tsc"
+        "tsc": "tsc --noEmit"
     },
     "keywords": [],
     "author": {
