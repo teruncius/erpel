@@ -44,6 +44,10 @@ runs:
       run: just install
       shell: bash
 
+    - name: Install Playwright browsers
+      run: pnpx playwright install --with-deps
+      shell: bash
+
     - name: Run tests
       run: just test
       shell: bash
