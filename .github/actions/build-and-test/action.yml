@@ -1,0 +1,60 @@
+name: 'Build and Test'
+description: 'Common build and test steps for the Erpel application'
+author: 'teruncius'
+
+inputs:
+  node-version:
+    description: 'Node.js version to use'
+    required: false
+    default: '22'
+  just-version:
+    description: 'Just version to use'
+    required: false
+    default: '1.40.0'
+  pnpm-version:
+    description: 'pnpm version to use'
+    required: false
+    default: 'latest'
+
+outputs:
+  build-path:
+    description: 'Path to the build artifacts'
+    value: ${{ steps.build.outputs.build-path }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        run_install: false
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: "pnpm"
+
+    - name: Install just
+      uses: extractions/setup-just@v3
+      with:
+        just-version: ${{ inputs.just-version }}
+
+    - name: Install dependencies
+      run: just install
+      shell: bash
+
+    - name: Run tests
+      run: just test
+      shell: bash
+
+    - name: Run linter
+      run: just lint
+      shell: bash
+
+    - name: Build application
+      id: build
+      run: |
+        just build
+        echo "build-path=out/make" >> $GITHUB_OUTPUT
+      shell: bash
