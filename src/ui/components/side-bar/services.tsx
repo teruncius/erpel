@@ -1,11 +1,10 @@
-import React from 'react';
-import { NavLink } from 'react-router';
-import { styled } from 'styled-components';
+import { NavLink } from "react-router";
+import { styled } from "styled-components";
 
-import { Service } from '@erpel/state/schema';
-import { useStore } from '@erpel/ui/store/store';
-import { ServiceIcon } from '@erpel/ui/components/settings/service-icon';
-import { SoftFrostedEffectStyle } from '@erpel/ui/components/theme';
+import { Service } from "@erpel/state/schema";
+import { ServiceIcon } from "@erpel/ui/components/settings/service-icon";
+import { SoftFrostedEffectStyle } from "@erpel/ui/components/theme";
+import { useStore } from "@erpel/ui/store/store";
 
 export function Services() {
     const { services } = useStore();
@@ -33,7 +32,7 @@ const ServiceList = styled.nav`
 `;
 
 interface ServiceItemProps {
-    service: Service
+    service: Service;
 }
 
 function ServiceItem(props: ServiceItemProps) {
@@ -57,7 +56,7 @@ const ServiceLink = styled(NavLink)<{ $isOpen: boolean }>`
 
     display: flex;
     flex-direction: row;
-    justify-content: ${(props) => props.$isOpen ? 'flex-start' : 'center'};
+    justify-content: ${(props) => (props.$isOpen ? "flex-start" : "center")};
     align-items: center;
     gap: 0.5rem;
 
@@ -66,15 +65,15 @@ const ServiceLink = styled(NavLink)<{ $isOpen: boolean }>`
     cursor: pointer;
     line-height: 1rem;
     user-select: none;
-    background-color: ${(props) => props.$isOpen ? '#ffffff08' : 'transparent'};
+    background-color: ${(props) => (props.$isOpen ? "#ffffff08" : "transparent")};
     filter: brightness(0.6);
 
     &:hover {
-        filter: brightness(1.0);
+        filter: brightness(1);
     }
 
     &.active {
-        filter: brightness(1.0);
+        filter: brightness(1);
     }
 
     &:focus {

@@ -13,10 +13,10 @@ import { join } from "node:path";
 
 import type { Service } from "@erpel/state/schema";
 
-import icon from "../resources/erpel.png?asset";
 import { AppMessage } from "@erpel/app-message";
 import { loadConfig, saveConfig } from "@erpel/state/config";
 import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "@erpel/ui/components/side-bar/side-bar";
+import icon from "../resources/erpel.png?asset";
 
 const CONFIG_PATH = join(app.getPath("userData"), "config.json");
 const SESSION_PARTITION = `persist:${import.meta.env.DEV ? "development" : "production"}`;

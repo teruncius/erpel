@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
-import { styled } from 'styled-components';
+import { useEffect } from "react";
+import { styled } from "styled-components";
 
-import { ElectronWindow } from '@erpel/preload-features/app-bridge';
-import { useStore } from '@erpel/ui/store/store';
-import { Icon } from '@erpel/ui/components/icon';
-import { SetupServices } from '@erpel/ui/components/setup/setup-services';
-import { ThemedSection } from '@erpel/ui/components/theme';
-import { ThemedLink } from '@erpel/ui/components/theme/button';
-import { DebugNotificationsButton } from './debug-notifications-button';
-import { DistractionSettings } from './distraction-settings';
-import { ExportSettingsButton } from './export-settings-button';
-import { LocaleSettings } from './locale-settings';
-import { Services } from './services';
-import { ServiceTemplates } from './service-templates';
-import { WallpaperSettings } from './wallpaper-settings';
+import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { Icon } from "@erpel/ui/components/icon";
+import { SetupServices } from "@erpel/ui/components/setup/setup-services";
+import { ThemedSection } from "@erpel/ui/components/theme";
+import { ThemedLink } from "@erpel/ui/components/theme/button";
+import { useStore } from "@erpel/ui/store/store";
+import { DebugNotificationsButton } from "./debug-notifications-button";
+import { DistractionSettings } from "./distraction-settings";
+import { ExportSettingsButton } from "./export-settings-button";
+import { LocaleSettings } from "./locale-settings";
+import { ServiceTemplates } from "./service-templates";
+import { Services } from "./services";
+import { WallpaperSettings } from "./wallpaper-settings";
 
 declare const window: ElectronWindow;
 
@@ -26,11 +26,7 @@ export function SettingsPage() {
 
     return (
         <>
-            {services.length === 0 ? (
-                <SetupServices />
-            ) : (
-                <Services />
-            )}
+            {services.length === 0 ? <SetupServices /> : <Services />}
             <ServiceTemplates />
             <LocaleSettings />
             <DistractionSettings />
@@ -40,9 +36,7 @@ export function SettingsPage() {
                     <ExportSettingsButton />
                     <DebugNotificationsButton />
                     <ThemedLink to="/setup">
-                        <Icon name="cog" size={20} />
-                        {' '}
-                        Go back to set up
+                        <Icon name="cog" size={20} /> Go back to set up
                     </ThemedLink>
                 </Container>
             </ThemedSection>

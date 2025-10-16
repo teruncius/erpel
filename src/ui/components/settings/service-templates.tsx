@@ -1,16 +1,16 @@
-import { ChangeEvent, useCallback, useState } from 'react';
-import { styled } from 'styled-components';
+import { ChangeEvent, useCallback, useState } from "react";
+import { styled } from "styled-components";
 
-import { ServiceTemplate } from '@erpel/state/schema';
-import { useStore } from '@erpel/ui/store/store';
-import { Icon } from '@erpel/ui/components/icon';
-import { HardFrostedEffectStyle, ThemedHoverStyle, ThemedSection } from '@erpel/ui/components/theme';
-import { ThemedButton } from '@erpel/ui/components/theme/button';
-import { ThemedInput } from '@erpel/ui/components/theme/input';
-import { ServiceIcon } from './service-icon';
+import { ServiceTemplate } from "@erpel/state/schema";
+import { Icon } from "@erpel/ui/components/icon";
+import { HardFrostedEffectStyle, ThemedHoverStyle, ThemedSection } from "@erpel/ui/components/theme";
+import { ThemedButton } from "@erpel/ui/components/theme/button";
+import { ThemedInput } from "@erpel/ui/components/theme/input";
+import { useStore } from "@erpel/ui/store/store";
+import { ServiceIcon } from "./service-icon";
 
 export function ServiceTemplates() {
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState("");
     const { templates } = useStore();
 
     function filter(event: ChangeEvent<HTMLInputElement>) {
@@ -18,15 +18,16 @@ export function ServiceTemplates() {
     }
 
     function handleReset() {
-        setSearch('');
+        setSearch("");
     }
 
-    const filtered = !search.length ? templates : templates
-        .filter((templates) => {
-            const name = templates.name.default.toLowerCase().includes(search.toLowerCase());
-            const tags = templates.tags.filter((tag) => tag.toLowerCase().includes(search.toLowerCase()));
-            return name || tags.length > 0;
-        });
+    const filtered = !search.length
+        ? templates
+        : templates.filter((templates) => {
+              const name = templates.name.default.toLowerCase().includes(search.toLowerCase());
+              const tags = templates.tags.filter((tag) => tag.toLowerCase().includes(search.toLowerCase()));
+              return name || tags.length > 0;
+          });
 
     return (
         <ThemedSection>
@@ -85,7 +86,7 @@ const Grid = styled.div`
 `;
 
 interface ServiceTemplateProps {
-    template: ServiceTemplate
+    template: ServiceTemplate;
 }
 
 function ServiceTemplate(props: ServiceTemplateProps) {
@@ -106,7 +107,7 @@ function ServiceTemplate(props: ServiceTemplateProps) {
 const TemplateBox = styled.div`
     ${HardFrostedEffectStyle};
     ${ThemedHoverStyle};
-    
+
     padding: 0.5rem;
     margin: 0;
 

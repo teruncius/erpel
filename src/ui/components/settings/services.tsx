@@ -1,16 +1,16 @@
-import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
-import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-import { useCallback, useState } from 'react';
-import { styled } from 'styled-components';
+import { closestCenter, DndContext, DragEndEvent } from "@dnd-kit/core";
+import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { useCallback, useState } from "react";
+import { styled } from "styled-components";
 
-import { Service } from '@erpel/state/schema';
-import { useStore } from '@erpel/ui/store/store';
-import { Icon } from '@erpel/ui/components/icon';
-import { HardFrostedEffectStyle, ThemedSection } from '@erpel/ui/components/theme';
-import { ThemedButton } from '@erpel/ui/components/theme/button';
-import { ServiceForm } from './service-form';
-import { ServiceIcon } from './service-icon';
+import { Service } from "@erpel/state/schema";
+import { Icon } from "@erpel/ui/components/icon";
+import { HardFrostedEffectStyle, ThemedSection } from "@erpel/ui/components/theme";
+import { ThemedButton } from "@erpel/ui/components/theme/button";
+import { useStore } from "@erpel/ui/store/store";
+import { ServiceForm } from "./service-form";
+import { ServiceIcon } from "./service-icon";
 
 export function Services() {
     const { reorder, services } = useStore();
@@ -47,21 +47,16 @@ const List = styled.div`
 `;
 
 interface CurrentServiceProps {
-    service: Service
+    service: Service;
 }
 
 function Service(props: CurrentServiceProps) {
     const { remove } = useStore();
     const [isOpen, setIsOpen] = useState(false);
 
-    const {
-        attributes,
-        listeners,
-        setActivatorNodeRef,
-        setNodeRef,
-        transform,
-        transition,
-    } = useSortable({ id: props.service.id });
+    const { attributes, listeners, setActivatorNodeRef, setNodeRef, transform, transition } = useSortable({
+        id: props.service.id,
+    });
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -69,7 +64,7 @@ function Service(props: CurrentServiceProps) {
     };
 
     const handleDelete = useCallback(() => {
-        if (confirm('Do you really want to delete this service?')) {
+        if (confirm("Do you really want to delete this service?")) {
             remove(props.service.id);
         }
     }, [props.service.id, remove]);
@@ -89,13 +84,7 @@ function Service(props: CurrentServiceProps) {
                 </ServiceButtonDnD>
                 <ServiceIcon icon={icon} name={name} size={32} />
                 <ServiceName>
-                    {props.service.name && props.service.template.name && (
-                        <>
-                            {props.service.template.name.default}
-                            :
-                            {' '}
-                        </>
-                    )}
+                    {props.service.name && props.service.template.name && <>{props.service.template.name.default}: </>}
                     <>{name}</>
                 </ServiceName>
                 <ServiceButtons>
@@ -118,7 +107,7 @@ function Service(props: CurrentServiceProps) {
 
 const ServiceBox = styled.div`
     ${HardFrostedEffectStyle};
-    
+
     padding: 0.5rem;
     margin: 0;
 

@@ -1,8 +1,8 @@
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
-import { ElectronWindow } from '@erpel/preload-features/app-bridge';
-import { Icon } from '@erpel/ui/components/icon';
-import { ThemedButton } from '@erpel/ui/components/theme/button';
+import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { Icon } from "@erpel/ui/components/icon";
+import { ThemedButton } from "@erpel/ui/components/theme/button";
 
 declare const window: ElectronWindow;
 
@@ -16,11 +16,11 @@ export function ExportSettingsButton() {
             }
 
             const json = JSON.stringify(data, null, 4);
-            const file = new Blob([json], { type: 'application/json' });
+            const file = new Blob([json], { type: "application/json" });
 
-            const element = document.createElement('a');
+            const element = document.createElement("a");
             element.href = URL.createObjectURL(file);
-            element.download = 'config.json';
+            element.download = "config.json";
             element.click();
         };
 

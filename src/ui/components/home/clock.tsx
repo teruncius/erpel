@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
-import { styled } from 'styled-components';
+import { useCallback, useEffect, useState } from "react";
+import { styled } from "styled-components";
 
-import { useStore } from '@erpel/ui/store/store';
-import { FrostedContainerStyle } from '@erpel/ui/components/theme';
+import { FrostedContainerStyle } from "@erpel/ui/components/theme";
+import { useStore } from "@erpel/ui/store/store";
 
 interface Props {
-    golden?: boolean
+    golden?: boolean;
 }
 
 export function Clock(props: Props) {
@@ -24,15 +24,15 @@ export function Clock(props: Props) {
     return (
         <Container $golden={props.golden || false}>
             <ClockTime>
-                {new Intl.DateTimeFormat(timeFormat, { hour: '2-digit', minute: '2-digit' }).format(now)}
+                {new Intl.DateTimeFormat(timeFormat, { hour: "2-digit", minute: "2-digit" }).format(now)}
             </ClockTime>
             <ClockDate>
-                {new Intl.DateTimeFormat(locale, { weekday: 'long' }).format(now)}
+                {new Intl.DateTimeFormat(locale, { weekday: "long" }).format(now)}
                 <>, </>
                 {new Intl.DateTimeFormat(dateFormat, {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
                 }).format(now)}
             </ClockDate>
         </Container>
@@ -41,10 +41,10 @@ export function Clock(props: Props) {
 
 const Container = styled.div<{ $golden: boolean }>`
     ${FrostedContainerStyle};
-    
+
     padding: 1rem 3rem;
     margin: 0;
-    aspect-ratio: ${(props) => props.$golden ? '1.618' : 'auto'};
+    aspect-ratio: ${(props) => (props.$golden ? "1.618" : "auto")};
 
     display: flex;
     flex-direction: column;
