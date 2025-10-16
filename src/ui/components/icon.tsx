@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { styled } from "styled-components";
 
-import icons from "../../../resources/icons.svg";
+import icons from "@erpel/resources/icons.svg";
 
 interface IconProps {
     name:

@@ -24,11 +24,11 @@ vi.mock("react-router", () => ({
     ),
 }));
 
-vi.mock("../../../../resources/duck-quacking.mp3?no-inline", () => ({
+vi.mock("@erpel/resources/duck-quacking.mp3?no-inline", () => ({
     default: "mock-audio-file.mp3",
 }));
 
-vi.mock("../../../../resources/erpel.png?no-inline", () => ({
+vi.mock("@erpel/resources/erpel.png?no-inline", () => ({
     default: "mock-icon.png",
 }));
 

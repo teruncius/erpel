@@ -1,14 +1,14 @@
 import type { Option, Service, ServiceTemplate } from "@erpel/state/schema";
 
-import calendar from "../../resources/google-calendar.png?no-inline";
-import chat from "../../resources/google-chat.png?no-inline";
-import gmail from "../../resources/google-mail.png?no-inline";
-import jira from "../../resources/jira.png?no-inline";
-import mm from "../../resources/mattermost.png?no-inline";
-import spotify from "../../resources/spotify.png?no-inline";
-import telegram from "../../resources/telegram.png?no-inline";
-import trello from "../../resources/trello.png?no-inline";
-import web from "../../resources/web.png?no-inline";
+import calendar from "@erpel/resources/google-calendar.png?no-inline";
+import chat from "@erpel/resources/google-chat.png?no-inline";
+import gmail from "@erpel/resources/google-mail.png?no-inline";
+import jira from "@erpel/resources/jira.png?no-inline";
+import mm from "@erpel/resources/mattermost.png?no-inline";
+import spotify from "@erpel/resources/spotify.png?no-inline";
+import telegram from "@erpel/resources/telegram.png?no-inline";
+import trello from "@erpel/resources/trello.png?no-inline";
+import web from "@erpel/resources/web.png?no-inline";
 
 export enum BackgroundMode {
     Color = "color",

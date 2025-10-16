@@ -14,7 +14,8 @@
         "resolveJsonModule": true,
         "jsx": "react-jsx",
         "paths": {
-            "@erpel/*": ["src/*"]
+            "@erpel/*": ["src/*"],
+            "@erpel/resources/*": ["resources/*"]
         }
     }
 }

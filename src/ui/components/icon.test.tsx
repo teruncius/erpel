@@ -2,7 +2,7 @@ import { cleanup, render } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 // Mock the icons resource
-vi.mock("../../../resources/icons.svg", () => ({
+vi.mock("@erpel/resources/icons.svg", () => ({
     default: "mocked-icons.svg",
 }));
 

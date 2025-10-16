@@ -4,8 +4,8 @@ import { styled } from "styled-components";
 
 import { useAudio } from "@erpel/ui/hooks/audio";
 import { useStore } from "@erpel/ui/store/store";
-import quack from "../../../../resources/duck-quacking.mp3?no-inline";
-import icon from "../../../../resources/erpel.png?no-inline";
+import quack from "@erpel/resources/duck-quacking.mp3?no-inline";
+import icon from "@erpel/resources/erpel.png?no-inline";
 
 export function Logo() {
     const [, , play] = useAudio(quack);
