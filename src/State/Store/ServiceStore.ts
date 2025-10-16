@@ -1,3 +1,4 @@
+import { arrayMove } from '@dnd-kit/sortable';
 import { StateCreator } from 'zustand/vanilla';
 
 import { ElectronWindow } from '../../PreloadFeatures/AppBridge';
@@ -11,8 +12,8 @@ export interface ServiceStoreActions {
     loadServicesFromFile: (services: Service[]) => void
     loadServicesFromPreset: () => void
     remove: (id: string) => void
+    reorder: (fromIndex: number, toIndex: number) => void
     replace: (id: string, service: Service) => void
-    swap: (id1: string, id2: string) => void
 }
 
 export interface ServiceStoreState {
@@ -55,6 +56,10 @@ export const createServiceSlice: StateCreator<ServiceStoreActions & ServiceStore
         set({ services });
         window.electron.removeService(id);
     },
+    reorder: (fromIndex: number, toIndex: number) => {
+        const services = arrayMove(get().services, fromIndex, toIndex);
+        set({ services });
+    },
     replace: (id: string, service: Service) => {
         const services = [...get().services];
         const idx = services.findIndex((service) => service.id === id);
@@ -69,14 +74,5 @@ export const createServiceSlice: StateCreator<ServiceStoreActions & ServiceStore
             window.electron.removeService(id);
             window.electron.addService(service);
         }
-    },
-    swap: (id1: string, id2: string) => {
-        const services = [...get().services];
-        const OLD = services.findIndex((service) => service.id === id1);
-        const NEW = services.findIndex((service) => service.id === id2);
-
-        [services[OLD], services[NEW]] = [services[NEW], services[OLD]];
-
-        set({ services });
     },
 });

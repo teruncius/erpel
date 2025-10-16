@@ -13,13 +13,15 @@ import { ServiceForm } from './ServiceForm';
 import { ServiceIcon } from './ServiceIcon';
 
 export function Services() {
-    const { services, swap } = useStore();
+    const { reorder, services } = useStore();
     const ids = services.map((service) => service.id);
 
     function handleDragEnd(event: DragEndEvent) {
         const { active, over } = event;
         if (over && active.id !== over.id) {
-            swap(active.id.toString(), over.id.toString());
+            const oldIndex = ids.indexOf(active.id.toString());
+            const newIndex = ids.indexOf(over.id.toString());
+            reorder(oldIndex, newIndex);
         }
     }
 
