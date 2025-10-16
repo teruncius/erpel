@@ -1,5 +1,4 @@
 import { readFile, writeFile } from "node:fs/promises";
-import { z } from "zod";
 
 import { Config, ConfigSchema } from "./schema";
 import {
@@ -63,7 +62,7 @@ function parseConfig(data: string): Result<Config> {
         return { error: "Unable to read config version", success: false };
     }
 
-    const result = z.safeParse(ConfigSchema, parsed);
+    const result = ConfigSchema.safeParse(parsed);
 
     if (!result.success) {
         console.error("Zod parse error", result.error);
