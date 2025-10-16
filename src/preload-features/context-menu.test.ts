@@ -39,7 +39,7 @@ describe("Context Menu", () => {
                 send: vi.fn(),
             };
 
-            const contextMenuHandler = (event: any) => {
+            const contextMenuHandler = (event: { preventDefault: () => void; x: number; y: number }) => {
                 event.preventDefault();
                 mockIpcRenderer.send(AppMessage.ShowContextMenu, { x: event.x, y: event.y });
             };
@@ -64,7 +64,7 @@ describe("Context Menu", () => {
                 send: vi.fn(),
             };
 
-            const contextMenuHandler = (event: any) => {
+            const contextMenuHandler = (event: { preventDefault: () => void; x: number; y: number }) => {
                 event.preventDefault();
                 mockIpcRenderer.send(AppMessage.ShowContextMenu, { x: event.x, y: event.y });
             };
@@ -90,7 +90,7 @@ describe("Context Menu", () => {
                 send: vi.fn(),
             };
 
-            const contextMenuHandler = (event: any) => {
+            const contextMenuHandler = (event: { preventDefault: () => void; x: number; y: number }) => {
                 event.preventDefault();
                 mockIpcRenderer.send(AppMessage.ShowContextMenu, { x: event.x, y: event.y });
             };
@@ -114,7 +114,7 @@ describe("Context Menu", () => {
                 send: vi.fn(),
             };
 
-            const contextMenuHandler = (event: any) => {
+            const contextMenuHandler = (event: { preventDefault: () => void; x: number; y: number }) => {
                 event.preventDefault();
                 mockIpcRenderer.send(AppMessage.ShowContextMenu, { x: event.x, y: event.y });
             };
@@ -142,7 +142,7 @@ describe("Context Menu", () => {
                 }),
             };
 
-            const contextMenuHandler = (event: any) => {
+            const contextMenuHandler = (event: { preventDefault: () => void; x: number; y: number }) => {
                 event.preventDefault();
                 mockIpcRenderer.send(AppMessage.ShowContextMenu, { x: event.x, y: event.y });
             };
@@ -184,7 +184,7 @@ describe("Context Menu", () => {
                 send: vi.fn(),
             };
 
-            const contextMenuHandler = (event: any) => {
+            const contextMenuHandler = (event: { preventDefault: () => void; x: number; y: number }) => {
                 event.preventDefault();
                 mockIpcRenderer.send(AppMessage.ShowContextMenu, { x: event.x, y: event.y });
             };

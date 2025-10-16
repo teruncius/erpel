@@ -10,7 +10,7 @@ describe("Store", () => {
 
     beforeEach(() => {
         // Mock the window.electron object by directly setting the property
-        (globalThis.window as any).electron = {
+        (globalThis.window as unknown as { electron: { loadConfig: unknown; saveConfig: unknown } }).electron = {
             loadConfig,
             saveConfig,
         };
@@ -129,7 +129,7 @@ describe("Store", () => {
             await useStore.persist.rehydrate();
 
             const state = useStore.getState();
-            expect((state as any).version).toBeUndefined();
+            expect((state as unknown as { version?: unknown }).version).toBeUndefined();
         });
 
         it("includes default service templates in store state", async () => {
@@ -193,7 +193,7 @@ describe("Store", () => {
 
             const invalidState = {
                 dateFormat: "invalid",
-                isMuted: "not a boolean" as any,
+                isMuted: "not a boolean" as unknown as boolean,
                 isOpen: true,
                 locale: "en-US",
                 mode: BackgroundMode.Wallpaper,

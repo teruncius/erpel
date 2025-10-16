@@ -152,28 +152,28 @@ describe("Hint", () => {
         it("handles undefined title", () => {
             // The component doesn't validate props at runtime, so this should not throw
             expect(() => {
-                render(<Hint title={undefined as any} text="Some text" />);
+                render(<Hint title={undefined as unknown as string} text="Some text" />);
             }).not.toThrow();
         });
 
         it("handles undefined text", () => {
             // The component doesn't validate props at runtime, so this should not throw
             expect(() => {
-                render(<Hint title="Some title" text={undefined as any} />);
+                render(<Hint title="Some title" text={undefined as unknown as string} />);
             }).not.toThrow();
         });
 
         it("handles null title", () => {
             // The component doesn't validate props at runtime, so this should not throw
             expect(() => {
-                render(<Hint title={null as any} text="Some text" />);
+                render(<Hint title={null as unknown as string} text="Some text" />);
             }).not.toThrow();
         });
 
         it("handles null text", () => {
             // The component doesn't validate props at runtime, so this should not throw
             expect(() => {
-                render(<Hint title="Some title" text={null as any} />);
+                render(<Hint title="Some title" text={null as unknown as string} />);
             }).not.toThrow();
         });
     });

@@ -17,7 +17,17 @@ vi.mock("../../hooks/audio", () => ({
 }));
 
 vi.mock("react-router", () => ({
-    NavLink: ({ children, to, title, onClick }: any) => (
+    NavLink: ({
+        children,
+        to,
+        title,
+        onClick,
+    }: {
+        children: React.ReactNode;
+        to: string;
+        title?: string;
+        onClick?: () => void;
+    }) => (
         <a href={to} title={title} onClick={onClick} data-testid="logo-link">
             {children}
         </a>

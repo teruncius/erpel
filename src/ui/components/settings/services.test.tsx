@@ -20,7 +20,7 @@ vi.mock("../icon", () => ({
 
 // Mock the ServiceForm component
 vi.mock("./service-form", () => ({
-    ServiceForm: ({ service }: { service: any }) => (
+    ServiceForm: ({ service }: { service: { id: string } }) => (
         <div data-testid="service-form" data-service-id={service.id}>
             Service Form for {service.id}
         </div>
@@ -40,7 +40,7 @@ vi.mock("./service-icon", () => ({
 
 // Mock @dnd-kit components
 vi.mock("@dnd-kit/core", () => ({
-    DndContext: ({ children, onDragEnd }: any) => (
+    DndContext: ({ children, onDragEnd }: { children: React.ReactNode; onDragEnd?: unknown }) => (
         <div data-testid="dnd-context" data-on-drag-end={onDragEnd ? "mocked" : "undefined"}>
             {children}
         </div>
@@ -49,7 +49,15 @@ vi.mock("@dnd-kit/core", () => ({
 }));
 
 vi.mock("@dnd-kit/sortable", () => ({
-    SortableContext: ({ children, items, strategy }: any) => (
+    SortableContext: ({
+        children,
+        items,
+        strategy,
+    }: {
+        children: React.ReactNode;
+        items: unknown;
+        strategy: unknown;
+    }) => (
         <div data-testid="sortable-context" data-items={JSON.stringify(items)} data-strategy={strategy}>
             {children}
         </div>
@@ -68,7 +76,7 @@ vi.mock("@dnd-kit/sortable", () => ({
 vi.mock("@dnd-kit/utilities", () => ({
     CSS: {
         Transform: {
-            toString: (transform: any) => (transform ? "transformed" : "none"),
+            toString: (transform: unknown) => (transform ? "transformed" : "none"),
         },
     },
 }));

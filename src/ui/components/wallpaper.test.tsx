@@ -51,7 +51,7 @@ describe("Wallpaper", () => {
         mockUseSpringRef.mockReturnValue(mockRef);
 
         // Mock useTransition to return a function that renders the wallpaper
-        mockUseTransition.mockReturnValue((renderFn: (style: any, i: number) => any) => {
+        mockUseTransition.mockReturnValue((renderFn: (style: unknown, i: number) => unknown) => {
             return renderFn({ opacity: 1 }, 0);
         });
     });

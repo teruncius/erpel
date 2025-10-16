@@ -66,14 +66,14 @@ describe("Dark Reader", () => {
 
         it("should be able to set properties on window", () => {
             const mockAPI = { run: vi.fn() };
-            (window as any).DarkReader = mockAPI;
-            expect((window as any).DarkReader).toBe(mockAPI);
+            (window as unknown as { DarkReader: unknown }).DarkReader = mockAPI;
+            expect((window as unknown as { DarkReader: unknown }).DarkReader).toBe(mockAPI);
         });
 
         it("should be able to access window.DarkReader", () => {
             const mockAPI = { run: vi.fn() };
-            (window as any).DarkReader = mockAPI;
-            expect((window as any).DarkReader.run).toBe(mockAPI.run);
+            (window as unknown as { DarkReader: { run: unknown } }).DarkReader = mockAPI;
+            expect((window as unknown as { DarkReader: { run: unknown } }).DarkReader.run).toBe(mockAPI.run);
         });
     });
 
@@ -109,11 +109,11 @@ describe("Dark Reader", () => {
                 }),
             };
 
-            (window as any).DarkReader = mockAPI;
+            (window as unknown as { DarkReader: { run: () => void } }).DarkReader = mockAPI;
 
             // Simulate DOMContentLoaded event
             const domContentLoadedHandler = vi.fn(() => {
-                (window as any).DarkReader.run();
+                (window as unknown as { DarkReader: { run: () => void } }).DarkReader.run();
             });
 
             document.addEventListener("DOMContentLoaded", domContentLoadedHandler);
@@ -134,10 +134,10 @@ describe("Dark Reader", () => {
                 }),
             };
 
-            (window as any).DarkReader = mockAPI;
+            (window as unknown as { DarkReader: { run: () => void } }).DarkReader = mockAPI;
 
             const domContentLoadedHandler = vi.fn(() => {
-                (window as any).DarkReader.run();
+                (window as unknown as { DarkReader: { run: () => void } }).DarkReader.run();
             });
 
             document.addEventListener("DOMContentLoaded", domContentLoadedHandler);
@@ -152,8 +152,8 @@ describe("Dark Reader", () => {
         it("should simulate contextBridge.exposeInMainWorld behavior", () => {
             // Simulate what contextBridge.exposeInMainWorld would do
             const mockContextBridge = {
-                exposeInMainWorld: vi.fn((name: string, api: any) => {
-                    (window as any)[name] = api;
+                exposeInMainWorld: vi.fn((name: string, api: unknown) => {
+                    (window as unknown as Record<string, unknown>)[name] = api;
                 }),
             };
 
@@ -161,7 +161,7 @@ describe("Dark Reader", () => {
             mockContextBridge.exposeInMainWorld("DarkReader", mockAPI);
 
             expect(mockContextBridge.exposeInMainWorld).toHaveBeenCalledWith("DarkReader", mockAPI);
-            expect((window as any).DarkReader).toBe(mockAPI);
+            expect((window as unknown as { DarkReader: unknown }).DarkReader).toBe(mockAPI);
         });
 
         it("should simulate contextBridge.executeInMainWorld behavior", () => {

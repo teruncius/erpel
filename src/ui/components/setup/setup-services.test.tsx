@@ -56,7 +56,7 @@ const mockFile = {
 };
 
 // Mock console.error
-const mockConsoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+const _mockConsoleError = vi.spyOn(console, "error").mockImplementation(() => {});
 
 describe("SetupServices", () => {
     beforeEach(() => {

@@ -6,7 +6,7 @@ vi.setConfig({ testTimeout: 5000 });
 
 // Mock react-router
 vi.mock("react-router", () => ({
-    Link: ({ children, to, ...props }: { children: React.ReactNode; to: string; [key: string]: any }) => (
+    Link: ({ children, to, ...props }: { children: React.ReactNode; to: string; [key: string]: unknown }) => (
         <a href={to} {...props}>
             {children}
         </a>
@@ -376,13 +376,13 @@ describe("ThemedLink", () => {
         });
 
         it("handles undefined children", () => {
-            render(<ThemedLink to="/">{undefined as any}</ThemedLink>);
+            render(<ThemedLink to="/">{undefined as unknown as React.ReactNode}</ThemedLink>);
 
             expect(screen.getByRole("link")).toBeInTheDocument();
         });
 
         it("handles null children", () => {
-            render(<ThemedLink to="/">{null as any}</ThemedLink>);
+            render(<ThemedLink to="/">{null as unknown as React.ReactNode}</ThemedLink>);
 
             expect(screen.getByRole("link")).toBeInTheDocument();
         });

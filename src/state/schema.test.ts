@@ -15,7 +15,7 @@ describe("Schema", () => {
 
         it("validates required fields", () => {
             const invalidConfig = { ...DefaultConfig };
-            delete (invalidConfig as any).version;
+            delete (invalidConfig as unknown as { version?: unknown }).version;
 
             const result = z.safeParse(ConfigSchema, invalidConfig);
             expect(result.success).toEqual(false);
@@ -79,7 +79,7 @@ describe("Schema", () => {
 
         it("validates required fields", () => {
             const invalidTemplate = { ...DEFAULT_SERVICE_TEMPLATES[0] };
-            delete (invalidTemplate as any).id;
+            delete (invalidTemplate as unknown as { id?: unknown }).id;
 
             const result = z.safeParse(ServiceTemplateSchema, invalidTemplate);
             expect(result.success).toEqual(false);

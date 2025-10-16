@@ -273,7 +273,7 @@ describe("useAudio", () => {
         });
 
         it("should handle undefined URL", () => {
-            const { result } = renderHook(() => useAudio(undefined as any));
+            const { result } = renderHook(() => useAudio(undefined as unknown as string));
 
             expect(MockAudio).toHaveBeenCalledWith(undefined);
             expect(result.current[0]).toBe(false);

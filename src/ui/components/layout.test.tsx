@@ -277,7 +277,7 @@ describe("Layout", () => {
                 { isOpen: false, expectedWidth: 60 },
             ];
 
-            sidebarStates.forEach(({ isOpen, expectedWidth }) => {
+            sidebarStates.forEach(({ isOpen, expectedWidth: _expectedWidth }) => {
                 mockUseStore.mockReturnValue({
                     isOpen,
                     mode: BackgroundMode.Color,

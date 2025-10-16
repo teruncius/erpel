@@ -93,8 +93,8 @@ describe("Settings", () => {
         });
 
         it("handles null and undefined gracefully", () => {
-            expect(IconIdToUrl(null as any)).toBe("");
-            expect(IconIdToUrl(undefined as any)).toBe("");
+            expect(IconIdToUrl(null as unknown as string)).toBe("");
+            expect(IconIdToUrl(undefined as unknown as string)).toBe("");
         });
     });
 
@@ -203,7 +203,11 @@ describe("Settings", () => {
                 const optionFields = ["name", "url", "icon", "darkMode"];
 
                 optionFields.forEach((field) => {
-                    const option = template[field as keyof typeof template] as any;
+                    const option = template[field as keyof typeof template] as {
+                        copyOnCreate: boolean;
+                        customizable: boolean;
+                        default: unknown;
+                    };
                     expect(option).toHaveProperty("copyOnCreate");
                     expect(option).toHaveProperty("customizable");
                     expect(option).toHaveProperty("default");

@@ -14,8 +14,8 @@ describe("App Bridge", () => {
     });
 
     describe("Electron API simulation", () => {
-        let mockIpcRenderer: any;
-        let mockContextBridge: any;
+        let mockIpcRenderer: { send: unknown; invoke: unknown };
+        let mockContextBridge: { exposeInMainWorld: (name: string, api: unknown) => void };
 
         beforeEach(() => {
             mockIpcRenderer = {
@@ -24,8 +24,8 @@ describe("App Bridge", () => {
             };
 
             mockContextBridge = {
-                exposeInMainWorld: vi.fn((name: string, api: any) => {
-                    (window as any)[name] = api;
+                exposeInMainWorld: vi.fn((name: string, api: unknown) => {
+                    (window as unknown as Record<string, unknown>)[name] = api;
                 }),
             };
         });
@@ -189,7 +189,7 @@ describe("App Bridge", () => {
                 mockContextBridge.exposeInMainWorld("electron", mockAPI);
 
                 expect(mockContextBridge.exposeInMainWorld).toHaveBeenCalledWith("electron", mockAPI);
-                expect((window as any).electron).toBe(mockAPI);
+                expect((window as unknown as { electron: unknown }).electron).toBe(mockAPI);
             });
         });
 

@@ -16,7 +16,7 @@ const useTestStore = create<ServiceStoreActions & ServiceStoreState>()((...args)
 describe("ServiceStore", () => {
     beforeEach(() => {
         // Mock the window.electron object
-        (globalThis.window as any).electron = {
+        (globalThis.window as unknown as { electron: { addService: unknown; removeService: unknown } }).electron = {
             addService: mockAddService,
             removeService: mockRemoveService,
         };

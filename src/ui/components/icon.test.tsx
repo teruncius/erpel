@@ -218,7 +218,9 @@ describe("Icon", () => {
             ];
 
             testCases.forEach(({ name, expected }) => {
-                const { unmount } = render(<Icon name={name as any} size={24} />);
+                const { unmount } = render(
+                    <Icon name={name as "home" | "arrow-left2" | "checkbox-checked"} size={24} />
+                );
 
                 const use = document.querySelector("use");
                 expect(use).toBeInTheDocument();

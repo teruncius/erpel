@@ -113,7 +113,7 @@ describe("ThemedInput", () => {
         });
 
         it("handles undefined value", () => {
-            render(<ThemedInput value={undefined as any} />);
+            render(<ThemedInput value={undefined as unknown as string} />);
 
             const input = screen.getByRole("textbox");
             expect(input).toHaveValue("");
