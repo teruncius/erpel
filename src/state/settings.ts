@@ -49,18 +49,18 @@ export function IconIdToUrl(id: string): string {
 
 export function ServiceFromTemplate(template: ServiceTemplate): Service {
     return {
-        darkMode: ValueFromOption(template.darkMode),
-        icon: ValueFromOption(template.icon),
+        darkMode: ValueFromOption<boolean>(template.darkMode),
+        icon: ValueFromOption<string>(template.icon),
         id: crypto.randomUUID(),
-        name: ValueFromOption(template.name),
+        name: ValueFromOption<string>(template.name),
         template,
-        url: ValueFromOption(template.url),
+        url: ValueFromOption<string>(template.url),
     };
 }
 
-function ValueFromOption(option: Option) {
+function ValueFromOption<T>(option: Option): T | null {
     if (option.customizable && option.copyOnCreate) {
-        return option.default;
+        return option.default as T;
     }
     return null;
 }

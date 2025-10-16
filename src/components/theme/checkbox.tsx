@@ -14,9 +14,18 @@ export function ThemedCheckbox(props: ThemedCheckbox) {
 
     useEffect(() => {
         if (onChange) {
-            // TODO: fix handling of checked & value
-            // TODO: fix creating of event
-            onChange({ target: { checked, value: checked } });
+            // Create a synthetic event that matches the expected type
+            const syntheticEvent = {
+                target: {
+                    checked,
+                    value: checked ? 'on' : 'off',
+                },
+                currentTarget: {
+                    checked,
+                    value: checked ? 'on' : 'off',
+                },
+            } as ChangeEvent<HTMLInputElement>;
+            onChange(syntheticEvent);
         }
     }, [checked, onChange]);
 
