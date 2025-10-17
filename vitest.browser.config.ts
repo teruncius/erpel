@@ -10,6 +10,13 @@ export default mergeConfig(baseConfig, {
             provider: "playwright",
             instances: [{ browser: "chromium" }],
         },
+        coverage: {
+            provider: "istanbul",
+            reporter: ["json"],
+            reportsDirectory: "./coverage/browser",
+            include: ["src/ui/**/*.{ts,tsx}", "src/preload-features/**/*.{ts,tsx}"],
+            exclude: ["src/**/*.test.{ts,tsx}"],
+        },
     },
     optimizeDeps: {
         include: ["react-dom/client", "darkreader"],

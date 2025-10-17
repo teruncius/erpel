@@ -12,7 +12,7 @@ export default [
     ...tseslint.configs.recommended,
     pluginReact.configs.flat.recommended,
     {
-        ignores: [".vite/**", "node_modules/**"],
+        ignores: [".vite/**", "node_modules/**", "coverage/**"],
     },
     {
         rules: {

@@ -31,4 +31,4 @@ build:
 
 # clean temp folders
 clean:
-    rm -rf .vite out
+    rm -rf .vite out coverage

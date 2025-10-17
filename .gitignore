@@ -1,4 +1,6 @@
 /.idea/
+/.nyc_output/
 /.vite/
 /build/
+/coverage/
 /node_modules/
