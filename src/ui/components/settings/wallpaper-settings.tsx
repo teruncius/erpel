@@ -14,7 +14,7 @@ const modes = [BackgroundMode.Color, BackgroundMode.Wallpaper];
 export function WallpaperSettings() {
     const { mode, setMode, setWallpapers, wallpapers } = useStore();
 
-    const handleChange = useCallback(
+    const handleChangeMode = useCallback(
         (e: ChangeEvent<HTMLSelectElement>) => {
             // TODO: parse value into enum
             setMode(e.target.value as BackgroundMode);
@@ -22,7 +22,7 @@ export function WallpaperSettings() {
         [setMode]
     );
 
-    const handleChange2 = useCallback(
+    const handleChangeUrls = useCallback(
         (e: ChangeEvent<HTMLTextAreaElement>) => {
             setWallpapers(e.target.value.split("\n"));
         },
@@ -36,7 +36,7 @@ export function WallpaperSettings() {
     return (
         <ThemedSection>
             <Container>
-                <ThemedSelect label="Background mode" onChange={handleChange} options={modes} value={mode} />
+                <ThemedSelect label="Background mode" onChange={handleChangeMode} options={modes} value={mode} />
 
                 {mode === BackgroundMode.Wallpaper && (
                     <>
@@ -46,7 +46,7 @@ export function WallpaperSettings() {
                                 <>Reset</>
                             </ThemedButton>
                         </div>
-                        <ThemedTextarea onChange={handleChange2} value={wallpapers.join("\n")} />
+                        <ThemedTextarea onChange={handleChangeUrls} value={wallpapers.join("\n")} />
                     </>
                 )}
             </Container>

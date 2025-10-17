@@ -457,7 +457,7 @@ describe("WallpaperSettings", () => {
     });
 
     describe("Callback Behavior", () => {
-        it("handleChange callback uses setMode", async () => {
+        it("handleChangeMode callback uses setMode", async () => {
             const { container } = render(<WallpaperSettings />);
             const select = container.querySelector("select") as HTMLSelectElement;
 
@@ -468,7 +468,7 @@ describe("WallpaperSettings", () => {
             });
         });
 
-        it("handleChange2 callback uses setWallpapers", async () => {
+        it("handleChangeUrls callback uses setWallpapers", async () => {
             render(<WallpaperSettings />);
             const textarea = screen.getByRole("textbox");
 
@@ -739,7 +739,7 @@ describe("WallpaperSettings", () => {
             const textarea = screen.getByRole("textbox");
 
             await user.clear(textarea);
-            await user.type(textarea, "test", { delay: 1 });
+            await user.type(textarea, "test");
 
             // setWallpapers should be called for each keystroke
             expect(mockSetWallpapers.mock.calls.length).toBeGreaterThan(0);
