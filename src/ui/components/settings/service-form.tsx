@@ -62,11 +62,14 @@ export function ServiceForm(props: ServiceFormProps) {
                     <Controller
                         control={control}
                         name="darkMode"
-                        render={({ field: { value, ...rest } }) => {
+                        render={({ field: { value, onChange, ...rest } }) => {
                             return (
                                 <ThemedCheckbox
                                     checked={value || false}
                                     id={`${props.service.id}::darkMode`}
+                                    onChange={(e) => {
+                                        onChange(e.target.value === "on");
+                                    }}
                                     {...rest}
                                     placeholder="Enable dark mode"
                                 />
