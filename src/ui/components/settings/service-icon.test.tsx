@@ -26,9 +26,7 @@ describe("ServiceIcon", () => {
 
     describe("Basic Rendering", () => {
         it("renders without crashing", () => {
-            const { container } = render(
-                <ServiceIcon icon="test-icon" name="Test Service" size={32} />
-            );
+            const { container } = render(<ServiceIcon icon="test-icon" name="Test Service" size={32} />);
             expect(container).toBeInTheDocument();
         });
 
@@ -54,11 +52,11 @@ describe("ServiceIcon", () => {
     describe("Props and Attributes", () => {
         it("sets correct src attribute using IconIdToUrl", () => {
             mockIconIdToUrl.mockReturnValue("https://example.com/custom-icon.png");
-            
+
             render(<ServiceIcon icon="custom-icon" name="Custom Service" size={48} />);
-            
+
             expect(mockIconIdToUrl).toHaveBeenCalledWith("custom-icon");
-            
+
             const img = screen.getByRole("img") as HTMLImageElement;
             expect(img.src).toBe("https://example.com/custom-icon.png");
         });
@@ -90,14 +88,7 @@ describe("ServiceIcon", () => {
 
         it("passes custom style prop to img element", () => {
             const customStyle = { borderRadius: "50%", opacity: 0.8 };
-            render(
-                <ServiceIcon
-                    icon="test-icon"
-                    name="Test Service"
-                    size={32}
-                    style={customStyle}
-                />
-            );
+            render(<ServiceIcon icon="test-icon" name="Test Service" size={32} style={customStyle} />);
             const img = screen.getByRole("img") as HTMLImageElement;
             expect(img.style.borderRadius).toBe("50%");
             expect(img.style.opacity).toBe("0.8");
@@ -118,9 +109,7 @@ describe("ServiceIcon", () => {
         });
 
         it("calls IconIdToUrl for different icon values", () => {
-            const { rerender } = render(
-                <ServiceIcon icon="slack" name="Slack" size={32} />
-            );
+            const { rerender } = render(<ServiceIcon icon="slack" name="Slack" size={32} />);
             expect(mockIconIdToUrl).toHaveBeenCalledWith("slack");
 
             mockIconIdToUrl.mockClear();
@@ -230,14 +219,7 @@ describe("ServiceIcon", () => {
 
     describe("Style Prop Variations", () => {
         it("applies single CSS property", () => {
-            render(
-                <ServiceIcon
-                    icon="test"
-                    name="Test"
-                    size={32}
-                    style={{ opacity: 0.5 }}
-                />
-            );
+            render(<ServiceIcon icon="test" name="Test" size={32} style={{ opacity: 0.5 }} />);
             const img = screen.getByRole("img") as HTMLImageElement;
             expect(img.style.opacity).toBe("0.5");
         });
@@ -258,40 +240,19 @@ describe("ServiceIcon", () => {
         });
 
         it("applies transform property", () => {
-            render(
-                <ServiceIcon
-                    icon="test"
-                    name="Test"
-                    size={32}
-                    style={{ transform: "rotate(45deg)" }}
-                />
-            );
+            render(<ServiceIcon icon="test" name="Test" size={32} style={{ transform: "rotate(45deg)" }} />);
             const img = screen.getByRole("img") as HTMLImageElement;
             expect(img.style.transform).toBe("rotate(45deg)");
         });
 
         it("applies filter property", () => {
-            render(
-                <ServiceIcon
-                    icon="test"
-                    name="Test"
-                    size={32}
-                    style={{ filter: "grayscale(100%)" }}
-                />
-            );
+            render(<ServiceIcon icon="test" name="Test" size={32} style={{ filter: "grayscale(100%)" }} />);
             const img = screen.getByRole("img") as HTMLImageElement;
             expect(img.style.filter).toBe("grayscale(100%)");
         });
 
         it("handles undefined style prop", () => {
-            render(
-                <ServiceIcon
-                    icon="test"
-                    name="Test"
-                    size={32}
-                    style={undefined}
-                />
-            );
+            render(<ServiceIcon icon="test" name="Test" size={32} style={undefined} />);
             const img = screen.getByRole("img");
             expect(img).toBeInTheDocument();
         });
@@ -299,9 +260,7 @@ describe("ServiceIcon", () => {
 
     describe("Component Lifecycle", () => {
         it("maintains attributes across rerenders", () => {
-            const { rerender } = render(
-                <ServiceIcon icon="test" name="Test" size={32} />
-            );
+            const { rerender } = render(<ServiceIcon icon="test" name="Test" size={32} />);
 
             let img = screen.getByRole("img");
             expect(img).toHaveAttribute("width", "32");
@@ -313,9 +272,7 @@ describe("ServiceIcon", () => {
         });
 
         it("updates when props change", () => {
-            const { rerender } = render(
-                <ServiceIcon icon="icon1" name="Service 1" size={32} />
-            );
+            const { rerender } = render(<ServiceIcon icon="icon1" name="Service 1" size={32} />);
 
             let img = screen.getByAltText("Service 1");
             expect(img).toHaveAttribute("width", "32");
@@ -330,9 +287,7 @@ describe("ServiceIcon", () => {
 
         it("updates src when icon prop changes", () => {
             mockIconIdToUrl.mockReturnValue("https://example.com/icon1.png");
-            const { rerender } = render(
-                <ServiceIcon icon="icon1" name="Test" size={32} />
-            );
+            const { rerender } = render(<ServiceIcon icon="icon1" name="Test" size={32} />);
 
             let img = screen.getByRole("img") as HTMLImageElement;
             expect(img.src).toBe("https://example.com/icon1.png");
@@ -345,27 +300,19 @@ describe("ServiceIcon", () => {
         });
 
         it("cleans up properly on unmount", () => {
-            const { unmount } = render(
-                <ServiceIcon icon="test" name="Test" size={32} />
-            );
+            const { unmount } = render(<ServiceIcon icon="test" name="Test" size={32} />);
 
             expect(() => unmount()).not.toThrow();
         });
 
         it("handles rapid mount/unmount cycles", () => {
-            const { unmount: unmount1 } = render(
-                <ServiceIcon icon="test1" name="Test 1" size={32} />
-            );
+            const { unmount: unmount1 } = render(<ServiceIcon icon="test1" name="Test 1" size={32} />);
             unmount1();
 
-            const { unmount: unmount2 } = render(
-                <ServiceIcon icon="test2" name="Test 2" size={48} />
-            );
+            const { unmount: unmount2 } = render(<ServiceIcon icon="test2" name="Test 2" size={48} />);
             unmount2();
 
-            const { unmount: unmount3 } = render(
-                <ServiceIcon icon="test3" name="Test 3" size={64} />
-            );
+            const { unmount: unmount3 } = render(<ServiceIcon icon="test3" name="Test 3" size={64} />);
             unmount3();
 
             expect(true).toBe(true); // No crashes
@@ -376,7 +323,7 @@ describe("ServiceIcon", () => {
         it("handles empty icon string", () => {
             mockIconIdToUrl.mockReturnValue("");
             const { container } = render(<ServiceIcon icon="" name="Test" size={32} />);
-            
+
             expect(mockIconIdToUrl).toHaveBeenCalledWith("");
             expect(container).toBeInTheDocument();
         });
@@ -428,34 +375,26 @@ describe("ServiceIcon", () => {
         });
 
         it("handles undefined icon id gracefully", () => {
-            const { container } = render(
-                <ServiceIcon icon={undefined as any} name="Test" size={32} />
-            );
+            const { container } = render(<ServiceIcon icon={undefined as any} name="Test" size={32} />);
             expect(container).toBeInTheDocument();
         });
 
         it("handles null name gracefully", () => {
             // Component should render without crashing, even with null name
-            const { container } = render(
-                <ServiceIcon icon="test" name={null as any} size={32} />
-            );
+            const { container } = render(<ServiceIcon icon="test" name={null as any} size={32} />);
             const img = container.querySelector("img");
             expect(img).toBeInTheDocument();
         });
 
         it("handles NaN size gracefully", () => {
-            const { container } = render(
-                <ServiceIcon icon="test" name="Test" size={NaN} />
-            );
+            const { container } = render(<ServiceIcon icon="test" name="Test" size={NaN} />);
             expect(container).toBeInTheDocument();
         });
     });
 
     describe("Performance", () => {
         it("renders efficiently with multiple rerenders", () => {
-            const { rerender } = render(
-                <ServiceIcon icon="test" name="Test" size={32} />
-            );
+            const { rerender } = render(<ServiceIcon icon="test" name="Test" size={32} />);
 
             for (let i = 0; i < 10; i++) {
                 rerender(<ServiceIcon icon="test" name="Test" size={32} />);
@@ -466,43 +405,21 @@ describe("ServiceIcon", () => {
         });
 
         it("handles rapid prop changes efficiently", () => {
-            const { rerender } = render(
-                <ServiceIcon icon="icon1" name="Service 1" size={32} />
-            );
+            const { rerender } = render(<ServiceIcon icon="icon1" name="Service 1" size={32} />);
 
             for (let i = 0; i < 5; i++) {
-                rerender(
-                    <ServiceIcon
-                        icon={`icon${i}`}
-                        name={`Service ${i}`}
-                        size={32 + i * 16}
-                    />
-                );
+                rerender(<ServiceIcon icon={`icon${i}`} name={`Service ${i}`} size={32 + i * 16} />);
             }
 
             expect(mockIconIdToUrl).toHaveBeenCalledTimes(6); // Initial + 5 updates
         });
 
         it("does not cause unnecessary IconIdToUrl calls on unrelated prop changes", () => {
-            const { rerender } = render(
-                <ServiceIcon
-                    icon="test"
-                    name="Test"
-                    size={32}
-                    style={{ opacity: 0.5 }}
-                />
-            );
+            const { rerender } = render(<ServiceIcon icon="test" name="Test" size={32} style={{ opacity: 0.5 }} />);
 
             mockIconIdToUrl.mockClear();
 
-            rerender(
-                <ServiceIcon
-                    icon="test"
-                    name="Test"
-                    size={32}
-                    style={{ opacity: 0.8 }}
-                />
-            );
+            rerender(<ServiceIcon icon="test" name="Test" size={32} style={{ opacity: 0.8 }} />);
 
             // Should still be called because component rerenders
             expect(mockIconIdToUrl).toHaveBeenCalled();
@@ -602,4 +519,3 @@ describe("ServiceIcon", () => {
         });
     });
 });
-

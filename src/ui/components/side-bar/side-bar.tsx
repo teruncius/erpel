@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { styled } from "styled-components";
 
-import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { ElectronWindow } from "@erpel/renderer/preload-features/app-bridge";
 import { SoftFrostedEffectStyle } from "@erpel/ui/components/theme";
 import { useStore } from "@erpel/ui/store/store";
 import { Actions } from "./actions";

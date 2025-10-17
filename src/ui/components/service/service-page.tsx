@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
 
-import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { ElectronWindow } from "@erpel/renderer/preload-features/app-bridge";
 
 declare const window: ElectronWindow;
 

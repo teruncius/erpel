@@ -380,7 +380,7 @@ describe("ServiceTemplates", () => {
 
         it("can add multiple templates in sequence", async () => {
             render(<ServiceTemplates />);
-            
+
             await user.click(screen.getByText("Gmail"));
             await user.click(screen.getByText("Slack"));
 
@@ -731,10 +731,10 @@ describe("ServiceTemplates", () => {
         it("templates are clickable", async () => {
             render(<ServiceTemplates />);
             const gmailTemplate = screen.getByText("Gmail");
-            
+
             // Templates should be clickable and trigger addFromTemplate
             await user.click(gmailTemplate);
-            
+
             await waitFor(() => {
                 expect(mockAddFromTemplate).toHaveBeenCalledWith(mockTemplate1);
             });
@@ -751,7 +751,7 @@ describe("ServiceTemplates", () => {
     describe("Callback Behavior", () => {
         it("handleAdd callback uses correct template", async () => {
             render(<ServiceTemplates />);
-            
+
             await user.click(screen.getByText("Gmail"));
             expect(mockAddFromTemplate).toHaveBeenCalledWith(mockTemplate1);
 
@@ -774,4 +774,3 @@ describe("ServiceTemplates", () => {
         });
     });
 });
-

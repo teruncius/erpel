@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { ElectronWindow } from "@erpel/renderer/preload-features/app-bridge";
 import { PageCenter } from "@erpel/ui/components/layout";
 import { useStore } from "@erpel/ui/store/store";
 import { Clock } from "./clock";

@@ -3,7 +3,7 @@ import baseConfig from "./vite.renderer.config";
 
 export default mergeConfig(baseConfig, {
     test: {
-        include: ["src/ui/**/*.test.{ts,tsx}", "src/preload-features/**/*.test.{ts,tsx}"],
+        include: ["src/ui/**/*.test.{ts,tsx}", "src/renderer/**/*.test.{ts,tsx}"],
         setupFilesAfterEnv: ["./vitest.setup.ts"],
         browser: {
             enabled: true,
@@ -14,8 +14,7 @@ export default mergeConfig(baseConfig, {
             provider: "istanbul",
             reporter: ["json"],
             reportsDirectory: "./coverage/browser",
-            include: ["src/ui/**/*.{ts,tsx}", "src/preload-features/**/*.{ts,tsx}"],
-            exclude: ["src/**/*.test.{ts,tsx}"],
+            include: ["src/ui/**/*.{ts,tsx}", "src/renderer/**/*.{ts,tsx}"],
         },
     },
     optimizeDeps: {

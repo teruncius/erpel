@@ -411,7 +411,7 @@ describe("DistractionSettings", () => {
             render(<DistractionSettings />);
 
             const button = screen.getByRole("button");
-            
+
             // First click should call with true (checkbox becomes checked)
             await user.click(button);
             // Get the last call value
@@ -628,4 +628,3 @@ describe("DistractionSettings", () => {
         });
     });
 });
-

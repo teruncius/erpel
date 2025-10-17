@@ -76,7 +76,7 @@ describe("LocaleSettings", () => {
             render(<LocaleSettings />);
             const localeSelect = screen.getByLabelText("Locale");
             const options = Array.from(localeSelect.querySelectorAll("option"));
-            
+
             expect(options).toHaveLength(2);
             expect(options[0]).toHaveValue("en-US");
             expect(options[1]).toHaveValue("de-DE");
@@ -86,7 +86,7 @@ describe("LocaleSettings", () => {
             render(<LocaleSettings />);
             const timeSelect = screen.getByLabelText("Time format");
             const options = Array.from(timeSelect.querySelectorAll("option"));
-            
+
             expect(options).toHaveLength(2);
             expect(options[0]).toHaveValue("en-US");
             expect(options[1]).toHaveValue("de-DE");
@@ -96,7 +96,7 @@ describe("LocaleSettings", () => {
             render(<LocaleSettings />);
             const dateSelect = screen.getByLabelText("Date format");
             const options = Array.from(dateSelect.querySelectorAll("option"));
-            
+
             expect(options).toHaveLength(2);
             expect(options[0]).toHaveValue("en-US");
             expect(options[1]).toHaveValue("de-DE");
@@ -160,11 +160,11 @@ describe("LocaleSettings", () => {
             } as any);
 
             render(<LocaleSettings />);
-            
+
             const localeSelect = screen.getByLabelText("Locale") as HTMLSelectElement;
             const timeSelect = screen.getByLabelText("Time format") as HTMLSelectElement;
             const dateSelect = screen.getByLabelText("Date format") as HTMLSelectElement;
-            
+
             expect(localeSelect.value).toBe("de-DE");
             expect(timeSelect.value).toBe("en-US");
             expect(dateSelect.value).toBe("de-DE");
@@ -224,7 +224,7 @@ describe("LocaleSettings", () => {
 
         it("handles multiple select changes in sequence", async () => {
             render(<LocaleSettings />);
-            
+
             const localeSelect = screen.getByLabelText("Locale");
             const timeSelect = screen.getByLabelText("Time format");
             const dateSelect = screen.getByLabelText("Date format");
@@ -270,7 +270,7 @@ describe("LocaleSettings", () => {
 
         it("updates callback when setLocale changes", async () => {
             const mockSetLocale1 = vi.fn();
-            
+
             mockUseStore.mockReturnValueOnce({
                 locale: "en-US",
                 timeFormat: "en-US",
@@ -402,12 +402,12 @@ describe("LocaleSettings", () => {
             } as any);
 
             const { rerender } = render(<LocaleSettings />);
-            
+
             let localeSelect = screen.getByLabelText("Locale") as HTMLSelectElement;
             expect(localeSelect.value).toBe("de-DE");
 
             rerender(<LocaleSettings />);
-            
+
             localeSelect = screen.getByLabelText("Locale") as HTMLSelectElement;
             expect(localeSelect.value).toBe("de-DE");
         });
@@ -423,7 +423,7 @@ describe("LocaleSettings", () => {
             } as any);
 
             const { rerender } = render(<LocaleSettings />);
-            
+
             let localeSelect = screen.getByLabelText("Locale") as HTMLSelectElement;
             expect(localeSelect.value).toBe("en-US");
 
@@ -437,14 +437,14 @@ describe("LocaleSettings", () => {
             } as any);
 
             rerender(<LocaleSettings />);
-            
+
             localeSelect = screen.getByLabelText("Locale") as HTMLSelectElement;
             expect(localeSelect.value).toBe("de-DE");
         });
 
         it("cleans up properly on unmount", () => {
             const { unmount } = render(<LocaleSettings />);
-            
+
             expect(() => unmount()).not.toThrow();
         });
 
@@ -545,7 +545,7 @@ describe("LocaleSettings", () => {
             const options = Array.from(localeSelect.querySelectorAll("option"));
 
             expect(options).toHaveLength(2);
-            expect(options.map(o => o.value)).toEqual(["en-US", "de-DE"]);
+            expect(options.map((o) => o.value)).toEqual(["en-US", "de-DE"]);
         });
     });
 
@@ -571,8 +571,8 @@ describe("LocaleSettings", () => {
             // Selects should come before clock
             const selectIndices = elements
                 .map((el, idx) => (el.tagName === "SELECT" ? idx : -1))
-                .filter(idx => idx !== -1);
-            const clockIndex = elements.findIndex(el => el.getAttribute("data-testid") === "clock");
+                .filter((idx) => idx !== -1);
+            const clockIndex = elements.findIndex((el) => el.getAttribute("data-testid") === "clock");
 
             expect(Math.max(...selectIndices)).toBeLessThan(clockIndex);
         });
@@ -622,7 +622,7 @@ describe("LocaleSettings", () => {
             // Component should render without crashing even with invalid locale
             const { container } = render(<LocaleSettings />);
             const localeSelect = screen.getByLabelText("Locale") as HTMLSelectElement;
-            
+
             // HTML select will show either first option or empty when value doesn't match any option
             // The important thing is that the component doesn't crash
             expect(container).toBeInTheDocument();
@@ -731,4 +731,3 @@ describe("LocaleSettings", () => {
         });
     });
 });
-

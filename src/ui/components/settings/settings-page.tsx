@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { styled } from "styled-components";
 
-import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { ElectronWindow } from "@erpel/renderer/preload-features/app-bridge";
 import { Icon } from "@erpel/ui/components/icon";
 import { SetupServices } from "@erpel/ui/components/setup/setup-services";
 import { ThemedSection } from "@erpel/ui/components/theme";

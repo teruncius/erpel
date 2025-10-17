@@ -1,6 +1,6 @@
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 // Mock window.electron
 const mockHideAllServices = vi.fn();
@@ -791,4 +791,3 @@ describe("SettingsPage", () => {
         });
     });
 });
-

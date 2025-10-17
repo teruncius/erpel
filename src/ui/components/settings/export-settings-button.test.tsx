@@ -23,10 +23,10 @@ const mockCreateObjectURL = vi.fn();
 // Set up global mocks
 beforeAll(() => {
     (globalThis.window as unknown as { electron: typeof mockElectron }).electron = mockElectron;
-    
+
     // Mock URL.createObjectURL
     globalThis.URL.createObjectURL = mockCreateObjectURL;
-    
+
     // Mock Blob
     globalThis.Blob = vi.fn((content, options) => ({
         content,
@@ -41,7 +41,7 @@ describe("ExportSettingsButton", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         cleanup();
-        
+
         // Default mock return values
         mockLoadConfig.mockResolvedValue({ version: 0, services: [] });
         mockCreateObjectURL.mockReturnValue("blob:mock-url");
@@ -277,7 +277,7 @@ describe("ExportSettingsButton", () => {
             render(<ExportSettingsButton />);
 
             const button = screen.getByRole("button");
-            
+
             // Click should not throw
             await user.click(button);
 
@@ -290,7 +290,7 @@ describe("ExportSettingsButton", () => {
         it("prevents race condition with alive flag", async () => {
             const user = userEvent.setup();
             let resolveFn: ((value: unknown) => void) | null = null;
-            
+
             // Create a promise that we can control
             mockLoadConfig.mockImplementation(() => {
                 return new Promise((resolve) => {
@@ -679,4 +679,3 @@ describe("ExportSettingsButton", () => {
         });
     });
 });
-

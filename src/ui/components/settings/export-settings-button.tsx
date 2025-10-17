@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { ElectronWindow } from "@erpel/renderer/preload-features/app-bridge";
 import { Icon } from "@erpel/ui/components/icon";
 import { ThemedButton } from "@erpel/ui/components/theme/button";
 

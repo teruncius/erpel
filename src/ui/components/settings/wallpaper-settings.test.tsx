@@ -36,8 +36,8 @@ vi.mock("../../store/store", () => ({
 }));
 
 // Import the component after mocking
-import { WallpaperSettings } from "./wallpaper-settings";
 import { DEFAULT_WALLPAPERS } from "@erpel/state/settings";
+import { WallpaperSettings } from "./wallpaper-settings";
 
 describe("WallpaperSettings", () => {
     let user: ReturnType<typeof userEvent.setup>;
@@ -76,7 +76,7 @@ describe("WallpaperSettings", () => {
             const { container } = render(<WallpaperSettings />);
             const select = container.querySelector("select") as HTMLSelectElement;
             const options = Array.from(select.querySelectorAll("option"));
-            
+
             expect(options).toHaveLength(2);
             expect(options[0]).toHaveValue(BackgroundMode.Color);
             expect(options[1]).toHaveValue(BackgroundMode.Wallpaper);
@@ -106,7 +106,7 @@ describe("WallpaperSettings", () => {
             });
 
             render(<WallpaperSettings />);
-            
+
             expect(screen.getByRole("button", { name: /Reset/i })).toBeInTheDocument();
             expect(screen.getByRole("textbox")).toBeInTheDocument();
         });
@@ -120,7 +120,7 @@ describe("WallpaperSettings", () => {
             });
 
             render(<WallpaperSettings />);
-            
+
             expect(screen.queryByRole("button", { name: /Reset/i })).not.toBeInTheDocument();
             expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
         });
@@ -134,7 +134,7 @@ describe("WallpaperSettings", () => {
             });
 
             render(<WallpaperSettings />);
-            
+
             const icon = screen.getByTestId("icon-bug");
             expect(icon).toBeInTheDocument();
             expect(icon).toHaveAttribute("width", "20");
@@ -249,7 +249,7 @@ describe("WallpaperSettings", () => {
 
             render(<WallpaperSettings />);
             const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
-            
+
             expect(textarea.value).toBe(
                 "https://example.com/wall1.jpg\nhttps://example.com/wall2.jpg\nhttps://example.com/wall3.jpg"
             );
@@ -305,7 +305,7 @@ describe("WallpaperSettings", () => {
 
             render(<WallpaperSettings />);
             const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
-            
+
             expect(textarea.value).toBe("https://example.com/single.jpg");
         });
 
@@ -319,7 +319,7 @@ describe("WallpaperSettings", () => {
 
             render(<WallpaperSettings />);
             const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
-            
+
             expect(textarea.value).toBe("");
         });
     });
@@ -354,14 +354,14 @@ describe("WallpaperSettings", () => {
         it("reset button has correct text", () => {
             render(<WallpaperSettings />);
             const button = screen.getByRole("button", { name: /Reset/i });
-            
+
             expect(button.textContent).toContain("Reset");
         });
 
         it("reset button contains icon", () => {
             render(<WallpaperSettings />);
             const icon = screen.getByTestId("icon-bug");
-            
+
             expect(icon).toBeInTheDocument();
         });
     });
@@ -377,7 +377,7 @@ describe("WallpaperSettings", () => {
 
             const { container } = render(<WallpaperSettings />);
             const select = container.querySelector("select") as HTMLSelectElement;
-            
+
             expect(select.value).toBe(BackgroundMode.Color);
         });
 
@@ -391,7 +391,7 @@ describe("WallpaperSettings", () => {
 
             render(<WallpaperSettings />);
             const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
-            
+
             expect(textarea.value).toBe("test1.jpg\ntest2.jpg");
         });
 
@@ -541,12 +541,12 @@ describe("WallpaperSettings", () => {
     describe("Component Lifecycle", () => {
         it("maintains state across rerenders", () => {
             const { rerender, container } = render(<WallpaperSettings />);
-            
+
             const select1 = container.querySelector("select") as HTMLSelectElement;
             expect(select1.value).toBe(BackgroundMode.Wallpaper);
 
             rerender(<WallpaperSettings />);
-            
+
             const select2 = container.querySelector("select") as HTMLSelectElement;
             expect(select2.value).toBe(BackgroundMode.Wallpaper);
         });
@@ -626,17 +626,14 @@ describe("WallpaperSettings", () => {
         it("handles wallpapers with special characters", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
-                wallpapers: [
-                    "https://example.com/test?param=1&other=2",
-                    "https://example.com/test#anchor",
-                ],
+                wallpapers: ["https://example.com/test?param=1&other=2", "https://example.com/test#anchor"],
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
             });
 
             render(<WallpaperSettings />);
             const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
-            
+
             expect(textarea.value).toContain("param=1&other=2");
             expect(textarea.value).toContain("#anchor");
         });
@@ -652,7 +649,7 @@ describe("WallpaperSettings", () => {
 
             render(<WallpaperSettings />);
             const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
-            
+
             expect(textarea.value).toBe(longUrl);
         });
 
@@ -667,7 +664,7 @@ describe("WallpaperSettings", () => {
 
             render(<WallpaperSettings />);
             const textarea = screen.getByRole("textbox") as HTMLTextAreaElement;
-            
+
             expect(textarea.value.split("\n")).toHaveLength(100);
         });
 
@@ -682,7 +679,7 @@ describe("WallpaperSettings", () => {
             // Should render but changing mode will cause error
             const { container } = render(<WallpaperSettings />);
             expect(container).toBeInTheDocument();
-            
+
             // Component renders, but selecting would throw
             const select = container.querySelector("select") as HTMLSelectElement;
             expect(select).toBeInTheDocument();
@@ -699,7 +696,7 @@ describe("WallpaperSettings", () => {
             // Should render but clicking button will cause error
             const { container } = render(<WallpaperSettings />);
             expect(container).toBeInTheDocument();
-            
+
             // Component renders, but clicking reset button would throw
             const button = screen.getByRole("button", { name: /Reset/i });
             expect(button).toBeInTheDocument();
@@ -723,10 +720,7 @@ describe("WallpaperSettings", () => {
             const select = container.querySelector("select") as HTMLSelectElement;
 
             for (let i = 0; i < 5; i++) {
-                await user.selectOptions(
-                    select,
-                    i % 2 === 0 ? BackgroundMode.Color : BackgroundMode.Wallpaper
-                );
+                await user.selectOptions(select, i % 2 === 0 ? BackgroundMode.Color : BackgroundMode.Wallpaper);
             }
 
             await waitFor(() => {
@@ -755,7 +749,7 @@ describe("WallpaperSettings", () => {
         it("reset button is keyboard accessible", () => {
             render(<WallpaperSettings />);
             const button = screen.getByRole("button", { name: /Reset/i });
-            
+
             button.focus();
             expect(document.activeElement).toBe(button);
         });
@@ -763,7 +757,7 @@ describe("WallpaperSettings", () => {
         it("textarea is keyboard accessible", () => {
             render(<WallpaperSettings />);
             const textarea = screen.getByRole("textbox");
-            
+
             textarea.focus();
             expect(document.activeElement).toBe(textarea);
         });
@@ -771,7 +765,7 @@ describe("WallpaperSettings", () => {
         it("select is keyboard accessible", () => {
             const { container } = render(<WallpaperSettings />);
             const select = container.querySelector("select") as HTMLSelectElement;
-            
+
             select.focus();
             expect(document.activeElement).toBe(select);
         });
@@ -780,9 +774,9 @@ describe("WallpaperSettings", () => {
     describe("Integration", () => {
         it("mode change affects conditional rendering", async () => {
             const { container } = render(<WallpaperSettings />);
-            
+
             expect(screen.getByRole("textbox")).toBeInTheDocument();
-            
+
             const select = container.querySelector("select") as HTMLSelectElement;
             await user.selectOptions(select, BackgroundMode.Color);
 
@@ -795,7 +789,7 @@ describe("WallpaperSettings", () => {
 
         it("textarea and reset button work together", async () => {
             render(<WallpaperSettings />);
-            
+
             const textarea = screen.getByRole("textbox");
             const button = screen.getByRole("button", { name: /Reset/i });
 
@@ -810,4 +804,3 @@ describe("WallpaperSettings", () => {
         });
     });
 });
-

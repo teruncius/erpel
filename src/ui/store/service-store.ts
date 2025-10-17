@@ -1,7 +1,7 @@
 import { arrayMove } from "@dnd-kit/sortable";
 import { StateCreator } from "zustand/vanilla";
 
-import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { ElectronWindow } from "@erpel/renderer/preload-features/app-bridge";
 import { Service, ServiceTemplate } from "@erpel/state/schema";
 import { ServiceFromTemplate } from "@erpel/state/settings";
 

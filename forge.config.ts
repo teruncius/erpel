@@ -39,12 +39,12 @@ const config: ForgeConfig = {
                 },
                 {
                     config: "vite.preload.config.ts",
-                    entry: "src/preload.application.ts",
+                    entry: "src/renderer/preload.application.ts",
                     target: "preload",
                 },
                 {
                     config: "vite.preload.config.ts",
-                    entry: "src/preload.service.ts",
+                    entry: "src/renderer/preload.service.ts",
                     target: "preload",
                 },
             ],

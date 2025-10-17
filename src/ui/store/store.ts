@@ -2,7 +2,7 @@ import { z } from "zod";
 import { create } from "zustand";
 import { persist, PersistStorage } from "zustand/middleware";
 
-import { ElectronWindow } from "@erpel/preload-features/app-bridge";
+import { ElectronWindow } from "@erpel/renderer/preload-features/app-bridge";
 import { Config, ConfigSchema } from "@erpel/state/schema";
 import { DEFAULT_SERVICE_TEMPLATES } from "@erpel/state/settings";
 import { createServiceSlice, ServiceStoreActions, ServiceStoreState } from "./service-store";

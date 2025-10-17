@@ -166,7 +166,10 @@ describe("DebugNotificationsButton", () => {
 
             // Simulate clicking the notification
             if (mockNotificationInstance.onclick) {
-                mockNotificationInstance.onclick.call(mockNotificationInstance as unknown as Notification, new Event("click"));
+                mockNotificationInstance.onclick.call(
+                    mockNotificationInstance as unknown as Notification,
+                    new Event("click")
+                );
             }
 
             expect(mockNavigate).toHaveBeenCalledWith("/settings");
@@ -181,7 +184,10 @@ describe("DebugNotificationsButton", () => {
 
             // Simulate clicking the notification
             if (mockNotificationInstance.onclick) {
-                mockNotificationInstance.onclick.call(mockNotificationInstance as unknown as Notification, new Event("click"));
+                mockNotificationInstance.onclick.call(
+                    mockNotificationInstance as unknown as Notification,
+                    new Event("click")
+                );
             }
 
             expect(mockFocusWindow).toHaveBeenCalledTimes(1);
@@ -196,7 +202,10 @@ describe("DebugNotificationsButton", () => {
 
             // Simulate clicking the notification
             if (mockNotificationInstance.onclick) {
-                mockNotificationInstance.onclick.call(mockNotificationInstance as unknown as Notification, new Event("click"));
+                mockNotificationInstance.onclick.call(
+                    mockNotificationInstance as unknown as Notification,
+                    new Event("click")
+                );
             }
 
             expect(mockNavigate).toHaveBeenCalledWith("/settings");
@@ -208,17 +217,23 @@ describe("DebugNotificationsButton", () => {
             render(<DebugNotificationsButton />);
 
             const button = screen.getByRole("button");
-            
+
             // Create first notification and click it
             await user.click(button);
             if (mockNotificationInstance.onclick) {
-                mockNotificationInstance.onclick.call(mockNotificationInstance as unknown as Notification, new Event("click"));
+                mockNotificationInstance.onclick.call(
+                    mockNotificationInstance as unknown as Notification,
+                    new Event("click")
+                );
             }
 
             // Create second notification and click it
             await user.click(button);
             if (mockNotificationInstance.onclick) {
-                mockNotificationInstance.onclick.call(mockNotificationInstance as unknown as Notification, new Event("click"));
+                mockNotificationInstance.onclick.call(
+                    mockNotificationInstance as unknown as Notification,
+                    new Event("click")
+                );
             }
 
             expect(mockNavigate).toHaveBeenCalledTimes(2);
@@ -348,7 +363,7 @@ describe("DebugNotificationsButton", () => {
         it("handles missing electron API gracefully", async () => {
             const user = userEvent.setup();
             const originalElectron = (globalThis.window as unknown as { electron: typeof mockElectron }).electron;
-            
+
             // Temporarily remove electron API
             (globalThis.window as unknown as { electron: undefined }).electron = undefined as unknown as undefined;
 
@@ -461,7 +476,10 @@ describe("DebugNotificationsButton", () => {
 
             // Simulate notification click
             if (mockNotificationInstance.onclick) {
-                mockNotificationInstance.onclick.call(mockNotificationInstance as unknown as Notification, new Event("click"));
+                mockNotificationInstance.onclick.call(
+                    mockNotificationInstance as unknown as Notification,
+                    new Event("click")
+                );
             }
 
             expect(mockNavigate).toHaveBeenCalledWith("/settings");
@@ -476,7 +494,10 @@ describe("DebugNotificationsButton", () => {
 
             // Simulate notification click
             if (mockNotificationInstance.onclick) {
-                mockNotificationInstance.onclick.call(mockNotificationInstance as unknown as Notification, new Event("click"));
+                mockNotificationInstance.onclick.call(
+                    mockNotificationInstance as unknown as Notification,
+                    new Event("click")
+                );
             }
 
             expect(mockFocusWindow).toHaveBeenCalled();
@@ -519,4 +540,3 @@ describe("DebugNotificationsButton", () => {
         });
     });
 });
-
