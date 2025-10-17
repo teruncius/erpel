@@ -19,8 +19,6 @@ vi.mock("@react-spring/web", () => ({
     useTransition: vi.fn(),
 }));
 
-// Remove styled-components mocking to allow actual styled components to render
-
 describe("Wallpaper", () => {
     const mockUseStore = vi.mocked(useStore);
     const mockUseSpringRef = vi.mocked(useSpringRef);

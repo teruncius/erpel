@@ -36,8 +36,6 @@ vi.mock("./service-icon", () => ({
     ),
 }));
 
-// Remove styled-components mocking to allow actual styled components to render
-
 // Mock @dnd-kit components
 vi.mock("@dnd-kit/core", () => ({
     DndContext: ({ children, onDragEnd }: { children: React.ReactNode; onDragEnd?: unknown }) => (

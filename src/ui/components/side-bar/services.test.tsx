@@ -42,8 +42,6 @@ vi.mock("../settings/service-icon", () => ({
     ),
 }));
 
-// Remove styled-components mocking to allow actual styled components to render
-
 // Mock theme
 vi.mock("../theme", () => ({
     SoftFrostedEffectStyle: "soft-frosted-effect-style",
