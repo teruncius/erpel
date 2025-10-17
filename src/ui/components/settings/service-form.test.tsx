@@ -662,7 +662,8 @@ describe("ServiceForm", () => {
             render(<ServiceForm service={service} />);
 
             const nameInput = screen.getByLabelText(/name/i);
-            await user.type(nameInput, longName);
+            await user.click(nameInput);
+            await user.paste(longName);
 
             expect(nameInput).toHaveValue(longName);
         });
@@ -675,7 +676,8 @@ describe("ServiceForm", () => {
             render(<ServiceForm service={service} />);
 
             const urlInput = screen.getByLabelText(/url/i);
-            await user.type(urlInput, longUrl);
+            await user.click(urlInput);
+            await user.paste(longUrl);
 
             expect(urlInput).toHaveValue(longUrl);
         });
