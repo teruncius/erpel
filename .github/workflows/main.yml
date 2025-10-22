@@ -18,6 +18,7 @@ jobs:
 
             # - run: mkdir -p out/make/deb/x64
             # - run: echo "TEST" > out/make/deb/x64/erpel_${{ github.ref_name }}_amd64.deb
+            # - run: echo "TEST" > out/make/erpel_${{ github.ref_name }}.AppImage
 
             - name: Upload build
               uses: actions/upload-artifact@v4
@@ -92,5 +93,11 @@ jobs:
             # TODO: fix this
             - name: Add .dmg to release
               run: gh release upload ${{ github.ref_name }} ./out/make/*.dmg
+              env:
+                  GH_TOKEN: ${{ github.token }}
+
+            # TODO: fix this
+            - name: Add .AppImage to release
+              run: gh release upload ${{ github.ref_name }} ./out/make/*.AppImage
               env:
                   GH_TOKEN: ${{ github.token }}

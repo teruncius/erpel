@@ -21,6 +21,15 @@ const config: ForgeConfig = {
                 icon: "resources/erpel.png",
             },
         }),
+        {
+            name: "@pengx17/electron-forge-maker-appimage",
+            platforms: ["linux"],
+            config: {
+                options: {
+                    icon: "resources/erpel.png",
+                },
+            },
+        },
     ],
     packagerConfig: {
         asar: true,
