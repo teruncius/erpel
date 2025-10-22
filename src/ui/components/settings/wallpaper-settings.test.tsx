@@ -494,11 +494,11 @@ describe("WallpaperSettings", () => {
         it("callbacks are memoized", () => {
             const { rerender, container } = render(<WallpaperSettings />);
             const select1 = container.querySelector("select");
-            const handler1 = (select1 as any).onchange;
+            const handler1 = (select1 as HTMLSelectElement).onchange;
 
             rerender(<WallpaperSettings />);
             const select2 = container.querySelector("select");
-            const handler2 = (select2 as any).onchange;
+            const handler2 = (select2 as HTMLSelectElement).onchange;
 
             expect(handler1).toBe(handler2);
         });
@@ -573,7 +573,7 @@ describe("WallpaperSettings", () => {
     describe("Edge Cases", () => {
         it("handles undefined mode", () => {
             mockUseStore.mockReturnValue({
-                mode: undefined as any,
+                mode: undefined,
                 wallpapers: [],
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
@@ -585,7 +585,7 @@ describe("WallpaperSettings", () => {
 
         it("handles null mode", () => {
             mockUseStore.mockReturnValue({
-                mode: null as any,
+                mode: null,
                 wallpapers: [],
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
@@ -598,7 +598,7 @@ describe("WallpaperSettings", () => {
         it("handles undefined wallpapers", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
-                wallpapers: undefined as any,
+                wallpapers: undefined,
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
             });
@@ -612,7 +612,7 @@ describe("WallpaperSettings", () => {
         it("handles null wallpapers", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
-                wallpapers: null as any,
+                wallpapers: null,
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
             });
@@ -672,7 +672,7 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
-                setMode: undefined as any,
+                setMode: undefined,
                 setWallpapers: mockSetWallpapers,
             });
 
@@ -690,7 +690,7 @@ describe("WallpaperSettings", () => {
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
                 setMode: mockSetMode,
-                setWallpapers: undefined as any,
+                setWallpapers: undefined,
             });
 
             // Should render but clicking button will cause error

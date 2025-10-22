@@ -375,13 +375,13 @@ describe("ServiceIcon", () => {
         });
 
         it("handles undefined icon id gracefully", () => {
-            const { container } = render(<ServiceIcon icon={undefined as any} name="Test" size={32} />);
+            const { container } = render(<ServiceIcon icon={undefined as unknown as string} name="Test" size={32} />);
             expect(container).toBeInTheDocument();
         });
 
         it("handles null name gracefully", () => {
             // Component should render without crashing, even with null name
-            const { container } = render(<ServiceIcon icon="test" name={null as any} size={32} />);
+            const { container } = render(<ServiceIcon icon="test" name={null as unknown as string} size={32} />);
             const img = container.querySelector("img");
             expect(img).toBeInTheDocument();
         });
@@ -430,7 +430,6 @@ describe("ServiceIcon", () => {
         it("applies user-select: none style", () => {
             render(<ServiceIcon icon="test" name="Test" size={32} />);
             const img = screen.getByRole("img") as HTMLImageElement;
-            const computedStyle = window.getComputedStyle(img);
             // Note: user-select might not be directly testable in JSDOM
             expect(img).toBeInTheDocument();
         });

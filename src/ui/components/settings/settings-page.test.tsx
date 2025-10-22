@@ -431,7 +431,7 @@ describe("SettingsPage", () => {
 
         it("handles undefined services by throwing error", () => {
             mockUseStore.mockReturnValue({
-                services: undefined as any,
+                services: undefined as unknown as never[],
             });
 
             // Component will throw error when trying to access undefined.length
@@ -446,7 +446,7 @@ describe("SettingsPage", () => {
 
         it("handles null services by throwing error", () => {
             mockUseStore.mockReturnValue({
-                services: null as any,
+                services: null as unknown as never[],
             });
 
             // Component will throw error when trying to access null.length
@@ -586,7 +586,7 @@ describe("SettingsPage", () => {
         });
 
         it("renders button container with all action buttons", () => {
-            const { container } = render(
+            render(
                 <MemoryRouter>
                     <SettingsPage />
                 </MemoryRouter>
@@ -640,7 +640,7 @@ describe("SettingsPage", () => {
 
     describe("Edge Cases", () => {
         it("handles missing electron.hideAllServices gracefully", () => {
-            const originalElectron = (window as any).electron;
+            const originalElectron = (window as { electron?: unknown }).electron;
             Object.defineProperty(window, "electron", {
                 value: {},
                 writable: true,
@@ -678,7 +678,7 @@ describe("SettingsPage", () => {
 
         it("handles services array with falsy values", () => {
             mockUseStore.mockReturnValue({
-                services: [null, undefined, { id: "real-service", name: "Real" }] as any,
+                services: [null, undefined, { id: "real-service", name: "Real" }] as unknown as never[],
             });
 
             render(
@@ -767,7 +767,7 @@ describe("SettingsPage", () => {
 
     describe("Electron Integration", () => {
         it("electron.hideAllServices is available", () => {
-            expect((window as any).electron.hideAllServices).toBeDefined();
+            expect((window as { electron: { hideAllServices: unknown } }).electron.hideAllServices).toBeDefined();
         });
 
         it("calls electron API on component mount", () => {

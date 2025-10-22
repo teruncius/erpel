@@ -2,6 +2,11 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import type { SettingsStoreActions, SettingsStoreState } from "@erpel/ui/store/settings-store";
+
+// Type for the partial store mock used in tests
+type MockStore = Partial<SettingsStoreActions & SettingsStoreState>;
+
 // Mock useStore hook
 const mockSetLocale = vi.fn();
 const mockSetTimeFormat = vi.fn();
@@ -112,7 +117,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             render(<LocaleSettings />);
             const localeSelect = screen.getByLabelText("Locale") as HTMLSelectElement;
@@ -127,7 +132,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             render(<LocaleSettings />);
             const timeSelect = screen.getByLabelText("Time format") as HTMLSelectElement;
@@ -142,7 +147,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             render(<LocaleSettings />);
             const dateSelect = screen.getByLabelText("Date format") as HTMLSelectElement;
@@ -157,7 +162,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             render(<LocaleSettings />);
 
@@ -258,11 +263,11 @@ describe("LocaleSettings", () => {
         it("uses memoized callback for locale changes", async () => {
             const { rerender } = render(<LocaleSettings />);
             const localeSelect1 = screen.getByLabelText("Locale");
-            const handler1 = (localeSelect1 as any).onchange;
+            const handler1 = (localeSelect1 as HTMLSelectElement).onchange;
 
             rerender(<LocaleSettings />);
             const localeSelect2 = screen.getByLabelText("Locale");
-            const handler2 = (localeSelect2 as any).onchange;
+            const handler2 = (localeSelect2 as HTMLSelectElement).onchange;
 
             // The handlers should be the same reference due to useCallback
             expect(handler1).toBe(handler2);
@@ -278,7 +283,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale1,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             const { rerender } = render(<LocaleSettings />);
             const localeSelect = screen.getByLabelText("Locale");
@@ -296,7 +301,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale2,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             rerender(<LocaleSettings />);
             const localeSelectAfterRerender = screen.getByLabelText("Locale");
@@ -310,11 +315,11 @@ describe("LocaleSettings", () => {
         it("maintains callback stability for time format", () => {
             const { rerender } = render(<LocaleSettings />);
             const timeSelect1 = screen.getByLabelText("Time format");
-            const handler1 = (timeSelect1 as any).onchange;
+            const handler1 = (timeSelect1 as HTMLSelectElement).onchange;
 
             rerender(<LocaleSettings />);
             const timeSelect2 = screen.getByLabelText("Time format");
-            const handler2 = (timeSelect2 as any).onchange;
+            const handler2 = (timeSelect2 as HTMLSelectElement).onchange;
 
             expect(handler1).toBe(handler2);
         });
@@ -322,11 +327,11 @@ describe("LocaleSettings", () => {
         it("maintains callback stability for date format", () => {
             const { rerender } = render(<LocaleSettings />);
             const dateSelect1 = screen.getByLabelText("Date format");
-            const handler1 = (dateSelect1 as any).onchange;
+            const handler1 = (dateSelect1 as HTMLSelectElement).onchange;
 
             rerender(<LocaleSettings />);
             const dateSelect2 = screen.getByLabelText("Date format");
-            const handler2 = (dateSelect2 as any).onchange;
+            const handler2 = (dateSelect2 as HTMLSelectElement).onchange;
 
             expect(handler1).toBe(handler2);
         });
@@ -399,7 +404,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             const { rerender } = render(<LocaleSettings />);
 
@@ -420,7 +425,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             const { rerender } = render(<LocaleSettings />);
 
@@ -434,7 +439,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             rerender(<LocaleSettings />);
 
@@ -494,9 +499,9 @@ describe("LocaleSettings", () => {
             const timeSelect1 = screen.getByLabelText("Time format");
             const dateSelect1 = screen.getByLabelText("Date format");
 
-            const localeHandler1 = (localeSelect1 as any).onchange;
-            const timeHandler1 = (timeSelect1 as any).onchange;
-            const dateHandler1 = (dateSelect1 as any).onchange;
+            const localeHandler1 = (localeSelect1 as HTMLSelectElement).onchange;
+            const timeHandler1 = (timeSelect1 as HTMLSelectElement).onchange;
+            const dateHandler1 = (dateSelect1 as HTMLSelectElement).onchange;
 
             rerender(<LocaleSettings />);
 
@@ -504,9 +509,9 @@ describe("LocaleSettings", () => {
             const timeSelect2 = screen.getByLabelText("Time format");
             const dateSelect2 = screen.getByLabelText("Date format");
 
-            const localeHandler2 = (localeSelect2 as any).onchange;
-            const timeHandler2 = (timeSelect2 as any).onchange;
-            const dateHandler2 = (dateSelect2 as any).onchange;
+            const localeHandler2 = (localeSelect2 as HTMLSelectElement).onchange;
+            const timeHandler2 = (timeSelect2 as HTMLSelectElement).onchange;
+            const dateHandler2 = (dateSelect2 as HTMLSelectElement).onchange;
 
             expect(localeHandler1).toBe(localeHandler2);
             expect(timeHandler1).toBe(timeHandler2);
@@ -581,13 +586,13 @@ describe("LocaleSettings", () => {
     describe("Edge Cases", () => {
         it("handles missing store values gracefully", () => {
             mockUseStore.mockReturnValueOnce({
-                locale: undefined as any,
-                timeFormat: undefined as any,
-                dateFormat: undefined as any,
+                locale: undefined,
+                timeFormat: undefined,
+                dateFormat: undefined,
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             const { container } = render(<LocaleSettings />);
             expect(container).toBeInTheDocument();
@@ -598,10 +603,10 @@ describe("LocaleSettings", () => {
                 locale: "en-US",
                 timeFormat: "en-US",
                 dateFormat: "en-US",
-                setLocale: undefined as any,
-                setTimeFormat: undefined as any,
-                setDateFormat: undefined as any,
-            } as any);
+                setLocale: undefined,
+                setTimeFormat: undefined,
+                setDateFormat: undefined,
+            } as MockStore);
 
             const { container } = render(<LocaleSettings />);
             expect(container).toBeInTheDocument();
@@ -617,7 +622,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             // Component should render without crashing even with invalid locale
             const { container } = render(<LocaleSettings />);
@@ -637,7 +642,7 @@ describe("LocaleSettings", () => {
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             const { container } = render(<LocaleSettings />);
             expect(container).toBeInTheDocument();
@@ -645,13 +650,13 @@ describe("LocaleSettings", () => {
 
         it("handles null values from store", () => {
             mockUseStore.mockReturnValueOnce({
-                locale: null as any,
-                timeFormat: null as any,
-                dateFormat: null as any,
+                locale: null,
+                timeFormat: null,
+                dateFormat: null,
                 setLocale: mockSetLocale,
                 setTimeFormat: mockSetTimeFormat,
                 setDateFormat: mockSetDateFormat,
-            } as any);
+            } as MockStore);
 
             const { container } = render(<LocaleSettings />);
             expect(container).toBeInTheDocument();
