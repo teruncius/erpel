@@ -118,7 +118,11 @@ export const createWindow = async () => {
         menu.popup({ window: popup });
     });
 
-    window.on("resize", resizeServices);
+    // Use `setImmediate` here to fix a bug with i3 and other Window-Managers
+    // not resizing the Service View correctly. For some reasons the old bounds
+    // are returned, if `getContentBounds` is called on the same event loop tick
+    // Also see: https://github.com/teruncius/erpel/pull/2
+    window.on("resize", () => setImmediate(resizeServices));
     window.on("show", window.focus);
 
     function createViewForService(service: Service) {
