@@ -5,6 +5,7 @@ import {
     ipcMain,
     IpcMainEvent,
     Menu,
+    nativeImage,
     Rectangle,
     shell,
     WebContentsView,
@@ -168,6 +169,10 @@ interface BuildMenuOptions {
     data: {
         x: number;
         y: number;
+        url: string | null;
+        image: string | null;
+        isEditable: boolean;
+        content: string | null;
     };
     event: IpcMainEvent;
     isServiceWindow: boolean;
@@ -175,15 +180,50 @@ interface BuildMenuOptions {
 
 function buildMenuForSender({ data, event, isServiceWindow }: BuildMenuOptions) {
     return Menu.buildFromTemplate([
-        {
-            role: "cut",
-        },
-        {
-            role: "copy",
-        },
-        {
-            role: "paste",
-        },
+        ...(data.image
+            ? [
+                  {
+                      click: () => {
+                          const image = nativeImage.createFromDataURL(data.image!);
+                          clipboard.writeImage(image);
+                      },
+                      label: "Copy Image",
+                  },
+              ]
+            : []),
+        ...(data.url
+            ? [
+                  {
+                      click: () => {
+                          clipboard.writeText(data.url!);
+                      },
+                      label: "Copy URL",
+                  },
+              ]
+            : []),
+        ...(data.isEditable
+            ? [
+                  {
+                      role: "cut" as const,
+                  },
+                  {
+                      role: "copy" as const,
+                  },
+                  {
+                      role: "paste" as const,
+                  },
+              ]
+            : []),
+        ...(!data.isEditable && data.content && !data.url
+            ? [
+                  {
+                      click: () => {
+                          clipboard.writeText(data.content!);
+                      },
+                      label: "Copy",
+                  },
+              ]
+            : []),
         {
             type: "separator",
         },
