@@ -1,15 +1,4 @@
-import {
-    app,
-    BrowserWindow,
-    clipboard,
-    ipcMain,
-    IpcMainEvent,
-    Menu,
-    nativeImage,
-    Rectangle,
-    shell,
-    WebContentsView,
-} from "electron";
+import { app, BrowserWindow, ipcMain, Rectangle, shell, WebContentsView } from "electron";
 import { join } from "node:path";
 
 import type { Service } from "@erpel/state/schema";
@@ -18,6 +7,7 @@ import { AppMessage } from "@erpel/app-message";
 import icon from "@erpel/resources/erpel.png?asset";
 import { loadConfig, saveConfig } from "@erpel/state/config";
 import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "@erpel/ui/components/side-bar/side-bar";
+import { buildMenuForSender } from "@erpel/window/context-menu";
 
 const CONFIG_PATH = join(app.getPath("userData"), "config.json");
 const SESSION_PARTITION = `persist:${import.meta.env.DEV ? "development" : "production"}`;
@@ -106,11 +96,11 @@ export const createWindow = async () => {
         resizeServices();
     });
 
-    ipcMain.on(AppMessage.ShowContextMenu, (event, data) => {
-        const menu = buildMenuForSender({
+    ipcMain.on(AppMessage.ShowContextMenu, async (event, data) => {
+        const menu = await buildMenuForSender({
             data,
             event,
-            isServiceWindow: event.sender === window.webContents,
+            isServiceWindow: event.sender !== window.webContents,
         });
         const popup = BrowserWindow.fromWebContents(event.sender);
         if (!popup) {
@@ -164,109 +154,6 @@ export const createWindow = async () => {
         });
     }
 };
-
-interface BuildMenuOptions {
-    data: {
-        x: number;
-        y: number;
-        url: string | null;
-        image: string | null;
-        isEditable: boolean;
-        content: string | null;
-    };
-    event: IpcMainEvent;
-    isServiceWindow: boolean;
-}
-
-function buildMenuForSender({ data, event, isServiceWindow }: BuildMenuOptions) {
-    return Menu.buildFromTemplate([
-        ...(data.image
-            ? [
-                  {
-                      click: () => {
-                          const image = nativeImage.createFromDataURL(data.image!);
-                          clipboard.writeImage(image);
-                      },
-                      label: "Copy Image",
-                  },
-              ]
-            : []),
-        ...(data.url
-            ? [
-                  {
-                      click: () => {
-                          clipboard.writeText(data.url!);
-                      },
-                      label: "Copy URL",
-                  },
-              ]
-            : []),
-        ...(data.isEditable
-            ? [
-                  {
-                      role: "cut" as const,
-                  },
-                  {
-                      role: "copy" as const,
-                  },
-                  {
-                      role: "paste" as const,
-                  },
-              ]
-            : []),
-        ...(!data.isEditable && data.content && !data.url
-            ? [
-                  {
-                      click: () => {
-                          clipboard.writeText(data.content!);
-                      },
-                      label: "Copy",
-                  },
-              ]
-            : []),
-        {
-            type: "separator",
-        },
-        ...(!isServiceWindow
-            ? []
-            : [
-                  {
-                      click: () => {
-                          clipboard.writeText(event.sender.getURL());
-                      },
-                      label: "Copy URL",
-                  },
-                  {
-                      click: () => {
-                          shell.openExternal(event.sender.getURL());
-                      },
-                      label: "Open in Browser",
-                  },
-              ]),
-        {
-            type: "separator",
-        },
-        {
-            click: () => {
-                event.sender.reloadIgnoringCache();
-            },
-            label: "Reload",
-        },
-        {
-            click: () => {
-                event.sender.openDevTools({ mode: "bottom" });
-            },
-            label: "Developer Tools",
-        },
-        {
-            click: () => {
-                event.sender.openDevTools({ mode: "bottom" });
-                event.sender.inspectElement(data.x, data.y);
-            },
-            label: "Inspect Element",
-        },
-    ]);
-}
 
 function CalculateBounds(bounds: Rectangle, isOpen: boolean) {
     return {
