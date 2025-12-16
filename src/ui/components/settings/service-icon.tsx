@@ -18,6 +18,7 @@ export function ServiceIcon(props: ServiceIconProps) {
             src={IconIdToUrl(props.icon)}
             style={props.style}
             width={props.size}
+            draggable={false}
         />
     );
 }

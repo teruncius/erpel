@@ -18,11 +18,11 @@ export function Logo() {
     }, [isMuted, play]);
 
     return (
-        <LogoLink onClick={handleClick} title="erpel" to="/">
+        <LogoLink onClick={handleClick} title="erpel" to="/" draggable={false}>
             {isOpen ? (
-                <LogoImageBig alt="erpel" height={64} src={icon} width={64} />
+                <LogoImageBig alt="erpel" height={64} src={icon} width={64} draggable={false} />
             ) : (
-                <LogoImageSmall alt="erpel" height={30} src={icon} width={30} />
+                <LogoImageSmall alt="erpel" height={30} src={icon} width={30} draggable={false} />
             )}
         </LogoLink>
     );
@@ -31,6 +31,8 @@ export function Logo() {
 const LogoLink = styled(NavLink)`
     margin: 1rem auto;
     outline: none;
+
+    user-select: none;
 `;
 
 const LogoImageBig = styled.img`
@@ -38,6 +40,8 @@ const LogoImageBig = styled.img`
     height: 64px;
     margin: 1rem auto;
     padding: 0;
+
+    user-select: none;
 
     cursor: pointer;
     border-radius: 50%;
@@ -49,6 +53,8 @@ const LogoImageSmall = styled.img`
     height: 30px;
     margin: 32px 0 32px 0;
     padding: 0;
+
+    user-select: none;
 
     cursor: pointer;
     border-radius: 50%;
