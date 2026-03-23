@@ -53,6 +53,7 @@ export const ConfigSchema = z.object({
     timeFormat: z.string(),
     version: z.literal(0),
     wallpapers: z.array(z.string()),
+    color: z.string(),
 });
 
 export type Config = z.infer<typeof ConfigSchema>;

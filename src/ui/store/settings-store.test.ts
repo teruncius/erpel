@@ -24,6 +24,7 @@ describe("SettingsStore", () => {
             expect(state.mode).toBe(BackgroundMode.Wallpaper);
             expect(state.timeFormat).toBe(DEFAULT_LOCALE);
             expect(state.wallpapers).toEqual([]);
+            expect(state.color).toBe("#000000");
         });
 
         it("locale is set to default", () => {
@@ -75,6 +76,12 @@ describe("SettingsStore", () => {
 
             expect(useTestStore.getState().wallpapers).toEqual([]);
         });
+
+        it("sets background color", () => {
+            useTestStore.getState().setColor("#ff0000");
+
+            expect(useTestStore.getState().color).toBe("#ff0000");
+        });
     });
 
     describe("Load Settings from File", () => {
@@ -86,6 +93,7 @@ describe("SettingsStore", () => {
                 mode: BackgroundMode.Color,
                 timeFormat: "es-ES",
                 wallpapers: ["https://example.com/spanish-wallpaper.jpg"],
+                color: "#ff0000",
             };
 
             useTestStore.getState().loadSettingsFromFile(fileSettings);
@@ -97,6 +105,7 @@ describe("SettingsStore", () => {
             expect(state.mode).toBe(BackgroundMode.Color);
             expect(state.timeFormat).toBe("es-ES");
             expect(state.wallpapers).toEqual(["https://example.com/spanish-wallpaper.jpg"]);
+            expect(state.color).toBe("#ff0000");
         });
 
         it("overwrites existing settings when loading from file", () => {
@@ -112,6 +121,7 @@ describe("SettingsStore", () => {
                 mode: BackgroundMode.Color,
                 timeFormat: "zh-CN",
                 wallpapers: ["https://example.com/chinese-wallpaper.jpg"],
+                color: "#00ff00",
             };
 
             useTestStore.getState().loadSettingsFromFile(fileSettings);
@@ -130,6 +140,7 @@ describe("SettingsStore", () => {
                 mode: BackgroundMode.Wallpaper,
                 timeFormat: "it-IT",
                 wallpapers: [],
+                color: "#000000",
             };
 
             useTestStore.getState().loadSettingsFromFile(partialSettings);
@@ -141,6 +152,7 @@ describe("SettingsStore", () => {
             expect(state.mode).toBe(BackgroundMode.Wallpaper);
             expect(state.timeFormat).toBe("it-IT");
             expect(state.wallpapers).toEqual([]);
+            expect(state.color).toBe("#000000");
         });
     });
 
