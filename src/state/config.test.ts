@@ -147,6 +147,7 @@ describe("Config", () => {
             expect(DefaultConfig).toHaveProperty("timeFormat");
             expect(DefaultConfig).toHaveProperty("version");
             expect(DefaultConfig).toHaveProperty("wallpapers");
+            expect(DefaultConfig).toHaveProperty("color");
         });
 
         it("has correct default values", () => {
@@ -158,6 +159,7 @@ describe("Config", () => {
             expect(DefaultConfig.timeFormat).toBe("en-US");
             expect(Array.isArray(DefaultConfig.services)).toBe(true);
             expect(Array.isArray(DefaultConfig.wallpapers)).toBe(true);
+            expect(DefaultConfig.color).toBe("#000000");
         });
     });
 });
