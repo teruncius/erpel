@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 
 import { Config, ConfigSchema } from "./schema";
 import {
+    DEFAULT_COLOR,
     DEFAULT_IS_MUTED,
     DEFAULT_LOCALE,
     DEFAULT_MODE,
@@ -20,6 +21,7 @@ export const DefaultConfig: Config = {
     timeFormat: DEFAULT_LOCALE,
     version: 0,
     wallpapers: DEFAULT_WALLPAPERS,
+    color: DEFAULT_COLOR,
 };
 
 type Result<T> =
