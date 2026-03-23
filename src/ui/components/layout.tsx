@@ -7,10 +7,10 @@ import { SideBar, SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "./side-bar/si
 import { Wallpaper } from "./wallpaper";
 
 export function Layout() {
-    const { isOpen, mode } = useStore();
+    const { isOpen, mode, color } = useStore();
 
     return (
-        <Page>
+        <Page $mode={mode} $color={color}>
             {mode === BackgroundMode.Wallpaper && <Wallpaper />}
             <SideBar />
             <Content $isOpen={isOpen}>
@@ -22,11 +22,12 @@ export function Layout() {
     );
 }
 
-const Page = styled.div`
+const Page = styled.div<{ $mode: BackgroundMode; $color: string }>`
     display: flex;
-
     min-height: 100vh;
     overflow: hidden;
+
+    background: ${(props) => (props.$mode === BackgroundMode.Color ? props.$color : "transparent")};
 `;
 
 const Content = styled.div<{ $isOpen: boolean }>`

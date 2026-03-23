@@ -12,7 +12,7 @@ import { useStore } from "@erpel/ui/store/store";
 const modes = [BackgroundMode.Color, BackgroundMode.Wallpaper];
 
 export function WallpaperSettings() {
-    const { mode, setMode, setWallpapers, wallpapers } = useStore();
+    const { mode, setMode, setWallpapers, wallpapers, color, setColor } = useStore();
 
     const handleChangeMode = useCallback(
         (e: ChangeEvent<HTMLSelectElement>) => {
@@ -33,10 +33,37 @@ export function WallpaperSettings() {
         setWallpapers(DEFAULT_WALLPAPERS);
     }, [setWallpapers]);
 
+
+    const handleChangeColor = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            setColor(e.target.value);
+        },
+        [setColor]
+    );
+
     return (
         <ThemedSection>
             <Container>
                 <ThemedSelect label="Background mode" onChange={handleChangeMode} options={modes} value={mode} />
+
+                {mode === BackgroundMode.Wallpaper && (
+                    <>
+                        <div>
+                            <ThemedButton onClick={handleReset}>
+                                <Icon name="bug" size={20} />
+                                <>Reset</>
+                            </ThemedButton>
+                        </div>
+                        <ThemedTextarea onChange={handleChangeUrls} value={wallpapers.join("\n")} />
+                    </>
+                )}
+
+                {mode === BackgroundMode.Color && (
+                    <div>
+                        <label>Background color</label>
+                        <input type="color" value={color} onChange={handleChangeColor} />
+                    </div>
+                )}
 
                 {mode === BackgroundMode.Wallpaper && (
                     <>

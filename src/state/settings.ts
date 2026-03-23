@@ -19,6 +19,7 @@ export const DEFAULT_SIDE_BAR_IS_OPEN = true;
 export const DEFAULT_LOCALE = "en-US";
 export const DEFAULT_IS_MUTED = false;
 export const DEFAULT_MODE = BackgroundMode.Wallpaper;
+export const DEFAULT_COLOR = "#000000";
 
 export const DEFAULT_WALLPAPERS = [
     "https://images.unsplash.com/photo-1752520316159-741a8d0bde1d",

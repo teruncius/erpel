@@ -1,6 +1,6 @@
 import { StateCreator } from "zustand/vanilla";
 
-import { BackgroundMode, DEFAULT_IS_MUTED, DEFAULT_LOCALE } from "@erpel/state/settings";
+import { BackgroundMode, DEFAULT_COLOR, DEFAULT_IS_MUTED, DEFAULT_LOCALE } from "@erpel/state/settings";
 
 export interface SettingsStoreActions {
     loadSettingsFromFile: (settings: SettingsStoreState) => void;
@@ -10,6 +10,7 @@ export interface SettingsStoreActions {
     setMode: (mode: BackgroundMode) => void;
     setTimeFormat: (locale: string) => void;
     setWallpapers: (wallpapers: string[]) => void;
+    setColor: (color: string) => void;
 }
 
 export interface SettingsStoreState {
@@ -19,6 +20,7 @@ export interface SettingsStoreState {
     mode: BackgroundMode;
     timeFormat: string;
     wallpapers: string[];
+    color: string;
 }
 
 const initialValues: SettingsStoreState = {
@@ -28,6 +30,7 @@ const initialValues: SettingsStoreState = {
     mode: BackgroundMode.Wallpaper,
     timeFormat: DEFAULT_LOCALE,
     wallpapers: [],
+    color: DEFAULT_COLOR,
 };
 
 export const createSettingsSlice: StateCreator<SettingsStoreActions & SettingsStoreState> = (set) => ({
@@ -53,5 +56,8 @@ export const createSettingsSlice: StateCreator<SettingsStoreActions & SettingsSt
     setWallpapers: (wallpapers: string[]) => {
         // TODO: validate for empty or invalid wallpapers
         set({ wallpapers });
+    },
+    setColor: (color: string) => {
+        set({ color });
     },
 });
