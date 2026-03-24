@@ -30,6 +30,7 @@ vi.mock("@erpel/state/settings", async () => {
 const mockSetMode = vi.fn();
 const mockSetWallpapers = vi.fn();
 const mockUseStore = vi.fn();
+const mockSetColor = vi.fn();
 
 vi.mock("../../store/store", () => ({
     useStore: () => mockUseStore(),
@@ -50,8 +51,10 @@ describe("WallpaperSettings", () => {
         mockUseStore.mockReturnValue({
             mode: BackgroundMode.Wallpaper,
             wallpapers: ["https://example.com/test1.jpg", "https://example.com/test2.jpg"],
+            color: "#ffffff",
             setMode: mockSetMode,
             setWallpapers: mockSetWallpapers,
+            setColor: mockSetColor,
         });
     });
 
@@ -86,8 +89,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Color,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { container } = render(<WallpaperSettings />);
@@ -101,8 +106,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: ["https://example.com/test.jpg"],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -115,8 +122,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Color,
                 wallpapers: ["https://example.com/test.jpg"],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -129,8 +138,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -145,8 +156,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Color,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { rerender } = render(<WallpaperSettings />);
@@ -155,8 +168,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor
             });
 
             rerender(<WallpaperSettings />);
@@ -167,8 +182,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { rerender } = render(<WallpaperSettings />);
@@ -177,12 +194,15 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Color,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             rerender(<WallpaperSettings />);
             expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+            expect(screen.getByLabelText("Background color")).toBeInTheDocument();
         });
     });
 
@@ -202,8 +222,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Color,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { container } = render(<WallpaperSettings />);
@@ -243,8 +265,10 @@ describe("WallpaperSettings", () => {
                     "https://example.com/wall2.jpg",
                     "https://example.com/wall3.jpg",
                 ],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -299,8 +323,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: ["https://example.com/single.jpg"],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -313,8 +339,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -371,8 +399,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Color,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { container } = render(<WallpaperSettings />);
@@ -385,8 +415,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: ["test1.jpg", "test2.jpg"],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -400,8 +432,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: customSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { container } = render(<WallpaperSettings />);
@@ -419,8 +453,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: customSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -437,8 +473,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Color,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { rerender } = render(<WallpaperSettings />);
@@ -508,8 +546,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode1,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { rerender, container } = render(<WallpaperSettings />);
@@ -524,8 +564,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Color,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode2,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             rerender(<WallpaperSettings />);
@@ -575,8 +617,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: undefined,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { container } = render(<WallpaperSettings />);
@@ -587,8 +631,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: null,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             const { container } = render(<WallpaperSettings />);
@@ -599,8 +645,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: undefined,
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             // This will throw because undefined.join() fails
@@ -613,8 +661,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: null,
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             // This will throw because null.join() fails
@@ -627,8 +677,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: ["https://example.com/test?param=1&other=2", "https://example.com/test#anchor"],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -643,8 +695,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [longUrl],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -658,8 +712,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: manyWallpapers,
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             render(<WallpaperSettings />);
@@ -672,8 +728,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: undefined,
                 setWallpapers: mockSetWallpapers,
+                setColor: mockSetColor,
             });
 
             // Should render but changing mode will cause error
@@ -689,8 +747,10 @@ describe("WallpaperSettings", () => {
             mockUseStore.mockReturnValue({
                 mode: BackgroundMode.Wallpaper,
                 wallpapers: [],
+                color: "#ffffff",
                 setMode: mockSetMode,
                 setWallpapers: undefined,
+                setColor: mockSetColor,
             });
 
             // Should render but clicking button will cause error
