@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { BackgroundMode } from "./settings";
+import { BackgroundMode, DEFAULT_COLOR } from "./settings";
 
 const StringOption = z.object({
     copyOnCreate: z.boolean(),
@@ -53,7 +53,7 @@ export const ConfigSchema = z.object({
     timeFormat: z.string(),
     version: z.literal(0),
     wallpapers: z.array(z.string()),
-    color: z.string(),
+    color: z.string().default(DEFAULT_COLOR),
 });
 
 export type Config = z.infer<typeof ConfigSchema>;

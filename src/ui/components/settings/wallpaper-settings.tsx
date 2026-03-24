@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback } from "react";
 import { styled } from "styled-components";
 
-import { BackgroundMode, DEFAULT_WALLPAPERS } from "@erpel/state/settings";
+import { BackgroundMode, DEFAULT_COLOR, DEFAULT_WALLPAPERS } from "@erpel/state/settings";
 import { Icon } from "@erpel/ui/components/icon";
 import { ThemedSection } from "@erpel/ui/components/theme";
 import { ThemedButton } from "@erpel/ui/components/theme/button";
@@ -31,7 +31,8 @@ export function WallpaperSettings() {
 
     const handleReset = useCallback(() => {
         setWallpapers(DEFAULT_WALLPAPERS);
-    }, [setWallpapers]);
+        setColor(DEFAULT_COLOR);
+    }, [setWallpapers, setColor]);
 
 
     const handleChangeColor = useCallback(
@@ -59,22 +60,10 @@ export function WallpaperSettings() {
                 )}
 
                 {mode === BackgroundMode.Color && (
-                    <div>
+                    <ColorField>
                         <label>Background color</label>
                         <input type="color" value={color} onChange={handleChangeColor} />
-                    </div>
-                )}
-
-                {mode === BackgroundMode.Wallpaper && (
-                    <>
-                        <div>
-                            <ThemedButton onClick={handleReset}>
-                                <Icon name="bug" size={20} />
-                                <>Reset</>
-                            </ThemedButton>
-                        </div>
-                        <ThemedTextarea onChange={handleChangeUrls} value={wallpapers.join("\n")} />
-                    </>
+                    </ColorField>
                 )}
             </Container>
         </ThemedSection>
@@ -84,5 +73,11 @@ export function WallpaperSettings() {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+`;
+
+const ColorField = styled.div`
+    display: flex;
+    align-items: center;
     gap: 1rem;
 `;
