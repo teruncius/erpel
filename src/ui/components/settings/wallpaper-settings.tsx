@@ -61,8 +61,8 @@ export function WallpaperSettings() {
 
                 {mode === BackgroundMode.Color && (
                     <ColorField>
-                        <label>Background color</label>
-                        <input type="color" value={color} onChange={handleChangeColor} />
+                        <label htmlFor="color">Background color</label>
+                        <input type="color" id="color" value={color} onChange={handleChangeColor} />
                     </ColorField>
                 )}
             </Container>
