@@ -8,11 +8,21 @@ import icon from "@erpel/resources/erpel.png?asset";
 import { loadConfig, saveConfig } from "@erpel/state/config";
 import { SIDEBAR_WIDTH_CLOSED, SIDEBAR_WIDTH_OPEN } from "@erpel/ui/components/side-bar/side-bar";
 import { buildMenuForSender } from "@erpel/window/context-menu";
+import { session } from "electron/main";
 
 const CONFIG_PATH = join(app.getPath("userData"), "config.json");
 const SESSION_PARTITION = `persist:${import.meta.env.DEV ? "development" : "production"}`;
 
 export const createWindow = async () => {
+    const customUserAgent = session.defaultSession
+        .getUserAgent()
+        .replace(/\sElectron\/\d+\.\d+\.\d+\s/g, " ")
+        .replace(/\serpel\/\d+\.\d+\.\d+\s/g, " ");
+    session.defaultSession.setUserAgent(customUserAgent);
+
+    const s = session.fromPartition(SESSION_PARTITION);
+    s.setUserAgent(customUserAgent);
+
     // Create the browser window.
     const window = new BrowserWindow({
         backgroundColor: "#000000",
