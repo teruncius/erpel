@@ -48,6 +48,7 @@ describe("App Bridge", () => {
                 };
 
                 const mockService: Service = {
+                    customCss: null,
                     id: "test-id",
                     name: "Test Service",
                     url: "https://example.com",

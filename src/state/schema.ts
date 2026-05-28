@@ -31,6 +31,7 @@ export const ServiceTemplateSchema = z.object({
 export type ServiceTemplate = z.infer<typeof ServiceTemplateSchema>;
 
 export const ServiceSchema = z.object({
+    customCss: z.string().nullable().default(null),
     darkMode: z.boolean().nullable(),
     icon: z.string().nullable(),
     id: z.string(),

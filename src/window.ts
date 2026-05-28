@@ -149,6 +149,14 @@ export const createWindow = async () => {
 
         const url = service.url || service.template.url.default;
         view.webContents.loadURL(url);
+
+        if (service.customCss) {
+            const css = service.customCss;
+            view.webContents.on("did-finish-load", () => {
+                console.log("inserted css", css);
+                view.webContents.insertCSS(css);
+            });
+        }
     }
 
     function resizeServices() {

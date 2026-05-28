@@ -46,6 +46,7 @@ describe("ServiceStore", () => {
             name: "Test Service",
             url: "https://example.com",
             icon: "test-icon",
+            customCss: null,
             darkMode: false,
             template: {
                 id: "template-1",
@@ -176,6 +177,7 @@ describe("ServiceStore", () => {
                     name: "File Service 1",
                     url: "https://file1.com",
                     icon: "file-icon-1",
+                    customCss: null,
                     darkMode: false,
                     template: mockTemplate,
                 },
@@ -184,6 +186,7 @@ describe("ServiceStore", () => {
                     name: "File Service 2",
                     url: "https://file2.com",
                     icon: "file-icon-2",
+                    customCss: null,
                     darkMode: true,
                     template: mockTemplate,
                 },
@@ -247,6 +250,7 @@ describe("ServiceStore", () => {
                 name: "Service 1",
                 url: "https://service1.com",
                 icon: "icon-1",
+                customCss: null,
                 darkMode: false,
                 template: {
                     id: "template-1",
@@ -263,6 +267,7 @@ describe("ServiceStore", () => {
                 name: "Service 2",
                 url: "https://service2.com",
                 icon: "icon-2",
+                customCss: null,
                 darkMode: false,
                 template: {
                     id: "template-2",
@@ -279,6 +284,7 @@ describe("ServiceStore", () => {
                 name: "Service 3",
                 url: "https://service3.com",
                 icon: "icon-3",
+                customCss: null,
                 darkMode: false,
                 template: {
                     id: "template-3",
@@ -309,6 +315,7 @@ describe("ServiceStore", () => {
                 name: "Service 1",
                 url: "https://service1.com",
                 icon: "icon-1",
+                customCss: null,
                 darkMode: false,
                 template: {
                     id: "template-1",
@@ -345,6 +352,7 @@ describe("ServiceStore", () => {
                 name: "Service 1",
                 url: "https://service1.com",
                 icon: "icon-1",
+                customCss: null,
                 darkMode: false,
                 template: {
                     id: "template-1",
@@ -361,6 +369,7 @@ describe("ServiceStore", () => {
                 name: "Service 2",
                 url: "https://service2.com",
                 icon: "icon-2",
+                customCss: null,
                 darkMode: false,
                 template: {
                     id: "template-2",
@@ -389,6 +398,7 @@ describe("ServiceStore", () => {
                 name: "Test Service",
                 url: "https://example.com",
                 icon: "test-icon",
+                customCss: null,
                 darkMode: false,
                 template: {
                     id: "template-1",
@@ -411,6 +421,7 @@ describe("ServiceStore", () => {
                 name: "Test Service",
                 url: "https://example.com",
                 icon: "test-icon",
+                customCss: null,
                 darkMode: false,
                 template: {
                     id: "template-1",
@@ -434,6 +445,7 @@ describe("ServiceStore", () => {
                 name: "Original Service",
                 url: "https://original.com",
                 icon: "original-icon",
+                customCss: null,
                 darkMode: false,
                 template: {
                     id: "template-1",

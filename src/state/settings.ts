@@ -50,6 +50,7 @@ export function IconIdToUrl(id: string): string {
 
 export function ServiceFromTemplate(template: ServiceTemplate): Service {
     return {
+        customCss: null,
         darkMode: ValueFromOption<boolean>(template.darkMode),
         icon: ValueFromOption<string>(template.icon),
         id: crypto.randomUUID(),
