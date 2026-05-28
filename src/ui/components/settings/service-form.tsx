@@ -7,9 +7,11 @@ import { Icon } from "@erpel/ui/components/icon";
 import { ThemedButton } from "@erpel/ui/components/theme/button";
 import { ThemedCheckbox } from "@erpel/ui/components/theme/checkbox";
 import { ThemedInput } from "@erpel/ui/components/theme/input";
+import { ThemedTextarea } from "@erpel/ui/components/theme/textarea";
 import { useStore } from "@erpel/ui/store/store";
 
 export interface Values {
+    customCss: null | string;
     darkMode: boolean | null;
     name: null | string;
     url: null | string;
@@ -78,6 +80,16 @@ export function ServiceForm(props: ServiceFormProps) {
                     />
                 </Fieldset>
             )}
+            <Fieldset>
+                <Label htmlFor={`${props.service.id}::customCss`}>Custom CSS</Label>
+                <ThemedTextarea
+                    id={`${props.service.id}::customCss`}
+                    {...register("customCss", { setValueAs: filterEmptyToString })}
+                    placeholder="Enter custom CSS to inject into this service"
+                    rows={6}
+                    spellCheck={false}
+                />
+            </Fieldset>
             <Buttons>
                 <ThemedButton type="submit">
                     <Icon name="floppy-disk" size={20} />

@@ -26,6 +26,7 @@ import { ServiceForm } from "./service-form";
 
 describe("ServiceForm", () => {
     const createMockService = (overrides?: Partial<Service>): Service => ({
+        customCss: null,
         darkMode: null,
         icon: "test-icon",
         id: "test-service-id",
