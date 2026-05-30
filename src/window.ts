@@ -153,7 +153,6 @@ export const createWindow = async () => {
         if (service.customCss) {
             const css = service.customCss;
             view.webContents.on("did-finish-load", () => {
-                console.log("inserted css", css);
                 view.webContents.insertCSS(css);
             });
         }
