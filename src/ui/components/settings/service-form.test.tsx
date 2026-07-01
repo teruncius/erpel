@@ -13,6 +13,13 @@ vi.mock("../../icon", () => ({
     ),
 }));
 
+// Mock ServiceIcon component
+vi.mock("./service-icon", () => ({
+    ServiceIcon: ({ icon, name, size }: { icon: string; name: string; size: number }) => (
+        <img alt={name} data-icon={icon} data-size={size} />
+    ),
+}));
+
 // Mock the store
 const mockReplace = vi.fn();
 vi.mock("../../store/store", () => ({
@@ -284,6 +291,125 @@ describe("ServiceForm", () => {
 
             const darkModeCheckbox = screen.getByLabelText(/dark mode/i);
             expect(darkModeCheckbox).toBeInTheDocument();
+        });
+    });
+
+    describe("Conditional Rendering - Icon Field", () => {
+        it("renders icon upload when customizable", () => {
+            const service = createMockService({
+                template: {
+                    ...createMockService().template,
+                    icon: {
+                        copyOnCreate: false,
+                        customizable: true,
+                        default: "test-icon",
+                    },
+                },
+            });
+
+            render(<ServiceForm service={service} />);
+
+            expect(screen.getByLabelText(/icon/i)).toBeInTheDocument();
+        });
+
+        it("does not render icon upload when not customizable", () => {
+            const service = createMockService({
+                template: {
+                    ...createMockService().template,
+                    icon: {
+                        copyOnCreate: false,
+                        customizable: false,
+                        default: "test-icon",
+                    },
+                },
+            });
+
+            render(<ServiceForm service={service} />);
+
+            expect(screen.queryByLabelText(/upload icon/i)).not.toBeInTheDocument();
+        });
+
+        it("shows icon preview using service icon value", () => {
+            const service = createMockService({
+                icon: "data:image/png;base64,abc123",
+                template: {
+                    ...createMockService().template,
+                    icon: {
+                        copyOnCreate: false,
+                        customizable: true,
+                        default: "test-icon",
+                    },
+                },
+            });
+
+            render(<ServiceForm service={service} />);
+
+            const preview = screen.getByAltText("icon preview");
+            expect(preview).toHaveAttribute("data-icon", "data:image/png;base64,abc123");
+        });
+
+        it("falls back to template default icon when service icon is null", () => {
+            const service = createMockService({
+                icon: null,
+                template: {
+                    ...createMockService().template,
+                    icon: {
+                        copyOnCreate: false,
+                        customizable: true,
+                        default: "default-icon-uuid",
+                    },
+                },
+            });
+
+            render(<ServiceForm service={service} />);
+
+            const preview = screen.getByAltText("icon preview");
+            expect(preview).toHaveAttribute("data-icon", "default-icon-uuid");
+        });
+
+        it("updates icon preview after file upload", async () => {
+            const dataUrl = "data:image/png;base64,iVBORw0KGgo=";
+            let fireLoad: (() => void) | undefined;
+
+            class MockFileReader {
+                onload: ((event: ProgressEvent<FileReader>) => void) | null = null;
+                result: string = dataUrl;
+                readAsDataURL() {
+                    const self = this;
+                    fireLoad = () => {
+                        self.onload?.({ target: self } as unknown as ProgressEvent<FileReader>);
+                    };
+                }
+            }
+
+            vi.stubGlobal("FileReader", MockFileReader);
+
+            const service = createMockService({
+                icon: null,
+                template: {
+                    ...createMockService().template,
+                    icon: {
+                        copyOnCreate: false,
+                        customizable: true,
+                        default: "default-icon-uuid",
+                    },
+                },
+            });
+
+            render(<ServiceForm service={service} />);
+
+            const fileInput = screen.getByLabelText(/upload icon/i);
+            const file = new File(["png-content"], "favicon.png", { type: "image/png" });
+            await userEvent.setup().upload(fileInput, file);
+
+            fireLoad?.();
+
+            await waitFor(() => {
+                const preview = screen.getByAltText("icon preview");
+                expect(preview).toHaveAttribute("data-icon", dataUrl);
+            });
+
+            vi.unstubAllGlobals();
         });
     });
 
