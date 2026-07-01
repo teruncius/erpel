@@ -45,6 +45,10 @@ const ICONS: Record<string, string> = {
 };
 
 export function IconIdToUrl(id: string): string {
+    if (!id) return "";
+    if (id.startsWith("data:") || id.startsWith("http")) {
+        return id;
+    }
     return ICONS[id] || "";
 }
 
@@ -270,7 +274,7 @@ export const DEFAULT_SERVICE_TEMPLATES: ServiceTemplate[] = [
         },
         icon: {
             copyOnCreate: false,
-            customizable: false,
+            customizable: true,
             default: "173773cb-72de-429f-94db-d382613f436d",
         },
         id: "5f8c2fe3-5be6-4f1c-a58d-e7e746db2b0a",
