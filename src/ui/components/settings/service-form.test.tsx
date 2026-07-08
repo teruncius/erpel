@@ -376,9 +376,8 @@ describe("ServiceForm", () => {
                 onload: ((event: ProgressEvent<FileReader>) => void) | null = null;
                 result: string = dataUrl;
                 readAsDataURL() {
-                    const self = this;
                     fireLoad = () => {
-                        self.onload?.({ target: self } as unknown as ProgressEvent<FileReader>);
+                        this.onload?.({ target: this } as unknown as ProgressEvent<FileReader>);
                     };
                 }
             }
