@@ -104,6 +104,7 @@ describe("Settings", () => {
             const service = ServiceFromTemplate(template);
 
             expect(service).toEqual({
+                customCss: null,
                 darkMode: null,
                 icon: null,
                 id: service.id,

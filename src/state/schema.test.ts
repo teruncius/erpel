@@ -128,6 +128,7 @@ describe("Schema", () => {
         it("validates a complete service", () => {
             const template = DEFAULT_SERVICE_TEMPLATES[0];
             const service = {
+                customCss: null,
                 darkMode: null,
                 icon: null,
                 id: "test-id",
