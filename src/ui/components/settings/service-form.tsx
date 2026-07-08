@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm, useWatch } from "react-hook-form";
 import { styled } from "styled-components";
 
 import { Service } from "@erpel/state/schema";
@@ -24,10 +24,10 @@ interface ServiceFormProps {
 }
 
 export function ServiceForm(props: ServiceFormProps) {
-    const { control, handleSubmit, register, setValue, watch } = useForm<Values>({ defaultValues: props.service });
+    const { control, handleSubmit, register, setValue } = useForm<Values>({ defaultValues: props.service });
     const { replace } = useStore();
 
-    const currentIcon = watch("icon");
+    const currentIcon = useWatch({ control, name: "icon" });
     const iconPreview = currentIcon || props.service.template.icon.default;
 
     const onSubmit: SubmitHandler<Values> = useCallback(
