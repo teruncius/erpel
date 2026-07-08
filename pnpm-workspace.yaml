@@ -1,4 +1,6 @@
 allowBuilds:
-  electron: true
   electron-winstaller: true
+  electron: true
   esbuild: true
+  fs-xattr: true
+  macos-alias: true
