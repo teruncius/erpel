@@ -6,7 +6,7 @@ inputs:
     node-version:
         description: "Node.js version to use"
         required: false
-        default: "22"
+        default: "24"
     just-version:
         description: "Just version to use"
         required: false
