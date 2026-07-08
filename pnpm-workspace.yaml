@@ -4,3 +4,7 @@ allowBuilds:
   esbuild: true
   fs-xattr: true
   macos-alias: true
+
+blockExoticSubdeps: false
+
+nodeLinker: hoisted
